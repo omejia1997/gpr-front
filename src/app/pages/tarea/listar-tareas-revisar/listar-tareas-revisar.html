@@ -1,0 +1,201 @@
+<app-navbar></app-navbar>
+<form style="display: flex" [formGroup]="formControl | asFormGroup">
+
+  <div class="table-responsive">
+    <table mat-table [dataSource]="dataSource" id="dataPdf" class="table text-center table-sm">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No.
+          <mat-form-field class="numberCss">
+            <input type="number" matInput formControlName="id">
+            <mat-placeholder class="color-input">No.</mat-placeholder>
+          </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let element" class="body-table"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="revisor">
+        <th mat-header-cell *matHeaderCellDef> <mat-icon>supervisor_account</mat-icon> Creador de la Actividad
+          <mat-form-field>
+            <input matInput formControlName="revisor">
+            <mat-placeholder class="color-input">Revisor</mat-placeholder>
+          </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let element" class="body-table"> <mat-icon>account_circle</mat-icon> {{element.revisor}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="proceso">
+        <th mat-header-cell *matHeaderCellDef><mat-icon> scatter_plot</mat-icon> Proceso
+          <mat-form-field>
+            <input matInput formControlName="proceso">
+            <mat-placeholder class="color-input">Proceso</mat-placeholder>
+          </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let element" class="body-table"><mat-icon> scatter_plot</mat-icon> {{element.proceso}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="proyecto">
+        <th mat-header-cell *matHeaderCellDef> <mat-icon>folder</mat-icon> Proyecto
+          <mat-form-field>
+            <input matInput formControlName="proyecto">
+            <mat-placeholder class="color-input">Proyecto</mat-placeholder>
+          </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let element" class="body-table">{{element.proyecto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tarea">
+        <th mat-header-cell *matHeaderCellDef><mat-icon>assignment</mat-icon> Actividad
+          <mat-form-field>
+            <input matInput formControlName="tarea">
+            <mat-placeholder class="color-input">Actividad</mat-placeholder>
+          </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let element" class="body-table">{{element.tarea}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipoTarea">
+        <th mat-header-cell *matHeaderCellDef><mat-icon>assignment</mat-icon>Tipo de Actividad
+          <mat-form-field>
+            <input matInput formControlName="tipoTarea">
+            <mat-placeholder class="color-input">Tipo de Actividad</mat-placeholder>
+          </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let element" class="body-table">{{element.tipoTarea}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tareaIndicadors">
+        <th mat-header-cell *matHeaderCellDef style="display: flex;width: 400px;padding: 0;margin: 0;"><span
+            style="margin: auto;"><mat-icon>check_circle_outline</mat-icon>Indicadores de Actividad</span>
+        </th>
+        <td mat-cell *matCellDef="let element" style="min-width: 400px;" class="body-table">
+          <span *ngFor="let indicador of element.tareaIndicadors; index as i">
+            <br *ngIf="i!=0">
+            <b>{{ i+1}}.-</b>
+            <span *ngIf="indicador.descripcionTareaIndicador!=''"><b> {{
+              indicador.descripcionTareaIndicador}}: </b></span>
+            <span *ngIf="!indicador.descripcionTareaIndicador"><b>{{
+              indicador.valorIndicador}} </b></span>
+            <span *ngIf="indicador.descripcionTareaIndicador && indicador.indicadorCODIGOINDICADOR.nombreIndicador=='PORCENTAJE'">{{ indicador.valorIndicador}} %</span>
+            <span *ngIf="indicador.descripcionTareaIndicador && indicador.indicadorCODIGOINDICADOR.nombreIndicador!='PORCENTAJE'">{{ indicador.valorIndicador}} </span>
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="prioridad">
+        <th mat-header-cell *matHeaderCellDef> Prioridad
+          <mat-form-field class="numberCss">
+            <input matInput formControlName="prioridad">
+            <mat-placeholder class="color-input">Prioridad</mat-placeholder>
+          </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let element" class="body-table"> {{element.prioridad}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="peso">
+        <th mat-header-cell *matHeaderCellDef> Peso
+          <mat-form-field class="numberCss">
+            <input matInput formControlName="peso">
+            <mat-placeholder class="color-input">Peso</mat-placeholder>
+          </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let element" class="body-table"> <span *ngIf="element.peso!='0 null'">{{element.peso}}</span>
+          <span *ngIf="element.peso=='0 null'">No aplica</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fechaInicio">
+        <th mat-header-cell *matHeaderCellDef> <mat-icon>calendar_today</mat-icon> fecha de Inicio
+          <mat-form-field>
+            <input matInput formControlName="fechaInicio">
+            <mat-placeholder class="color-input">fecha de Inicio</mat-placeholder>
+          </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let element" class="body-table"><mat-icon>event</mat-icon> {{element.fechaInicio |
+          date:"short":'+00:00'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fechaVencimiento">
+        <th mat-header-cell *matHeaderCellDef> <mat-icon>calendar_today</mat-icon> fecha de Vencimiento
+          <mat-form-field>
+            <input matInput formControlName="fechaVencimiento">
+            <mat-placeholder class="color-input">fecha de Vencimiento</mat-placeholder>
+          </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let element" class="body-table"><mat-icon>event</mat-icon>
+          <span *ngIf="element.fechaVencimiento">{{element.fechaVencimiento|
+            date:"short":'+00:00'}} </span>
+          <span *ngIf="!element.fechaVencimiento">No aplica</span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="responsable">
+        <th mat-header-cell *matHeaderCellDef><mat-icon>person</mat-icon> Persona Responsable de la Tarea
+          <mat-form-field>
+            <input matInput formControlName="responsable">
+            <mat-placeholder class="color-input">Responsable de la Tarea</mat-placeholder>
+          </mat-form-field>
+        </th>
+        <td mat-cell *matCellDef="let element" class="body-table"> <mat-icon>person_outline</mat-icon>{{element.responsable}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="pdf">
+        <th mat-header-cell *matHeaderCellDef><mat-icon>picture_as_pdf</mat-icon> PDF </th>
+        <td mat-cell *matCellDef="let element" class="body-table">
+          <mat-icon>picture_as_pdf</mat-icon>
+          <a href="{{element.urlArchivo}}">{{element.nombreArchivo}}</a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</form>
+<button (click)="convertirDataPdf()">Descargar</button>
+<!--<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h3>Tareas por Revisar</h3>
+    </div>
+    <div class="card-body">
+      <table id="datos" class="table table-hover text-center">
+        <thead>
+          <tr>
+            <th>{{sum + 1}}</th>
+            <th>Creado <input type="text" class="search form-control-sm form-control" busqueda="buscador_nombre_creador"/></th>
+            <th>Proceso <input type="text" class="search form-control-sm form-control" busqueda="buscador_proceso"/></th>
+            <th>Proyecto <input type="text" class="search form-control-sm form-control" busqueda="buscador_proyecto"/></th>
+            <th>Tarea <input type="text" class="search form-control-sm form-control" busqueda="buscador_tarea"/></th>
+            <th>Prioridad <input type="text" class="search form-control-sm form-control" busqueda="buscador_prioridad"/></th>
+            <th>Peso <input type="text" class="search form-control-sm form-control" busqueda="buscador_peso"/></th>
+            <th>Fecha de Inicio <input type="text" class="search form-control-sm form-control" busqueda="buscador_fecha_inicio"/></th>
+            <th>Fecha de Vencimiento <input type="text" class="search form-control-sm form-control" busqueda="buscador_fecha_vencimiento"/></th>
+
+            <th>Responsable <input type="text" class="search form-control-sm form-control" busqueda="buscador_responsable"/></th>
+            <th>Evidencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tarea of tareasDocente">
+            <td>{{sum + 1}}</td>
+            <td class="buscador_nombre_creador">{{ tarea.codigoTarea?.nombreDocenteRevisor }}</td>
+            <td class="buscador_proceso">{{ tarea.codigoTarea?.codigoProyecto?.tipoProceso?.nombreTipoProceso }}</td>
+            <td class="buscador_proyecto">{{ tarea.codigoTarea?.codigoProyecto?.nombreProyecto }}</td>
+            <td class="buscador_tarea">{{ tarea.codigoTarea?.nombreTarea }}</td>
+            <td class="buscador_prioridad">{{ tarea.codigoTarea?.prioridadTarea }}</td>
+            <td class="buscador_peso">{{ tarea.codigoTarea?.valorPesoTarea }} {{ tarea.codigoTarea?.pesoTarea }} </td>
+            <td class="buscador_fecha_inicio">{{ tarea.codigoTarea?.fechaCreaciontarea | date:"short":'+00:00' }}</td>
+            <td class="buscador_fecha_vencimiento">{{ tarea.codigoTarea?.fechaEntregaTarea | date:"short":'+00:00' }}</td>
+            <td class="buscador_responsable">{{ tarea.codigoDocente?.nombreDocente }} {{ tarea.codigoDocente?.apellidoDocente }} </td>
+            <td *ngIf="tarea.codigoTarea?.nombreArchivoTarea!=null || tarea.codigoTarea?.nombreArchivoTarea!=''">
+              <mat-icon>picture_as_pdf</mat-icon>
+              <a href="" style="text-decoration: none;">{{tarea.nombreArchivoTareaDocente}}</a> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+-->

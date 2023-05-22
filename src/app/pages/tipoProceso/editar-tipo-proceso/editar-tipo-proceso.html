@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-blockUI *ngIf="visualBlockedDocument" [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="overlay">
+      <p-progressSpinner *ngIf="blockedDocument"
+        [style]="{width: '150px', height: '150px', margin:'auto'}"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </div>
+    <div class="col-md-5" style="margin: auto;">
+      <button type="button" (click)="regresar()" class="btn btn-dark btn-sm btn-regresar">Regresar</button>
+      <h3 style="text-align: center;"><mat-icon>device_hub</mat-icon>Editar Datos del Proceso</h3>
+      <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
+        <div class="form-group">
+          <label for="">Nombre del Proceso:</label>
+          <input [(ngModel)]="tipoProceso.nombreTipoProceso" name="nombreTipoProceso" type="text" class="form-control"
+            required />
+        </div>
+        <div class="form-group">
+          <label for="">Descripción del Proceso (Opcional):</label>
+          <input [(ngModel)]="tipoProceso.descripcionTipoProceso" name="descripcionTipoProceso" type="text"
+            class="form-control" />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-sm form-control">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

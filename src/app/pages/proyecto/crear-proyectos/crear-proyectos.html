@@ -1,0 +1,97 @@
+<app-navbar></app-navbar>
+<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-blockUI [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="overlay">
+      <p-progressSpinner *ngIf="blockedDocument"
+        [style]="{width: '150px', height: '150px', margin:'auto'}"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </div>
+    <div class="col-md-5" style="margin: auto;">
+      <button type="button" (click)="regresar()" class="btn btn-dark btn-sm btn-regresar">Regresar</button>
+      <h2 style="text-align: center;"><mat-icon>device_hub</mat-icon> Agregar Proyecto</h2>
+      <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
+        <div class="form-group">
+          <label for="nombreProyecto"><mat-icon>assignment</mat-icon>Nombre del Proyecto:</label>
+          <input [(ngModel)]="proyecto.nombreProyecto" id="nombreProyecto" name="nombreProyecto" type="text"
+            class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="procesoProyecto"><mat-icon> scatter_plot</mat-icon>Proceso:</label>
+          <p>
+            <select name="proceso" [(ngModel)]="proyecto.tipoProceso" id="procesoProyecto" class="form-select">
+              <option [ngValue]="tipoProceso" *ngFor="let tipoProceso of tipoProcesos">{{tipoProceso.nombreTipoProceso}}
+              </option>
+            </select>
+          </p>
+        </div>
+        <div class="form-group">
+          <label for="descripcionProyecto"><mat-icon>description</mat-icon>Descripción del Proyecto (Opcional):</label>
+          <input [(ngModel)]="proyecto.descripcionProyecto" id="descripcionProyecto" name="descripcionProyecto"
+            type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-sm form-control">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--
+<div class="card">
+  <h5>Nuevo Proyecto</h5>
+  <div class="p-fluid">
+    <div class="field mt-3 px-7">
+      <div class="flex flex-column">
+        <div class="flex flex-row justify-content-between mt-5">
+          <div class="flex flex-row">
+            <p class="pt-3 mr-5">Nombre del Proyecto:</p>
+            <input pInputText id="name" type="text" />
+          </div>
+          <div class="w-2rem"></div>
+          <div class="flex flex-row">
+            <p class="pt-3 mr-5">Descripcion</p>
+            <input pInputText id="username" type="text" />
+          </div>
+        </div>
+        <div class="h-2rem"></div>
+        <div class="flex flex-row justify-content-between">
+          <button pButton pRipple label="Ingresar" class="m-auto w-2">Crear Proyecto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h5>Nuevo Proyecto</h5>
+  <div class="p-fluid">
+      <div class="field mt-3 px-7">
+          <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
+              <div class="flex flex-column">
+                  <div class="grid p-fluid">
+                      <div class="field col-6 md:col-2">
+                          <p style="text-align:right;" class="pt-3 mr-2" for="integeronly">Nombre del Proyecto: </p>
+                      </div>
+                      <div class="field col-6 md:col-4">
+                          <input type="text" name="name" [(ngModel)]="proyecto.nombreProyecto" pInputText
+                          placeholder="Nombre de la cuenta" required>
+                      </div>
+                      <div class="field col-6 md:col-2">
+                          <p style="text-align:right;" class="pt-3 mr-2" for="integeronly">Descripcion: </p>
+                      </div>
+                      <div class="field col-6 md:col-10">
+                          <input type="text" name="name" [(ngModel)]="proyecto.descripcionProyecto" pInputText
+                              placeholder="Nombre de la cuenta" required>
+                      </div>
+                  </div>
+                  <div class="flex flex-row justify-content-between">
+                      <button type="submit" pButton pRipple label="Guardar Configuración" class="m-auto w-3" [disabled]="!existTypes"></button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+-->

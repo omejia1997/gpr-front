@@ -1,0 +1,34 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 style="text-align: center;">Actividades</h2>
+  <button class="btn btn-secondary btn-sm" (click)="navegarCrearTarea()" style="margin-bottom:10px;">Crear una
+    nueva Actividad</button>
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Actividad</th>
+          <th>Tipo de Actividad</th>
+          <th>Prioridad de la Actividad</th>
+          <th>Fecha Límite de Entrega</th>
+          <!--<th>Responsable</th>-->
+          <th>Proyecto</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tarea of tareasDocenteProyecto">
+          <td>{{ tarea.tarea?.nombreTarea }}</td>
+          <td>{{ tarea.tarea?.tipoTarea }}</td>
+          <td>{{ tarea.tarea?.prioridadTarea }}</td>
+          <td>{{ tarea.tarea?.fechaEntregaTarea | date:"short":'+00:00'}}</td>
+          <!--<td>{{ tarea.codigoDocente?.nombreDocente }} {{ tarea.codigoDocente?.apellidoDocente }} </td>-->
+          <td>{{ tarea.tarea?.codigoProyecto?.nombreProyecto }}</td>
+          <td>
+            <button *ngIf="tarea.tarea?.estadoTarea== 'A'" (click)="editarTarea(tarea)" class="btn btn-warning btn-sm">Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

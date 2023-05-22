@@ -1,0 +1,34 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 style="text-align: center;">Procesos</h2>
+  <button class="btn btn-secondary btn-sm" (click)="navegarCrearTipoProceso()" style="margin-bottom:10px;">Crear un
+    nuevo Proceso</button>
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Proceso</th>
+          <th>Descripción</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tipoProceso of tiposProcesos">
+          <td>{{ tipoProceso.nombreTipoProceso }}</td>
+          <td [ngSwitch]="tipoProceso.descripcionTipoProceso">
+            <span *ngSwitchCase="null">Sin descripción</span>
+            <span *ngSwitchCase="''">Sin descripción</span>
+            <span *ngSwitchDefault>{{ tipoProceso.descripcionTipoProceso }}</span>
+          </td>
+          <td>{{ tipoProceso.estadoTipoProceso}}</td>
+          <td>
+            <button (click)="editar(tipoProceso)" class="btn btn-warning btn-sm">Editar</button>
+            <button (click)="cambiarEstadoProceso(tipoProceso)" class="btn btn-dark btn-sm" style="margin-left: 10px;">Cambiar
+              Estado</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

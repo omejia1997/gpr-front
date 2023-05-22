@@ -1,0 +1,26 @@
+.container {
+    width: 95vw;
+    height: 80%;
+}
+
+.row {
+    display: flex;
+    height: 100%;
+}
+
+form {
+    margin: auto;
+    padding: 30px;
+    opacity: .85;
+    box-shadow: 0px 0px 10px rgb(32, 31, 30), 0px 0px 30px rgb(123, 197, 139);
+    /* borde de dos colores*/
+    z-index: 4;
+}
+
+.form-group {
+    margin-top: 15px;
+}
+
+mat-icon {
+    font-size: 18px;
+}

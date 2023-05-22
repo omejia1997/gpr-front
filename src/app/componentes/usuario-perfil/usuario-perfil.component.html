@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+    <div class="abs-center border p-3">
+        <form [formGroup]="formularioUsuPer">
+            <div style="text-align: center;">
+                <span style="font-size: 25px;">
+                    Usuario por Perfil
+                </span>
+                <hr>
+            </div>
+
+            <div class="form-group mb-3">
+                <label for="cargo" style="font-weight: bold;">Seleccione un perfil:</label>
+                <br />
+                <select (change)="asignarDocentesCheck()" class="form-select" [(ngModel)]="perfil" formControlName="id">
+                    <option [value]="">Seleccionar</option>
+                    <option [ngValue]="item" *ngFor="let item of listaPerfiles">
+                        {{item.descPerfil}}
+                    </option>
+                </select>
+            </div>
+
+
+
+        </form>
+
+        <div *ngFor="let item of dataDocenteNoseleccionados">
+            <input type="checkbox" [(ngModel)]="item.isSelected"><span> {{item.nombreUsuario}}</span>
+
+
+        </div>
+        <div *ngFor="let item of dataDocenteseleccionados">
+            <input type="checkbox" [(ngModel)]="item.isSelected"><span> {{item.nombreUsuario}}</span>
+
+
+        </div>
+        <hr>
+
+        <button class="btn btn-primary btn-sm form-control" (click)="guardarUsuarioPerfil()">Guardar</button>
+
+
+
+
+    </div>
+</div>

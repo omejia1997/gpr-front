@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 style="text-align: center;">Actividades</h2>
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Cargo</th>
+          <th>Docente</th>
+          <th>Actividades</th>
+          <th>Carga Horaria</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let docente of docentes">
+          <td>
+            <span *ngFor="let cargoDocente of docente.cargoDocenteList;index as i">
+              <br *ngIf="i!=0">
+              <span> - {{ cargoDocente.codCargo?.nombreCargo}}</span>
+            </span>
+          </td>
+          <td>{{ docente.nombreDocente }} {{
+            docente.apellidoDocente }}</td>
+          <td>
+            <span [ngSwitch]="docente.cantidadTarea">
+              <!--<span *ngSwitchCase="0">(Ningúna Actividad)</span>-->
+              <span *ngSwitchCase="1">({{docente.cantidadTarea}} Actividad)</span>
+              <span *ngSwitchDefault>({{docente.cantidadTarea}} Actividades)</span>
+            </span>
+            <span *ngFor="let tareaDocente of docente.tareaDocenteList;index as i"> <!--style="list-style: none;"-->
+              <span><br>- {{ tareaDocente.codigoTarea?.nombreTarea}}</span><span *ngIf="tareaDocente.codigoTarea?.pesoTarea"> -->{{ tareaDocente.codigoTarea?.valorPesoTarea +" "+ tareaDocente.codigoTarea?.pesoTarea }}</span>
+            </span>
+          </td>
+          <td><progress max="100" value="{{ docente.cargaHoraria}}" class="{{ docente.claseEstiloProgress}}"></progress>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

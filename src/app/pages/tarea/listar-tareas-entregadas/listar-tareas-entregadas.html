@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 style="text-align: center;">Actividades por revisar</h2>
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Tarea</th>
+          <th>Prioridad de la Tarea</th>
+          <th>Fecha Límite de Entrega</th>
+          <th>Responsable</th>
+          <th>Proyecto</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tarea of tareasDocente">
+          <td>{{ tarea.codigoTarea?.nombreTarea }}</td>
+          <td>{{ tarea.codigoTarea?.prioridadTarea }}</td>
+          <td>{{ tarea.codigoTarea?.fechaEntregaTarea | date:"short":'+00:00' }}</td>
+          <td>{{ tarea.codigoDocente?.nombreDocente }} {{ tarea.codigoDocente?.apellidoDocente }} </td>
+          <td>{{ tarea.codigoTarea?.codigoProyecto?.nombreProyecto }}</td>
+          <td>
+            <button (click)="revisarTarea(tarea)" class="btn btn-warning btn-sm">Revisar tarea</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

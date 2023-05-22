@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+
+
+<div class="tbdocente">
+
+  <h3>Aprobación de Usuarios</h3>
+  <input type="text" class="form-control inputCedula" placeholder="Buscar por cédula" [(ngModel)]="filterpost"
+    name="filterpost" style="width: 20%;">
+  <div class="table-responsive">
+    <table class="table table-hover text-center" id="myTable">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">Correo</th>
+          <!--<th scope="col">Cargo</th>-->
+          <th scope="col" colspan="1">Estado</th>
+          <th scope="col" colspan="3">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let docente of listaDocentes | filter: filterpost">
+
+          <td>{{docente.cedulaDocente }}</td>
+          <td>{{docente.nombreDocente}}</td>
+          <td>{{docente.apellidoDocente}}</td>
+          <td>{{docente.correoDocente}}</td>
+          <!--<td>{{docente.codCargo.nombreCargo}}</td>-->
+          <td *ngIf="docente.codigoUsuario.estadoUsuario=='1' && !cargaaprobado">Aprobado</td>
+          <td *ngIf="docente.codigoUsuario.estadoUsuario=='0' && !cargaaprobado">Pendiente</td>
+          <td *ngIf="docente.codigoUsuario.estadoUsuario=='2' && !cargaaprobado">Cambio Contraseña</td>
+          <td *ngIf="cargaaprobado && docente.codigoUsuario.codigoUsuario==codigoUsuario"><img width="50px"
+              height="50px" src="../../../assets/img/cargando.gif"></td>
+          <td *ngIf="cargaaprobado && docente.codigoUsuario.codigoUsuario!=codigoUsuario">Espere...</td>
+          <td><button class="btn btn-primary btn-sm" (click)="aprobarSolicitud(docente,'2')"
+              [disabled]="docente.codigoUsuario.estadoUsuario=='1' || docente.codigoUsuario.estadoUsuario=='2' || cargaaprobado">Aprobar</button>
+          </td>
+          <td><button class="btn btn-warning btn-sm" (click)="aprobarSolicitud(docente,'0')"
+              [disabled]="docente.codigoUsuario.estadoUsuario=='0' || cargaaprobado ">Desactivar</button></td>
+          <td><button class="btn btn-secondary btn-sm" (click)="actualizarDocente(docente)">Editar </button></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>

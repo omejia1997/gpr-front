@@ -1,0 +1,384 @@
+<!--
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h3>Editar Tarea</h3>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
+        <div class="form-group">
+          <label for="">Nombre de la Tarea:</label>
+          <input 
+            [(ngModel)]="tareaDocente.codigoTarea.nombreTarea" 
+            name="nombreTareas" 
+            type="text" 
+            class="form-control"
+            required/>
+        </div>
+        <div class="form-group">
+          <label for="">Proyecto:</label>
+            <p>
+              <select name="proyecto" [(ngModel)]="tareaDocente.codigoTarea.codigoProyecto" [compareWith]="compararNombres">
+              <option [ngValue]="proyecto" *ngFor="let proyecto of proyectos">{{proyecto.nombreProyecto}}</option>
+              </select>
+            </p>
+        </div>
+        <div class="form-group">
+          <label for="">Fecha de Entrega:</label>
+          <input 
+            [(ngModel)]="tareaDocente.fechaEntrega" 
+            name="fechaCreaciontarea" 
+            type="datetime-local" 
+            class="form-control"
+            required/>
+        </div>
+        <div class="form-group">
+          <label for="">Prioridad de la tarea:</label>
+          <select name="prioridad" [(ngModel)]="tareaDocente.codigoTarea.prioridadTarea">
+            <option [ngValue]="prioridad.id" *ngFor="let prioridad of prioridades">{{prioridad.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Indicador:</label>
+          <input 
+            [(ngModel)]="tareaDocente.codigoTarea.descripicionTarea"
+            name="descripicionTarea" 
+            type="text" 
+            class="form-control"
+            required/>
+        </div>
+       <div class="form-group">
+          <label for="">Persona Asignada:</label>
+          <p>
+            <select name="miselect" [(ngModel)]="tareaDocente.codigoDocente">
+            <option [ngValue]="docente" *ngFor="let docente of docentes">{{docente.nombreDocente}}</option>
+            </select>
+          </p>
+        </div>
+        <button type="submit" class="btn btn-danger">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h3>Editar Tarea</h3>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
+        <div class="form-group">
+          <label for="">Nombre de la Tarea:</label>
+          <input 
+            [(ngModel)]="tarea.nombreTarea" 
+            name="nombreTareas" 
+            type="text" 
+            class="form-control"
+            required/>
+        </div>
+        <div class="form-group">
+          <label for="">Proyecto:</label>
+            <p>
+              <select name="proyecto" [(ngModel)]="tarea.codigoProyecto" [compareWith]="compararNombres">
+              <option [ngValue]="proyecto" *ngFor="let proyecto of proyectos">{{proyecto.nombreProyecto}}</option>
+              </select>
+            </p>
+        </div>
+        <div class="form-group">
+          <label for="">Fecha de Entrega:</label>
+          <input 
+            [(ngModel)]="tarea.fechaEntregaTarea" 
+            name="fechaCreaciontarea" 
+            type="datetime-local" 
+            class="form-control"
+            required/>
+        </div>
+        <div class="form-group">
+          <label for="">Prioridad de la tarea:</label>
+          <select name="prioridad" [(ngModel)]="tarea.prioridadTarea">
+            <option [ngValue]="prioridad.id" *ngFor="let prioridad of prioridades">{{prioridad.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Indicador:</label>
+          <p>
+            <select name="indicador" [(ngModel)]="indicador">
+            <option [ngValue]="ind" *ngFor="let ind of indicadores">{{ind.nombreIndicador}}</option>
+            </select>
+          </p>
+        </div>
+        <h2>Indicadores:</h2>
+          <ul>
+            <li *ngFor="let i of indicadoresAsignados">
+              <span>{{i.nombreIndicador}}</span>
+            </li>
+          </ul>
+          <input type="button" (click)="agregarIndicador()" class="btn btn-danger" value="Agregar Indicador"/>
+          <input type="button" (click)="eliminarIndicador()" class="btn btn-danger" value="Quitar Indicador"/>
+        
+        <div class="form-group">
+          <label for="">Persona Asignada:</label>
+          <p>
+            <select name="miselect" [(ngModel)]="docente">
+            <option [ngValue]="d" *ngFor="let d of docentes">{{d.nombreDocente}}</option>
+            </select>
+          </p>
+        </div>
+          <h2>DOCENTES ASIGNADOS:</h2>
+          <ul class="heroes">
+            <li *ngFor="let d of docentesAsignados">
+              <span>{{d.nombreDocente}}</span>
+            </li>
+          </ul>
+        <input type="button" (click)="agregarElementos()" class="btn btn-danger" value="Agregar Elemento"/>
+        <input type="button" (click)="eliminarElementos()" class="btn btn-danger" value="Quitar Elemento"/>
+        <button type="submit" class="btn btn-danger">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>
+-->
+<!--
+<app-navbar></app-navbar>
+<div class="container col-md-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>Crear Tarea</h3>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
+        <div class="form-group">
+          <label for="">Nombre de la Tarea:</label>
+          <input [(ngModel)]="tarea.nombreTarea" name="nombreTareas" type="text" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="">Proyecto:</label>
+          <p>
+            <select name="proyecto" [(ngModel)]="tarea.codigoProyecto" [compareWith]="compararNombres">
+              <option [ngValue]="proyecto" *ngFor="let proyecto of proyectos">{{proyecto.nombreProyecto}}</option>
+            </select>
+          </p>
+        </div>
+        <div class="form-group">
+          <label for="">Fecha de Entrega:</label>
+          <input [(ngModel)]="tarea.fechaEntregaTarea" name="fechaCreaciontarea" type="datetime-local"
+            class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="">Prioridad de la tarea:</label>
+          <select name="prioridad" [(ngModel)]="tarea.prioridadTarea">
+            <option [ngValue]="prioridad.id" *ngFor="let prioridad of prioridades">{{prioridad.name}}</option>
+          </select>
+        </div>
+        <input type="button" (click)="visualizarIndicador()" class="" value="Agregar Indicador" />
+        <div class="form-group" *ngIf="ckequearIndicador">
+          <label for="">Indicador:</label>
+          <p>
+            <select name="indicador" [(ngModel)]="indicador">
+              <option [ngValue]="ind" *ngFor="let ind of indicadores">{{ind.nombreIndicador}}</option>
+            </select>
+          </p>
+          <label for="">Descripción del Indicador:</label>
+          <input [(ngModel)]="descripcionIndicador" name="descripcionIndicador" type="text" class="form-control"
+            required />
+          <input type="button" (click)="agregarIndicador()" value="Guardar" />
+          <input type="button" (click)="cancelarIndicador()" value="Cancelar" />
+        </div>
+        <input type="button" (click)="visualizarPanelEliminar()" class="" value="Eliminar Indicador" />
+        <div class="form-group" *ngIf="checkPanelEliminar">
+          <label for="">Indicador a Eliminar:</label>
+          <p>
+            <select name="indicador" [(ngModel)]="indicador">
+              <option [ngValue]="ind" *ngFor="let ind of indicadoresAsignados">{{ind.nombreIndicador}} ----
+                {{ind.descripcionIndicador}}</option>
+            </select>
+          </p>
+          <input type="button" (click)="eliminarIndicador()" class="" value="Eliminar Indicador" />
+          <input type="button" (click)="cancelarEliminarIndicador()" class="" value="Eliminar Indicador" />
+        </div>
+        <div class="form-group">
+          <h2>Indicadores:</h2>
+          <ul>
+            <li *ngFor="let i of indicadoresAsignados">
+              <span> {{i.nombreIndicador}} </span>
+              <span> {{i.descripcionIndicador}} </span>
+            </li>
+          </ul>
+        </div>
+        <div class="form-group">
+          <label for="">Cargos:</label>
+          <p>
+            <select name="miselect" [(ngModel)]="cargo" (change)="buscarDocentesPorCargo()">
+              <option [ngValue]="carg" *ngFor="let carg of cargos">{{carg.nombreCargo}}</option>
+            </select>
+          </p>
+        </div>
+        <div class="form-group">
+          <label for="">Persona Asignada:</label>
+          <p>
+            <select name="miselect" [(ngModel)]="docente">
+              <option [ngValue]="d" *ngFor="let d of docentes">{{d.nombreDocente}}</option>
+            </select>
+          </p>
+        </div>
+        <h2>DOCENTES ASIGNADOS:</h2>
+        <ul class="heroes">
+          <li *ngFor="let d of docentesAsignados">
+            <span>{{d.nombreDocente}}</span>
+          </li>
+        </ul>
+        <input type="button" (click)="agregarElementos()" class="btn btn-danger" value="Agregar Elemento" />
+        <input type="button" (click)="eliminarElementos()" class="btn btn-danger" value="Quitar Elemento" />
+        <button type="submit" class="btn btn-danger">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>
+-->
+<app-navbar></app-navbar>
+<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-blockUI *ngIf="visualBlockedDocument" [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="overlay">
+      <p-progressSpinner *ngIf="blockedDocument"
+        [style]="{width: '150px', height: '150px', margin:'auto'}"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </div>
+    <div class="col-md-5" style="margin: auto;">
+      <button type="button" (click)="regresar()" class="btn btn-dark btn-sm btn-regresar">Regresar</button>
+      <h2 style="text-align: center;"><mat-icon>assignment_ind</mat-icon> Editar Datos de la Actividad</h2>
+      <form (ngSubmit)="f.form.valid" #f="ngForm">
+        <div class="form-group">
+          <label for="">Nombre de la Actividad:</label>
+          <input [(ngModel)]="tarea.nombreTarea" name="nombreTareas" type="text" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="">Tipo de Actividad: {{tarea.tipoTarea}}</label>
+          <!--<select name="tipo" [(ngModel)]="tarea.tipoTarea" (change)="detectarCambioActividad()" class="form-select">
+            <option [ngValue]="tipo.id" *ngFor="let tipo of tipoTarea">{{tipo.name}}</option>
+          </select>-->
+        </div>
+        <div class="form-group">
+          <label for="">Proyecto:</label>
+          <p>
+            <select name="proyecto" [(ngModel)]="tarea.codigoProyecto" class="form-select"
+              [compareWith]="compararNombres">
+              <option [ngValue]="proyecto" *ngFor="let proyecto of proyectos">{{proyecto.nombreProyecto}}</option>
+            </select>
+          </p>
+        </div>
+        <div class="form-group" *ngIf="checkTipoTarea">
+          <label for="">Fecha de Entrega:</label>
+          <input [(ngModel)]="tarea.fechaEntregaTarea" name="fechaCreaciontarea" type="datetime-local"
+            class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="">Prioridad de la Actividad:</label>
+          <select name="prioridad" [(ngModel)]="tarea.prioridadTarea" class="form-select">
+            <option [ngValue]="prioridad.id" *ngFor="let prioridad of prioridades">{{prioridad.name}}</option>
+          </select>
+        </div>
+        <div class="form-group" *ngIf="checkTipoTarea">
+          <div class="row">
+            <div class="col-sm">
+              <label for="">Peso de la Actividad:</label>
+              <select name="peso" [(ngModel)]="tarea.pesoTarea" class="form-select">
+                <option [ngValue]="peso.id" *ngFor="let peso of pesoTarea">{{peso.name}}</option>
+              </select>
+            </div>
+            <div class="col-sm">
+              <label for="">Valor del Peso:</label>
+              <input [(ngModel)]="tarea.valorPesoTarea" name="valorPesoTarea" type="number" class="form-control"
+                required />
+            </div>
+          </div>
+        </div>
+        <!--<div class="form-group">
+          <hr>
+          <h2>Indicadores:</h2>
+          <button *ngIf="!ckequearIndicador" style="background-color: rgb(21, 156, 77);border-radius: 4px;"><mat-icon
+              (click)="visualizarIndicador()" style="color: blanchedalmond">add</mat-icon></button>
+        </div>
+        <div class="form-group" *ngIf="ckequearIndicador">
+          <label for="">Seleccione un Indicador:</label>
+          <p>
+            <select name="indicador" [(ngModel)]="indicador" class="form-select">
+              <option [ngValue]="ind" *ngFor="let ind of indicadores">{{ind.nombreIndicador}}</option>
+            </select>
+          </p>
+          <label for="">Ingrese una Descripción del Indicador:</label>
+          <input [(ngModel)]="descripcionIndicador" name="descripcionIndicador" type="text" class="form-control"
+            required />
+          <div class="form-group">
+            <button type="submit" (click)="agregarIndicador()" class="btn btn-primary btn-sm form-control">Guardar
+              Indicador</button>
+          </div>
+        </div>
+        -->
+        <div class="form-group" style="text-align: center;">
+          <h2>INDICADORES ASIGNADOS:</h2>
+          <!--<span >NINGÚN INDICADOR ASIGNADO</span>-->
+          <ul>
+            <li *ngFor="let i of indicadoresAsignados" style="text-align: left;">
+              <span> {{i.nombreIndicador+" --> "+i.descripcionIndicador}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="form-group">
+          <hr>
+          <h2>Cargos:</h2>
+          <label for="">Seleccione un Cargo:</label>
+          <p>
+            <select name="miselect" [(ngModel)]="cargo" (change)="buscarDocentesPorCargo()" class="form-select">
+              <option [ngValue]="carg" *ngFor="let carg of cargos">{{carg.nombreCargo}}</option>
+            </select>
+          </p>
+        </div>
+        <div class="form-group">
+          <div *ngIf="docentes.length!=0">
+            <input (click)="cambiarTodosDocentes()" type="checkbox"><span> Seleccionar todos los docentes</span>
+          </div>
+          <div *ngFor="let docente of docentes">
+            <input (click)="cambiarCheckDocente(docente)" [(ngModel)]="docente.checked"
+              [ngModelOptions]="{standalone: true}" type="checkbox"><span> {{docente.nombreDocente +"
+              "+docente.apellidoDocente}}</span>
+          </div>
+        </div>
+        <div class="form-group" style="text-align: center;">
+          <h2>DOCENTES ASIGNADOS:</h2>
+          <span *ngIf="docentesAsignados.length==0">NINGÚN DOCENTE ASIGNADO</span>
+          <ul class="heroes">
+            <li *ngFor="let d of docentesAsignados" style="text-align: left;">
+              <span>{{d.nombreDocente+" "+d.apellidoDocente}}</span>
+            </li>
+          </ul>
+        </div>
+        <hr>
+        <div id="box2">
+          <label>Archivo GuÍa (Opcional) -- Máximo 5MB:</label>
+          <p>
+            <input type="button" id="selectButton" mat-raised-button (click)="fileInput.click()"
+              value="...Seleccione el archivo Guía..." class="form-control" />
+          </p>
+          <input #fileInput type="file" hidden (change)="selectFiles($event)" />
+          <span *ngIf="imageName">{{imageName}}</span>
+
+          <!--<button id="uploadButton" mat-raised-button *ngIf="selectedFiles" [disabled]="!selectedFiles" (click)="uploadFiles()">
+              Subir Archivo
+          </button>-->
+        </div>
+        <div class="form-group">
+          <label for="">Observación (Opcional):</label>
+          <input [(ngModel)]="tarea.observacionTarea" name="observacionTarea" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+          <button type="submit" (click)="save()" class="btn btn-primary btn-sm form-control">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

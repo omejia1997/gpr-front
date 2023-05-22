@@ -1,0 +1,147 @@
+<div class="container">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5 align-self-center" style="display: flex;">
+        <form [formGroup]="formulario" (ngSubmit)="guardar()" class="border p-3 form">
+          <div class="imagenUsuario" style="text-align: center;">
+            <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+          </div>
+          <div style="width: 100%;text-align: center;">
+            <span style="font-size: 25px;">
+              Registro
+            </span>
+          </div>
+          <div class="form-group mb-3">
+            <label for="cedula" style="font-weight: bold;">Cédula:</label>
+            <input type="cedula" name="cedula" id="cedula" class="form-control" [(ngModel)]="cedulaI"
+              (change)="validadorDeCedula(cedulaI);validarUsuarioRepetido(cedulaI);cargardocentecedula(cedulaI)"
+              formControlName="cedula">
+            <small class="text-danger"
+              *ngIf="formulario.get('cedula')?.errors?.['required'] && formulario.get('cedula')?.touched">Complete este
+              campo</small>
+            <small *ngIf="!validadorIdEspe" class="text-danger">La cédula ya se encuentra registrada</small><br
+              *ngIf="!validadorIdEspe">
+            <small *ngIf="!validadorCedula" class="text-danger">Cédula invalida</small>
+            
+          </div>
+          <div class="form-group mb-3">
+            <label for="id" style="font-weight: bold;">ID Banner:</label>
+            <input type="id" name="id" id="id" class="form-control" formControlName="id" maxlength="9"
+              [(ngModel)]="idEspeI">
+            <small class="text-danger"
+              *ngIf="formulario.get('id')?.errors?.['required'] && formulario.get('id')?.touched">Complete este
+              campo</small>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="nombres" style="font-weight: bold;">Nombres:</label>
+            <input [(ngModel)]="nombreDocenteM" type="nombres" name="[(ngModel)]" id="nombres" class="form-control"
+              formControlName="nombres">
+            <small class="text-danger"
+              *ngIf="formulario.get('nombres')?.errors?.['required'] && formulario.get('nombres')?.touched">Complete
+              este
+              campo</small>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="apellidos" style="font-weight: bold;">Apellidos:</label>
+            <input [(ngModel)]="apellidosDocenteM" type="apellidos" name="apellidos" id="apellidos" class="form-control"
+              formControlName="apellidos">
+            <small class="text-danger"
+              *ngIf="formulario.get('apellidos')?.errors?.['required'] && formulario.get('apellidos')?.touched">Complete
+              este campo</small>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="telefono" style="font-weight: bold;">Teléfono:</label>
+            <input [(ngModel)]="telefonoDocenteM" type="telefono" name="telefono" id="telefono" class="form-control"
+              formControlName="telefono" onKeyPress="if(this.value.length==10) return false;">
+            <small class="text-danger"
+              *ngIf="formulario.get('telefono')?.errors?.['required'] && formulario.get('telefono')?.touched">Complete
+              este
+              campo</small>
+          </div>
+          <div class="form-group mb-3">
+            <label for="correo" style="font-weight: bold;">Correo:</label>
+            <input [(ngModel)]="correoDocenteM" type="email" name="correo" id="correo" class="form-control"
+              formControlName="correo">
+            <small class="text-danger"
+              *ngIf="formulario.get('correo')?.errors?.['required'] && formulario.get('correo')?.touched">Complete este
+              campo</small>
+            <small class="text-danger"
+              *ngIf="formulario.get('correo')?.errors?.['email'] && formulario.get('correo')?.touched">Ingrese un correo
+              valido</small>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="sexo" style="font-weight: bold;">Género:</label>
+            <select class="form-select" formControlName="sexo" [(ngModel)]="sexoDocenteM">
+              <option [value]="sexos" *ngFor="let sexos of comboSexo" [selected]="sexos === sexoDocenteM">
+                {{sexos}}
+              </option>
+            </select>
+          </div>
+
+
+          <!--<div class="form-group mb-3">
+            <label for="puesto" style="font-weight: bold;">Puesto Trabajo:</label>
+            <input [(ngModel)]="puestoDocenteM" type="text" name="puesto" id="puesto" class="form-control"
+              formControlName="puesto">
+            <small class="text-danger"
+              *ngIf="formulario.get('puesto')?.errors?.['required'] && formulario.get('puesto')?.touched">Complete este
+              campo</small>
+          </div>-->
+
+          <div class="form-group mb-3">
+            <label for="puesto" style="font-weight: bold;">Puesto de Trabajo:</label>
+            <select class="form-select" formControlName="puesto" [(ngModel)]="puestoDocenteM" required (change)="asignarCargoPorPuesto(puestoDocenteM)" >
+              <option [value]="puestos" *ngFor="let puestos of comboPuestoTrabajo" [selected]="puestos === puestoDocenteM">
+                {{puestos}}
+              </option>
+            </select>
+          </div>
+
+          <!--<div class="form-group mb-3">
+          <label for="cargo" style="font-weight: bold;">Cargo:</label>
+          <select class="form-select" formControlName="cargo" >
+              <option value="">Seleccionar</option>
+              <option [value]="cargos.codCargo" *ngFor="let cargos of listaCargos">
+                  {{cargos.nombreCargo}}
+              </option>
+          </select>
+          </div>-->
+
+          <div class="form-group mb-3">
+            <label for="cargo" style="font-weight: bold;">Cargo:</label>
+            <div *ngFor="let cargo of listaCargos">
+              <input (change)="cambiarCheckCargo(cargo)" type="checkbox" [id]="cargo.codCargo"><span> {{cargo.nombreCargo}}</span>
+            </div>
+          </div>
+
+          <button type="submit" [disabled]="formulario.invalid  || !validadorCedula || !validadorIdEspe "
+            class="btn btn-primary btn-sm form-control" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">Registrar</button>
+          <button style="margin-top: 10px;" type="button" [routerLink]="['/login']"
+            class="btn btn-dark btn-sm form-control">Iniciar
+            Sesión</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{tituloMensajeVal}}</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{mensaje}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="cerrarModal()"
+              data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>

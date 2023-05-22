@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 style="text-align: center;">Proyectos</h2>
+  <button class="btn btn-secondary btn-sm" *ngIf="descPerfil=='Director'" (click)="navegarCrearProyecto()"
+  style="margin-bottom:10px;">Crear un nuevo Proyecto</button>
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Proceso</th>
+          <th>Proyecto</th>
+          <th>Fecha Creación</th>
+          <th>Descripción</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proyecto of proyectos">
+          <td>{{ proyecto.tipoProceso?.nombreTipoProceso }}</td>
+          <td>{{ proyecto.nombreProyecto }}</td>
+          <td>{{ proyecto.fechaCreacionproyecto | date: "dd-MM-yyyy" }}</td>
+          <td *ngIf="proyecto.descripcionProyecto">{{ proyecto.descripcionProyecto }}</td>
+          <td *ngIf="!proyecto.descripcionProyecto">Sin descripción</td>
+          <td [ngSwitch]="proyecto.estadoProyecto">
+            <span *ngSwitchCase="'ACT'">ACTIVO</span>
+            <span *ngSwitchDefault>INACTIVO</span>
+          </td>
+          <td>
+            <button (click)="editar(proyecto)" class="btn btn-warning btn-sm">Editar</button>
+            <button (click)="cambiarEstado(proyecto)" class="btn btn-dark btn-sm" style="margin-left: 10px;">Cambiar
+              Estado</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- 
+  <button class="btn btn-info">Listar</button>
+  -->
+  </div>
+
+
+  <!--
+<div class="card">
+  <h5>Proyectos</h5>
+  <li class="nav-item active">
+    <a class="nav-link" (click)="navegar()">Proyectos</a>
+  </li>
+  <p-table [value]="proyectos">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Proyecto</th>
+        <th>Fecha Creacion</th>
+        <th>Descripcion</th>
+        <th>Estado</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-proyecto>
+      <tr>
+        <td>{{ proyecto.nombreProyecto }}</td>
+        <td>{{ proyecto.fechaCreacionProyecto | date: "dd-MM-yyyy"  }}</td>
+        <td>{{ proyecto.descripcionProyecto }}</td>
+        <td>{{ proyecto.estadoProyecto }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+-->

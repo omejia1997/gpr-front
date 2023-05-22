@@ -1,0 +1,49 @@
+<nav class="navbar navbar-dark bg-dark">
+    <span class="titulo">Sistemas GPR - MECANICA</span>
+</nav>
+
+<div class="container">
+    <div class="abs-center">
+        <form [formGroup]="formularioContrasenia" (ngSubmit)="cambiarContrasenia()" class="border p-3 form">
+
+            <span style="font-size: 25px;">
+                Cambio de Contraseña
+            </span>
+            <hr>
+            <div class="alert alert-info" role="alert">
+                La nueva contraseña debe tener al menos 8 caracteres, un número, una letra mayúscula y minúscula.
+            </div>
+            <div class="form-group mb-3">
+                <label for="passwordAnt" style="font-weight: bold;">Contraseña Antigua:</label>
+                <input type="password" name="passwordAnt" id="passwordAnt" class="form-control"
+                    formControlName="passwordAnt">
+                <small class="text-danger"
+                    *ngIf="formularioContrasenia.get('passwordAnt')?.errors?.['required'] && formularioContrasenia.get('passwordAnt')?.touched">Complete
+                    este campo</small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="passwordNew" style="font-weight: bold;">Contraseña Nueva:</label>
+                <input pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,32}$" type="password" name="passwordNew"
+                    id="passwordNew" class="form-control" [(ngModel)]="passwordNewI"
+                    (change)="validadorContrasenia(passwordNewI,passwordConf);validarCadenaContrasenia()"
+                    formControlName="passwordNew">
+                <small class="text-danger"
+                    *ngIf="formularioContrasenia.get('passwordNew')?.errors?.['required'] && formularioContrasenia.get('passwordNew')?.touched">Complete
+                    este campo</small>
+            </div>
+            <div class="form-group mb-3">
+                <label for="passwordConf" style="font-weight: bold;">Confirmar Contraseña</label>
+                <input type="password" name="passwordConf" id="passwordConf" class="form-control"
+                    [(ngModel)]="passwordConf" (change)="validadorContrasenia(passwordNewI,passwordConf)"
+                    formControlName="passwordConf">
+                <small class="text-danger"
+                    *ngIf="formularioContrasenia.get('passwordConf')?.errors?.['required'] && formularioContrasenia.get('passwordConf')?.touched">Complete
+                    este campo</small>
+
+                <small *ngIf="!validaroPass" class="text-danger">Las contraseñas no coinciden</small>
+            </div>
+            <button type="submit" [disabled]="formularioContrasenia.invalid  || !validaroPass" class="btn btn-primary btn-sm form-control"
+                routerLinkActive="router-link-active">Guardar</button>
+        </form>
+    </div>
+</div>

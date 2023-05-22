@@ -1,0 +1,61 @@
+<nav class="navbar navbar-dark bg-dark">
+  <span class="titulo navbar-brand">GPR - MECÁNICA</span>
+</nav>
+
+<div class="row">
+  <div class="imageLeft col-md-8 col-sm-6">
+    <!--<img src="https://uar.espe.edu.ec/wp-content/uploads/2020/09/Espe-Sangolgui.jpg" alt="" width="100%" height="100%">-->
+    <div class="contenedor">
+      <div class="slider-frame">
+        <ul>
+            <li><img src="https://uar.espe.edu.ec/wp-content/uploads/2020/09/Espe-Sangolgui.jpg"
+                    alt=""></li>
+            <li><img src="https://supercomputacion.espe.edu.ec/wp-content/uploads/2015/03/PANORAMICA-ESPE.jpg" alt=""></li>
+            <li><img src="https://www.espe.edu.ec/wp-content/uploads/slider/cache/1df7ba634766f535589faa0e3e58f0d6/ESPE-Matriz-Sangolqui.png" alt="">
+            </li>
+            <li><img src="https://upload.wikimedia.org/wikipedia/commons/3/37/ESPE_campus_sangolqui.JPG" alt=""></li>
+        </ul>
+    </div>
+    </div>
+    
+  </div>
+  <div class="abs-center col-md-4 col-sm-6" style="display: flex;">
+    <form [formGroup]="formulario2" (ngSubmit)="consultar()" class="border p-3 form">
+      <div class="imagenUsuario">
+        <!--<img src="https://cdn-icons-png.flaticon.com/512/64/64572.png">-->
+        <img src="./assets/img/user.png">
+      </div>
+      <!--<span style="font-size: 25px;">
+        Login
+      </span>
+      <hr>
+    -->
+      <p class="text-danger" *ngIf="!flag">Credenciales incorrectas</p>
+
+      <div class="form-group mb-3">
+        <label for="email" style="font-weight: bold;">Usuario:</label>
+        <input type="email" name="email" id="email" class="form-control" formControlName="usuario">
+        <p class="text-danger"
+          *ngIf="formulario2.get('usuario')?.errors?.['required'] && formulario2.get('usuario')?.touched">Complete este
+          campo</p>
+      </div>
+      <div class="form-group mb-3">
+        <label for="password" style="font-weight: bold;">Contraseña:</label>
+        <input [type]="changetype?'password':'text'" name="password" id="password" class="form-control"
+          formControlName="password">
+
+        <input type="checkbox" (change)="mostrarcontrasenia()" class="form-check-input" id="mostrarcontrasenia">
+        <span class="form-check-label" style="font-size: 13px;" for="mostrarcontrasenia"> Mostrar contraseña</span>
+
+        <p class="text-danger"
+          *ngIf="formulario2.get('password')?.errors?.['required'] && formulario2.get('password')?.touched">Complete
+          este campo</p>
+      </div>
+      <button type="submit" class="btn btn-primary btn-sm form-control"
+        routerLinkActive="router-link-active">Ingresar</button>
+      <hr>
+      <a [routerLink]="['/registro']">Registrar </a> <br />
+      <a [routerLink]="['/password-olvidado']">¿Olvido su contraseña?</a>
+    </form>
+  </div>
+</div>

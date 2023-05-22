@@ -1,0 +1,134 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-5 align-self-center" style="display: flex;">
+      <form [formGroup]="formularioActDoc" (ngSubmit)="actualizarDocente()" class="border p-3 form">
+        <div class="imagenUsuario" style="text-align: center;">
+          <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png">
+        </div>
+        <div style="width: 100%;text-align: center;">
+          <span style="font-size: 25px;">
+            Cuenta
+          </span>
+        </div>
+        <div *ngIf="mensajeConfirmacion" class="alert alert-info" role="alert">
+          A simple info alert—check it out!
+        </div>
+        <div class="form-group mb-3">
+          <label for="cedula" style="font-weight: bold;">Cédula:</label>
+          <input [readonly]="true" [(ngModel)]="docCedula" type="cedula" name="cedula" id="cedula" class="form-control"
+            (change)="validadorDeCedula(docCedula)" formControlName="cedula" maxlength="10">
+          <small class="text-danger"
+            *ngIf="formularioActDoc.get('cedula')?.errors?.['required'] && formularioActDoc.get('cedula')?.touched">Complete
+            este campo</small>
+          <small *ngIf="!validadorCedula" class="text-danger">Cédula invalida</small>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="id" style="font-weight: bold;">ID ESPE:</label>
+          <input type="id" name="id" id="id" class="form-control" formControlName="id" maxlength="9"
+            [(ngModel)]="docIdEspe">
+          <small class="text-danger"
+            *ngIf="formularioActDoc.get('id')?.errors?.['required'] && formularioActDoc.get('id')?.touched">Complete
+            este campo</small>
+        </div>
+
+
+        <div class="form-group mb-3">
+          <label for="nombres" style="font-weight: bold;">Nombres:</label>
+          <input [(ngModel)]="docNombres" type="nombres" name="nombres" id="nombres" class="form-control"
+            formControlName="nombres">
+          <small class="text-danger"
+            *ngIf="formularioActDoc.get('nombres')?.errors?.['required'] && formularioActDoc.get('nombres')?.touched">Complete
+            este campo</small>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="apellidos" style="font-weight: bold;">Apellidos:</label>
+          <input [(ngModel)]="docApellidos" type="apellidos" name="apellidos" id="apellidos" class="form-control"
+            formControlName="apellidos">
+          <small class="text-danger"
+            *ngIf="formularioActDoc.get('apellidos')?.errors?.['required'] && formularioActDoc.get('apellidos')?.touched">Complete
+            este campo</small>
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="telefono" style="font-weight: bold;">Teléfono:</label>
+          <input [(ngModel)]="docTelefono" type="telefono" name="telefono" id="telefono" class="form-control"
+            formControlName="telefono" onKeyPress="if(this.value.length==10) return false;">
+          <small class="text-danger"
+            *ngIf="formularioActDoc.get('telefono')?.errors?.['required'] && formularioActDoc.get('telefono')?.touched">Complete
+            este campo</small>
+        </div>
+        <div class="form-group mb-3">
+          <label for="correo" style="font-weight: bold;">Correo:</label>
+          <input [(ngModel)]="docCorreo" type="email" name="correo" id="correo" class="form-control"
+            formControlName="correo">
+          <small class="text-danger"
+            *ngIf="formularioActDoc.get('correo')?.errors?.['required'] && formularioActDoc.get('correo')?.touched">Complete
+            este campo</small>
+          <small class="text-danger"
+            *ngIf="formularioActDoc.get('correo')?.errors?.['email'] && formularioActDoc.get('correo')?.touched">Ingrese
+            un correo valido</small>
+
+        </div>
+
+        <div class="form-group mb-3">
+          <label for="cargo" style="font-weight: bold;">Género:</label>
+          <select class="form-select" formControlName="sexo" [(ngModel)]="docSexo">
+            <option value="">Seleccionar</option>
+            <option [value]="sexos" *ngFor="let sexos of comboSexo" [selected]="sexos === docSexo">
+              {{sexos}}
+            </option>
+          </select>
+        </div>
+
+
+        <!--<div class="form-group mb-3">
+          <label for="puesto" style="font-weight: bold;">Puesto Trabajo:</label>
+          <input [(ngModel)]="docPuestoTrabajo" type="text" name="puesto" id="puesto" class="form-control"
+            formControlName="puesto">
+          <small class="text-danger"
+            *ngIf="formularioActDoc.get('puesto')?.errors?.['required'] && formularioActDoc.get('puesto')?.touched">Complete
+            este campo</small>
+        </div>-->
+
+        <div class="form-group mb-3">
+          <label for="puesto" style="font-weight: bold;">Puesto de Trabajo:</label>
+          <select class="form-select" formControlName="puesto" [(ngModel)]="docPuestoTrabajo" required (change)="asignarCargoPorPuesto(docPuestoTrabajo)" >
+            <option [value]="puestos" *ngFor="let puestos of comboPuestoTrabajo" [selected]="puestos === docPuestoTrabajo">
+              {{puestos}}
+            </option>
+          </select>
+        </div>
+
+
+        <!--<div class="form-group mb-3">
+            <label for="cargo" style="font-weight: bold;">Cargo:</label>
+            <select [attr.disabled]="validadorCargo ? '' : null" class="form-select"  [(ngModel)]="docCargo"  formControlName="cargo">
+                <option  [ngValue]="cargos" *ngFor="let cargos of listaCargos" [selected]="cargos.codCargo === selectedId">
+                    {{cargos.nombreCargo}}
+                </option>
+            </select>
+            </div>-->
+        <div class="form-group mb-3">
+          <label for="cargo" style="font-weight: bold;">Cargo:</label>
+          <div *ngFor="let cargo of listaCargos">
+            <input (click)="cambiarCheckCargo(cargo)" [id]="cargo.codCargo" [(ngModel)]="cargo.checked" [ngModelOptions]="{standalone: true}"
+              type="checkbox"><span> {{cargo.nombreCargo}}</span>
+          </div>
+        </div>
+
+
+
+        <button type="submit" [disabled]="formularioActDoc.invalid  || !validadorCedula"
+          class="btn btn-primary btn-sm form-control">Actualizar</button>
+        <br><br>
+        <button *ngIf="tipoUsuario === 'admin'" type="button" (click)="cancelarActualizar()"
+          class="btn btn-dark btn-sm form-control">Volver</button>
+
+
+      </form>
+    </div>
+  </div>

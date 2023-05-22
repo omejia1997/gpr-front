@@ -1,0 +1,27 @@
+progress[value] {
+  
+    appearance: none;
+    -webkit-appearance: none;
+  
+}
+progress::-webkit-progress-bar {
+    border-radius: 7px;
+    border: 2px solid black;
+    background-color: #8a7b78;
+}
+.verde::-webkit-progress-value {
+    border-radius: 7px;
+    background-color: #326d32;
+}
+.amarillo::-webkit-progress-value {
+    border-radius: 7px;
+    background-color: #e6e046;
+}
+.rojo::-webkit-progress-value {
+    border-radius: 7px;
+    background-color: #E23D0D;
+}
+.casiverde::-webkit-progress-value {
+    border-radius: 7px;
+    background-color: #7ae97a;
+}

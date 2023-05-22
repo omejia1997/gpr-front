@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 style="text-align: center;">Cargos</h2>
+  <button class="btn btn-secondary btn-sm" (click)="navegarCrearCargo()" style="margin-bottom:10px;">Crear un nuevo Cargo</button>
+  <div class="table-responsive">
+    <table class="table table-hover text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>Nombre del Cargo</th>
+          <th>Documento de Respaldo</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cargo of cargos">
+          <td>{{ cargo.nombreCargo }}</td>
+          <td *ngIf="cargo.descriCargo">{{ cargo.descriCargo }}</td>
+          <td *ngIf="!cargo.descriCargo">Sin documento de respaldo</td>
+          <td>
+            <button (click)="editar(cargo)" class="btn btn-warning btn-sm">Editar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+<app-navbar></app-navbar>
+<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-blockUI [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="overlay">
+      <p-progressSpinner *ngIf="blockedDocument"
+        [style]="{width: '150px', height: '150px', margin:'auto'}"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </div>
+    <div class="col-md-5" style="margin: auto;">
+      <button type="button" (click)="regresar()" class="btn btn-dark btn-sm btn-regresar">Regresar</button>
+      <h2 style="text-align: center;"><mat-icon>assignment_ind</mat-icon> Revisar Actividad</h2>
+      <form (ngSubmit)="f.form.valid" #f="ngForm">
+        <div class="form-group">
+          <label for="">Nombre de la Actividad:</label>
+          <span>{{ tarea.nombreTarea }}</span>
+        </div>
+        <div class="form-group">
+          <label for="">Tipo de Actividad:</label>
+          <span>{{ tarea.tipoTarea }}</span>
+        </div>
+        <div class="form-group">
+          <label for="">Proyecto:</label>
+          <span>{{ tarea.codigoProyecto?.nombreProyecto }}</span>
+        </div>
+        <div class="form-group">
+          <label for="">Fecha de Creación:</label>
+          <span>{{ tarea.fechaCreaciontarea | date:"short":'+00:00' }}</span>
+        </div>
+        <div class="form-group" *ngIf="tarea.fechaEntregaTarea">
+          <label for="">Fecha de Entrega:</label>
+          <span>{{ tarea.fechaEntregaTarea | date:"short":'+00:00'}}</span>
+        </div>
+        <div class="form-group">
+          <label for="">Prioridad de la Actividad:</label>
+          <span>{{ tarea.prioridadTarea }}</span>
+        </div>
+        <div class="form-group">
+          <label for="">Peso de la Actividad:</label>
+          <span *ngIf="tarea.valorPesoTarea">{{ tarea.valorPesoTarea +" "+ tarea.pesoTarea}}</span>
+          <span *ngIf="!tarea.valorPesoTarea">No aplica</span>
+        </div>
+        <div class="form-group">
+          <label for="">Docente revisor:</label>
+          <span>{{ tarea.nombreDocenteRevisor}}</span>
+        </div>
+        <div class="form-group" *ngIf="tarea.observacionTarea">
+          <label for="">Observación</label>
+          <span>{{ tarea.observacionTarea }}</span>
+        </div>
+        <div class="form-group">
+          <h2>Indicadores:</h2>
+          <ul>
+            <li *ngFor="let i of indicadoresAsignados">
+              <span>Descripción de Indicador:{{ i.descripcionTareaIndicador}}<br /></span>
+              <span>Tipo de Variable: {{ i.indicadorCODIGOINDICADOR.nombreIndicador }} <br /></span>
+              <span *ngIf="i.indicadorCODIGOINDICADOR.nombreIndicador!='PORCENTAJE'">Valor ingresado: {{ i.valorIndicador }}</span> 
+              <span *ngIf="i.indicadorCODIGOINDICADOR.nombreIndicador=='PORCENTAJE'">Valor ingresado: {{ i.valorIndicador }} %</span>
+            </li>
+          </ul>
+        </div>
+        <div id="box4" *ngIf="tarea.nombreArchivoTarea">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Archivo Guía</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <ul>
+                <li>
+                  <mat-icon>archive</mat-icon>
+                  <a href="{{fileModelClassGuia.url}}">{{fileModelClassGuia.name}}</a>
+
+                </li>
+              </ul>
+            </mat-card-content>
+          </mat-card>
+        </div>
+
+        <div id="box4" *ngIf="tareaDocente.archivoTareaDocente">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Archivo Subido</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <ul>
+                <li>
+                  <mat-icon>picture_as_pdf</mat-icon>
+                  <a href="{{fileModelClass.url}}">{{fileModelClass.name}}</a>
+                </li>
+              </ul>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <div class="form-group" *ngIf="!checkButton">
+          <button type="button" class="btn btn-primary btn-sm form-control" (click)="aprobarTarea()">Aprobar
+            tarea</button><br><br>
+          <button type="button" class="btn btn-danger btn-sm form-control" (click)="denegarTarea()">Denegar
+            tarea</button>
+        </div>
+        <div *ngIf="checkButton" class="form-group">
+          <label for="">Motivo del rechazo de la Actividad (Opcional)</label>
+          <input type="text" [(ngModel)]="tareaDocente.descripcionTareadocente" name="descripcionTareadocente"
+            type="text" class="form-control" />
+        </div>
+        <div *ngIf="checkButton" class="form-group">
+          <div class="row justify-content-around">
+            <div class="col-sm-6">
+              <button type="button" class="btn btn-danger btn-sm form-control" (click)="denegarTareaDocente()">Rechazar
+                Tarea</button>
+            </div>
+            <div class="col-sm-6">
+              <button type="button" class="btn btn-dark btn-sm form-control" (click)="cancelarTareaDocente()">Cancelar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

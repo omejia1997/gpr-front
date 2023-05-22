@@ -1,0 +1,36 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 style="text-align: center;">Actividades a realizar</h2>
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Actividad</th>
+          <th>Prioridad de la Actividad</th>
+          <th>Revisor</th>
+          <th>Fecha Límite de Entrega</th>
+          <th>Proyecto</th>
+          <th>Estado de la Actividad</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tarea of tareas">
+          <td>{{ tarea.codigoTarea?.nombreTarea }}</td>
+          <td>{{ tarea.codigoTarea?.prioridadTarea }}</td>
+          <td>{{ tarea.codigoTarea?.nombreDocenteRevisor }}</td>
+          <td>{{ tarea.codigoTarea?.fechaEntregaTarea | date:"short":'+00:00' }}</td>
+          <td>{{ tarea.codigoTarea?.codigoProyecto?.nombreProyecto }}</td>
+          <td *ngIf="tarea.estadoTareaDocente=='ASIGNADA'">ASIGNADA</td>
+          <td *ngIf="tarea.estadoTareaDocente=='EN REVISIÓN'">EN REVISIÓN</td>
+          <td *ngIf="tarea.estadoTareaDocente=='ACEPTADO'">ACEPTADO</td>
+          <td *ngIf="tarea.estadoTareaDocente=='DENEGADO'">DENEGADO</td>
+          <td>
+            <button *ngIf="tarea.estadoTareaDocente=='ASIGNADA'||tarea.estadoTareaDocente=='DENEGADO'"
+              (click)="realizarTarea(tarea)" class="btn btn-success btn-sm">Realizar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
