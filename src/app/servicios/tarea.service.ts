@@ -67,26 +67,21 @@ export class TareaService {
     return this.http.get<TareasRealizadas[]>(`${TAREA_DOCENTE}/listarTodasTareasRevisadas`); 
   }
   
-  public crearTarea(tarea:TareaDocenteProyecto){ 
-    return this.http.post<any>(`${TAREA_DOCENTE}/crearTarea`,tarea); 
+  public crearTarea(tarea:TareaDocenteProyecto,checkTipoActividad:Boolean){
+    if(!checkTipoActividad) 
+      return this.http.post<any>(`${TAREA_DOCENTE}/crearTarea`,tarea);
+    else
+      return this.http.post<any>(`${TAREA_DOCENTE}/crearTareaProgramada`,tarea);
   }
 
-  public crearTareaConArchivo(tarea:TareaDocenteProyecto,file:File){
+  public crearTareaConArchivo(tarea:TareaDocenteProyecto,file:File,checkTipoActividad:Boolean){
     const formData: FormData = new FormData();
     formData.append("tareaDocenteProyecto",JSON.stringify(tarea));
     formData.append('file', file);
-    return this.http.post<any>(`${TAREA_DOCENTE}/crearTareaConArchivoProgramada`,formData); 
-  }
-
-  public crearTareaProgramada(tarea:TareaDocenteProyecto){ 
-    return this.http.post<any>(`${TAREA_DOCENTE}/crearTareaProgramada`,tarea); 
-  }
-
-  public crearTareaConArchivoProgramada(tarea:TareaDocenteProyecto,file:File){
-    const formData: FormData = new FormData();
-    formData.append("tareaDocenteProyecto",JSON.stringify(tarea));
-    formData.append('file', file);
-    return this.http.post<any>(`${TAREA_DOCENTE}/crearTareaConArchivo`,formData); 
+    if(!checkTipoActividad) 
+      return this.http.post<any>(`${TAREA_DOCENTE}/crearTareaConArchivo`,formData); 
+    else
+      return this.http.post<any>(`${TAREA_DOCENTE}/crearTareaConArchivoProgramada`,formData); 
   }
 
   public setTarea(tarea: TareaDocenteProyecto) {

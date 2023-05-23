@@ -241,7 +241,7 @@ export class CrearTareaProgramadaComponent implements OnInit {
     this.tareaDocenteProyecto.docentes = this.docentesAsignados;
     this.tareaDocenteProyecto.indicadors = this.indicadoresAsignados;
     if (this.selectedFiles == undefined) {
-      this.tareaService.crearTareaProgramada(this.tareaDocenteProyecto).subscribe({
+      this.tareaService.crearTarea(this.tareaDocenteProyecto,this.checkTipoActividad).subscribe({
         next: (data) => {
           this.messageService.add({
             severity: 'success',
@@ -266,7 +266,7 @@ export class CrearTareaProgramadaComponent implements OnInit {
         },
       })
     } else {
-      this.tareaService.crearTareaConArchivoProgramada(this.tareaDocenteProyecto, this.selectedFiles[0])
+      this.tareaService.crearTareaConArchivo(this.tareaDocenteProyecto, this.selectedFiles[0],this.checkTipoActividad)
         .subscribe({
           next: (data) => {
             this.messageService.add({

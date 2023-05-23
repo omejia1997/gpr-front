@@ -208,7 +208,7 @@ export class CrearTareaComponent implements OnInit {
     this.tareaDocenteProyecto.docentes = this.docentesAsignados;
     this.tareaDocenteProyecto.indicadors = this.indicadoresAsignados;
     if (this.selectedFiles == undefined) {
-      this.tareaService.crearTarea(this.tareaDocenteProyecto).subscribe({
+      this.tareaService.crearTarea(this.tareaDocenteProyecto,false).subscribe({
         next: (data) => {
           this.messageService.add({
             severity: 'success',
@@ -233,7 +233,7 @@ export class CrearTareaComponent implements OnInit {
         },
       })
     } else {
-      this.tareaService.crearTareaConArchivo(this.tareaDocenteProyecto, this.selectedFiles[0])
+      this.tareaService.crearTareaConArchivo(this.tareaDocenteProyecto, this.selectedFiles[0],false)
         .subscribe({
           next: (data) => {
             this.messageService.add({
