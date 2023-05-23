@@ -169,6 +169,8 @@ export class CrearTareaProgramadaComponent implements OnInit {
   }
 
   save() {
+    this.tarea.codigoProyecto = this.proyectoModel;
+    console.log(this.tarea);
     if (!this.tarea.nombreTarea || !this.tarea.tipoTarea || !this.tarea.codigoProyecto || !this.tarea.prioridadTarea) {
       this.messageService.add({
         severity: 'error',
