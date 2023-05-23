@@ -180,7 +180,7 @@ export class CrearTareaProgramadaComponent implements OnInit {
       return;
     }
     if (this.tarea.tipoTarea == "TAREA") {
-      if (!this.tarea.pesoTarea || !this.tarea.valorPesoTarea || !this.tarea.fechaEntregaTarea) {
+      if (!this.tarea.pesoTarea || !this.tarea.valorPesoTarea || (this.checkTipoTarea && !this.checkTipoActividad)) {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
@@ -252,7 +252,7 @@ export class CrearTareaProgramadaComponent implements OnInit {
           });
           setTimeout(() => {
             this.blockedDocument = false;
-            this.router.navigate(["listar-tareas"])
+            this.router.navigate(["listar-tareas-programadas"])
           }, 2000);
         },
         error: (err) => {
@@ -278,7 +278,7 @@ export class CrearTareaProgramadaComponent implements OnInit {
             });
             setTimeout(() => {
               this.blockedDocument = false;
-              this.router.navigate(["listar-tareas"])
+              this.router.navigate(["listar-tareas-programadas"])
             }, 2000);
           },
           error: (err) => {

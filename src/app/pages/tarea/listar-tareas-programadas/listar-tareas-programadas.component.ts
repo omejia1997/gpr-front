@@ -19,6 +19,7 @@ export class ListarTareasProgramadasComponent implements OnInit {
   getProyectos$: Observable<Proyecto[]>;
   proyectos: Proyecto[] = [];
   proyectoModel: Proyecto = {};
+  checkCreartarea:Boolean=false;
 
   constructor(
     private tareaService: TareaService,
@@ -46,7 +47,7 @@ export class ListarTareasProgramadasComponent implements OnInit {
     /*this.getTareas$.subscribe(tareas =>{
       this.tareasDocenteProyecto = tareas;  
     });*/
-
+    this.checkCreartarea=true;
     this.tareaService.obtenerTareasPorProyecto(this.cedulaDocenteRevisor,this.proyectoModel.codigoProyecto).subscribe(tareas =>{
       this.tareasDocenteProyecto = tareas;  
     });
@@ -61,5 +62,11 @@ export class ListarTareasProgramadasComponent implements OnInit {
   editarTarea(tareaDocenteProyecto:TareaDocenteProyecto){
     this.tareaService.setTarea(tareaDocenteProyecto);
     this.router.navigate(['editar-tarea']);
+  }
+
+  eliminarTarea(tareaDocenteProyecto:TareaDocenteProyecto){
+    this.tareaService.eliminarTarea(tareaDocenteProyecto.tarea?.codigoTarea).subscribe(data => {
+      this.getTareas();
+    });
   }
 }

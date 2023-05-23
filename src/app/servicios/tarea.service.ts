@@ -179,4 +179,10 @@ export class TareaService {
     return this.http.put<Proyecto>(`${PROYECTO}/cambiarEstado/${codigoProyecto}`,codigoProyecto);
   }
   */
+  public eliminarTarea(codigoTarea:any){
+    console.log("enrro")
+    console.log(codigoTarea);
+    return this.http.delete<Boolean>(`${TAREA_DOCENTE}/eliminarTarea/${codigoTarea}`); 
+  }
+  
 }

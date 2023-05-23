@@ -9,7 +9,7 @@
     </div>
   </div>
   <h2 style="text-align: center;">Actividades</h2>
-  <button class="btn btn-secondary btn-sm" (click)="navegarCrearTarea()" style="margin-bottom:10px;">Crear una
+  <button class="btn btn-secondary btn-sm" *ngIf="checkCreartarea" (click)="navegarCrearTarea()" style="margin-bottom:10px;">Crear una
     nueva Actividad</button>
   <div class="table-responsive">
     <table class="table table-hover text-center table-sm">
@@ -21,7 +21,7 @@
           <th>Fecha Límite de Entrega</th>
           <!--<th>Responsable</th>-->
           <th>Proyecto</th>
-          <th>Acción</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -33,8 +33,8 @@
           <!--<td>{{ tarea.codigoDocente?.nombreDocente }} {{ tarea.codigoDocente?.apellidoDocente }} </td>-->
           <td>{{ tarea.tarea?.codigoProyecto?.nombreProyecto }}</td>
           <td>
-            <button (click)="editarTarea(tarea)"
-              class="btn btn-warning btn-sm">Editar</button>
+            <mat-icon (click)="editarTarea(tarea)">edit</mat-icon>
+            <mat-icon (click)="eliminarTarea(tarea)">delete</mat-icon>
           </td>
         </tr>
       </tbody>
