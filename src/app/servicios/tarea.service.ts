@@ -66,6 +66,10 @@ export class TareaService {
   public obtenerTodasTareasRevisar():Observable<TareasRealizadas[]>{
     return this.http.get<TareasRealizadas[]>(`${TAREA_DOCENTE}/listarTodasTareasRevisadas`); 
   }
+
+  public crearProyectoProgramado(proyecto:Proyecto,idProyectoCopiar:number){
+    return this.http.post<any>(`${TAREA_DOCENTE}/crearTareasFromProyecto/${idProyectoCopiar}`,proyecto);
+  }
   
   public crearTarea(tarea:TareaDocenteProyecto,checkTipoActividad:Boolean){
     if(!checkTipoActividad) 

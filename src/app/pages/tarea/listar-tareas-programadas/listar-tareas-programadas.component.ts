@@ -59,6 +59,12 @@ export class ListarTareasProgramadasComponent implements OnInit {
     this.router.navigate(['crear-tarea-programada']);
   }
 
+  navegarCrearProyecto(){
+    localStorage.setItem('proyecto', JSON.stringify(this.proyectoModel));
+    this.tareaService.setProyectoModel(this.proyectoModel);
+    this.router.navigate(['crear-proyecto-programado']);
+  }
+
   editarTarea(tareaDocenteProyecto:TareaDocenteProyecto){
     this.tareaService.setTarea(tareaDocenteProyecto);
     this.router.navigate(['editar-tarea']);
@@ -69,4 +75,5 @@ export class ListarTareasProgramadasComponent implements OnInit {
       this.getTareas();
     });
   }
+
 }

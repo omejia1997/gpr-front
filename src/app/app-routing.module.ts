@@ -31,6 +31,7 @@ import { PasswordOlvidadoComponent } from './pages/usuario/password-olvidado/pas
 import { AuthGuard } from './shared/auth.guard';
 import { ListarTareasProgramadasComponent } from './pages/tarea/listar-tareas-programadas/listar-tareas-programadas.component';
 import { CrearTareaProgramadaComponent } from './pages/tarea/crear-tarea-programada/crear-tarea-programada.component';
+import { CrearProyectoProgramadoComponent } from './pages/tarea/crear-proyecto-programado/crear-proyecto-programado.component';
 
 const routes: Routes = [
  {path: '', redirectTo:'/login' ,pathMatch:'full'},
@@ -64,6 +65,7 @@ const routes: Routes = [
   {path: 'editar-cargo', component:EditarCargoComponent,canActivate:[AuthGuard]},
   {path: 'listar-tareas-programadas', component:ListarTareasProgramadasComponent,canActivate:[AuthGuard]},
   {path: 'crear-tarea-programada', component:CrearTareaProgramadaComponent,canActivate:[AuthGuard]},
+  {path: 'crear-proyecto-programado', component:CrearProyectoProgramadoComponent,canActivate:[AuthGuard]},
   {path: '**', component:LoginComponent}
 ];
 

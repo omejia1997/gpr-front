@@ -53,6 +53,7 @@ import { PasswordOlvidadoComponent } from './pages/usuario/password-olvidado/pas
 import { FilterPipe } from './pipes/filter.pipe';
 import { ProyectoService } from './servicios/proyecto.service';
 import { CrearTareaProgramadaComponent } from './pages/tarea/crear-tarea-programada/crear-tarea-programada.component';
+import { CrearProyectoProgramadoComponent } from './pages/tarea/crear-proyecto-programado/crear-proyecto-programado.component';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { CrearTareaProgramadaComponent } from './pages/tarea/crear-tarea-program
     EditarCargoComponent,
     ListarCargoComponent,
     ListarTareasProgramadasComponent,
-    CrearTareaProgramadaComponent
+    CrearTareaProgramadaComponent,
+    CrearProyectoProgramadoComponent
   ],
   imports: [
     BrowserModule,
