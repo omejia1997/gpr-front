@@ -7,6 +7,7 @@ import { FormBuilder, AbstractControl } from '@angular/forms';
 import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { formatDate } from '@angular/common';
+import * as XLSX from 'xlsx';
 
 export interface PeriodicElement {
   name: string;
@@ -28,6 +29,7 @@ export class ListarTareasRevisarComponent implements OnInit {
   cedulaDocenteRevisor: any;
   dataTable: any | null;//[] = [];
   data: any;
+  name = 'ExcelSheet.xlsx';
   //sum:number=0;
 
   //
@@ -103,6 +105,7 @@ export class ListarTareasRevisarComponent implements OnInit {
   }
 
   convertirDataPdf() {
+
     /*
     var doc = new jspdf('landscape', 'pt', 'a4');
     var margin =10;
@@ -120,6 +123,7 @@ export class ListarTareasRevisarComponent implements OnInit {
         }
       })
     */
+   
     const DATA = document.getElementById('dataPdf');
     const doc = new jspdf('p', 'pt', 'a4');
     const options = {
@@ -152,5 +156,13 @@ export class ListarTareasRevisarComponent implements OnInit {
         var position =0;
         pdf.save('Data.pdf');
       })*/
+  }
+
+  exportToExcel(): void {
+    let element = document.getElementById('dataPdf');
+    const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    const book: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(book, worksheet, 'Sheet1');
+    XLSX.writeFile(book, this.name);
   }
 }
