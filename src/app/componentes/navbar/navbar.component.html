@@ -31,6 +31,9 @@
 						<li>
 							<a class="dropdown-item" [routerLink]="['/listar-tareas-programadas']">Listar Tareas</a>
 						</li>
+						<li>
+							<a class="dropdown-item" [routerLink]="['/monitoreo-proyecto']">Monitoreo proyecto</a>
+						</li>
 					</ul>
 				</li>
 
@@ -42,7 +45,6 @@
 					<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
 						<li *ngFor="let item of menusCuenta">
 							<a class="dropdown-item" routerLink="{{item.url}}">{{item.nombre}}</a>
-
 						</li>
 					</ul>
 				</li>

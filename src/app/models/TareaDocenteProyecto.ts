@@ -7,4 +7,5 @@ export type TareaDocenteProyecto = {
     tarea?: Tarea;
     docentes?: Docente[];
     indicadors?: Indicador[];
+    claseCirculoPintar?:string;
 };

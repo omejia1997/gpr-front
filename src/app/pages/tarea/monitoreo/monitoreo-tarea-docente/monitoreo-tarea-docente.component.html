@@ -1,0 +1,41 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <button type="button" (click)="back()" class="btn btn-dark btn-sm btn-regresar">Regresar</button>
+  <h2 style="text-align: center;">Actividades</h2>
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Proyecto</th>
+          <th>Actividad</th>
+          <th>Persona Encargada</th>
+          <th>Fecha de Entrega</th>
+          <th>Estado de la Tarea</th>
+          <th>Estado</th>
+          <th>Ver Tarea</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tareaDocente of tareaDocentes">
+          <td>{{ tareaDocente.codigoTarea?.codigoProyecto?.nombreProyecto }}</td>
+          <td>{{ tareaDocente.codigoTarea?.nombreTarea }}</td>
+          <td>{{ tareaDocente.codigoDocente?.nombreDocente +" "+ tareaDocente.codigoDocente?.apellidoDocente }}</td>
+          <td>{{ tareaDocente.codigoTarea?.fechaEntregaTarea | date:"short":'+00:00'}}</td>
+          <td>{{ tareaDocente.estadoTareaDocente }}</td>
+          <td>
+            <div class="contenedor">
+              <div *ngIf="tareaDocente.estadoTareaDocente=='DENEGADO'" class="rojo"></div>
+              <div *ngIf="tareaDocente.estadoTareaDocente=='ASIGNADA'" class="amarillo"></div>
+              <div *ngIf="tareaDocente.estadoTareaDocente=='EN REVISIÓN'" class="azul"></div>
+              <div *ngIf="tareaDocente.estadoTareaDocente=='ACEPTADO'" class="verde"></div>
+            </div>
+          </td>
+          <td>
+            <mat-icon (click)="listarTareasDocentes()">remove_red_eye</mat-icon>
+          </td>
+        </tr>
+      </tbody>
+      
+    </table>
+  </div>
+</div>

@@ -54,6 +54,9 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { ProyectoService } from './servicios/proyecto.service';
 import { CrearTareaProgramadaComponent } from './pages/tarea/crear-tarea-programada/crear-tarea-programada.component';
 import { CrearProyectoProgramadoComponent } from './pages/tarea/crear-proyecto-programado/crear-proyecto-programado.component';
+import { MonitoreoProyectoComponent } from './pages/tarea/monitoreo/monitoreo-proyecto/monitoreo-proyecto.component';
+import { MonitoreoTareasComponent } from './pages/tarea/monitoreo/monitoreo-tareas/monitoreo-tareas.component';
+import { MonitoreoTareaDocenteComponent } from './pages/tarea/monitoreo/monitoreo-tarea-docente/monitoreo-tarea-docente.component';
 
 
 @NgModule({
@@ -91,7 +94,10 @@ import { CrearProyectoProgramadoComponent } from './pages/tarea/crear-proyecto-p
     ListarCargoComponent,
     ListarTareasProgramadasComponent,
     CrearTareaProgramadaComponent,
-    CrearProyectoProgramadoComponent
+    CrearProyectoProgramadoComponent,
+    MonitoreoProyectoComponent,
+    MonitoreoTareasComponent,
+    MonitoreoTareaDocenteComponent
   ],
   imports: [
     BrowserModule,

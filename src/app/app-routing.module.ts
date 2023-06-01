@@ -32,6 +32,9 @@ import { AuthGuard } from './shared/auth.guard';
 import { ListarTareasProgramadasComponent } from './pages/tarea/listar-tareas-programadas/listar-tareas-programadas.component';
 import { CrearTareaProgramadaComponent } from './pages/tarea/crear-tarea-programada/crear-tarea-programada.component';
 import { CrearProyectoProgramadoComponent } from './pages/tarea/crear-proyecto-programado/crear-proyecto-programado.component';
+import { MonitoreoProyectoComponent } from './pages/tarea/monitoreo/monitoreo-proyecto/monitoreo-proyecto.component';
+import { MonitoreoTareasComponent } from './pages/tarea/monitoreo/monitoreo-tareas/monitoreo-tareas.component';
+import { MonitoreoTareaDocenteComponent } from './pages/tarea/monitoreo/monitoreo-tarea-docente/monitoreo-tarea-docente.component';
 
 const routes: Routes = [
  {path: '', redirectTo:'/login' ,pathMatch:'full'},
@@ -66,6 +69,9 @@ const routes: Routes = [
   {path: 'listar-tareas-programadas', component:ListarTareasProgramadasComponent,canActivate:[AuthGuard]},
   {path: 'crear-tarea-programada', component:CrearTareaProgramadaComponent,canActivate:[AuthGuard]},
   {path: 'crear-proyecto-programado', component:CrearProyectoProgramadoComponent,canActivate:[AuthGuard]},
+  {path: 'monitoreo-proyecto', component:MonitoreoProyectoComponent,canActivate:[AuthGuard]},
+  {path: 'monitoreo-tareas', component:MonitoreoTareasComponent,canActivate:[AuthGuard]},
+  {path: 'monitoreo-tarea-docente', component:MonitoreoTareaDocenteComponent,canActivate:[AuthGuard]},
   {path: '**', component:LoginComponent}
 ];
 

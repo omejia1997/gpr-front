@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 style="text-align: center;">Proyectos</h2>
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Proceso</th>
+          <th>Proyecto</th>
+          <th>Fecha Creación</th>
+          <th>Descripción</th>
+          <th>Estado</th>
+          <th>Ver Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proyecto of proyectos">
+          <td>{{ proyecto.tipoProceso?.nombreTipoProceso }}</td>
+          <td>{{ proyecto.nombreProyecto }}</td>
+          <td>{{ proyecto.fechaCreacionproyecto | date: "dd-MM-yyyy" }}</td>
+          <td *ngIf="proyecto.descripcionProyecto">{{ proyecto.descripcionProyecto }}</td>
+          <td *ngIf="!proyecto.descripcionProyecto">Sin descripción</td>
+          <td><div class="contenedor"><div class="{{proyecto.claseCirculoPintar}}"></div></div></td>
+          <td>
+            <mat-icon (click)="listarTareas(proyecto)">remove_red_eye</mat-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

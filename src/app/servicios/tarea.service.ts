@@ -47,6 +47,10 @@ export class TareaService {
     return this.http.get<TareaDocenteProyecto[]>(`${TAREA_DOCENTE}/listarTareasPorProyecto/${idDocente}/${idProyecto}`); 
   }
 
+  public obtenerTareasDocentePorCodigoTarea(codigoTarea:string): Observable<TareaDocente[]>{
+    return this.http.get<TareaDocente[]>(`${TAREA_DOCENTE}/listarTareasDocentePorCodigoTarea/${codigoTarea}`); 
+  }
+
   public obtenerTareasEntregadas(idDocente:string): Observable<TareaDocente[]>{
     return this.http.get<TareaDocente[]>(`${TAREA_DOCENTE}/listarTareasEntregadas/${idDocente}`); 
   }

@@ -1,3 +1,4 @@
+import { TareaDocenteProyecto } from "./TareaDocenteProyecto";
 import { TipoProceso } from "./TipoProceso";
 
 export type Proyecto = {
@@ -7,4 +8,6 @@ export type Proyecto = {
   descripcionProyecto?: string;
   estadoProyecto?: string;
   tipoProceso?:TipoProceso;
+  listTareas?:TareaDocenteProyecto[];
+  claseCirculoPintar?:string;
 };
