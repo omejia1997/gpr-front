@@ -1,0 +1,27 @@
+.contenedor {
+  display: flex;
+}
+
+.rojo {
+  margin: auto;
+  background-color: rgb(196, 36, 25);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.amarillo {
+  margin: auto;
+  background-color: rgb(218, 207, 110);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.verde {
+  margin: auto;
+  background-color: rgb(20, 61, 32);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}

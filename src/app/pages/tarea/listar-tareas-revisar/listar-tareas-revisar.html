@@ -1,5 +1,26 @@
 <app-navbar></app-navbar>
-
+<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="overlay">
+      <p-progressSpinner *ngIf="blockedDocument" [style]="{width: '150px', height: '150px', margin:'auto'}"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </div>
+  </div>
+</div>
+<div style="display: flex;">
+  <div style="margin: auto;">
+    <button (click)="actualizarDatos()" class="btn btn-primary btn-sm" style="margin-bottom: 10px">Actualizar</button>
+  </div>
+</div>
+<div style="display: flex;">
+  <div style="margin: auto;">
+    <button (click)="convertirDataPdf()" class="btn btn-dark btn-sm" style="margin: 0px 10px 10px 0;">Descargar Tabla en
+      PDF</button>
+    <button (click)="exportToExcel()" class="btn btn-dark btn-sm" style="margin-bottom: 10px;">Exportar Datos a
+      Excel</button>
+  </div>
+</div>
 <form style="display: flex" [formGroup]="formControl | asFormGroup">
 
   <div class="table-responsive">
@@ -74,11 +95,15 @@
             <br *ngIf="i!=0">
             <b>{{ i+1}}.-</b>
             <span *ngIf="indicador.descripcionTareaIndicador!=''"><b> {{
-              indicador.descripcionTareaIndicador}}: </b></span>
+                indicador.descripcionTareaIndicador}}: </b></span>
             <span *ngIf="!indicador.descripcionTareaIndicador"><b>{{
-              indicador.valorIndicador}} </b></span>
-            <span *ngIf="indicador.descripcionTareaIndicador && indicador.indicadorCODIGOINDICADOR.nombreIndicador=='PORCENTAJE'">{{ indicador.valorIndicador}} %</span>
-            <span *ngIf="indicador.descripcionTareaIndicador && indicador.indicadorCODIGOINDICADOR.nombreIndicador!='PORCENTAJE'">{{ indicador.valorIndicador}} </span>
+                indicador.valorIndicador}} </b></span>
+            <span
+              *ngIf="indicador.descripcionTareaIndicador && indicador.indicadorCODIGOINDICADOR.nombreIndicador=='PORCENTAJE'">{{
+              indicador.valorIndicador}} %</span>
+            <span
+              *ngIf="indicador.descripcionTareaIndicador && indicador.indicadorCODIGOINDICADOR.nombreIndicador!='PORCENTAJE'">{{
+              indicador.valorIndicador}} </span>
           </span>
         </td>
       </ng-container>
@@ -100,7 +125,8 @@
             <mat-placeholder class="color-input"></mat-placeholder>
           </mat-form-field>
         </th>
-        <td mat-cell *matCellDef="let element" class="body-table"> <span *ngIf="element.peso!='0 null'">{{element.peso}}</span>
+        <td mat-cell *matCellDef="let element" class="body-table"> <span
+            *ngIf="element.peso!='0 null'">{{element.peso}}</span>
           <span *ngIf="element.peso=='0 null'">No aplica</span>
         </td>
       </ng-container>
@@ -152,8 +178,6 @@
     </table>
   </div>
 </form>
-<button (click)="convertirDataPdf()">Descargar</button>
-<button (click)="exportToExcel()">Export to Excel</button>
 <!--<div class="container">
   <div class="card">
     <div class="card-header">

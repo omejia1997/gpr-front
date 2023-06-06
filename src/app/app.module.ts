@@ -57,6 +57,8 @@ import { CrearProyectoProgramadoComponent } from './pages/tarea/crear-proyecto-p
 import { MonitoreoProyectoComponent } from './pages/tarea/monitoreo/monitoreo-proyecto/monitoreo-proyecto.component';
 import { MonitoreoTareasComponent } from './pages/tarea/monitoreo/monitoreo-tareas/monitoreo-tareas.component';
 import { MonitoreoTareaDocenteComponent } from './pages/tarea/monitoreo/monitoreo-tarea-docente/monitoreo-tarea-docente.component';
+import { DashboardInvestigacionComponent } from './pages/dashboard/investigacion/dashboard.component';
+import { VerTareaDocenteComponent } from './pages/tarea/monitoreo/monitoreo-tarea-docente/ver-tarea-docente/ver-tarea-docente.component';
 
 
 @NgModule({
@@ -97,7 +99,9 @@ import { MonitoreoTareaDocenteComponent } from './pages/tarea/monitoreo/monitore
     CrearProyectoProgramadoComponent,
     MonitoreoProyectoComponent,
     MonitoreoTareasComponent,
-    MonitoreoTareaDocenteComponent
+    MonitoreoTareaDocenteComponent,
+    VerTareaDocenteComponent,
+    DashboardInvestigacionComponent
   ],
   imports: [
     BrowserModule,

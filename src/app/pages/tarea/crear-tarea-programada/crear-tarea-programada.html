@@ -142,8 +142,8 @@
           </div>
           <div *ngFor="let docente of docentes">
             <input (click)="cambiarCheckDocente(docente)" [(ngModel)]="docente.checked"
-              [ngModelOptions]="{standalone: true}" type="checkbox"><span> {{docente.nombreDocente +"
-              "+docente.apellidoDocente}}</span>
+              [ngModelOptions]="{standalone: true}" type="checkbox"><span> {{docente.apellidoDocente +"
+              "+docente.nombreDocente}}</span>
           </div>
         </div>
         <div class="form-group" style="text-align: center;">
@@ -151,7 +151,7 @@
           <span *ngIf="docentesAsignados.length==0">NINGÚN DOCENTE ASIGNADO</span>
           <ul class="heroes">
             <li *ngFor="let d of docentesAsignados" style="text-align: left;">
-              <span>{{d.nombreDocente+" "+d.apellidoDocente}}</span>
+              <span>{{d.apellidoDocente+' '+d.nombreDocente}}</span>
             </li>
           </ul>
         </div>

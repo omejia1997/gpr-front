@@ -35,6 +35,8 @@ export class MonitoreoTareaDocenteComponent implements OnInit {
     this.router.navigate(['monitoreo-tareas']);
   }
 
-  listarTareasDocentes(){
+  listarTareasDocentes(tareaDocente:TareaDocente){
+    this.tareaService.setTareaDocente(tareaDocente);
+    this.router.navigate(['ver-tarea-docente']);
   }
 }

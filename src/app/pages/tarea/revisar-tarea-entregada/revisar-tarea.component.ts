@@ -117,6 +117,7 @@ export class RevisarTareaComponent implements OnInit {
         }, 2000);
       },
       error: (err) => {
+        this.blockedDocument = false; 
         this.messageService.add({
           severity: 'error',
           summary: 'Error',

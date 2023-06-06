@@ -43,11 +43,13 @@ export class MonitoreoProyectoComponent implements OnInit {
       proyecto.listTareas = tareas;
       let count= 0;
       let check=true;
+      console.log(tareas);
       proyecto.listTareas.forEach(tarea=>{
           if(check){
             if(tarea.claseCirculoPintar=="amarillo"){
               proyecto.claseCirculoPintar="amarillo";
               check=false;
+              throw "tareas incompletas";
             }
             if(tarea.claseCirculoPintar=="verde"){
               count++;
@@ -55,7 +57,8 @@ export class MonitoreoProyectoComponent implements OnInit {
           }
         })
       if(count==0){
-        proyecto.claseCirculoPintar="rojo";
+        //proyecto.claseCirculoPintar="rojo";
+        proyecto.claseCirculoPintar="amarillo";
       }else if(count == proyecto.listTareas.length){
         proyecto.claseCirculoPintar="verde";
       }

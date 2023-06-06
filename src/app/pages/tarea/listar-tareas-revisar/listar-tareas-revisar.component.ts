@@ -8,6 +8,9 @@ import jspdf from 'jspdf';
 import html2canvas from 'html2canvas';
 import { formatDate } from '@angular/common';
 import * as XLSX from 'xlsx';
+import { TareasRealizadas } from 'src/app/models/TareasRealizadas';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 export interface PeriodicElement {
   name: string;
@@ -29,7 +32,10 @@ export class ListarTareasRevisarComponent implements OnInit {
   cedulaDocenteRevisor: any;
   dataTable: any | null;//[] = [];
   data: any;
-  name = 'ExcelSheet.xlsx';
+  name = 'ExcelDatos.xlsx';
+  blockedDocument: boolean = false;
+  getTareasDocente$: Observable<TareasRealizadas[]>;
+
   //sum:number=0;
 
   //
@@ -42,9 +48,11 @@ export class ListarTareasRevisarComponent implements OnInit {
 
   constructor(
     private tareaService: TareaService,
-    //
-    formBuilder: FormBuilder
+    private router: Router,
+    formBuilder: FormBuilder,
+    private messageService: MessageService
   ) {
+    this.getTareasDocente$ = this.tareaService.obtenerTodasTareasRevisar();
     //this.getTareasDocente$ = this.tareaService.obtenerTodasTareasRevisar();
     //
     /*this.tareaService.tareasDocente$.subscribe((res) => {
@@ -105,7 +113,7 @@ export class ListarTareasRevisarComponent implements OnInit {
   }
 
   convertirDataPdf() {
-
+    this.blockedDocument = true;
     /*
     var doc = new jspdf('landscape', 'pt', 'a4');
     var margin =10;
@@ -123,7 +131,7 @@ export class ListarTareasRevisarComponent implements OnInit {
         }
       })
     */
-   
+
     const DATA = document.getElementById('dataPdf');
     const doc = new jspdf('p', 'pt', 'a4');
     const options = {
@@ -145,6 +153,7 @@ export class ListarTareasRevisarComponent implements OnInit {
         return doc;
       }).then((docResult) => {
         docResult.save(`${formatDate(new Date(), 'yyyy/MM/dd', 'en')}_reporteTarea.pdf`);
+        this.blockedDocument = false;
       });
     }
     /*var data = document.getElementById("dataPdf");
@@ -156,6 +165,7 @@ export class ListarTareasRevisarComponent implements OnInit {
         var position =0;
         pdf.save('Data.pdf');
       })*/
+      
   }
 
   exportToExcel(): void {
@@ -164,5 +174,62 @@ export class ListarTareasRevisarComponent implements OnInit {
     const book: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(book, worksheet, 'Sheet1');
     XLSX.writeFile(book, this.name);
+  }
+  actualizarDatos() {
+    this.getTareas();
+  }
+
+  getTareas() {
+    this.blockedDocument = true;
+    
+    localStorage.removeItem('dataTable');
+    this.getTareasDocente$.subscribe({
+      next: (data) => {        
+        this.tareasDocente = data;
+        var cont = 0;
+        this.tareasDocente.forEach(tareaDocent => {
+          cont++;
+          let objetoTarea = {
+            "id": cont,
+            "revisor": tareaDocent.nombreDocenteRevisor,
+            "proceso": tareaDocent.tipoProceso,
+            "proyecto": tareaDocent.nombreProyecto,
+            "tarea": tareaDocent.nombreTarea,
+            "tipoTarea": tareaDocent.tipoTarea,
+            "prioridad": tareaDocent.prioridadTarea,
+            "peso": tareaDocent.pesoTarea,
+            "fechaInicio": tareaDocent.fechaCreaciontarea,
+            "fechaVencimiento": tareaDocent.fechaEntregaTarea,
+            "responsable": tareaDocent.responsable,
+            "tareaIndicadors": tareaDocent.tareaIndicadors,
+            "nombreArchivo": tareaDocent.nombreArchivo,
+            "urlArchivo": tareaDocent.urlArchivo
+          }
+          this.dataTable.push(objetoTarea);
+        });
+        localStorage.setItem('dataTable', JSON.stringify(this.dataTable));
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Éxito',
+          detail: 'Tabla Actualizada con éxito'
+        });
+        setTimeout(() => {
+          this.blockedDocument = false;
+          this.router.navigate(["listar-tareas-revisar"])
+        }, 2000);
+
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err?.message ?? ' Error al actualizar la Tabla'
+        });
+        this.blockedDocument = false;
+      },
+      complete: () => {
+        // this.isLoading = false;
+      },
+    })
   }
 }
