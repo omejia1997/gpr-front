@@ -18,6 +18,8 @@ export class ProgressBarComponent implements OnInit {
   }
 
   getData(){
+    if(isNaN(this.dataProgress.value))
+      this.dataProgress.value =0;
     this.data.push(this.dataProgress);
   }
 }
