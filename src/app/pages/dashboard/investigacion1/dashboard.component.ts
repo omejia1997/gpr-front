@@ -5,7 +5,8 @@ import { DashboardProyectoInvestigacion } from "src/app/models/Dashboard/Dashboa
 import { TareaService } from "src/app/servicios/tarea.service";
 @Component({
   selector: "app-dashboard",
-  templateUrl: "dashboard-investigacion.component.html"
+  templateUrl: "dashboard-investigacion.component.html",
+  styleUrls: ['./dashboard-investigacion.component.css']
 })
 export class DashboardInvestigacionComponent implements OnInit {
   //view: any[2] = [500, 400];

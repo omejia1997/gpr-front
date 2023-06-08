@@ -8,7 +8,12 @@
 >
 </ngx-charts-pie-grid>-->
 <app-navbar></app-navbar>
-<span *ngFor="let proyecto of dataProyecto">
-  <app-progress-bar [dataProgress]="proyecto" (click)="verEstadoProyecto(proyecto)">
-  </app-progress-bar>
-</span>
+
+<div class="container">
+  <div class="grid-container">
+    <span *ngFor="let proyecto of dataProyecto">
+      <app-progress-bar [dataProgress]="proyecto" (click)="verEstadoProyecto(proyecto)">
+      </app-progress-bar>
+    </span>
+  </div>
+</div>

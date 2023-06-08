@@ -4,8 +4,8 @@ import { TareaIndicador } from "src/app/models/TareaIndicador";
 import { TareaService } from "src/app/servicios/tarea.service";
 @Component({
   selector: "app-dashboard-tarea",
-  templateUrl: "./dashboard-tarea.component.html"
- //styleUrls: ['./dashboard-tarea.component.css']
+  templateUrl: "./dashboard-tarea.component.html",
+  styleUrls: ['./dashboard-tarea.component.css']
 })
 export class DashboardTareaComponent implements OnInit {
 
@@ -14,7 +14,7 @@ export class DashboardTareaComponent implements OnInit {
   view: any[2] =  [500, 400];
   dataBarHorizontal!:any;
   tareaIndicadores:TareaIndicador[]=[];
-
+  
   // options GroupedBar
   view2: any[2] =  [500,300];
   showXAxis: boolean = true;
