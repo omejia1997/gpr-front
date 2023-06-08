@@ -35,8 +35,9 @@ import { CrearProyectoProgramadoComponent } from './pages/tarea/crear-proyecto-p
 import { MonitoreoProyectoComponent } from './pages/tarea/monitoreo/monitoreo-proyecto/monitoreo-proyecto.component';
 import { MonitoreoTareasComponent } from './pages/tarea/monitoreo/monitoreo-tareas/monitoreo-tareas.component';
 import { MonitoreoTareaDocenteComponent } from './pages/tarea/monitoreo/monitoreo-tarea-docente/monitoreo-tarea-docente.component';
-import { DashboardInvestigacionComponent } from './pages/dashboard/investigacion/dashboard.component';
 import { VerTareaDocenteComponent } from './pages/tarea/monitoreo/monitoreo-tarea-docente/ver-tarea-docente/ver-tarea-docente.component';
+import { DashboardInvestigacionComponent } from './pages/dashboard/investigacion1/dashboard.component';
+import { DashboardTareaComponent } from './pages/dashboard/investigacion1/dashboard-tarea/dashboard-tarea.component';
 
 const routes: Routes = [
  {path: '', redirectTo:'/login' ,pathMatch:'full'},
@@ -75,7 +76,8 @@ const routes: Routes = [
   {path: 'monitoreo-tareas', component:MonitoreoTareasComponent,canActivate:[AuthGuard]},
   {path: 'monitoreo-tarea-docente', component:MonitoreoTareaDocenteComponent,canActivate:[AuthGuard]},
   {path: 'ver-tarea-docente', component:VerTareaDocenteComponent,canActivate:[AuthGuard]},
-  {path: 'dashboard-investigacion', component:DashboardInvestigacionComponent},
+  {path: 'dashboard-investigacion', component:DashboardInvestigacionComponent,canActivate:[AuthGuard]},
+  {path: 'dashboard-tarea-investigacion', component:DashboardTareaComponent,canActivate:[AuthGuard]},
   {path: '**', component:LoginComponent}
 ];
 

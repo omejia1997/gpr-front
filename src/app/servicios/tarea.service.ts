@@ -12,6 +12,7 @@ import { TareaIndicadorFile } from '../models/TareaIndicadorFile';
 import { Tarea } from '../models/Tarea';
 import { TareasRealizadas } from '../models/TareasRealizadas';
 import { CargoDocente } from '../models/CargoDocente';
+import { DashboardProyectoInvestigacion } from '../models/Dashboard/DashboardProyectoInvestigacion';
 
 const URL='http://localhost:8080';
 //const URL="https://gpr-mec-espe.azurewebsites.net"
@@ -24,16 +25,22 @@ export class TareaService {
 
   private tareas$$ = new BehaviorSubject<TareaDocenteProyecto | null>(null);
   tareas$ = this.tareas$$.asObservable();
+
   private tareaDocente$$ = new BehaviorSubject<TareaDocente | null>(null);
   tareaDocente$ = this.tareaDocente$$.asObservable();
+  
   private proyecto$$ = new BehaviorSubject<Proyecto | null>(null);
   proyecto$ = this.proyecto$$.asObservable();
-
+  
+  private dashboardProyectoInvestigacion$$ = new BehaviorSubject<DashboardProyectoInvestigacion | null>(null);
+  dashboardProyectoInvestigacion$ = this.dashboardProyectoInvestigacion$$.asObservable();
+  
   private proyectoModel$$ = new BehaviorSubject<Proyecto | null>(null);
   proyectoModel$ = this.proyectoModel$$.asObservable();
-
+  
   private tarea$$ = new BehaviorSubject<Tarea | null>(null);
   tarea$ = this.tarea$$.asObservable();
+  
   private tareasDocente$$ = new BehaviorSubject<any[]  |undefined>(undefined);
   tareasDocente$ = this.tareasDocente$$.asObservable();
 
@@ -69,6 +76,10 @@ export class TareaService {
 
   public obtenerTodasTareasRevisar():Observable<TareasRealizadas[]>{
     return this.http.get<TareasRealizadas[]>(`${TAREA_DOCENTE}/listarTodasTareasRevisadas`); 
+  }
+
+  public obtenerDatosProyectoDashboardInvestigacion(idTipoProceso:number): Observable<DashboardProyectoInvestigacion[]>{
+    return this.http.get<DashboardProyectoInvestigacion[]>(`${TAREA_DOCENTE}/obtenerDatosProyectoDashboardInvestigacion/${idTipoProceso}`); 
   }
 
   public crearProyectoProgramado(proyecto:Proyecto,idProyectoCopiar:number){
@@ -114,6 +125,10 @@ export class TareaService {
 
   public setTareasDocenteModel(tareaDocente: any[]) {
     this.tareasDocente$$.next(tareaDocente);
+  }
+
+  public setDashboardProyectoInvestigacion(dashboardProyectoInvestigacion: DashboardProyectoInvestigacion) {
+    this.dashboardProyectoInvestigacion$$.next(dashboardProyectoInvestigacion);
   }
 
   public obtenerProyectoPorId(idProyecto:number){

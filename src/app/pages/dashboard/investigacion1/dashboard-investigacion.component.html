@@ -1,0 +1,14 @@
+<!--<ngx-charts-pie-grid
+  [view]="view"
+  [designatedTotal]="100"
+  label="Porcentaje realizado"
+  scheme="nightLights"
+  [results]="data"
+  (select)="onSelect($event)"
+>
+</ngx-charts-pie-grid>-->
+<app-navbar></app-navbar>
+<span *ngFor="let proyecto of dataProyecto">
+  <app-progress-bar [dataProgress]="proyecto" (click)="verEstadoProyecto(proyecto)">
+  </app-progress-bar>
+</span>
