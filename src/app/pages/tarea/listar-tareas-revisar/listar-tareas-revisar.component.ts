@@ -11,6 +11,8 @@ import * as XLSX from 'xlsx';
 import { TareasRealizadas } from 'src/app/models/TareasRealizadas';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import {ViewChild} from '@angular/core';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 
 export interface PeriodicElement {
   name: string;
@@ -28,6 +30,7 @@ export interface PeriodicElement {
 export class ListarTareasRevisarComponent implements OnInit {
   //getTareasDocente$: Observable<TareaDocente[]>;
   //tareasDocente: TareaDocente[] = [];
+  @ViewChild (MatPaginator) paginator!: MatPaginator;
   tareasDocente: any[] | undefined = [];
   cedulaDocenteRevisor: any;
   dataTable: any | null;//[] = [];
@@ -61,29 +64,17 @@ export class ListarTareasRevisarComponent implements OnInit {
       
       
     });*/
-    if (localStorage.getItem('dataTable') != null) {
-      this.data = localStorage.getItem('dataTable');
-      this.dataTable = JSON.parse(this.data);
-      this.dataSource = new MatTableDataSource(this.dataTable);
-    }
+    // if (localStorage.getItem('dataTable') != null) {
+    //   this.data = localStorage.getItem('dataTable');
+    //   this.dataTable = JSON.parse(this.data);
+    //   this.dataSource = new MatTableDataSource(this.dataTable);
+    // }
 
+    this.getTareas();
 
     //this.getTareas();
 
-    this.dataSource.filterPredicate = ((data, filter) => {
-      const a = !filter.id || data.id === filter.id;
-      const b = !filter.revisor || data.revisor.toLowerCase().includes(filter.revisor);
-      const c = !filter.proceso || data.proceso.toLowerCase().includes(filter.proceso);
-      const d = !filter.proyecto || data.proyecto.toLowerCase().includes(filter.proyecto);
-      const e = !filter.tarea || data.tarea.toLowerCase().includes(filter.tarea);
-      const f = !filter.prioridad || data.prioridad.toLowerCase().includes(filter.prioridad);
-      const g = !filter.peso || data.peso.toLowerCase().includes(filter.peso);
-      const h = !filter.fechaInicio || data.revisor.fechaInicio().includes(filter.fechaInicio);
-      const i = !filter.fechaVencimiento || data.fechaVencimiento.toLowerCase().includes(filter.fechaVencimiento);
-      const j = !filter.responsable || data.responsable.toLowerCase().includes(filter.responsable);
-      const k = !filter.tipoTarea || data.tipoTarea.toLowerCase().includes(filter.tipoTarea);
-      return a && b && c && d && e && f && g && h && i && j && k;
-    }) as (PeriodicElement: any, string: any) => boolean;
+    
 
     this.formControl = formBuilder.group({
       id: '',
@@ -109,6 +100,10 @@ export class ListarTareasRevisarComponent implements OnInit {
     });
   }
 
+
+  getTodasTareas(){
+    
+  }
   ngOnInit(): void {
   }
 
@@ -181,12 +176,12 @@ export class ListarTareasRevisarComponent implements OnInit {
 
   getTareas() {
     this.blockedDocument = true;
-    
     localStorage.removeItem('dataTable');
     this.getTareasDocente$.subscribe({
       next: (data) => {        
         this.tareasDocente = data;
         var cont = 0;
+        this.dataTable=[];
         this.tareasDocente.forEach(tareaDocent => {
           cont++;
           let objetoTarea = {
@@ -207,16 +202,34 @@ export class ListarTareasRevisarComponent implements OnInit {
           }
           this.dataTable.push(objetoTarea);
         });
-        localStorage.setItem('dataTable', JSON.stringify(this.dataTable));
+        //localStorage.setItem('dataTable', JSON.stringify(this.dataTable));
+        this.dataSource = new MatTableDataSource(this.dataTable);
+        this.dataSource.filterPredicate = ((data, filter) => {
+          const a = !filter.id || data.id === filter.id;
+          const b = !filter.revisor || data.revisor.toLowerCase().includes(filter.revisor);
+          const c = !filter.proceso || data.proceso.toLowerCase().includes(filter.proceso);
+          const d = !filter.proyecto || data.proyecto.toLowerCase().includes(filter.proyecto);
+          const e = !filter.tarea || data.tarea.toLowerCase().includes(filter.tarea);
+          const f = !filter.prioridad || data.prioridad.toLowerCase().includes(filter.prioridad);
+          const g = !filter.peso || data.peso.toLowerCase().includes(filter.peso);
+          const h = !filter.fechaInicio || data.revisor.fechaInicio().includes(filter.fechaInicio);
+          const i = !filter.fechaVencimiento || data.fechaVencimiento.toLowerCase().includes(filter.fechaVencimiento);
+          const j = !filter.responsable || data.responsable.toLowerCase().includes(filter.responsable);
+          const k = !filter.tipoTarea || data.tipoTarea.toLowerCase().includes(filter.tipoTarea);
+          return a && b && c && d && e && f && g && h && i && j && k;
+        }) as (PeriodicElement: any, string: any) => boolean;
+
+        this.dataSource.paginator = this.paginator;
+        this.blockedDocument = false;
         this.messageService.add({
           severity: 'success',
           summary: 'Éxito',
-          detail: 'Tabla Actualizada con éxito'
+          detail: 'Datos Cargados con éxito'
         });
-        setTimeout(() => {
-          this.blockedDocument = false;
-          this.router.navigate(["listar-tareas-revisar"])
-        }, 2000);
+        // setTimeout(() => {
+        //   this.blockedDocument = false;
+        //   this.router.navigate(["listar-tareas-revisar"])
+        // }, 2000);
 
       },
       error: (err) => {

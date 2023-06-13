@@ -63,6 +63,7 @@ import { DashboardInvestigacionComponent } from './pages/dashboard/investigacion
 import { ProgressBarComponent } from './pages/dashboard/investigacion1/progress-bar/progress-bar.component';
 import { DashboardTareaComponent } from './pages/dashboard/investigacion1/dashboard-tarea/dashboard-tarea.component';
 import { ProgressBarTareaComponent } from './pages/dashboard/investigacion1/dashboard-tarea/progress-bar-tarea/progress-bar-tarea.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -128,7 +129,8 @@ import { ProgressBarTareaComponent } from './pages/dashboard/investigacion1/dash
     ProgressSpinnerModule,
     ToastModule,
     BlockUIModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatPaginatorModule
     //ComponentsModule
     //PagesModule
   ],

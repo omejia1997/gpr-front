@@ -8,11 +8,11 @@
     </div>
   </div>
 </div>
-<div style="display: flex;">
+<!-- <div style="display: flex;">
   <div style="margin: auto;">
     <button (click)="actualizarDatos()" class="btn btn-primary btn-sm" style="margin-bottom: 10px">Actualizar</button>
   </div>
-</div>
+</div> -->
 <div style="display: flex;">
   <div style="margin: auto;">
     <button (click)="convertirDataPdf()" class="btn btn-dark btn-sm" style="margin: 0px 10px 10px 0;">Descargar Tabla en
@@ -176,6 +176,9 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    <mat-paginator [pageSizeOptions]= "[5, 10, 20,100]"
+                 showFirstLastButtons 
+                 aria-label = "Seleccionar página de elementos periódicos"> </mat-paginator>
   </div>
 </form>
 <!--<div class="container">

@@ -35,8 +35,8 @@
           <td>{{ tarea.tarea?.fechaEntregaTarea | date:"short":'+00:00'}}</td>
           <td>{{ tarea.tarea?.codigoProyecto?.nombreProyecto }}</td>
           <td>
-            <mat-icon (click)="editarTarea(tarea)">edit</mat-icon>
-            <mat-icon (click)="eliminarTarea(tarea)">delete</mat-icon>
+            <mat-icon *ngIf="cedulaDocenteRevisor == tarea.tarea?.idDocenteRevisor" (click)="editarTarea(tarea)">edit</mat-icon>
+            <mat-icon *ngIf="cedulaDocenteRevisor == tarea.tarea?.idDocenteRevisor" (click)="eliminarTarea(tarea)">delete</mat-icon>
           </td>
         </tr>
       </tbody>

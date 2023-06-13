@@ -21,7 +21,7 @@ export class MonitoreoProyectoComponent implements OnInit {
     private tareaService: TareaService,
     private router: Router,
   ) {
-    this.getProyectos$ = this.proyectoService.obtenerProyectos();
+    this.getProyectos$ = this.proyectoService.obtenerProyectosPorTipoProceso(2);
     this.cedulaDocenteRevisor = localStorage.getItem('idDocenteRevisor');
   }
 

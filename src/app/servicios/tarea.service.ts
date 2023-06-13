@@ -1,18 +1,16 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Proyecto } from '../models/Proyecto';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { TareaDocente } from '../models/TareaDocente';
-import { Docente } from '../models/Docente';
-import { TareaDocenteProyecto } from '../models/TareaDocenteProyecto';
-import { Indicador } from '../models/Indicador';
-import { TareaIndicador } from '../models/TareaIndicador';
-import { Cargo } from '../models/Cargo';
-import { TareaIndicadorFile } from '../models/TareaIndicadorFile';
-import { Tarea } from '../models/Tarea';
-import { TareasRealizadas } from '../models/TareasRealizadas';
 import { CargoDocente } from '../models/CargoDocente';
 import { DashboardProyectoInvestigacion } from '../models/Dashboard/DashboardProyectoInvestigacion';
+import { Docente } from '../models/Docente';
+import { Indicador } from '../models/Indicador';
+import { Proyecto } from '../models/Proyecto';
+import { Tarea } from '../models/Tarea';
+import { TareaDocente } from '../models/TareaDocente';
+import { TareaDocenteProyecto } from '../models/TareaDocenteProyecto';
+import { TareaIndicador } from '../models/TareaIndicador';
+import { TareasRealizadas } from '../models/TareasRealizadas';
 
 const URL='http://localhost:8080';
 //const URL="https://gpr-mec-espe.azurewebsites.net"
@@ -52,6 +50,10 @@ export class TareaService {
   
   public obtenerTareasPorProyecto(idDocente:string,idProyecto:any): Observable<TareaDocenteProyecto[]>{
     return this.http.get<TareaDocenteProyecto[]>(`${TAREA_DOCENTE}/listarTareasPorProyecto/${idDocente}/${idProyecto}`); 
+  }
+
+  public obtenerTodasTareasPorProyecto(idProyecto:any): Observable<TareaDocenteProyecto[]>{
+    return this.http.get<TareaDocenteProyecto[]>(`${TAREA_DOCENTE}/listarTodasTareasPorProyecto/${idProyecto}`); 
   }
 
   public obtenerTareasDocentePorCodigoTarea(codigoTarea:string): Observable<TareaDocente[]>{

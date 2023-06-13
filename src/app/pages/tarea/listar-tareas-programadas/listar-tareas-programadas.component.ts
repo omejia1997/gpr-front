@@ -48,7 +48,10 @@ export class ListarTareasProgramadasComponent implements OnInit {
       this.tareasDocenteProyecto = tareas;  
     });*/
     this.checkCreartarea=true;
-    this.tareaService.obtenerTareasPorProyecto(this.cedulaDocenteRevisor,this.proyectoModel.codigoProyecto).subscribe(tareas =>{
+    // this.tareaService.obtenerTareasPorProyecto(this.cedulaDocenteRevisor,this.proyectoModel.codigoProyecto).subscribe(tareas =>{
+    //   this.tareasDocenteProyecto = tareas;  
+    // });
+    this.tareaService.obtenerTodasTareasPorProyecto(this.proyectoModel.codigoProyecto).subscribe(tareas =>{
       this.tareasDocenteProyecto = tareas;  
     });
   }
