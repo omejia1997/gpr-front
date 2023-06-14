@@ -39,11 +39,11 @@ export class MonitoreoProyectoComponent implements OnInit {
   }
 
   getTareas(proyecto: Proyecto) {
-    this.tareaService.obtenerTareasPorProyecto(this.cedulaDocenteRevisor,proyecto.codigoProyecto).subscribe(tareas =>{
+    //this.tareaService.obtenerTareasPorProyecto(this.cedulaDocenteRevisor,proyecto.codigoProyecto).subscribe(tareas =>{
+    this.tareaService.obtenerTodasTareasPorProyecto(proyecto.codigoProyecto).subscribe(tareas =>{
       proyecto.listTareas = tareas;
       let count= 0;
       let check=true;
-      console.log(tareas);
       proyecto.listTareas.forEach(tarea=>{
           if(check){
             if(tarea.claseCirculoPintar=="amarillo"){

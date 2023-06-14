@@ -22,7 +22,7 @@ export class DashboardTareaComponent implements OnInit {
   showLegend: boolean = true;
   legendPosition: any = 'below';
   showXAxisLabel: boolean = false;
-  yAxisLabel: string = 'Actividad';
+  yAxisLabel: string = 'ACTIVIDADES';
   showYAxisLabel: boolean = true;
   xAxisLabel = 'Population';
   
@@ -32,7 +32,7 @@ export class DashboardTareaComponent implements OnInit {
   ) {
     this.tareaService.dashboardProyectoInvestigacion$.subscribe((res) => {
       this.dataDashboardTarea = res;
-      console.log(this.dataDashboardTarea)
+      console.log("aa",this.dataDashboardTarea)
       if (this.dataDashboardTarea == null) {
         this.back();
       } else{
