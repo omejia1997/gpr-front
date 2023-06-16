@@ -12,8 +12,8 @@ import { TareaDocenteProyecto } from '../models/TareaDocenteProyecto';
 import { TareaIndicador } from '../models/TareaIndicador';
 import { TareasRealizadas } from '../models/TareasRealizadas';
 
-const URL='http://localhost:8080';
-//const URL="https://gpr-mec-espe.azurewebsites.net"
+//const URL='http://localhost:8080';
+const URL="https://gpr-decem-espe.azurewebsites.net"
 const TAREA_DOCENTE = URL + '/tareaDocente';
 
 @Injectable({

@@ -4,8 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Cargo } from '../models/Cargo';
 import { CargoDocente } from '../models/CargoDocente';
 
-//const urlH='https://gpr-mec-espe.azurewebsites.net/api/v1/';
-const urlH="http://localhost:8080/api/v1/"
+const urlH='https://gpr-decem-espe.azurewebsites.net/api/v1/';
+//const urlH="http://localhost:8080/api/v1/"
 
 @Injectable({
   providedIn: 'root'

@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CargoDocente } from '../models/CargoDocente';
 
-//const URL="https://gpr-mec-espe.azurewebsites.net"
-const URL='http://localhost:8080';
+const URL="https://gpr-decem-espe.azurewebsites.net"
+//const URL='http://localhost:8080';
 const CARGO_DOCENTE = URL + '/cargoDocente';
 
 @Injectable({

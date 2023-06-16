@@ -4,8 +4,8 @@ import { Proyecto } from '../models/Proyecto';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 
-//const URL="https://gpr-mec-espe.azurewebsites.net"
-const URL='http://localhost:8080';
+const URL="https://gpr-decem-espe.azurewebsites.net"
+//const URL='http://localhost:8080';
 const PROYECTO = URL + '/proyecto';
 
 @Injectable({

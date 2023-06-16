@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 export class UploadFilesService {
 
 
-  //baseUrl="https://gpr-mec-espe.azurewebsites.net"
-  baseUrl = 'http://localhost:8080';
+  baseUrl="https://gpr-decem-espe.azurewebsites.net"
+  //baseUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 

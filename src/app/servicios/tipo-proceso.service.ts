@@ -4,8 +4,8 @@ import { TipoProceso } from '../models/TipoProceso';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 
-//const URL="https://gpr-mec-espe.azurewebsites.net"
-const URL='http://localhost:8080';
+const URL="https://gpr-decem-espe.azurewebsites.net"
+//const URL='http://localhost:8080';
 const TIPO_PROCESO = URL + '/tipoProceso';
 
 @Injectable({
