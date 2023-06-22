@@ -11,11 +11,11 @@ const CARGO_DOCENTE = URL + '/cargoDocente';
   providedIn: 'root'
 })
 export class CargoDocenteService {
-  
+
   constructor(private http: HttpClient) { }
 
   public obtenerCargosDocente(codigoDocente:number): Observable<CargoDocente[]>{
-    return this.http.get<CargoDocente[]>(`${CARGO_DOCENTE}/listarCargoDocente/${codigoDocente}`); 
+    return this.http.get<CargoDocente[]>(`${CARGO_DOCENTE}/listarCargoDocente/${codigoDocente}`);
   }
 }
 

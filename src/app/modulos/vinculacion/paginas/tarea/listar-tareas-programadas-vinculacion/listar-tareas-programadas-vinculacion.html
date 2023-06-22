@@ -12,7 +12,7 @@
   <div *ngIf="checkCreartarea">
     <button class="btn btn-secondary btn-sm" (click)="navegarCrearTarea()" style="margin-bottom:10px;margin-right: 10px;">Crear una
       nueva Actividad</button>
-    <button class="btn btn-secondary btn-sm" (click)="navegarCrearProyecto()" style="margin-bottom:10px;" *ngIf="tareasDocenteProyecto.length!=0">Copiar actividades a un nuevo proyecto</button>
+    <!-- <button class="btn btn-secondary btn-sm" (click)="navegarCrearProyecto()" style="margin-bottom:10px;" *ngIf="tareasDocenteProyecto.length!=0">Copiar actividades a un nuevo proyecto</button> -->
   </div>
 
   <div class="table-responsive">
@@ -20,8 +20,6 @@
       <thead class="table-dark">
         <tr>
           <th>Actividad</th>
-          <th>Tipo de Actividad</th>
-          <th>Prioridad de la Actividad</th>
           <th>Fecha Límite de Entrega</th>
           <th>Proyecto</th>
           <th>Acciones</th>
@@ -30,10 +28,8 @@
       <tbody>
         <tr *ngFor="let tarea of tareasDocenteProyecto">
           <td>{{ tarea.tarea?.nombreTarea }}</td>
-          <td>{{ tarea.tarea?.tipoTarea }}</td>
-          <td>{{ tarea.tarea?.prioridadTarea }}</td>
           <td>{{ tarea.tarea?.fechaEntregaTarea | date:"short":'+00:00'}}</td>
-          <td>{{ tarea.tarea?.codigoProyecto?.nombreProyecto }}</td>
+          <td>{{ tarea.tarea?.proyecto?.nombreProyecto }}</td>
           <td>
             <mat-icon *ngIf="cedulaDocenteRevisor == tarea.tarea?.idDocenteRevisor" (click)="editarTarea(tarea)">edit</mat-icon>
             <mat-icon *ngIf="cedulaDocenteRevisor == tarea.tarea?.idDocenteRevisor" (click)="eliminarTarea(tarea)">delete</mat-icon>

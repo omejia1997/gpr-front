@@ -19,21 +19,21 @@ export class UsuarioService {
   private descPerfil$$ = new BehaviorSubject<String | null>(null);
   descPerfil$ = this.codigoDocente$$.asObservable();
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
 
   }
 
   obtenerUsuario(){
 
     const url= urlH+'usuario';
-    return this.http.get(url); 
+    return this.http.get(url);
   }
 
-  
+
   login(user:any,pass:any){
 
     const url= urlH+'login/'+user+'/'+pass;
-    return this.http.get(url); 
+    return this.http.get(url);
   }
 
   resetearPassword(email:string){
@@ -42,12 +42,12 @@ export class UsuarioService {
 
   actualizarUsuario(body:any ,id:any){
     const url2= urlH+'usuario/'+id;
-    return this.http.put(url2,body); 
+    return this.http.put(url2,body);
   }
 
   actualizarDocente(body:any ,id:any){
     const url2= urlH+'updatedocente/'+id;
-    return this.http.put(url2,body); 
+    return this.http.put(url2,body);
   }
 
   IsLoggedin(){
@@ -74,7 +74,7 @@ export class UsuarioService {
 
     const url3= urlH+'usuarionombre/'+nombreUsuario;
     //const url3= 'https://gpr-espe.azurewebsites.net/api/v1/usuarionombre/'+nombreUsuario;
-    return this.http.get(url3); 
+    return this.http.get(url3);
   }
-  
+
 }

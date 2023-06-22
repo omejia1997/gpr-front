@@ -40,6 +40,30 @@
 					</ul>
 				</li>
 
+        <li class="nav-item dropdown">
+					<a class="nav-link active dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+						data-bs-toggle="dropdown" aria-expanded="false">
+						<mat-icon>supervised_user_circle</mat-icon>Módulo de Vinculación
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+						<li>
+							<a class="dropdown-item" [routerLink]="['/listar-tareas-programadas-vinculacion']">Listar Tareas</a>
+						</li>
+						<li>
+							<a class="dropdown-item" [routerLink]="['/monitoreo-proyecto']">Monitoreo proyecto</a>
+						</li>
+						<li>
+							<a class="dropdown-item" [routerLink]="['/dashboard-investigacion']">Dashboard</a>
+						</li>
+            <li>
+							<a class="dropdown-item" [routerLink]="['/listar-proyectos-vinculacion']">Proyectos</a>
+						</li>
+            <li>
+							<a class="dropdown-item" href="https://mimaletin.espe.edu.ec/index.php/s/wt2Gsaacz3R9Bcx?path=%2F1%20FORMATOS%20GENERALES"  target="_blank">Formatos Generales</a>
+						</li>
+					</ul>
+				</li>
+
 				<li class="nav-item dropdown">
 					<a class="nav-link active dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false">
@@ -88,7 +112,7 @@
 			Cerrar Sesión </button>
 	</ul>
 </nav>
-<!-- 
+<!--
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
 	<div class="container-fluid">
 		<a class="navbar-brand">GPR - MECANICA</a>
@@ -96,13 +120,13 @@
 
 		<button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
 
-		
+
 		<div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
 
-			
+
 			<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
 				<li class="nav-item active">
-				
+
 					<a class="nav-link" [routerLink]="['/docentes']"  *ngIf="usuario=='admin'" (click)="isMenuCollapsed = true" >Usuarios</a>
 				</li>
 				<li class="nav-item active">
@@ -142,19 +166,19 @@
 						<li><a class="dropdown-item" (click)="navegarListarTareasRevisar()">Tareas Revisadas</a></li>
 					  </ul>
 				</li>
-				
-				
+
+
 			</ul>
             <ul class="navbar-nav d-flex" role="search">
-               
+
                 <button class="btn btn-primary" (click)="IsLoggedout()" >
                     Cerrar Sesion  </button>
              </ul>
 
-			
+
 			 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
 				<div class="container-fluid">
-				
+
 				  <div class="collapse navbar-collapse" id="navbarScroll">
 					<ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 					  <li class="nav-item">
@@ -194,7 +218,7 @@
 					  </li>
 					</ul>
 					<ul class="navbar-nav d-flex" role="search">
-               
+
 						<button class="btn btn-primary" (click)="IsLoggedout()" >
 							Cerrar Sesion  </button>
 					 </ul>

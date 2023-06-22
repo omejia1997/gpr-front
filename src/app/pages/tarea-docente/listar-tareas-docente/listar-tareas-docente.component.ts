@@ -7,6 +7,8 @@ import { TareaDocente } from 'src/app/models/TareaDocente';
 import { TareaService } from 'src/app/servicios/tarea.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { TareaDocenteProyecto } from 'src/app/models/TareaDocenteProyecto';
+import { TareaDocenteVinculacion } from 'src/app/modulos/vinculacion/modelos/TareaDocenteVinculacion';
+import { TareaVinculacionService } from 'src/app/modulos/vinculacion/servicios/tarea-vinculacion.service';
 
 @Component({
   selector: 'app-listar-tareas',
@@ -15,34 +17,54 @@ import { TareaDocenteProyecto } from 'src/app/models/TareaDocenteProyecto';
 export class ListarTareasDocenteComponent implements OnInit {
 
   getTareas$: Observable<TareaDocente[]>;
+  getTareasVinculacion$: Observable<TareaDocenteVinculacion[]>;
   tareas: TareaDocente[] = [];
+  tareasVinculacion: TareaDocenteVinculacion[] = [];
+  totalTareasrealizar: any=[];
   docente: any = {};
   codigoDocente:any;
 
   constructor(
     private tareaService: TareaService,
+    private tareaVinculacionService: TareaVinculacionService,
     private usuarioService: UsuarioService,
     private router: Router,
   ) {
     this.usuarioService.codigoDocente$.subscribe((res) => {
       this.docente = res;
     });
-    
+
     //this.getTareas$ = this.tareaService.obtenerTareasPorDocente(this.docente.codigoDocente);
     this.codigoDocente=localStorage.getItem('codigoDocente');
     //console.log(this.codigoDocente);
     //this.getTareas$ = this.tareaService.obtenerTareasPorDocente(this.docente.codigoDocente);
     this.getTareas$ = this.tareaService.obtenerTareasPorDocente(this.codigoDocente);
+    this.getTareasVinculacion$ = this.tareaVinculacionService.obtenerTareasPorDocente(this.codigoDocente);
 
   }
 
   ngOnInit(): void {
    this.getTareas();
+
   }
 
   getTareas() {
     this.getTareas$.subscribe(tareas =>{
-      this.tareas = tareas;  
+      this.tareas = tareas;
+      this.getTareasVinculacion();
+    });
+  }
+
+  getTareasVinculacion() {
+    this.getTareasVinculacion$.subscribe(tareas =>{
+      this.tareasVinculacion = tareas;
+      this.totalTareasrealizar=this.totalTareasrealizar.concat(this.tareas,this.tareasVinculacion);
+      this.totalTareasrealizar.sort(function (a:any, b:any) {//Ordenar Array
+        if (a.estadoTareaDocente === "ASIGNADA") {
+          return -1;
+        }
+        return 0;
+      });
     });
   }
 

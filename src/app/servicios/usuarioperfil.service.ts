@@ -20,7 +20,7 @@ export class UsuarioperfilService {
 
   obtenerPerfiles() {
     const url = urlH + 'listarPerfiles';
-    return this.http.get<Perfil[]>(url); 
+    return this.http.get<Perfil[]>(url);
   }
 
   guardarUsuarioPerfil(codigoperfil: any, codigousuario: any, idusuper: any) {

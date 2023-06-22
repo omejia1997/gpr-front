@@ -17,26 +17,26 @@ export class CargoService {
 
   constructor(private http: HttpClient) { }
 
-  
+
   obtenerCargos(){
      const url= urlH+'cargos';
-     return this.http.get(url); 
+     return this.http.get(url);
    }
 
   public obtenerCargosModel(): Observable<Cargo[]>{
-    return this.http.get<Cargo[]>(`${urlH}cargoModel`); 
+    return this.http.get<Cargo[]>(`${urlH}cargoModel`);
   }
 
   public obtenerCargosPorPerfil(codCargo:any): Observable<Cargo[]>{
-    return this.http.get<Cargo[]>(`${urlH}obtenerCargosPorCodCargo/${codCargo}`); 
+    return this.http.get<Cargo[]>(`${urlH}obtenerCargosPorCodCargo/${codCargo}`);
   }
 
   public crearCargo(cargo:Cargo){
-    return this.http.post<Cargo>(urlH+"cargos",cargo); 
+    return this.http.post<Cargo>(urlH+"cargos",cargo);
   }
 
   public obtenerCargosDocente(codigoDocente:number): Observable<Cargo[]>{
-    return this.http.get<Cargo[]>(`${urlH}listarCargoDocente/${codigoDocente}`); 
+    return this.http.get<Cargo[]>(`${urlH}listarCargoDocente/${codigoDocente}`);
   }
 
   public serCargo(cargo:Cargo) {
@@ -46,7 +46,7 @@ export class CargoService {
   public actualizarCargo(cargo:Cargo): Observable<String>{
     return this.http.put<String>(`${urlH}modificarCargo`, cargo);
   }
-  
+
 
 }
 

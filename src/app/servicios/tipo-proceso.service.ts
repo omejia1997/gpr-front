@@ -19,15 +19,15 @@ export class TipoProcesoService {
   constructor(private http: HttpClient) { }
 
   public obtenerTipoProcesos(): Observable<TipoProceso[]>{
-    return this.http.get<TipoProceso[]>(`${TIPO_PROCESO}/listarTiposProcesos`); 
+    return this.http.get<TipoProceso[]>(`${TIPO_PROCESO}/listarTiposProcesos`);
   }
 
   public obtenerTipoProcesosActivos(): Observable<TipoProceso[]>{
-    return this.http.get<TipoProceso[]>(`${TIPO_PROCESO}/listarTiposProcesosActivos`); 
+    return this.http.get<TipoProceso[]>(`${TIPO_PROCESO}/listarTiposProcesosActivos`);
   }
 
   public crear<TipoProceso>(tipoProceso:TipoProceso){
-    return this.http.post<TipoProceso>(TIPO_PROCESO,tipoProceso); 
+    return this.http.post<TipoProceso>(TIPO_PROCESO,tipoProceso);
   }
 
   public setTipoProceso(tipoProceso: TipoProceso) {

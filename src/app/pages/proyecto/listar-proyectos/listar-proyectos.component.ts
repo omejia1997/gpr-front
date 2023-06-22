@@ -12,7 +12,7 @@ export class ListarProyectosComponent implements OnInit {
 
   getProyectos$: Observable<Proyecto[]>;
   proyectos: Proyecto[] = [];
-  descPerfil: any;  
+  descPerfil: any;
 
   constructor(
     private proyectoService: ProyectoService,
@@ -50,7 +50,7 @@ export class ListarProyectosComponent implements OnInit {
       }
     );*/
     this.getProyectos$.subscribe(proyectos =>{
-      this.proyectos = proyectos;  
+      this.proyectos = proyectos;
     });
   }
 

@@ -64,6 +64,12 @@ import { ProgressBarComponent } from './pages/dashboard/investigacion1/progress-
 import { DashboardTareaComponent } from './pages/dashboard/investigacion1/dashboard-tarea/dashboard-tarea.component';
 import { ProgressBarTareaComponent } from './pages/dashboard/investigacion1/dashboard-tarea/progress-bar-tarea/progress-bar-tarea.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ListarTareasProgramadasVinculacionComponent } from './modulos/vinculacion/paginas/tarea/listar-tareas-programadas-vinculacion/listar-tareas-programadas-vinculacion.component';
+import { CrearTareaProgramadaVinculacionComponent } from './modulos/vinculacion/paginas/tarea/crear-tarea-programada-vinculacion/crear-tarea-programada-vinculacion.component';
+import { CrearProyectoVinculacionComponent } from './modulos/vinculacion/paginas/proyecto/crear-proyecto-vinculacion/crear-proyecto-vinculacion.component';
+import { ListarProyectosVinculacionComponent } from './modulos/vinculacion/paginas/proyecto/listar-proyectos/listar-proyectos-vinculacion.component';
+import { EditarProyectoVinculacionComponent } from './modulos/vinculacion/paginas/proyecto/editar-proyecto-vinculacion/editar-proyecto-vinculacion.component';
+import { EditarTareaProgramadaVinculacionComponent } from './modulos/vinculacion/paginas/tarea/editar-tarea-programada-vinculacion/editar-tarea-programada-vinculacion.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +114,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     DashboardInvestigacionComponent,
     ProgressBarComponent,
     DashboardTareaComponent,
-    ProgressBarTareaComponent
+    ProgressBarTareaComponent,
+    CrearProyectoVinculacionComponent,
+    EditarProyectoVinculacionComponent,
+    ListarTareasProgramadasVinculacionComponent,
+    CrearTareaProgramadaVinculacionComponent,
+    ListarProyectosVinculacionComponent,
+    EditarTareaProgramadaVinculacionComponent
   ],
   imports: [
     BrowserModule,

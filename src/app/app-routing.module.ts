@@ -38,6 +38,12 @@ import { MonitoreoTareaDocenteComponent } from './pages/tarea/monitoreo/monitore
 import { VerTareaDocenteComponent } from './pages/tarea/monitoreo/monitoreo-tarea-docente/ver-tarea-docente/ver-tarea-docente.component';
 import { DashboardInvestigacionComponent } from './pages/dashboard/investigacion1/dashboard.component';
 import { DashboardTareaComponent } from './pages/dashboard/investigacion1/dashboard-tarea/dashboard-tarea.component';
+import { ListarTareasProgramadasVinculacionComponent } from './modulos/vinculacion/paginas/tarea/listar-tareas-programadas-vinculacion/listar-tareas-programadas-vinculacion.component';
+import { CrearTareaProgramadaVinculacionComponent } from './modulos/vinculacion/paginas/tarea/crear-tarea-programada-vinculacion/crear-tarea-programada-vinculacion.component';
+import { CrearProyectoVinculacionComponent } from './modulos/vinculacion/paginas/proyecto/crear-proyecto-vinculacion/crear-proyecto-vinculacion.component';
+import { ListarProyectosVinculacionComponent } from './modulos/vinculacion/paginas/proyecto/listar-proyectos/listar-proyectos-vinculacion.component';
+import { EditarProyectoVinculacionComponent } from './modulos/vinculacion/paginas/proyecto/editar-proyecto-vinculacion/editar-proyecto-vinculacion.component';
+import { EditarTareaProgramadaVinculacionComponent } from './modulos/vinculacion/paginas/tarea/editar-tarea-programada-vinculacion/editar-tarea-programada-vinculacion.component';
 
 const routes: Routes = [
  {path: '', redirectTo:'/login' ,pathMatch:'full'},
@@ -78,6 +84,12 @@ const routes: Routes = [
   {path: 'ver-tarea-docente', component:VerTareaDocenteComponent,canActivate:[AuthGuard]},
   {path: 'dashboard-investigacion', component:DashboardInvestigacionComponent,canActivate:[AuthGuard]},
   {path: 'dashboard-tarea-investigacion', component:DashboardTareaComponent,canActivate:[AuthGuard]},
+  {path: 'crear-proyecto-vinculacion', component:CrearProyectoVinculacionComponent,canActivate:[AuthGuard]},
+  {path: 'editar-proyecto-vinculacion', component:EditarProyectoVinculacionComponent,canActivate:[AuthGuard]},
+  {path: 'listar-proyectos-vinculacion', component:ListarProyectosVinculacionComponent,canActivate:[AuthGuard]},
+  {path: 'listar-tareas-programadas-vinculacion', component:ListarTareasProgramadasVinculacionComponent,canActivate:[AuthGuard]},
+  {path: 'crear-tarea-programada-vinculacion', component:CrearTareaProgramadaVinculacionComponent,canActivate:[AuthGuard]},
+  {path: 'editar-tarea-programada-vinculacion', component:EditarTareaProgramadaVinculacionComponent,canActivate:[AuthGuard]},
   {path: '**', component:LoginComponent}
 ];
 
@@ -86,6 +98,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   exports:[RouterModule]
-  
+
 })
 export class AppRoutingModule { }

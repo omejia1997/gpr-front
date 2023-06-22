@@ -6,7 +6,7 @@
       <thead class="table-dark">
         <tr>
           <th>Actividad</th>
-          <th>Prioridad de la Actividad</th>
+          <!-- <th>Prioridad de la Actividad</th> -->
           <th>Revisor</th>
           <th>Fecha Límite de Entrega</th>
           <th>Proyecto</th>
@@ -15,12 +15,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let tarea of tareas">
-          <td>{{ tarea.codigoTarea?.nombreTarea }}</td>
-          <td>{{ tarea.codigoTarea?.prioridadTarea }}</td>
-          <td>{{ tarea.codigoTarea?.nombreDocenteRevisor }}</td>
-          <td>{{ tarea.codigoTarea?.fechaEntregaTarea | date:"short":'+00:00' }}</td>
-          <td>{{ tarea.codigoTarea?.codigoProyecto?.nombreProyecto }}</td>
+        <tr *ngFor="let tarea of totalTareasrealizar">
+          <td *ngIf="!tarea.tarea">{{ tarea.codigoTarea?.nombreTarea }}</td>
+          <td *ngIf="!tarea.codigoTarea">{{ tarea.tarea?.nombreTarea }}</td>
+          <td *ngIf="!tarea.tarea">{{ tarea.codigoTarea?.nombreDocenteRevisor }}</td>
+          <td *ngIf="!tarea.codigoTarea">{{ tarea.tarea?.nombreDocenteRevisor }}</td>
+          <td *ngIf="!tarea.tarea">{{ tarea.codigoTarea?.fechaEntregaTarea | date:"short":'+00:00' }}</td>
+          <td *ngIf="!tarea.codigoTarea">{{ tarea.tarea?.fechaEntregaTarea | date:"short":'+00:00' }}</td>
+          <td *ngIf="!tarea.tarea">{{ tarea.codigoTarea?.codigoProyecto?.nombreProyecto }}</td>
+          <td *ngIf="!tarea.codigoTarea">{{ tarea.tarea?.proyecto?.nombreProyecto }}</td>
           <td *ngIf="tarea.estadoTareaDocente=='ASIGNADA'">ASIGNADA</td>
           <td *ngIf="tarea.estadoTareaDocente=='EN REVISIÓN'">EN REVISIÓN</td>
           <td *ngIf="tarea.estadoTareaDocente=='ACEPTADO'">ACEPTADO</td>

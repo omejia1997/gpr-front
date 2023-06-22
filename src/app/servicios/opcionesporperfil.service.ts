@@ -15,6 +15,6 @@ export class OpcionesporperfilService {
   obtenerOpcionesPerfil(id:any){
 
     const url= urlH+'opcionperfil/'+id;
-    return this.http.get(url); 
+    return this.http.get(url);
   }
 }

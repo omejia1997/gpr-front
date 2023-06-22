@@ -1,0 +1,61 @@
+#box1,
+#box2,
+#box3,
+#box4 {
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#box4 ul {
+    list-style: none;
+}
+
+#box4 ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#box4 ul li a {
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.container {
+    width: 95vw;
+    height: 80%;
+}
+
+.row{
+    display: flex;
+	height:100%;
+}
+
+form{
+    margin: auto;
+    padding:30px;
+    opacity: .85;
+    box-shadow: 0px 0px 10px rgb(32, 31, 30),0px 0px 30px rgb(123, 197, 139);/* borde de dos colores*/
+}
+.form-group{
+    margin-top: 3px;
+}
+
+mat-icon{
+	font-size: 18px;;
+}
+
+#box3{
+    color: rgb(207, 41, 41);
+}

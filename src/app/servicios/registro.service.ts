@@ -10,7 +10,7 @@ const urlH="https://gpr-decem-espe.azurewebsites.net/api/v1/"
 })
 
 export class RegistroService {
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
   }
 
   registrarUsuario(body :any){
@@ -28,15 +28,15 @@ export class RegistroService {
   }
   obtenerUsuarioPorIDEspe(idEspe:any){
     const url4= urlH+'usuarioid/'+idEspe;
-    return this.http.get(url4); 
+    return this.http.get(url4);
   }
 
   obtenerDocentePorCedula(cedula:any){
     const url4= urlH+'catalogodocente/'+cedula;
-    return this.http.get(url4); 
+    return this.http.get(url4);
   }
 
 
- 
-  
+
+
 }

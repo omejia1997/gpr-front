@@ -19,19 +19,19 @@ export class ProyectoService {
   constructor(private http: HttpClient) { }
 
   public obtenerProyectos(): Observable<Proyecto[]>{
-    return this.http.get<Proyecto[]>(`${PROYECTO}/listarProyectos`); 
+    return this.http.get<Proyecto[]>(`${PROYECTO}/listarProyectos`);
   }
 
   public obtenerProyectosPorTipoProceso(idProceso:number): Observable<Proyecto[]>{
-    return this.http.get<Proyecto[]>(`${PROYECTO}/listarProyectosPorProceso/${idProceso}`); 
+    return this.http.get<Proyecto[]>(`${PROYECTO}/listarProyectosPorProceso/${idProceso}`);
   }
 
   public listarProyectosActivos(): Observable<Proyecto[]>{
-    return this.http.get<Proyecto[]>(`${PROYECTO}/listarProyectosActivos`); 
+    return this.http.get<Proyecto[]>(`${PROYECTO}/listarProyectosActivos`);
   }
 
   public crearProyecto(proyecto:Proyecto){
-    return this.http.post<Proyecto>(PROYECTO,proyecto); 
+    return this.http.post<Proyecto>(PROYECTO,proyecto);
   }
 
   public setProyecto(proyecto: Proyecto) {

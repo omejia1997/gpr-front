@@ -28,8 +28,10 @@ export class ListarTareasProgramadasComponent implements OnInit {
   ) {
     this.cedulaDocenteRevisor = localStorage.getItem('idDocenteRevisor');
     //this.getTareas$ = this.tareaService.obtenerTareas(this.cedulaDocenteRevisor);
-    this.descPerfil=localStorage.getItem('descPerfil');
-    this.getProyectos$ = this.proyectoService.listarProyectosActivos();
+
+    //this.descPerfil=localStorage.getItem('descPerfil');
+
+    this.getProyectos$ = this.proyectoService.obtenerProyectosPorTipoProceso(2);
   }
 
   ngOnInit(): void {
@@ -45,14 +47,14 @@ export class ListarTareasProgramadasComponent implements OnInit {
 
   getTareas() {
     /*this.getTareas$.subscribe(tareas =>{
-      this.tareasDocenteProyecto = tareas;  
+      this.tareasDocenteProyecto = tareas;
     });*/
     this.checkCreartarea=true;
     // this.tareaService.obtenerTareasPorProyecto(this.cedulaDocenteRevisor,this.proyectoModel.codigoProyecto).subscribe(tareas =>{
-    //   this.tareasDocenteProyecto = tareas;  
+    //   this.tareasDocenteProyecto = tareas;
     // });
     this.tareaService.obtenerTodasTareasPorProyecto(this.proyectoModel.codigoProyecto).subscribe(tareas =>{
-      this.tareasDocenteProyecto = tareas;  
+      this.tareasDocenteProyecto = tareas;
     });
   }
 
