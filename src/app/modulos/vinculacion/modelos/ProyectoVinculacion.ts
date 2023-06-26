@@ -1,4 +1,5 @@
 import { TipoProceso } from "src/app/models/TipoProceso";
+import { TareaDocenteProyectoVinculacion } from "./TareaDocenteProyectoVinculacion";
 
 export type ProyectoVinculacion = {
   id?: string;
@@ -9,5 +10,7 @@ export type ProyectoVinculacion = {
   tipoProceso?:TipoProceso;
   tipoFinanciamiento?:string;
   propiedadProyecto?:string;
+  //variables para monitoreo
+  listTareas?:TareaDocenteProyectoVinculacion[];
   claseCirculoPintar?:string;
 };

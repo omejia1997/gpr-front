@@ -105,31 +105,31 @@ export class RealizarTareaVinculacionComponent implements OnInit {
     this.tareaIndicadorFile.tareaIndicador = this.tareaIndicadors;
     if (this.selectedFiles == undefined) {
       console.log
-      // this.tareaService.guardarTareaAsignadaAlDocente(this.tareaIndicadors, this.tareaDocente.id)
-      //   .subscribe({
-      //     next: (data) => {
-      //       this.messageService.add({
-      //         severity: 'success',
-      //         summary: 'Éxito',
-      //         detail: 'La Actividad ha sido subida con éxito'
-      //       });
-      //       setTimeout(() => {
-      //         this.blockedDocument = false;
-      //         this.router.navigate(["listar-tareas-docente"])
-      //       }, 2000);
-      //     },
-      //     error: (err) => {
-      //       this.messageService.add({
-      //         severity: 'error',
-      //         summary: 'Error',
-      //         detail: err?.message ?? ' Error al subir la Actividad'
-      //       });
-      //       this.blockedDocument = false;
-      //     },
-      //     complete: () => {
-      //       // this.isLoading = false;
-      //     },
-      //   })
+      this.tareaService.guardarTareaAsignadaAlDocente(this.tareaIndicadors, this.tareaDocente.id)
+        .subscribe({
+          next: (data) => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Éxito',
+              detail: 'La Actividad ha sido subida con éxito'
+            });
+            setTimeout(() => {
+              this.blockedDocument = false;
+              this.router.navigate(["listar-tareas-docente"])
+            }, 2000);
+          },
+          error: (err) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: err?.message ?? ' Error al subir la Actividad'
+            });
+            this.blockedDocument = false;
+          },
+          complete: () => {
+            // this.isLoading = false;
+          },
+        })
     } else {
       this.tareaService.guardarArchivoTareaAsignadaAlDocente(this.selectedFiles[0], this.tareaIndicadors, this.tareaDocente.id)
         .subscribe({

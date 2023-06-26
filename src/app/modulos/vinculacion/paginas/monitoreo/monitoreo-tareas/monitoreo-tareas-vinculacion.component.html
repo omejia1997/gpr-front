@@ -1,0 +1,42 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <button type="button" (click)="back()" class="btn btn-dark btn-sm btn-regresar">Regresar</button>
+  <h2 style="text-align: center;">Actividades Creadas</h2>
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Actividad</th>
+          <th>Proyecto</th>
+          <th>Docente Revisor</th>
+          <th>Fecha de Entrega</th>
+          <th>Estado</th>
+          <th>Ver Estado</th>
+        </tr>
+      </thead>
+      <tbody *ngIf=" proyecto.listTareas.length; else listaVaciaTareas">
+        <tr *ngFor="let tarea of proyecto.listTareas">
+          <td>{{ tarea.tarea?.nombreTarea }}</td>
+          <td>{{ tarea.tarea?.proyecto?.nombreProyecto }}</td>
+          <td>{{ tarea.tarea?.nombreDocenteRevisor }}</td>
+          <td>{{ tarea.tarea?.fechaEntregaTarea | date:"short":'+00:00'}}</td>
+          <td>
+            <div class="contenedor">
+              <div class="{{tarea.claseCirculoPintar}}"></div>
+            </div>
+          </td>
+          <td>
+            <mat-icon (click)="listarTareasDocentes(tarea.tarea)">remove_red_eye</mat-icon>
+          </td>
+        </tr>
+      </tbody>
+      <ng-template #listaVaciaTareas>
+        <tbody>
+          <tr>
+            <td colspan="7">No se ha asignado ningúna Actividad a este Proyecto</td>
+          </tr>
+        </tbody>
+      </ng-template>
+    </table>
+  </div>
+</div>

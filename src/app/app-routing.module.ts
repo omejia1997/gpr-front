@@ -46,6 +46,8 @@ import { EditarProyectoVinculacionComponent } from './modulos/vinculacion/pagina
 import { EditarTareaProgramadaVinculacionComponent } from './modulos/vinculacion/paginas/tarea/editar-tarea-programada-vinculacion/editar-tarea-programada-vinculacion.component';
 import { RealizarTareaVinculacionComponent } from './modulos/vinculacion/paginas/tarea/realizar-tarea-vinculacion/realizar-tarea-vinculacion.component';
 import { RevisarTareaEntregadaVinculacion } from './modulos/vinculacion/paginas/tarea/revisar-tarea-entregada-vinculacion/revisar-tarea-entregada-vinculacion';
+import { MonitoreoProyectoVinculacionComponent } from './modulos/vinculacion/paginas/monitoreo/monitoreo-proyecto-vinculacion/monitoreo-proyecto-vinculacion.component';
+import { MonitoreoTareasVinculacionComponent } from './modulos/vinculacion/paginas/monitoreo/monitoreo-tareas/monitoreo-tareas-vinculacion.component';
 
 const routes: Routes = [
  {path: '', redirectTo:'/login' ,pathMatch:'full'},
@@ -94,6 +96,8 @@ const routes: Routes = [
   {path: 'editar-tarea-programada-vinculacion', component:EditarTareaProgramadaVinculacionComponent,canActivate:[AuthGuard]},
   {path: 'realizar-tarea-vinculacion', component:RealizarTareaVinculacionComponent,canActivate:[AuthGuard]},
   {path: 'revisar-tarea-entregada-vinculacion', component:RevisarTareaEntregadaVinculacion,canActivate:[AuthGuard]},
+  {path: 'monitoreo-proyecto-vinculacion', component:MonitoreoProyectoVinculacionComponent,canActivate:[AuthGuard]},
+  {path: 'monitoreo-tareas-vinculacion', component:MonitoreoTareasVinculacionComponent,canActivate:[AuthGuard]},
   {path: '**', component:LoginComponent}
 ];
 

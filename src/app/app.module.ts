@@ -72,6 +72,8 @@ import { EditarProyectoVinculacionComponent } from './modulos/vinculacion/pagina
 import { EditarTareaProgramadaVinculacionComponent } from './modulos/vinculacion/paginas/tarea/editar-tarea-programada-vinculacion/editar-tarea-programada-vinculacion.component';
 import { RealizarTareaVinculacionComponent } from './modulos/vinculacion/paginas/tarea/realizar-tarea-vinculacion/realizar-tarea-vinculacion.component';
 import { RevisarTareaEntregadaVinculacion } from './modulos/vinculacion/paginas/tarea/revisar-tarea-entregada-vinculacion/revisar-tarea-entregada-vinculacion';
+import { MonitoreoProyectoVinculacionComponent } from './modulos/vinculacion/paginas/monitoreo/monitoreo-proyecto-vinculacion/monitoreo-proyecto-vinculacion.component';
+import { MonitoreoTareasVinculacionComponent } from './modulos/vinculacion/paginas/monitoreo/monitoreo-tareas/monitoreo-tareas-vinculacion.component';
 
 @NgModule({
   declarations: [
@@ -124,7 +126,9 @@ import { RevisarTareaEntregadaVinculacion } from './modulos/vinculacion/paginas/
     ListarProyectosVinculacionComponent,
     EditarTareaProgramadaVinculacionComponent,
     RealizarTareaVinculacionComponent,
-    RevisarTareaEntregadaVinculacion
+    RevisarTareaEntregadaVinculacion,
+    MonitoreoProyectoVinculacionComponent,
+    MonitoreoTareasVinculacionComponent
   ],
   imports: [
     BrowserModule,

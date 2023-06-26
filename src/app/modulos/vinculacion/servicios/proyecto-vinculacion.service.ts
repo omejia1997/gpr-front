@@ -22,9 +22,9 @@ export class ProyectoVinculacionService {
     return this.http.get<ProyectoVinculacion[]>(`${PROYECTO}/listarProyectosVinculacion`);
   }
 
-  public obtenerProyectosPorTipoProceso(idProceso:number): Observable<ProyectoVinculacion[]>{
-    return this.http.get<ProyectoVinculacion[]>(`${PROYECTO}/listarProyectosPorProceso/${idProceso}`);
-  }
+  // public obtenerProyectosPorTipoProceso(idProceso:number): Observable<ProyectoVinculacion[]>{
+  //   return this.http.get<ProyectoVinculacion[]>(`${PROYECTO}/listarProyectosPorProceso/${idProceso}`);
+  // }
 
   public listarProyectosActivos(): Observable<ProyectoVinculacion[]>{
     return this.http.get<ProyectoVinculacion[]>(`${PROYECTO}/listarProyectosActivos`);

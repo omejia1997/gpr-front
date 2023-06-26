@@ -8,6 +8,7 @@ export type Proyecto = {
   descripcionProyecto?: string;
   estadoProyecto?: string;
   tipoProceso?:TipoProceso;
+  //variables para monitoreo
   listTareas?:TareaDocenteProyecto[];
   claseCirculoPintar?:string;
 };

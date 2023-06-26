@@ -6,6 +6,7 @@ import { ProyectoVinculacion } from '../modelos/ProyectoVinculacion';
 import { TareaDocenteProyectoVinculacion } from '../modelos/TareaDocenteProyectoVinculacion';
 import { TareaDocenteVinculacion } from '../modelos/TareaDocenteVinculacion';
 import { TareaIndicador } from 'src/app/models/TareaIndicador';
+import { TareaVinculacion } from '../modelos/TareaVinculacion';
 
 const URL='http://localhost:8088';
 //const URL="https://gpr-decem-espe.azurewebsites.net"
@@ -31,8 +32,8 @@ export class TareaVinculacionService {
   private proyectoModel$$ = new BehaviorSubject<ProyectoVinculacion | null>(null);
   proyectoModel$ = this.proyectoModel$$.asObservable();
 
-  // private tarea$$ = new BehaviorSubject<Tarea | null>(null);
-  // tarea$ = this.tarea$$.asObservable();
+  private tarea$$ = new BehaviorSubject<TareaVinculacion | null>(null);
+  tarea$ = this.tarea$$.asObservable();
 
   // private tareasDocente$$ = new BehaviorSubject<any[]  |undefined>(undefined);
   // tareasDocente$ = this.tareasDocente$$.asObservable();
@@ -116,9 +117,9 @@ export class TareaVinculacionService {
     this.proyectoModel$$.next(proyecto);
   }
 
-  // public setTareaModel(tarea: Tarea) {
-  //   this.tarea$$.next(tarea);
-  // }
+  public setTareaModel(tarea: TareaVinculacion) {
+    this.tarea$$.next(tarea);
+  }
 
   // public setTareasDocenteModel(tareaDocente: any[]) {
   //   this.tareasDocente$$.next(tareaDocente);
