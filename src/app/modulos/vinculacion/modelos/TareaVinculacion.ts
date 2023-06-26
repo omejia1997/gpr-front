@@ -21,6 +21,5 @@ export type TareaVinculacion = {
   fechaFinTarea?:Date;
   cantidadRepeticiones?: number;
   tipoActividad?: string;//programada|no programada
-  //codigoTareaPadre?:Tarea|null;
   //tareaDocenteList?:TareaDocenteVinculacion[] ;
 };

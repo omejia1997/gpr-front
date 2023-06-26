@@ -68,10 +68,14 @@ export class ListarTareasDocenteComponent implements OnInit {
     });
   }
 
-  realizarTarea(tareaDocente:TareaDocente){
-    //tareaDocente TareaDocente
-    this.tareaService.setTareaDocente(tareaDocente);
-    this.router.navigate(['realizar-tarea-docente']);
+  realizarTarea(tareaDocente:any){
+    if(tareaDocente.codigoDocente){
+      this.tareaService.setTareaDocente(tareaDocente);
+      this.router.navigate(['realizar-tarea-docente']);
+    }else if(tareaDocente.id){
+      this.tareaVinculacionService.setTareaDocente(tareaDocente);
+      this.router.navigate(['realizar-tarea-vinculacion']);
+    }
   }
 
   /*editarTarea(tareaDocenteProyecto:TareaDocenteProyecto){

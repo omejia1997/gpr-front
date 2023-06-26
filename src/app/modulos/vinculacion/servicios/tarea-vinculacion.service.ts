@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TareaDocenteProyecto } from 'src/app/models/TareaDocenteProyecto';
 import { ProyectoVinculacion } from '../modelos/ProyectoVinculacion';
 import { TareaDocenteProyectoVinculacion } from '../modelos/TareaDocenteProyectoVinculacion';
 import { TareaDocenteVinculacion } from '../modelos/TareaDocenteVinculacion';
+import { TareaIndicador } from 'src/app/models/TareaIndicador';
 
 const URL='http://localhost:8088';
 //const URL="https://gpr-decem-espe.azurewebsites.net"
@@ -54,9 +55,9 @@ export class TareaVinculacionService {
   //   return this.http.get<TareaDocente[]>(`${TAREA_DOCENTE}/listarTareasDocentePorCodigoTarea/${codigoTarea}`);
   // }
 
-  // public obtenerTareasEntregadas(idDocente:string): Observable<TareaDocente[]>{
-  //   return this.http.get<TareaDocente[]>(`${TAREA_DOCENTE}/listarTareasEntregadas/${idDocente}`);
-  // }
+  public obtenerTareasEntregadas(idDocente:string): Observable<TareaDocenteVinculacion[]>{
+    return this.http.get<TareaDocenteVinculacion[]>(`${TAREA_DOCENTE}/listarTareasEntregadas/${idDocente}`);
+  }
 
   public obtenerTareasPorDocente(codigoDocente:number): Observable<TareaDocenteVinculacion[]>{
     return this.http.get<TareaDocenteVinculacion[]>(`${TAREA_DOCENTE}/listarTareaAsignadaPorDocente/${codigoDocente}`);
@@ -162,36 +163,28 @@ export class TareaVinculacionService {
     return this.http.post<any>(`${TAREA_DOCENTE}/editarTareaConArchivo`,formData);
   }
 
-  // public guardarTareaAsignadaAlDocente(tareaIndicadors:TareaIndicador[],codigoTareaDocente:any){
-  //   const formData: FormData = new FormData();
-  //   formData.append('tareaIndicadors', JSON.stringify(tareaIndicadors));
-  //   formData.append('codigoTareaDocente', codigoTareaDocente);
-  //   return this.http.put<String>(`${TAREA_DOCENTE}/guardarTareaAsignadaAlProfesor`,formData);
-  // }
+  public guardarTareaAsignadaAlDocente(tareaIndicadors:TareaIndicador[],idTareaDocente:any){
+    const formData: FormData = new FormData();
+    formData.append('tareaIndicadors', JSON.stringify(tareaIndicadors));
+    formData.append('idTareaDocente', idTareaDocente);
+    return this.http.put<String>(`${TAREA_DOCENTE}/guardarTareaAsignadaAlProfesor`,formData);
+  }
 
-  // public guardarArchivoTareaAsignadaAlDocente(file:File,tareaIndicadors:TareaIndicador[],codigoTareaDocente:any): Observable<HttpEvent<any>>{
-  //   const formData: FormData = new FormData();
-  //   formData.append('file', file);
-  //   formData.append('tareaIndicadors', JSON.stringify(tareaIndicadors));
-  //   formData.append('codigoTareaDocente', codigoTareaDocente);
-  //   return this.http.put<any>(`${TAREA_DOCENTE}/guardarArchivoTareaAsignadaAlProfesor`,formData);
-  //   /*console.log(formData);
-  //   const req = new HttpRequest('PUT', `${TAREA_DOCENTE}/guardarArchivoTareaAsignadaAlProfesor`, formData, {
-  //     reportProgress: true,
-  //     responseType: 'json'
-  //   });
-  //   return this.http.request(req);*/
+  public guardarArchivoTareaAsignadaAlDocente(file:File,tareaIndicadors:TareaIndicador[],idTareaDocente:any): Observable<HttpEvent<any>>{
+    const formData: FormData = new FormData();
+    formData.append('file', file);
+    formData.append('tareaIndicadors', JSON.stringify(tareaIndicadors));
+    formData.append('idTareaDocente', idTareaDocente);
+    return this.http.put<any>(`${TAREA_DOCENTE}/guardarArchivoTareaAsignadaAlProfesor`,formData);
+  }
 
-  //   //return this.http.put<Proyecto>(`${TAREA_DOCENTE}/guardarTareaAsignadaAlProfesor`,tareaIndicadors);
-  // }
+  public aprobarTareaDocente(tareaDocente:TareaDocenteVinculacion){
+    return this.http.put<String>(`${TAREA_DOCENTE}/aprobarTareaDocente`,tareaDocente);
+  }
 
-  // public aprobarTareaDocente(tareaDocente:TareaDocente){
-  //   return this.http.put<String>(`${TAREA_DOCENTE}/aprobarTareaDocente`,tareaDocente);
-  // }
-
-  // public denegarTareaDocente(tareaDocente:TareaDocente){
-  //   return this.http.put<String>(`${TAREA_DOCENTE}/denegarTareaDocente`,tareaDocente);
-  // }
+  public denegarTareaDocente(tareaDocente:TareaDocenteVinculacion){
+    return this.http.put<String>(`${TAREA_DOCENTE}/denegarTareaDocente`,tareaDocente);
+  }
 
   // /*
   // public cambiarEstadoProyecto(codigoProyecto:any){

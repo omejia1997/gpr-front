@@ -4,37 +4,69 @@ import { Observable } from 'rxjs';
 import { TareaService } from 'src/app/servicios/tarea.service';
 import { TareaDocenteProyecto } from 'src/app/models/TareaDocenteProyecto';
 import { TareaDocente } from 'src/app/models/TareaDocente';
+import { TareaDocenteVinculacion } from 'src/app/modulos/vinculacion/modelos/TareaDocenteVinculacion';
+import { TareaVinculacionService } from 'src/app/modulos/vinculacion/servicios/tarea-vinculacion.service';
 
 @Component({
   selector: 'app-listar-tareas-entregadas',
-  templateUrl: './listar-tareas-entregadas.html'
+  templateUrl: './listar-tareas-entregadas.html',
 })
 export class ListarTareasEntregadasComponent implements OnInit {
-
   getTareasDocente$: Observable<TareaDocente[]>;
+  getTareasVinculacion$: Observable<TareaDocenteVinculacion[]>;
   tareasDocente: TareaDocente[] = [];
-  cedulaDocenteRevisor:any;
+  tareasVinculacion: TareaDocenteVinculacion[] = [];
+  cedulaDocenteRevisor: any;
+  totalTareasRevisar: any = [];
 
   constructor(
     private tareaService: TareaService,
     private router: Router,
+    private tareaVinculacionService: TareaVinculacionService
   ) {
     this.cedulaDocenteRevisor = localStorage.getItem('idDocenteRevisor');
-    this.getTareasDocente$ = this.tareaService.obtenerTareasEntregadas(this.cedulaDocenteRevisor);
+    this.getTareasDocente$ = this.tareaService.obtenerTareasEntregadas(
+      this.cedulaDocenteRevisor
+    );
+    this.getTareasVinculacion$ =
+      this.tareaVinculacionService.obtenerTareasEntregadas(
+        this.cedulaDocenteRevisor
+      );
   }
 
   ngOnInit(): void {
-   this.getTareas();
+    this.getTareas();
   }
 
   getTareas() {
-    this.getTareasDocente$.subscribe(tareas =>{
-      this.tareasDocente = tareas;  
+    this.getTareasDocente$.subscribe((tareas) => {
+      this.tareasDocente = tareas;
+      this.getTodasLasTareas();
+    });
+  }
+  getTodasLasTareas() {
+    this.getTareasVinculacion$.subscribe((tareas) => {
+      this.tareasVinculacion = tareas;
+      this.totalTareasRevisar = this.totalTareasRevisar.concat(
+        this.tareasDocente,
+        this.tareasVinculacion
+      );
+      // this.totalTareasrealizar.sort(function (a:any, b:any) {//Ordenar Array
+      //   if (a.fechaEntregadaTareaDocente === "ASIGNADA") {
+      //     return -1;
+      //   }
+      //   return 0;
+      // });
     });
   }
 
-  revisarTarea(tareaDocente:TareaDocente){
-    this.tareaService.setTareaDocente(tareaDocente);
-    this.router.navigate(['revisar-tarea-entregada']);
+  revisarTarea(tareaDocente: any) {
+    if (tareaDocente.codigoTarea) {
+      this.tareaService.setTareaDocente(tareaDocente);
+      this.router.navigate(['revisar-tarea-entregada']);
+    } else if (tareaDocente.tarea) {
+      this.tareaVinculacionService.setTareaDocente(tareaDocente);
+      this.router.navigate(['revisar-tarea-entregada-vinculacion']);
+    }
   }
 }

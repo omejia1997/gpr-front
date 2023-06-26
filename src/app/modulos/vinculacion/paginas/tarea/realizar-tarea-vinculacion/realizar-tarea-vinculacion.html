@@ -18,7 +18,7 @@
         </div>
         <div class="form-group">
           <label for="">Proyecto:</label>
-          <span>{{ tarea.codigoProyecto?.nombreProyecto }}</span>
+          <span>{{ tarea.proyecto?.nombreProyecto }}</span>
         </div>
         <div class="form-group">
           <label for="">Fecha de Creación:</label>
@@ -28,14 +28,6 @@
           <label for="">Fecha de Entrega:</label>
           <span>{{ tarea.fechaEntregaTarea | date:"short":'+00:00'}}</span>
         </div>
-        <!-- <div class="form-group">
-          <label for="">Prioridad de la Actividad:</label>
-          <span>{{ tarea.prioridadTarea }}</span>
-        </div>
-        <div class="form-group" *ngIf="tarea.pesoTarea">
-          <label for="">Peso de la Actividad:</label>
-          <span>{{ tarea.valorPesoTarea +" "+ tarea.pesoTarea}}</span>
-        </div> -->
         <div class="form-group">
           <label for="">Docente revisor:</label>
           <span>{{ tarea.nombreDocenteRevisor}}</span>
@@ -51,21 +43,21 @@
               <label>Tipo de Indicador: </label><span>{{ i.indicadorCODIGOINDICADOR.nombreIndicador }}</span><br />
               <label>Descripción del Indicador: </label><span>{{ i.descripcionTareaIndicador}}</span>
               <input *ngIf="i.indicadorCODIGOINDICADOR.nombreIndicador=='NUMÉRICO'" [(ngModel)]="i.valorIndicador"
-                [name]="i.codigoTareaIndicador" (change)="asignarIndicador(i)" type="number" class="form-control" />
+                name="indicador" (change)="asignarIndicador(i)" type="number" class="form-control" />
               <input *ngIf="i.indicadorCODIGOINDICADOR.nombreIndicador=='FECHA'" [(ngModel)]="i.valorIndicador"
-                [name]="i.codigoTareaIndicador" (change)="asignarIndicador(i)" type="date" class="form-control" />
+                name="indicador" (change)="asignarIndicador(i)" type="date" class="form-control" />
               <input *ngIf="i.indicadorCODIGOINDICADOR.nombreIndicador=='TEXTO'" [(ngModel)]="i.valorIndicador"
-                [name]="i.codigoTareaIndicador" (change)="asignarIndicador(i)" type="text" class="form-control" />
+                name="indicador" (change)="asignarIndicador(i)" type="text" class="form-control" />
               <input *ngIf="i.indicadorCODIGOINDICADOR.nombreIndicador=='PORCENTAJE'" [(ngModel)]="i.valorIndicador"
-                [name]="i.codigoTareaIndicador" (change)="asignarIndicador(i)" type="number" min="0" max="100"
+                name="indicador" (change)="asignarIndicador(i)" type="number" min="0" max="100"
                 class="form-control" />
               <div *ngIf="i.indicadorCODIGOINDICADOR.nombreIndicador=='BOOLEANO'">
                 <label for="ckeck">Actividad Realizada</label>
                 <input id="ckeck" [value]="'Actividad Realizada'" [(ngModel)]="i.valorIndicador"
-                  [name]="i.codigoTareaIndicador" (change)="asignarIndicador(i)" type="radio" />
+                  name="indicador" (change)="asignarIndicador(i)" type="radio" />
                 <label for="noCheck" style="margin-left: 10px;">Actividad no Realizada</label>
                 <input id="noCheck" [value]="'Actividad no Realizada'" [(ngModel)]="i.valorIndicador"
-                  [name]="i.codigoTareaIndicador" (change)="asignarIndicador(i)" type="radio" />
+                  name="indicador" (change)="asignarIndicador(i)" type="radio" />
               </div>
             </span>
         </div>

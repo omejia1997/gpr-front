@@ -4,11 +4,11 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { UploadFilesService } from 'src/app/servicios/file.service';
 import { Router } from '@angular/router';
 import { TareaIndicador } from 'src/app/models/TareaIndicador';
-import { Tarea } from 'src/app/models/Tarea';
 import { TareaIndicadorFile } from 'src/app/models/TareaIndicadorFile';
 import { MessageService } from 'primeng/api';
 import { TareaVinculacionService } from '../../../servicios/tarea-vinculacion.service';
 import { TareaService } from 'src/app/servicios/tarea.service';
+import { TareaVinculacion } from '../../../modelos/TareaVinculacion';
 
 const MAXIMO_TAMANIO_FILE:number = 5//5MB;
 
@@ -21,21 +21,18 @@ export class RealizarTareaVinculacionComponent implements OnInit {
   blockedDocument: boolean = false;
   indicadoresAsignados: any[] = [];
   valorIndicadores: any[] = [];
-  //getIndicadorTarea$: Observable<TareaIndicador[]>;
   tareaDocente: any = {};
-  tarea: Tarea = {};
+  tarea: TareaVinculacion = {};
   tareaIndicadors: TareaIndicador[] = [];
 
   selectedFiles: any;
   selectedFile: any;
-  //Es el array que contiene los items para mostrar el progreso de subida de cada archivo
   progressInfo: any = [];
   message = '';
   imageName = "";
   descPerfil: any;
 
-  //fileInfos: Observable<any>= new Observable;
-  fileModel$: Observable<any> = new Observable;
+  fileModelTarea$: Observable<any> = new Observable;
   fileModelGuia$: Observable<any> = new Observable;
   fileModelClass: any = {}
   fileModelClassGuia: any = {}
@@ -56,29 +53,25 @@ export class RealizarTareaVinculacionComponent implements OnInit {
         this.tarea = this.tareaDocente.tarea;
       }
     });
-    //this.getIndicadorTarea$ = this.tareaServiceGpr.obtenerIndicadoresTarea(this.tareaDocente.codigoTareaDocente);
+    //console.log(this.tareaDocente)
     this.indicadoresAsignados = this.tareaDocente.tareaIndicadorList;
-    this.fileModelGuia$ = this.uploadFilesService.getFileGuia(this.tarea.codigoTarea);
-    this.fileModel$ = this.uploadFilesService.getFileModel(this.tareaDocente.codigoTareaDocente);
+    //console.log(this.indicadoresAsignados);
+    if(this.tarea.nombreArchivoTareaEnStorage){
+      this.fileModelGuia$ = this.uploadFilesService.getFileGuia(this.tarea.id);
+      this.getFileGuia();
+    }
+
+    if(this.tareaDocente.nombreArchivoTareaDocenteEnStorage){
+      this.fileModelTarea$ = this.uploadFilesService.getFileModel(this.tareaDocente.id);
+      this.getFileModel();
+    }
   }
 
   ngOnInit(): void {
-    //this.fileInfos = this.uploadFilesService.getFiles();
-    //this.getIndicadorTarea();
-    this.getFileGuia();
-    this.getFileModel();
   }
 
-  // getIndicadorTarea() {
-  //   this.getIndicadorTarea$.subscribe(tareasIndicador => {
-  //     tareasIndicador.forEach(t => {
-  //       this.indicadoresAsignados.push(t);
-  //     });
-  //   });
-  // }
-
   getFileModel() {
-    this.fileModel$.subscribe(res => {
+    this.fileModelTarea$.subscribe(res => {
       this.fileModelClass = res;
     });
   }
@@ -110,24 +103,9 @@ export class RealizarTareaVinculacionComponent implements OnInit {
     }
     this.blockedDocument = true;
     this.tareaIndicadorFile.tareaIndicador = this.tareaIndicadors;
-    /*this.tareaService.guardarTareaAsignadaAlDocente(this.tareaIndicadors)
-    .subscribe(data=>{
-      confirm("Se guardaron sus datos con éxito!!");
-      this.router.navigate(["listar-tareas-docente"]);
-    })*/
-
-    /*this.tareaService.guardarArchivoTareaAsignadaAlDocente(this.selectedFiles[0],this.tareaDocente.codigoTareaDocente)
-    .subscribe(
-    event => {
-
-    },
-    err => {
-
-    });
-    */
-    //
     if (this.selectedFiles == undefined) {
-      // this.tareaService.guardarTareaAsignadaAlDocente(this.tareaIndicadors, this.tareaDocente.codigoTareaDocente)
+      console.log
+      // this.tareaService.guardarTareaAsignadaAlDocente(this.tareaIndicadors, this.tareaDocente.id)
       //   .subscribe({
       //     next: (data) => {
       //       this.messageService.add({
@@ -153,31 +131,31 @@ export class RealizarTareaVinculacionComponent implements OnInit {
       //     },
       //   })
     } else {
-      // this.tareaService.guardarArchivoTareaAsignadaAlDocente(this.selectedFiles[0], this.tareaIndicadors, this.tareaDocente.codigoTareaDocente)
-      //   .subscribe({
-      //     next: (data) => {
-      //       this.messageService.add({
-      //         severity: 'success',
-      //         summary: 'Éxito',
-      //         detail: 'La Actividad ha sido subida con éxito'
-      //       });
-      //       setTimeout(() => {
-      //         this.blockedDocument = false;
-      //         this.router.navigate(["listar-tareas-docente"])
-      //       }, 2000);
-      //     },
-      //     error: (err) => {
-      //       this.messageService.add({
-      //         severity: 'error',
-      //         summary: 'Error',
-      //         detail: err?.message ?? ' Error al subir la Actividad'
-      //       });
-      //       this.blockedDocument = false;
-      //     },
-      //     complete: () => {
-      //       // this.isLoading = false;
-      //     },
-      //   })
+      this.tareaService.guardarArchivoTareaAsignadaAlDocente(this.selectedFiles[0], this.tareaIndicadors, this.tareaDocente.id)
+        .subscribe({
+          next: (data) => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Éxito',
+              detail: 'La Actividad ha sido subida con éxito'
+            });
+            setTimeout(() => {
+              this.blockedDocument = false;
+              this.router.navigate(["listar-tareas-docente"])
+            }, 2000);
+          },
+          error: (err) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: err?.message ?? ' Error al subir la Actividad'
+            });
+            this.blockedDocument = false;
+          },
+          complete: () => {
+            // this.isLoading = false;
+          },
+        })
     }
   }
 
