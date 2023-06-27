@@ -35,6 +35,6 @@ export class MonitoreoTareasVinculacionComponent implements OnInit {
 
   listarTareasDocentes(tarea:TareaVinculacion){
     this.tareaService.setTareaModel(tarea);
-    this.router.navigate(['monitoreo-tarea-docente']);
+    this.router.navigate(['monitoreo-tarea-docente-vinculacion']);
   }
 }

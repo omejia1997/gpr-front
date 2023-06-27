@@ -17,10 +17,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let tareaDocente of tareaDocentes">
-          <td>{{ tareaDocente.codigoTarea?.codigoProyecto?.nombreProyecto }}</td>
-          <td>{{ tareaDocente.codigoTarea?.nombreTarea }}</td>
-          <td>{{ tareaDocente.codigoDocente?.nombreDocente +" "+ tareaDocente.codigoDocente?.apellidoDocente }}</td>
-          <td>{{ tareaDocente.codigoTarea?.fechaEntregaTarea | date:"short":'+00:00'}}</td>
+          <td>{{ tareaDocente.tarea?.proyecto?.nombreProyecto }}</td>
+          <td>{{ tareaDocente.tarea?.nombreTarea }}</td>
+          <td>{{ tareaDocente.docente?.nombreDocente +" "+ tareaDocente.docente?.apellidoDocente }}</td>
+          <td>{{ tareaDocente.tarea?.fechaEntregaTarea | date:"short":'+00:00'}}</td>
           <td>{{ tareaDocente.estadoTareaDocente }}</td>
           <td>
             <div class="contenedor">
@@ -35,7 +35,7 @@
           </td>
         </tr>
       </tbody>
-      
+
     </table>
   </div>
 </div>

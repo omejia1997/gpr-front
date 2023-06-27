@@ -7,6 +7,7 @@ import { TareaDocenteProyectoVinculacion } from '../modelos/TareaDocenteProyecto
 import { TareaDocenteVinculacion } from '../modelos/TareaDocenteVinculacion';
 import { TareaIndicador } from 'src/app/models/TareaIndicador';
 import { TareaVinculacion } from '../modelos/TareaVinculacion';
+import { TareasRealizadas } from 'src/app/models/TareasRealizadas';
 
 const URL='http://localhost:8088';
 //const URL="https://gpr-decem-espe.azurewebsites.net"
@@ -52,9 +53,9 @@ export class TareaVinculacionService {
     return this.http.get<TareaDocenteProyectoVinculacion[]>(`${TAREA_DOCENTE}/listarTodasTareasPorProyecto/${idProyecto}`);
   }
 
-  // public obtenerTareasDocentePorCodigoTarea(codigoTarea:string): Observable<TareaDocente[]>{
-  //   return this.http.get<TareaDocente[]>(`${TAREA_DOCENTE}/listarTareasDocentePorCodigoTarea/${codigoTarea}`);
-  // }
+  public obtenerTareasDocentePorCodigoTarea(idTarea:string): Observable<TareaDocenteVinculacion[]>{
+    return this.http.get<TareaDocenteVinculacion[]>(`${TAREA_DOCENTE}/listarTareasDocentePorCodigoTarea/${idTarea}`);
+  }
 
   public obtenerTareasEntregadas(idDocente:string): Observable<TareaDocenteVinculacion[]>{
     return this.http.get<TareaDocenteVinculacion[]>(`${TAREA_DOCENTE}/listarTareasEntregadas/${idDocente}`);
@@ -72,9 +73,9 @@ export class TareaVinculacionService {
   //   return this.http.get<TareaDocente[]>(`${TAREA_DOCENTE}/listarDocentesTareasAsignadas/${codigoTareaDocente}`);
   // }
 
-  // public obtenerTodasTareasRevisar():Observable<TareasRealizadas[]>{
-  //   return this.http.get<TareasRealizadas[]>(`${TAREA_DOCENTE}/listarTodasTareasRevisadas`);
-  // }
+  public obtenerTodasTareasRevisar():Observable<TareasRealizadas[]>{
+    return this.http.get<TareasRealizadas[]>(`${TAREA_DOCENTE}/listarTodasTareasRevisadas`);
+  }
 
   // public obtenerDatosProyectoDashboardInvestigacion(idTipoProceso:number): Observable<DashboardProyectoInvestigacion[]>{
   //   return this.http.get<DashboardProyectoInvestigacion[]>(`${TAREA_DOCENTE}/obtenerDatosProyectoDashboardInvestigacion/${idTipoProceso}`);
