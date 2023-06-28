@@ -8,5 +8,5 @@ export type DashboardTareaInvestigacion = {
     valueTotal?: number;
     tarea?: Tarea;
     series?:Series;
-    tareaIndicadorList?:TareaIndicador;
+    tareaIndicadorList?:TareaIndicador[];
 };

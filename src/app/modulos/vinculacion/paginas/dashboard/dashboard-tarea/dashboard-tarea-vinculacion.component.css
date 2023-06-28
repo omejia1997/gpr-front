@@ -1,0 +1,19 @@
+.contenedor{
+  margin: 0;
+  padding: 0;
+  height: 90%;
+}
+
+
+.tabla{
+  clear: both;
+}
+
+.pie-chart{
+  max-width: 49vw;
+  float: left;
+}
+.bar-chart{
+  max-width: 49vw;
+  float: right;
+}

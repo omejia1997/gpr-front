@@ -51,6 +51,8 @@ import { MonitoreoTareasVinculacionComponent } from './modulos/vinculacion/pagin
 import { MonitoreoTareaDocenteVinculacionComponent } from './modulos/vinculacion/paginas/monitoreo/monitoreo-tarea-docente/monitoreo-tarea-docente-vinculacion.component';
 import { VerTareaDocenteVinculacionComponent } from './modulos/vinculacion/paginas/monitoreo/monitoreo-tarea-docente/ver-tarea-docente/ver-tarea-docente-vinculacion.component';
 import { ListarTareasRevisadasVinculacionComponent } from './modulos/vinculacion/paginas/tarea/listar-tareas-revisadas/listar-tareas-revisadas-vinculacion.component';
+import { DashboardVinculacionComponent } from './modulos/vinculacion/paginas/dashboard/dashboard-vinculacion.component';
+import { DashboardTareaVinculacionComponent } from './modulos/vinculacion/paginas/dashboard/dashboard-tarea/dashboard-tarea-vinculacion.component';
 
 const routes: Routes = [
  {path: '', redirectTo:'/login' ,pathMatch:'full'},
@@ -104,6 +106,8 @@ const routes: Routes = [
   {path: 'monitoreo-tarea-docente-vinculacion', component:MonitoreoTareaDocenteVinculacionComponent,canActivate:[AuthGuard]},
   {path: 'ver-tarea-docente-vinculacion', component:VerTareaDocenteVinculacionComponent,canActivate:[AuthGuard]},
   {path: 'listar-tareas-revisadas-vinculacion', component:ListarTareasRevisadasVinculacionComponent,canActivate:[AuthGuard]},
+  {path: 'dashboard-vinculacion', component:DashboardVinculacionComponent,canActivate:[AuthGuard]},
+  {path: 'dashboard-tarea-vinculacion', component:DashboardTareaVinculacionComponent,canActivate:[AuthGuard]},
   {path: '**', component:LoginComponent}
 ];
 

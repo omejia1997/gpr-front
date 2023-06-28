@@ -8,6 +8,8 @@ import { TareaDocenteVinculacion } from '../modelos/TareaDocenteVinculacion';
 import { TareaIndicador } from 'src/app/models/TareaIndicador';
 import { TareaVinculacion } from '../modelos/TareaVinculacion';
 import { TareasRealizadas } from 'src/app/models/TareasRealizadas';
+import { DashboardProyectoInvestigacion } from 'src/app/models/Dashboard/DashboardProyectoInvestigacion';
+import { DashboardProyectoVinculacion } from '../modelos/Dashboard/DashboardProyectoVinculacion';
 
 const URL='http://localhost:8088';
 //const URL="https://gpr-decem-espe.azurewebsites.net"
@@ -27,8 +29,8 @@ export class TareaVinculacionService {
   // private proyecto$$ = new BehaviorSubject<Proyecto | null>(null);
   // proyecto$ = this.proyecto$$.asObservable();
 
-  // private dashboardProyectoInvestigacion$$ = new BehaviorSubject<DashboardProyectoInvestigacion | null>(null);
-  // dashboardProyectoInvestigacion$ = this.dashboardProyectoInvestigacion$$.asObservable();
+  private dashboardProyectoVinculacion$$ = new BehaviorSubject<DashboardProyectoInvestigacion | null>(null);
+  dashboardProyectoVinculacion$ = this.dashboardProyectoVinculacion$$.asObservable();
 
   private proyectoModel$$ = new BehaviorSubject<ProyectoVinculacion | null>(null);
   proyectoModel$ = this.proyectoModel$$.asObservable();
@@ -77,9 +79,9 @@ export class TareaVinculacionService {
     return this.http.get<TareasRealizadas[]>(`${TAREA_DOCENTE}/listarTodasTareasRevisadas`);
   }
 
-  // public obtenerDatosProyectoDashboardInvestigacion(idTipoProceso:number): Observable<DashboardProyectoInvestigacion[]>{
-  //   return this.http.get<DashboardProyectoInvestigacion[]>(`${TAREA_DOCENTE}/obtenerDatosProyectoDashboardInvestigacion/${idTipoProceso}`);
-  // }
+  public obtenerDatosProyectoDashboardVinculacion(): Observable<DashboardProyectoVinculacion[]>{
+    return this.http.get<DashboardProyectoVinculacion[]>(`${TAREA_DOCENTE}/obtenerDatosProyectoDashboardVinculacion`);
+  }
 
   // public crearProyectoProgramado(proyecto:Proyecto,idProyectoCopiar:number){
   //   return this.http.post<any>(`${TAREA_DOCENTE}/crearTareasFromProyecto/${idProyectoCopiar}`,proyecto);
@@ -126,9 +128,9 @@ export class TareaVinculacionService {
   //   this.tareasDocente$$.next(tareaDocente);
   // }
 
-  // public setDashboardProyectoInvestigacion(dashboardProyectoInvestigacion: DashboardProyectoInvestigacion) {
-  //   this.dashboardProyectoInvestigacion$$.next(dashboardProyectoInvestigacion);
-  // }
+  public setDashboardProyectoVinculacion(dashboardProyectoVinculacion: DashboardProyectoVinculacion) {
+    this.dashboardProyectoVinculacion$$.next(dashboardProyectoVinculacion);
+  }
 
   // public obtenerProyectoPorId(idProyecto:number){
   //   return this.http.get<Proyecto>(`${TAREA_DOCENTE}/${idProyecto}`);

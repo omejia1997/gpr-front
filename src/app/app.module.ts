@@ -77,6 +77,8 @@ import { MonitoreoTareasVinculacionComponent } from './modulos/vinculacion/pagin
 import { MonitoreoTareaDocenteVinculacionComponent } from './modulos/vinculacion/paginas/monitoreo/monitoreo-tarea-docente/monitoreo-tarea-docente-vinculacion.component';
 import { VerTareaDocenteVinculacionComponent } from './modulos/vinculacion/paginas/monitoreo/monitoreo-tarea-docente/ver-tarea-docente/ver-tarea-docente-vinculacion.component';
 import { ListarTareasRevisadasVinculacionComponent } from './modulos/vinculacion/paginas/tarea/listar-tareas-revisadas/listar-tareas-revisadas-vinculacion.component';
+import { DashboardVinculacionComponent } from './modulos/vinculacion/paginas/dashboard/dashboard-vinculacion.component';
+import { DashboardTareaVinculacionComponent } from './modulos/vinculacion/paginas/dashboard/dashboard-tarea/dashboard-tarea-vinculacion.component';
 
 @NgModule({
   declarations: [
@@ -134,7 +136,9 @@ import { ListarTareasRevisadasVinculacionComponent } from './modulos/vinculacion
     MonitoreoTareasVinculacionComponent,
     MonitoreoTareaDocenteVinculacionComponent,
     VerTareaDocenteVinculacionComponent,
-    ListarTareasRevisadasVinculacionComponent
+    ListarTareasRevisadasVinculacionComponent,
+    DashboardVinculacionComponent,
+    DashboardTareaVinculacionComponent
   ],
   imports: [
     BrowserModule,

@@ -29,11 +29,12 @@ export class DashboardInvestigacionComponent implements OnInit {
      this.dataProyecto = d;
      console.log(d)
     })
-  }  
+  }
 
   onSelect(event:any) {
     console.log(event);
   }
+
   verEstadoProyecto(proyecto:DashboardProyectoInvestigacion){
     this.tareaService.setDashboardProyectoInvestigacion(proyecto);
     this.router.navigate(['dashboard-tarea-investigacion']);
