@@ -10,10 +10,11 @@ import { TareaVinculacion } from '../modelos/TareaVinculacion';
 import { TareasRealizadas } from 'src/app/models/TareasRealizadas';
 import { DashboardProyectoInvestigacion } from 'src/app/models/Dashboard/DashboardProyectoInvestigacion';
 import { DashboardProyectoVinculacion } from '../modelos/Dashboard/DashboardProyectoVinculacion';
+import { environment } from 'src/environments/environment';
 
-const URL='http://localhost:8088';
+//const URL='http://localhost:8088';
 //const URL="https://gpr-decem-espe.azurewebsites.net"
-const TAREA_DOCENTE = URL + '/tareaDocente';
+const TAREA_DOCENTE = environment.URL_MOCROSERVICE_VINCULACION + '/tareaDocente';
 
 @Injectable({
   providedIn: 'root'
@@ -174,7 +175,7 @@ export class TareaVinculacionService {
     return this.http.put<String>(`${TAREA_DOCENTE}/guardarTareaAsignadaAlProfesor`,formData);
   }
 
-  public guardarArchivoTareaAsignadaAlDocente(file:File,tareaIndicadors:TareaIndicador[],idTareaDocente:any): Observable<HttpEvent<any>>{
+  public guardarArchivoTareaAsignadaAlDocente(file:File,tareaIndicadors:TareaIndicador[],idTareaDocente:any){
     const formData: FormData = new FormData();
     formData.append('file', file);
     formData.append('tareaIndicadors', JSON.stringify(tareaIndicadors));
@@ -198,6 +199,14 @@ export class TareaVinculacionService {
 
   public eliminarTarea(codigoTarea:any){
     return this.http.delete<Boolean>(`${TAREA_DOCENTE}/eliminarTarea/${codigoTarea}`);
+  }
+
+  public getFileModel(modulo:string,codigoTareaDocente:number){
+    return this.http.get(`${TAREA_DOCENTE}/obtenerArchivoTareaDocente/${codigoTareaDocente}`);
+  }
+
+  public getFileGuia(modulo:string,codigoTarea:any){
+    return this.http.get(`${TAREA_DOCENTE}/obtenerArchivoTarea/${codigoTarea}`);
   }
 
 }

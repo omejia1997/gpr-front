@@ -15,7 +15,7 @@ export class EditarProyectoComponent implements OnInit {
   blockedDocument: boolean = false;
   visualBlockedDocument: boolean = true;
   proyecto: any = {};
-  getProcesos$: Observable<TipoProceso[]>;
+  //getProcesos$: Observable<TipoProceso[]>;
   tipoProcesos: TipoProceso[] = [];
 
   constructor(
@@ -31,12 +31,12 @@ export class EditarProyectoComponent implements OnInit {
         this.back();
       }
     });
-    this.getProcesos$ = this.tipoProcesoService.obtenerTipoProcesos();
+    //this.getProcesos$ = this.tipoProcesoService.obtenerTipoProcesos();
 
   }
 
   ngOnInit(): void {
-    this.getProcesos();
+    //this.getProcesos();
   }
 
   save() {
@@ -72,11 +72,11 @@ export class EditarProyectoComponent implements OnInit {
     this.router.navigate(['listar-proyectos']);
   }
 
-  getProcesos() {
-    this.getProcesos$.subscribe(tipoProcesos => {
-      this.tipoProcesos = tipoProcesos;
-    });
-  }
+  // getProcesos() {
+  //   this.getProcesos$.subscribe(tipoProcesos => {
+  //     this.tipoProcesos = tipoProcesos;
+  //   });
+  // }
 
   compararProcesos(tipoProceso1: TipoProceso, tipoProceso2: TipoProceso) {
     if (tipoProceso1 == null || tipoProceso2 == null) {

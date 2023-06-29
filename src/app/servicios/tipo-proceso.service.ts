@@ -26,6 +26,10 @@ export class TipoProcesoService {
     return this.http.get<TipoProceso[]>(`${TIPO_PROCESO}/listarTiposProcesosActivos`);
   }
 
+  public obtenerProcesoPorNombreProceso(nombreProceso:string): Observable<TipoProceso>{
+    return this.http.get<TipoProceso>(`${TIPO_PROCESO}/obtenerProcesoPorNombreProceso/${nombreProceso}`);
+  }
+
   public crear<TipoProceso>(tipoProceso:TipoProceso){
     return this.http.post<TipoProceso>(TIPO_PROCESO,tipoProceso);
   }

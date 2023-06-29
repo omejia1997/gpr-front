@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  URL_STORAGE: "https://documents-grp-decem.azurewebsites.net",//http://localhost:8090
+  URL_MOCROSERVICE_VINCULACION:"http://localhost:8088"
 };
 
 /*

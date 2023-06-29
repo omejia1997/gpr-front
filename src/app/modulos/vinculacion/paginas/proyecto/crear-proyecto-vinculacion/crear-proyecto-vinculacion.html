@@ -19,12 +19,8 @@
         </div>
         <div class="form-group">
           <label for="procesoProyecto"><mat-icon> scatter_plot</mat-icon>Proceso:</label>
-          <p>
-            <select name="proceso" [(ngModel)]="proyecto.tipoProceso" id="procesoProyecto" class="form-select">
-              <option [ngValue]="tipoProceso" *ngFor="let tipoProceso of tipoProcesos">{{tipoProceso.nombreTipoProceso}}
-              </option>
-            </select>
-          </p>
+          <input [disabled]="true" [(ngModel)]="tipoProceso.nombreTipoProceso" name="proyecto" type="text"
+            class="form-control" required />
         </div>
         <div class="form-group mb-3">
           <label for="tipoFinanciamiento"><mat-icon> monetization_on</mat-icon>Financiamiento:</label>

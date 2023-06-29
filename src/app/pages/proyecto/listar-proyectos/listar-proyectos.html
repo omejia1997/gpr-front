@@ -11,7 +11,7 @@
           <th>Proyecto</th>
           <th>Fecha Creación</th>
           <th>Descripción</th>
-          <th>Estado</th>
+          <!-- <th>Estado</th> -->
           <th>Acciones</th>
         </tr>
       </thead>
@@ -22,19 +22,19 @@
           <td>{{ proyecto.fechaCreacionproyecto | date: "dd-MM-yyyy" }}</td>
           <td *ngIf="proyecto.descripcionProyecto">{{ proyecto.descripcionProyecto }}</td>
           <td *ngIf="!proyecto.descripcionProyecto">Sin descripción</td>
-          <td [ngSwitch]="proyecto.estadoProyecto">
+          <!-- <td [ngSwitch]="proyecto.estadoProyecto">
             <span *ngSwitchCase="'ACT'">ACTIVO</span>
             <span *ngSwitchDefault>INACTIVO</span>
-          </td>
+          </td> -->
           <td>
             <button (click)="editar(proyecto)" class="btn btn-warning btn-sm">Editar</button>
-            <button (click)="cambiarEstado(proyecto)" class="btn btn-dark btn-sm" style="margin-left: 10px;">Cambiar
-              Estado</button>
+            <!-- <button (click)="cambiarEstado(proyecto)" class="btn btn-dark btn-sm" style="margin-left: 10px;">Cambiar
+              Estado</button> -->
           </td>
         </tr>
       </tbody>
     </table>
-    <!-- 
+    <!--
   <button class="btn btn-info">Listar</button>
   -->
   </div>

@@ -61,8 +61,8 @@ export class ListarTareasRevisarComponent implements OnInit {
     /*this.tareaService.tareasDocente$.subscribe((res) => {
       this.tareasDocente = res;
       console.log(this.tareasDocente);
-      
-      
+
+
     });*/
     // if (localStorage.getItem('dataTable') != null) {
     //   this.data = localStorage.getItem('dataTable');
@@ -74,7 +74,7 @@ export class ListarTareasRevisarComponent implements OnInit {
 
     //this.getTareas();
 
-    
+
 
     this.formControl = formBuilder.group({
       id: '',
@@ -102,7 +102,7 @@ export class ListarTareasRevisarComponent implements OnInit {
 
 
   getTodasTareas(){
-    
+
   }
   ngOnInit(): void {
   }
@@ -160,7 +160,7 @@ export class ListarTareasRevisarComponent implements OnInit {
         var position =0;
         pdf.save('Data.pdf');
       })*/
-      
+
   }
 
   exportToExcel(): void {
@@ -176,9 +176,9 @@ export class ListarTareasRevisarComponent implements OnInit {
 
   getTareas() {
     this.blockedDocument = true;
-    localStorage.removeItem('dataTable');
+    //localStorage.removeItem('dataTable');
     this.getTareasDocente$.subscribe({
-      next: (data) => {        
+      next: (data) => {
         this.tareasDocente = data;
         var cont = 0;
         this.dataTable=[];

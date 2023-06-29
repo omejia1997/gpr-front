@@ -15,8 +15,8 @@ import { MessageService } from 'primeng/api';
 export class CrearProyectosComponent implements OnInit {
   blockedDocument: boolean = false;
   proyecto: Proyecto = {};
-  getProcesos$: Observable<TipoProceso[]>;
-  tipoProcesos: TipoProceso[]=[];
+  getProceso$: Observable<TipoProceso>;
+  tipoProceso: TipoProceso={};
 
   constructor(
     private router:Router,
@@ -24,7 +24,8 @@ export class CrearProyectosComponent implements OnInit {
     private tipoProcesoService: TipoProcesoService,
     private messageService: MessageService
     ) {
-      this.getProcesos$ = this.tipoProcesoService.obtenerTipoProcesosActivos();
+      this.getProceso$ =
+      this.tipoProcesoService.obtenerProcesoPorNombreProceso('INVESTIGACIÓN');
   }
 
   ngOnInit(): void {
@@ -32,8 +33,8 @@ export class CrearProyectosComponent implements OnInit {
   }
 
   getProcesos(){
-    this.getProcesos$.subscribe(tipoProcesos =>{
-      this.tipoProcesos = tipoProcesos;
+    this.getProceso$.subscribe(tipoProceso =>{
+      this.tipoProceso = tipoProceso;
     });
   }
 
@@ -42,7 +43,8 @@ export class CrearProyectosComponent implements OnInit {
   }
 
   save(){
-    this.blockedDocument = true; 
+    this.blockedDocument = true;
+    this.proyecto.tipoProceso = this.tipoProceso;
     this.proyectoService.crearProyecto(this.proyecto)
     .subscribe({
       next: (data) => {
@@ -52,7 +54,7 @@ export class CrearProyectosComponent implements OnInit {
           detail: 'El proyecto ha sido creado con éxito'
         });
         setTimeout(() => {
-          this.blockedDocument = false; 
+          this.blockedDocument = false;
           this.router.navigate(["listar-proyectos"])
         }, 2000);
       },
@@ -62,7 +64,7 @@ export class CrearProyectosComponent implements OnInit {
           summary: 'Error',
           detail: err?.message ?? ' Error al crear el proyecto'
         });
-        this.blockedDocument = false; 
+        this.blockedDocument = false;
       },
       complete: () => {
         // this.isLoading = false;

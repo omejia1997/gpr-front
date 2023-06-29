@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ProyectoVinculacion } from '../modelos/ProyectoVinculacion';
+import { environment } from 'src/environments/environment';
 
 
 //const URL="https://gpr-decem-espe.azurewebsites.net"
-const URL='http://localhost:8088';
-const PROYECTO = URL + '/proyecto';
+//const URL='http://localhost:8088';
+const PROYECTO = environment.URL_MOCROSERVICE_VINCULACION + '/proyecto';
 
 @Injectable({
   providedIn: 'root'

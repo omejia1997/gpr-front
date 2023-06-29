@@ -179,7 +179,7 @@ export class TareaService {
     return this.http.put<String>(`${TAREA_DOCENTE}/guardarTareaAsignadaAlProfesor`,formData);
   }
 
-  public guardarArchivoTareaAsignadaAlDocente(file:File,tareaIndicadors:TareaIndicador[],codigoTareaDocente:any): Observable<HttpEvent<any>>{
+  public guardarArchivoTareaAsignadaAlDocente(file:File,tareaIndicadors:TareaIndicador[],codigoTareaDocente:any){
     const formData: FormData = new FormData();
     formData.append('file', file);
     formData.append('tareaIndicadors', JSON.stringify(tareaIndicadors));
@@ -212,6 +212,14 @@ export class TareaService {
     console.log("enrro")
     console.log(codigoTarea);
     return this.http.delete<Boolean>(`${TAREA_DOCENTE}/eliminarTarea/${codigoTarea}`);
+  }
+
+  public getFileModel(modulo:string,codigoTareaDocente:number){
+    return this.http.get(`${TAREA_DOCENTE}/obtenerArchivoTareaDocente/${codigoTareaDocente}`);
+  }
+
+  public getFileGuia(modulo:string,codigoTarea:any){
+    return this.http.get(`${TAREA_DOCENTE}/obtenerArchivoTarea/${codigoTarea}`);
   }
 
 }

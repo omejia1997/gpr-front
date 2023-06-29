@@ -39,7 +39,7 @@ export class RevisarTareaEntregadaVinculacion implements OnInit {
   tareaIndicadorFile: TareaIndicadorFile={};
 
   constructor(
-    private uploadFilesService: UploadFilesService,
+    //private uploadFilesService: UploadFilesService,
     private router:Router,
     private tareaService:TareaVinculacionService,
     private messageService: MessageService
@@ -56,12 +56,12 @@ export class RevisarTareaEntregadaVinculacion implements OnInit {
       // this.fileModelGuia$ = this.uploadFilesService.getFileGuia(this.tarea.codigoTarea);
       // this.fileModel$ = this.uploadFilesService.getFileModel(this.tareaDocente.codigoTareaDocente);
       if(this.tarea.nombreArchivoTareaEnStorage){
-        this.fileModelGuia$ = this.uploadFilesService.getFileGuia(this.tarea.id);
+        this.fileModelGuia$ = this.tareaService.getFileGuia("Vinculacion",this.tarea.id);
         this.getFileGuia();
       }
 
       if(this.tareaDocente.nombreArchivoTareaDocenteEnStorage){
-        this.fileModelTarea$ = this.uploadFilesService.getFileModel(this.tareaDocente.id);
+        this.fileModelTarea$ = this.tareaService.getFileModel("Vinculacion",this.tareaDocente.id);
         this.getFileModel();
       }
     }

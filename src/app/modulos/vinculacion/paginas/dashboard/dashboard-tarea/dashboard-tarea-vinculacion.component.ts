@@ -13,7 +13,6 @@ export class DashboardTareaVinculacionComponent implements OnInit {
   dataPieChart!:any;
   view: any[2] =  [500, 400];
   dataBarHorizontal!:any;
-  tareaIndicadores:TareaIndicador[]=[];
 
   // options GroupedBar
   view2: any[2] =  [500,300];
@@ -36,7 +35,7 @@ export class DashboardTareaVinculacionComponent implements OnInit {
         this.back();
       } else{
         this.dataPieChart= this.dataDashboardTarea.dasboardTareaVinculacionList;
-        this.tareaIndicadores= this.dataDashboardTarea.dasboardTareaVinculacionList.tareaIndicadorList;
+        console.log(this.dataDashboardTarea )
       }
     });
    }

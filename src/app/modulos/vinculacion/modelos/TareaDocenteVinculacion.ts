@@ -12,6 +12,6 @@ export type TareaDocenteVinculacion = {
     fechaEntregadaTareaDocente?: Date;
     cedulaDocenteRevisor?: string;
     docente?: Docente;
-    //codigoTarea?: Tarea;
-    tareaIndicadorList?:TareaIndicador[];
+    tareaDocenteVinculacionList?: TareaDocenteVinculacion[];
+    //tareaIndicadorList?:TareaIndicador[];
 };

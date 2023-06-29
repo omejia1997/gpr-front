@@ -19,12 +19,14 @@
         </div>
         <div class="form-group">
           <label for="procesoProyecto"><mat-icon> scatter_plot</mat-icon>Proceso:</label>
-          <p>
+          <input [disabled]="true" [(ngModel)]="proyecto.tipoProceso.nombreTipoProceso" name="proceso" type="text"
+            class="form-control" required />
+          <!-- <p>
             <select name="proceso" [(ngModel)]="proyecto.tipoProceso" [compareWith]="compararProcesos" id="procesoProyecto" class="form-select">
               <option [ngValue]="tipoProceso" *ngFor="let tipoProceso of tipoProcesos">{{tipoProceso.nombreTipoProceso}}
               </option>
             </select>
-          </p>
+          </p> -->
         </div>
         <div class="form-group">
           <label for="descripcionProyecto"><mat-icon>description</mat-icon>Descripción del Proyecto (Opcional):</label>
@@ -49,10 +51,10 @@
       <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
         <div class="form-group">
           <label for="">Nombre del Proyecto:</label>
-          <input 
-            [(ngModel)]="proyecto.nombreProyecto" 
-            name="nombreProyecto" 
-            type="text" 
+          <input
+            [(ngModel)]="proyecto.nombreProyecto"
+            name="nombreProyecto"
+            type="text"
             class="form-control"
             required/>
         </div>
@@ -66,10 +68,10 @@
         </div>
         <div class="form-group">
           <label for="">Descripción del Proyecto:</label>
-          <input 
+          <input
             [(ngModel)]="proyecto.descripcionProyecto"
-            name="descripcionProyecto" 
-            type="text" 
+            name="descripcionProyecto"
+            type="text"
             class="form-control"
             required/>
         </div>
