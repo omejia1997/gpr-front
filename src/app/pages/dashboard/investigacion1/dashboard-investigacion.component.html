@@ -8,10 +8,10 @@
 >
 </ngx-charts-pie-grid>-->
 <app-navbar></app-navbar>
-
+<input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Search">
 <div class="container">
   <div class="grid-container">
-    <span *ngFor="let proyecto of dataProyecto">
+    <span *ngFor="let proyecto of dataFiltrada">
       <div class="contenedor">
         <h6>{{proyecto.name}}</h6>
         <app-progress-bar [dataProgress]="proyecto" (click)="verEstadoProyecto(proyecto)">
