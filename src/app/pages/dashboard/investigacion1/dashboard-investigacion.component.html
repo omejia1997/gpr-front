@@ -12,8 +12,11 @@
 <div class="container">
   <div class="grid-container">
     <span *ngFor="let proyecto of dataProyecto">
-      <app-progress-bar [dataProgress]="proyecto" (click)="verEstadoProyecto(proyecto)">
-      </app-progress-bar>
+      <div class="contenedor">
+        <h6>{{proyecto.name}}</h6>
+        <app-progress-bar [dataProgress]="proyecto" (click)="verEstadoProyecto(proyecto)">
+        </app-progress-bar>
+      </div>
     </span>
   </div>
 </div>

@@ -4,10 +4,12 @@ import { BehaviorSubject } from 'rxjs';
 import { DocenteComponent } from '../componentes/docente/docente.component';
 import { Docente } from '../models/Docente';
 import { Perfil } from '../models/Perfil';
+import { environment } from 'src/environments/environment';
 
 
 //const urlH="http://localhost:8080/api/v1/"
-const urlH="https://gpr-decem-espe.azurewebsites.net/api/v1/"
+// const urlH="https://gpr-decem-espe.azurewebsites.net/api/v1/"
+const urlH = environment.URL_MICROSERVICE_INVESTIGACION + "/api/v1/"
 
 @Injectable({
   providedIn: 'root'

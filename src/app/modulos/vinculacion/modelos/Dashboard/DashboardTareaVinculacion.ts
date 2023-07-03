@@ -1,6 +1,6 @@
-import { TareaIndicador } from "src/app/models/TareaIndicador";
-import { Series } from "./Series";
+import { TareaDocente } from "src/app/models/TareaDocente";
 import { TareaVinculacion } from "../TareaVinculacion";
+import { Series } from "./Series";
 
 export type DashboardTareaVinculacion = {
     name?: string;
@@ -8,5 +8,5 @@ export type DashboardTareaVinculacion = {
     valueTotal?: number;
     tarea?: TareaVinculacion;
     series?:Series;
-    tareaIndicadorList?:TareaIndicador[];
+    tareaDocentes?:TareaDocente[];
 };

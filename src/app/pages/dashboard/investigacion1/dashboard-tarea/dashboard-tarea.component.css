@@ -10,10 +10,12 @@
 }
 
 .pie-chart{
-  max-width: 49vw;
+  width: 49vw;
+  height: 90vh;
   float: left;
 }
 .bar-chart{
-  max-width: 49vw;
+  width: 49vw;
+  height: 80vh;
   float: right;
 }

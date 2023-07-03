@@ -62,7 +62,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DashboardInvestigacionComponent } from './pages/dashboard/investigacion1/dashboard.component';
 import { ProgressBarComponent } from './pages/dashboard/investigacion1/progress-bar/progress-bar.component';
 import { DashboardTareaComponent } from './pages/dashboard/investigacion1/dashboard-tarea/dashboard-tarea.component';
-import { ProgressBarTareaComponent } from './pages/dashboard/investigacion1/dashboard-tarea/progress-bar-tarea/progress-bar-tarea.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ListarTareasProgramadasVinculacionComponent } from './modulos/vinculacion/paginas/tarea/listar-tareas-programadas-vinculacion/listar-tareas-programadas-vinculacion.component';
 import { CrearTareaProgramadaVinculacionComponent } from './modulos/vinculacion/paginas/tarea/crear-tarea-programada-vinculacion/crear-tarea-programada-vinculacion.component';
@@ -123,7 +122,6 @@ import { DashboardTareaVinculacionComponent } from './modulos/vinculacion/pagina
     DashboardInvestigacionComponent,
     ProgressBarComponent,
     DashboardTareaComponent,
-    ProgressBarTareaComponent,
     CrearProyectoVinculacionComponent,
     EditarProyectoVinculacionComponent,
     ListarTareasProgramadasVinculacionComponent,

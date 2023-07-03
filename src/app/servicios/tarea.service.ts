@@ -11,10 +11,11 @@ import { TareaDocente } from '../models/TareaDocente';
 import { TareaDocenteProyecto } from '../models/TareaDocenteProyecto';
 import { TareaIndicador } from '../models/TareaIndicador';
 import { TareasRealizadas } from '../models/TareasRealizadas';
+import { environment } from 'src/environments/environment';
 
 //const URL='http://localhost:8080';
-const URL="https://gpr-decem-espe.azurewebsites.net"
-const TAREA_DOCENTE = URL + '/tareaDocente';
+//const URL="https://gpr-decem-espe.azurewebsites.net"
+const TAREA_DOCENTE = environment.URL_MICROSERVICE_INVESTIGACION  + '/tareaDocente';
 
 @Injectable({
   providedIn: 'root'

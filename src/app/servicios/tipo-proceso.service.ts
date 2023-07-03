@@ -2,11 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TipoProceso } from '../models/TipoProceso';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
-const URL="https://gpr-decem-espe.azurewebsites.net"
+//const URL="https://gpr-decem-espe.azurewebsites.net"
 //const URL='http://localhost:8080';
-const TIPO_PROCESO = URL + '/tipoProceso';
+const TIPO_PROCESO = environment.URL_MICROSERVICE_INVESTIGACION  + '/tipoProceso';
 
 @Injectable({
   providedIn: 'root'

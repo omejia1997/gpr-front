@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 
 //const URL='http://localhost:8088';
 //const URL="https://gpr-decem-espe.azurewebsites.net"
-const TAREA_DOCENTE = environment.URL_MOCROSERVICE_VINCULACION + '/tareaDocente';
+const TAREA_DOCENTE = environment.URL_MICROSERVICE_VINCULACION + '/tareaDocente';
 
 @Injectable({
   providedIn: 'root'

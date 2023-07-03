@@ -1,5 +1,5 @@
 import { Tarea } from "../Tarea";
-import { TareaIndicador } from "../TareaIndicador";
+import { TareaDocenteDto } from "../dto/TareaDocenteDto";
 import { Series } from "./Series";
 
 export type DashboardTareaInvestigacion = {
@@ -8,5 +8,5 @@ export type DashboardTareaInvestigacion = {
     valueTotal?: number;
     tarea?: Tarea;
     series?:Series;
-    tareaIndicadorList?:TareaIndicador[];
+    tareaDocentes?:TareaDocenteDto[];
 };

@@ -37,3 +37,7 @@ a{
   background-color: white;
   color: black;
 }
+
+.col{
+  width: 100vw;
+}
