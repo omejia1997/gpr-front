@@ -9,11 +9,26 @@
 </ngx-charts-pie-grid>-->
 <app-navbar></app-navbar>
 
-<div class="container">
+<!-- <div class="container">
   <div class="grid-container">
     <span *ngFor="let proyecto of dataProyecto">
       <app-progress-bar [dataProgress]="proyecto" (click)="verEstadoProyecto(proyecto)">
       </app-progress-bar>
     </span>
+  </div>
+</div> -->
+
+<div class="boton">
+  <input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Nombre del Proyecto">
+</div>
+<div class="container">
+  <div class="grid-container">
+    <div *ngFor="let proyecto of dataFiltrada">
+      <div class="contenedor" (click)="verEstadoProyecto(proyecto)">
+        <h6>{{proyecto.name}}</h6>
+        <app-progress-bar [dataProgress]="proyecto" >
+        </app-progress-bar>
+      </div>
+    </div>
   </div>
 </div>

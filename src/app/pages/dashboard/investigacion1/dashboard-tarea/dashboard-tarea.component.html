@@ -2,8 +2,7 @@
 <button type="button" (click)="back()" class="btn btn-dark btn-sm btn-regresar"
   style="margin-left: 10px;">Regresar</button>
 <div *ngIf="dataPieChart.length!=0; else loggedOut">
-  <div class="container dataDashboard {{classContainer}}"
-    style="background-image: radial-gradient(circle at 46.09% 39.26%, #ffffff 0, #fbf9ff 50%, #d9d5e6 100%);">
+  <div class="container dataDashboard {{classContainer}}">
     <div class="row">
       <div class="col-sm-6 pie-chart">
         <ngx-charts-pie-grid [designatedTotal]="100" label="Porcentaje realizado" scheme="nightLights"
@@ -25,7 +24,7 @@
       <hr />
       <h2 style="text-align: center;">Indicadores por Actividad:</h2>
       <div class="table-responsive" *ngFor="let dataDashboard of dataDashboardTarea.dasboardTareaInvestigacionList">
-        <h3 style="text-align: center;"><b>Actividad:</b>{{dataDashboard.tarea.nombreTarea }}</h3>
+        <h3 style="text-align: center;"><b>Actividad:</b> {{dataDashboard.tarea.nombreTarea }}</h3>
         <table class="table table-hover text-center table-sm">
           <thead class="table-dark">
             <tr>

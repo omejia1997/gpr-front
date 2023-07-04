@@ -24,6 +24,8 @@ export class DashboardTareaVinculacionComponent implements OnInit {
   yAxisLabel: string = 'ACTIVIDADES';
   showYAxisLabel: boolean = true;
   xAxisLabel = 'Population';
+  //
+  classContainer!:string;
 
   constructor(
     private tareaService: TareaVinculacionService,
@@ -35,7 +37,13 @@ export class DashboardTareaVinculacionComponent implements OnInit {
         this.back();
       } else{
         this.dataPieChart= this.dataDashboardTarea.dasboardTareaVinculacionList;
-        console.log(this.dataDashboardTarea )
+        if(this.dataPieChart.length<=3){
+          this.classContainer = "small-container";
+        }else if(this.dataPieChart.length<=6){
+          this.classContainer = "medium-container";
+        }else{
+          this.classContainer = "big-container";
+        }
       }
     });
    }

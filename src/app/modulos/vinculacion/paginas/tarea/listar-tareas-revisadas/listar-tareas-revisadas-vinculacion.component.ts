@@ -64,8 +64,9 @@ export class ListarTareasRevisadasVinculacionComponent implements OnInit {
     })
     this.formControl.valueChanges.subscribe(value => {
       const filter = {
-        ...value, revisor: value.revisor.trim().toLowerCase(), proceso: value.proceso.trim().toLowerCase(),
-        proyecto: value.proyecto.trim().toLowerCase(), tarea: value.tarea.trim().toLowerCase()
+        ...value, revisor: value.revisor.trim().toLowerCase(),
+        proyecto: value.proyecto.trim().toLowerCase(), tarea: value.tarea.trim().toLowerCase(),
+        responsable: value.responsable.trim().toLowerCase()
       } as string;
       this.dataSource.filter = filter;
     });
@@ -150,12 +151,12 @@ export class ListarTareasRevisadasVinculacionComponent implements OnInit {
           let objetoTarea = {
             "id": cont,
             "revisor": tareaDocent.nombreDocenteRevisor,
-            "proceso": tareaDocent.tipoProceso,
+            //"proceso": tareaDocent.tipoProceso,
             "proyecto": tareaDocent.nombreProyecto,
             "tarea": tareaDocent.nombreTarea,
-            "tipoTarea": tareaDocent.tipoTarea,
+            //"tipoTarea": tareaDocent.tipoTarea,
             "prioridad": tareaDocent.prioridadTarea,
-            "peso": tareaDocent.pesoTarea,
+            //"peso": tareaDocent.pesoTarea,
             "fechaInicio": tareaDocent.fechaCreaciontarea,
             "fechaVencimiento": tareaDocent.fechaEntregaTarea,
             "responsable": tareaDocent.responsable,
@@ -174,8 +175,8 @@ export class ListarTareasRevisadasVinculacionComponent implements OnInit {
           const h = !filter.fechaInicio || data.revisor.fechaInicio().includes(filter.fechaInicio);
           const i = !filter.fechaVencimiento || data.fechaVencimiento.toLowerCase().includes(filter.fechaVencimiento);
           const j = !filter.responsable || data.responsable.toLowerCase().includes(filter.responsable);
-          const k = !filter.tipoTarea || data.tipoTarea.toLowerCase().includes(filter.tipoTarea);
-          return a && b && d && e && h && i && j && k;
+         // const k = !filter.tipoTarea || data.tipoTarea.toLowerCase().includes(filter.tipoTarea);
+          return a && b && d && e && h && i && j ;
         }) as (PeriodicElement: any, string: any) => boolean;
 
         this.dataSource.paginator = this.paginator;

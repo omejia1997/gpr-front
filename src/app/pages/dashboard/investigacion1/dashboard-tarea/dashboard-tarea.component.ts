@@ -25,7 +25,7 @@ export class DashboardTareaComponent implements OnInit {
   showYAxisLabel: boolean = true;
   xAxisLabel = 'Population';
   //
-  classContainer!:string;
+  classContainer!: string;
 
   constructor(private tareaService: TareaService, private router: Router) {
     this.tareaService.dashboardProyectoInvestigacion$.subscribe((res) => {
@@ -35,11 +35,12 @@ export class DashboardTareaComponent implements OnInit {
       } else {
         this.dataPieChart =
           this.dataDashboardTarea.dasboardTareaInvestigacionList;
-
-        if(this.dataPieChart.length<=6){
-          this.classContainer ="small-container"
-        }else{
-          this.classContainer ="big-container"
+        if (this.dataPieChart.length <= 3) {
+          this.classContainer = 'small-container';
+        } else if (this.dataPieChart.length <= 6) {
+          this.classContainer = 'medium-container';
+        } else {
+          this.classContainer = 'big-container';
         }
       }
     });

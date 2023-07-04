@@ -1,19 +1,29 @@
-.contenedor{
-  margin: 0;
-  padding: 0;
-  height: 90%;
+.dataDashboard{
+  padding: 20px;
+  background-image: radial-gradient(circle at 46.09% 39.26%, #ffffff 0, #fbf9ff 50%, #d9d5e6 100%);
+  box-shadow: 0px 0px 10px rgb(32, 31, 30), 0px 0px 10px rgb(114, 147, 200);
 }
 
-
-.tabla{
-  clear: both;
+.row{
+  height: 100%;
 }
 
 .pie-chart{
-  max-width: 49vw;
-  float: left;
+  height: 100%;
 }
+
 .bar-chart{
-  max-width: 49vw;
-  float: right;
+  height: 85%;
+}
+
+.small-container{
+  height: 57vh;
+}
+
+.medium-container{
+  height: 80vh;
+}
+
+.big-container{
+  height: 130vh;
 }
