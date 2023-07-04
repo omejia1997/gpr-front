@@ -1,21 +1,35 @@
-.contenedor{
+/* .contenedor{
   margin: 0;
   padding: 0;
   height: 90%;
+} */
+
+.dataDashboard{
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgb(32, 31, 30), 0px 0px 10px rgb(114, 147, 200);
 }
 
-
-.tabla{
-  clear: both;
+.row{
+  height: 100%;
 }
 
 .pie-chart{
-  width: 49vw;
-  height: 90vh;
-  float: left;
+  height: 100%;
 }
+
 .bar-chart{
-  width: 49vw;
-  height: 80vh;
-  float: right;
+  height: 85%;
 }
+
+.small-container{
+  height: 80vh;
+}
+
+.big-container{
+  height: 130vh;
+}
+
+/* .tabla{
+  clear: both;
+} */
+

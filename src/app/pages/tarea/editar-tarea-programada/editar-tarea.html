@@ -9,10 +9,10 @@
       <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
         <div class="form-group">
           <label for="">Nombre de la Tarea:</label>
-          <input 
-            [(ngModel)]="tareaDocente.codigoTarea.nombreTarea" 
-            name="nombreTareas" 
-            type="text" 
+          <input
+            [(ngModel)]="tareaDocente.codigoTarea.nombreTarea"
+            name="nombreTareas"
+            type="text"
             class="form-control"
             required/>
         </div>
@@ -26,10 +26,10 @@
         </div>
         <div class="form-group">
           <label for="">Fecha de Entrega:</label>
-          <input 
-            [(ngModel)]="tareaDocente.fechaEntrega" 
-            name="fechaCreaciontarea" 
-            type="datetime-local" 
+          <input
+            [(ngModel)]="tareaDocente.fechaEntrega"
+            name="fechaCreaciontarea"
+            type="datetime-local"
             class="form-control"
             required/>
         </div>
@@ -41,10 +41,10 @@
         </div>
         <div class="form-group">
           <label for="">Indicador:</label>
-          <input 
+          <input
             [(ngModel)]="tareaDocente.codigoTarea.descripicionTarea"
-            name="descripicionTarea" 
-            type="text" 
+            name="descripicionTarea"
+            type="text"
             class="form-control"
             required/>
         </div>
@@ -72,10 +72,10 @@
       <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
         <div class="form-group">
           <label for="">Nombre de la Tarea:</label>
-          <input 
-            [(ngModel)]="tarea.nombreTarea" 
-            name="nombreTareas" 
-            type="text" 
+          <input
+            [(ngModel)]="tarea.nombreTarea"
+            name="nombreTareas"
+            type="text"
             class="form-control"
             required/>
         </div>
@@ -89,10 +89,10 @@
         </div>
         <div class="form-group">
           <label for="">Fecha de Entrega:</label>
-          <input 
-            [(ngModel)]="tarea.fechaEntregaTarea" 
-            name="fechaCreaciontarea" 
-            type="datetime-local" 
+          <input
+            [(ngModel)]="tarea.fechaEntregaTarea"
+            name="fechaCreaciontarea"
+            type="datetime-local"
             class="form-control"
             required/>
         </div>
@@ -118,7 +118,7 @@
           </ul>
           <input type="button" (click)="agregarIndicador()" class="btn btn-danger" value="Agregar Indicador"/>
           <input type="button" (click)="eliminarIndicador()" class="btn btn-danger" value="Quitar Indicador"/>
-        
+
         <div class="form-group">
           <label for="">Persona Asignada:</label>
           <p>
@@ -262,14 +262,16 @@
             <option [ngValue]="tipo.id" *ngFor="let tipo of tipoTarea">{{tipo.name}}</option>
           </select>-->
         </div>
-        <div class="form-group">
+        <div class="form-group" *ngIf="tarea.codigoProyecto">
           <label for="">Proyecto:</label>
-          <p>
+          <!-- <p>
             <select name="proyecto" [(ngModel)]="tarea.codigoProyecto" class="form-select"
               [compareWith]="compararNombres">
               <option [ngValue]="proyecto" *ngFor="let proyecto of proyectos">{{proyecto.nombreProyecto}}</option>
             </select>
-          </p>
+          </p> -->
+          <input [disabled]="true" [(ngModel)]="tarea.codigoProyecto.nombreProyecto" name="proyecto" type="text"
+            class="form-control" required />
         </div>
         <div class="form-group" *ngIf="checkTipoTarea">
           <label for="">Fecha de Entrega:</label>

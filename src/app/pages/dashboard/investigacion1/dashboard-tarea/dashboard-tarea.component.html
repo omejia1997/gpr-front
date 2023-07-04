@@ -1,53 +1,57 @@
 <app-navbar></app-navbar>
-<button type="button" (click)="back()" class="btn btn-dark btn-sm btn-regresar" style="margin-left: 10px;">Regresar</button>
+<button type="button" (click)="back()" class="btn btn-dark btn-sm btn-regresar"
+  style="margin-left: 10px;">Regresar</button>
 <div *ngIf="dataPieChart.length!=0; else loggedOut">
-    <div class="contenedor">
-        <div class="pie-chart">
-            <ngx-charts-pie-grid [designatedTotal]="100" label="Porcentaje realizado" scheme="nightLights"
-                [results]="dataPieChart">
-            </ngx-charts-pie-grid>
+  <div class="container dataDashboard {{classContainer}}"
+    style="background-image: radial-gradient(circle at 46.09% 39.26%, #ffffff 0, #fbf9ff 50%, #d9d5e6 100%);">
+    <div class="row">
+      <div class="col-sm-6 pie-chart">
+        <ngx-charts-pie-grid [designatedTotal]="100" label="Porcentaje realizado" scheme="nightLights"
+          [results]="dataPieChart">
+        </ngx-charts-pie-grid>
 
-        </div>
-        <div class="bar-chart">
-            <ngx-charts-bar-horizontal-2d scheme="vivid" [results]="dataPieChart" [xAxis]="showXAxis"
-                [yAxis]="showYAxis" [legend]="showLegend" [legendPosition]="legendPosition"
-                [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel" legendTitle="Estado de las Actividades">
-            </ngx-charts-bar-horizontal-2d>
-        </div>
-        <div class="tabla">
-          <div class="container">
-            <hr/>
-            <h2 style="text-align: center;">Indicadores por Actividad:</h2>
-            <div class="table-responsive" *ngFor="let dataDashboard of dataDashboardTarea.dasboardTareaInvestigacionList">
-              <h3 style="text-align: center;"><b>Actividad:</b>{{dataDashboard.tarea.nombreTarea }}</h3>
-              <table class="table table-hover text-center table-sm">
-                <thead class="table-dark">
-                  <tr>
-                    <th>Estado</th>
-                    <th>Persona Responsable de Realizar</th>
-                    <th>Indicadores</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let tarea of dataDashboard.tareaDocentes">
-                    <td>{{ tarea.estadoTareaDocente }}</td>
-                    <td>{{ tarea.codigoDocente.apellidoDocente+" "+tarea.codigoDocente.nombreDocente }}</td>
-                    <td><span *ngFor="let tareaIndicador of tarea.tareaIndicadorList">
-                      <span><b>Tipo de Indicador: </b>{{tareaIndicador.indicadorCODIGOINDICADOR.nombreIndicador}}</span><br>
-                      <span><b>Indicador: </b>{{tareaIndicador.descripcionTareaIndicador}}</span><br>
-                      <span><b>Valor Ingresado: </b>{{tareaIndicador.valorIndicador}}</span><br>
-                    </span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+      </div>
+      <div class="col-sm-6 bar-chart">
+        <ngx-charts-bar-horizontal-2d scheme="vivid" [results]="dataPieChart" [xAxis]="showXAxis" [yAxis]="showYAxis"
+          [legend]="showLegend" [legendPosition]="legendPosition" [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+          legendTitle="Estado de las Actividades">
+        </ngx-charts-bar-horizontal-2d>
+      </div>
     </div>
+  </div>
+  <div class="tabla">
+    <div class="container">
+      <hr />
+      <h2 style="text-align: center;">Indicadores por Actividad:</h2>
+      <div class="table-responsive" *ngFor="let dataDashboard of dataDashboardTarea.dasboardTareaInvestigacionList">
+        <h3 style="text-align: center;"><b>Actividad:</b>{{dataDashboard.tarea.nombreTarea }}</h3>
+        <table class="table table-hover text-center table-sm">
+          <thead class="table-dark">
+            <tr>
+              <th>Estado</th>
+              <th>Persona Responsable de Realizar</th>
+              <th>Indicadores</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tarea of dataDashboard.tareaDocentes">
+              <td>{{ tarea.estadoTareaDocente }}</td>
+              <td>{{ tarea.codigoDocente.apellidoDocente+" "+tarea.codigoDocente.nombreDocente }}</td>
+              <td><span *ngFor="let tareaIndicador of tarea.tareaIndicadorList">
+                  <span><b>Tipo de Indicador: </b>{{tareaIndicador.indicadorCODIGOINDICADOR.nombreIndicador}}</span><br>
+                  <span><b>Indicador: </b>{{tareaIndicador.descripcionTareaIndicador}}</span><br>
+                  <span><b>Valor Ingresado: </b>{{tareaIndicador.valorIndicador}}</span><br>
+                </span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 <ng-template #loggedOut>
-    <div class="container" style="text-align: center;">
-        No se ha asignado ningúna Actividad a este Proyecto
-    </div>
+  <div class="container" style="text-align: center;">
+    No se ha asignado ningúna Actividad a este Proyecto
+  </div>
 </ng-template>

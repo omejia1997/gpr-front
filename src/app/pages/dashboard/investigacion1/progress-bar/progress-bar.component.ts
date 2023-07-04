@@ -9,10 +9,10 @@ import { DashboardProyectoInvestigacion } from "src/app/models/Dashboard/Dashboa
 export class ProgressBarComponent implements OnInit {
   @Input() dataProgress!: DashboardProyectoInvestigacion;
   data:any[]=[];
-  view: any[2] = [200, 200];
+  view: any[2] = [250, 250];
 
   constructor() {}
-  
+
   ngOnInit() {
     this.getData();
   }

@@ -8,18 +8,29 @@
   }*/
 .contenedor {
   box-shadow: 0px 0px 10px rgb(32, 31, 30), 0px 0px 15px rgb(114, 147, 200); /* borde de dos colores*/
-  /* display: flex;
+  /* display: flex; */
   justify-content: center;
-  align-items: center; */
+  align-items: center;
+}
+
+.boton{
+  display: flex;
+  margin-bottom: 10px;
+}
+
+input{
+  margin: auto;
+  width: auto;
 }
 
 h6 {
   text-align: center;
 }
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(4, minmax(100px, 1fr));
-  grid-gap: 5px;
+  grid-gap: 20px;
   justify-items: center;
   align-items: center;
 }

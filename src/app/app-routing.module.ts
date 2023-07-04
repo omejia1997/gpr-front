@@ -17,11 +17,9 @@ import { ListarProyectosComponent } from './pages/proyecto/listar-proyectos/list
 import { ListarTareasDocenteComponent } from './pages/tarea-docente/listar-tareas-docente/listar-tareas-docente.component';
 import { RealizarTareaComponent } from './pages/tarea-docente/realizar-tarea-docente/realizar-tarea.component';
 import { CrearTareaComponent } from './pages/tarea/crear-tarea/crear-tarea.component';
-import { EditarTareaComponent } from './pages/tarea/editar-tarea/editar-tarea.component';
 import { ListarTareasAsignadasComponent } from './pages/tarea/listar-tareas-asignadas/listar-tareas-asignadas.component';
 import { ListarTareasEntregadasComponent } from './pages/tarea/listar-tareas-entregadas/listar-tareas-entregadas.component';
 import { ListarTareasRevisarComponent } from './pages/tarea/listar-tareas-revisar/listar-tareas-revisar.component';
-import { ListarTareasComponent } from './pages/tarea/listar-tareas/listar-tareas.component';
 import { RevisarTareaComponent } from './pages/tarea/revisar-tarea-entregada/revisar-tarea.component';
 import { CrearTipoProcesoComponent } from './pages/tipoProceso/crear-tipo-proceso/crear-tipo-proceso.component';
 import { EditarTipoProcesoComponent } from './pages/tipoProceso/editar-tipo-proceso/editar-tipo-proceso';
@@ -53,6 +51,7 @@ import { VerTareaDocenteVinculacionComponent } from './modulos/vinculacion/pagin
 import { ListarTareasRevisadasVinculacionComponent } from './modulos/vinculacion/paginas/tarea/listar-tareas-revisadas/listar-tareas-revisadas-vinculacion.component';
 import { DashboardVinculacionComponent } from './modulos/vinculacion/paginas/dashboard/dashboard-vinculacion.component';
 import { DashboardTareaVinculacionComponent } from './modulos/vinculacion/paginas/dashboard/dashboard-tarea/dashboard-tarea-vinculacion.component';
+import { EditarTareaComponent } from './pages/tarea/editar-tarea-programada/editar-tarea.component';
 
 const routes: Routes = [
  {path: '', redirectTo:'/login' ,pathMatch:'full'},
@@ -64,7 +63,6 @@ const routes: Routes = [
   {path: 'listar-proyectos', component:ListarProyectosComponent,canActivate:[AuthGuard]},
   {path: 'crear-proyectos', component:CrearProyectosComponent,canActivate:[AuthGuard]},
   {path: 'editar-proyecto', component:EditarProyectoComponent,canActivate:[AuthGuard]},
-  {path: 'listar-tareas', component:ListarTareasComponent,canActivate:[AuthGuard]},
   {path: 'crear-tareas', component:CrearTareaComponent,canActivate:[AuthGuard]},
   {path: 'editar-tarea', component:EditarTareaComponent,canActivate:[AuthGuard]},
   {path: 'listar-tareas-docente', component:ListarTareasDocenteComponent,canActivate:[AuthGuard]},
