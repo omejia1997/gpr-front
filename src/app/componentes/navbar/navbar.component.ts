@@ -125,12 +125,9 @@ export class NavbarComponent implements OnInit {
 
   IsLoggedout() {
     this.router.navigate(['./login']);
-    localStorage.removeItem('descPerfil');
-    localStorage.removeItem('codigoDocente');
-    localStorage.removeItem('codigoPerfil');
-
-    return localStorage.removeItem('usuario');
+    return localStorage.clear();
   }
+
 }
 
 class menus {

@@ -8,19 +8,19 @@
   }*/
 .contenedor {
   box-shadow: 0px 0px 10px rgb(32, 31, 30), 0px 0px 15px rgb(114, 147, 200); /* borde de dos colores*/
-  /* display: flex; */
   justify-content: center;
   align-items: center;
 }
 
-.boton{
+.boton {
   display: flex;
+  justify-content: center;
+  justify-items: center;
   margin-bottom: 10px;
 }
 
-input{
-  margin: auto;
-  width: auto;
+#busqueda {
+  display: flex;
 }
 
 h6 {

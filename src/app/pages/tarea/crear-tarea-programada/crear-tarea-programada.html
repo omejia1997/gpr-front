@@ -12,6 +12,7 @@
       <h2 style="text-align: center;"><mat-icon>assignment_ind</mat-icon> Crear una nueva Actividad</h2>
       <form (ngSubmit)="f.form.valid" #f="ngForm">
         <div class="form-group" style="text-align: center;">
+          <h4> <b>Tipo de Tarea:</b> </h4>
           <label for="ckeck">Tarea programada &nbsp;</label>
           <input id="ckeck" [value]="'Tarea programada'" [(ngModel)]="tarea.tipoActividad" [name]="'tareaProgramada'"
             (change)="cambiarOpcion(opcionProgramado)" type="radio" />
@@ -276,7 +277,7 @@
           </p>
           <input #fileInput type="file" hidden (change)="selectFiles($event)" />
           <span *ngIf="imageName">{{imageName}}</span>
-  
+
           <button id="uploadButton" mat-raised-button *ngIf="selectedFiles" [disabled]="!selectedFiles" (click)="uploadFiles()">
               Subir Archivo
           </button>
@@ -285,7 +286,7 @@
         <label for="">Observación (Opcional:</label>
         <input [(ngModel)]="tarea.observacionTarea" name="observacionTarea" type="text" class="form-control" />
       </div>
-        
+
         <button type="submit" class="btn btn-danger">Guardar</button>
       </form>
     </div>

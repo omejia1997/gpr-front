@@ -6,12 +6,13 @@
 
 .boton {
   display: flex;
+  justify-content: center;
+  justify-items: center;
   margin-bottom: 10px;
 }
 
-input {
-  margin: auto;
-  width: auto;
+#busqueda {
+  display: flex;
 }
 
 h6 {

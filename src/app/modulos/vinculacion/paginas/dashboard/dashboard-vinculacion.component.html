@@ -1,25 +1,11 @@
-<!--<ngx-charts-pie-grid
-  [view]="view"
-  [designatedTotal]="100"
-  label="Porcentaje realizado"
-  scheme="nightLights"
-  [results]="data"
-  (select)="onSelect($event)"
->
-</ngx-charts-pie-grid>-->
 <app-navbar></app-navbar>
-
-<!-- <div class="container">
-  <div class="grid-container">
-    <span *ngFor="let proyecto of dataProyecto">
-      <app-progress-bar [dataProgress]="proyecto" (click)="verEstadoProyecto(proyecto)">
-      </app-progress-bar>
-    </span>
-  </div>
-</div> -->
-
 <div class="boton">
-  <input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Nombre del Proyecto">
+  <div id="busqueda">
+    <div>
+      <mat-icon>search</mat-icon>
+    </div>
+    <input type="text" [(ngModel)]="searchTerm" (input)="search()" placeholder="Nombre del Proyecto">
+  </div>
 </div>
 <div class="container">
   <div class="grid-container">
