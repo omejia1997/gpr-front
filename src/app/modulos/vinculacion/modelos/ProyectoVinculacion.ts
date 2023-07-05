@@ -4,6 +4,7 @@ import { TareaDocenteProyectoVinculacion } from "./TareaDocenteProyectoVinculaci
 export type ProyectoVinculacion = {
   id?: string;
   nombreProyecto?: string;
+  nombreDirectorProyecto?: string;
   fechaCreacionproyecto?: Date;
   descripcionProyecto?: string;
   estadoProyecto?: string;

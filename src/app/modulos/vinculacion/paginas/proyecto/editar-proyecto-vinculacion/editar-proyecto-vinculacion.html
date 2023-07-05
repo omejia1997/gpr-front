@@ -17,15 +17,11 @@
           <input [(ngModel)]="proyecto.nombreProyecto" id="nombreProyecto" name="nombreProyecto" type="text"
             class="form-control" required />
         </div>
-        <!-- <div class="form-group">
-          <label for="procesoProyecto"><mat-icon> scatter_plot</mat-icon>Proceso:</label>
-          <p>
-            <select name="proceso" [(ngModel)]="proyecto.tipoProceso" [compareWith]="compararProcesos" id="procesoProyecto" class="form-select">
-              <option [ngValue]="tipoProceso" *ngFor="let tipoProceso of tipoProcesos">{{tipoProceso.nombreTipoProceso}}
-              </option>
-            </select>
-          </p>
-        </div> -->
+        <div class="form-group">
+          <label for="nombreDirectorProyecto"><mat-icon>account_circle</mat-icon>Director de Proyecto:</label>
+          <input [(ngModel)]="proyecto.nombreDirectorProyecto" id="nombreDirectorProyecto" name="nombreDirectorProyecto"
+            type="text" class="form-control" required/>
+        </div>
         <div class="form-group">
           <label for="proceso"><mat-icon> scatter_plot</mat-icon>Proceso:</label>
           <input [disabled]="true" [(ngModel)]="proyecto.tipoProceso.nombreTipoProceso" name="proceso" type="text"

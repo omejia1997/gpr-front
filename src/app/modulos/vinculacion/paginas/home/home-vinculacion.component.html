@@ -1,0 +1,34 @@
+<app-navbar></app-navbar>
+<div class="block-container">
+  <h2 class="center">MÓDULO DE INVESTIGACIÓN</h2>
+  <div class="image-container">
+    <img *ngFor="let image of images; let i = index" [src]="image" [class.active]="i === currentIndex">
+  </div>
+  <div class="content">
+
+    <h2 class="center">Crear Proyecto</h2>
+    <p>En esta sección es posible crear un nuevo proyecto dando clic sobre el botón crear un nuevo proyecto.
+      Además de que es posible editar algún campo del mismo.
+    </p>
+    <h2 class="center">Crear Tareas</h2>
+    <p>En esta sección es posible crear nuevas actividades seleccionando un proyecto que ha sido previamente
+      creado, siendo posible modificar o eliminar estas actividades solamente si es el usuario quien creo la tarea.
+    </p>
+    <h2 class="center">Dashboard</h2>
+    <p>En esta sección se muestra el avance de los proyectos. Al hacer clic en un proyecto,
+      se pueden identificar las actividades asignadas, su estado y los indicadores correspondientes.
+    </p>
+    <h2 class="center">Monitoreo proyecto</h2>
+    <p>En esta sección se procede a llevar el seguimiento de cada proyecto con sus respectivas actividades asignadas a
+      cada docente,
+      siendo posible visualizar el estado y la información de este.
+    </p>
+    <h2 class="center">Formatos</h2>
+    <div class="url-link">
+      <a href="https://mimaletin.espe.edu.ec/index.php/s/wt2Gsaacz3R9Bcx?path=%2FVINCULACION%2FPROYECTOS%20SOCIALES"
+      target="_blank" class="btn btn-outline-primary btn-sm">Para ver los Formatos de click aquí</a>
+    </div>
+  </div>
+  &nbsp;
+
+</div>

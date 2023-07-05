@@ -22,7 +22,7 @@
 					</ul>
 				</li>
 
-				<li class="nav-item dropdown">
+				<!-- <li class="nav-item dropdown">
 					<a class="nav-link active dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false">
 						<mat-icon>supervised_user_circle</mat-icon>Módulo de Investigación
@@ -38,31 +38,28 @@
 							<a class="dropdown-item" [routerLink]="['/dashboard-investigacion']">Dashboard</a>
 						</li>
 					</ul>
-				</li>
+				</li> -->
 
         <li class="nav-item dropdown">
-					<a class="nav-link active dropdown-toggle"  [routerLink]="['/listar-tareas-programadas-vinculacion']" id="navbarScrollingDropdown" role="button"
+					<a class="nav-link active dropdown-toggle"  [routerLink]="['/home-vinculacion']" id="navbarScrollingDropdown" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false">
 						<mat-icon>supervised_user_circle</mat-icon>Módulo de Vinculación
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-						<li>
-							<a class="dropdown-item" [routerLink]="['/listar-tareas-programadas-vinculacion']">Listar Tareas</a>
+            <li>
+							<a class="dropdown-item" [routerLink]="['/listar-proyectos-vinculacion']">Crear Proyecto</a>
 						</li>
-						<li>
-							<a class="dropdown-item" [routerLink]="['/monitoreo-proyecto-vinculacion']">Monitoreo proyecto</a>
+            <li>
+							<a class="dropdown-item" [routerLink]="['/listar-tareas-programadas-vinculacion']">Crear Tareas</a>
 						</li>
 						<li>
 							<a class="dropdown-item" [routerLink]="['/dashboard-vinculacion']">Dashboard</a>
 						</li>
             <li>
-							<a class="dropdown-item" [routerLink]="['/listar-proyectos-vinculacion']">Proyectos</a>
+							<a class="dropdown-item" [routerLink]="['/monitoreo-proyecto-vinculacion']">Monitoreo proyecto</a>
 						</li>
             <li>
 							<a class="dropdown-item" [routerLink]="['/listar-tareas-revisadas-vinculacion']">Tareas Aprobadas</a>
-						</li>
-            <li>
-							<a class="dropdown-item" href="https://mimaletin.espe.edu.ec/index.php/s/wt2Gsaacz3R9Bcx?path=%2FVINCULACION%2FPROYECTOS%20SOCIALES"  target="_blank">Formatos</a>
 						</li>
 					</ul>
 				</li>

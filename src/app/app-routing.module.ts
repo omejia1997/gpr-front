@@ -52,6 +52,7 @@ import { ListarTareasRevisadasVinculacionComponent } from './modulos/vinculacion
 import { DashboardVinculacionComponent } from './modulos/vinculacion/paginas/dashboard/dashboard-vinculacion.component';
 import { DashboardTareaVinculacionComponent } from './modulos/vinculacion/paginas/dashboard/dashboard-tarea/dashboard-tarea-vinculacion.component';
 import { EditarTareaComponent } from './pages/tarea/editar-tarea-programada/editar-tarea.component';
+import { HomeVinculacionComponent } from './modulos/vinculacion/paginas/home/home-vinculacion.component';
 
 const routes: Routes = [
  {path: '', redirectTo:'/login' ,pathMatch:'full'},
@@ -91,6 +92,7 @@ const routes: Routes = [
   {path: 'ver-tarea-docente', component:VerTareaDocenteComponent,canActivate:[AuthGuard]},
   {path: 'dashboard-investigacion', component:DashboardInvestigacionComponent,canActivate:[AuthGuard]},
   {path: 'dashboard-tarea-investigacion', component:DashboardTareaComponent,canActivate:[AuthGuard]},
+  {path: 'home-vinculacion', component:HomeVinculacionComponent,canActivate:[AuthGuard]},
   {path: 'crear-proyecto-vinculacion', component:CrearProyectoVinculacionComponent,canActivate:[AuthGuard]},
   {path: 'editar-proyecto-vinculacion', component:EditarProyectoVinculacionComponent,canActivate:[AuthGuard]},
   {path: 'listar-proyectos-vinculacion', component:ListarProyectosVinculacionComponent,canActivate:[AuthGuard]},

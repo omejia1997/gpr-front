@@ -77,6 +77,7 @@ import { ListarTareasRevisadasVinculacionComponent } from './modulos/vinculacion
 import { DashboardVinculacionComponent } from './modulos/vinculacion/paginas/dashboard/dashboard-vinculacion.component';
 import { DashboardTareaVinculacionComponent } from './modulos/vinculacion/paginas/dashboard/dashboard-tarea/dashboard-tarea-vinculacion.component';
 import { EditarTareaComponent } from './pages/tarea/editar-tarea-programada/editar-tarea.component';
+import { HomeVinculacionComponent } from './modulos/vinculacion/paginas/home/home-vinculacion.component';
 
 @NgModule({
   declarations: [
@@ -120,6 +121,7 @@ import { EditarTareaComponent } from './pages/tarea/editar-tarea-programada/edit
     DashboardInvestigacionComponent,
     ProgressBarComponent,
     DashboardTareaComponent,
+    HomeVinculacionComponent,
     CrearProyectoVinculacionComponent,
     EditarProyectoVinculacionComponent,
     ListarTareasProgramadasVinculacionComponent,
