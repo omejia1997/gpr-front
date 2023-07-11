@@ -3,6 +3,6 @@ export type Discapacidad = {
   tipoDiscapacidad?: string;
   porcentajeDiscapacidad?: number;
   numeroCarnet?: string;
-  enfermedadCatastrófica?: string;
+  enfermedadCatastrofica?: string;
   tipoEnfermedadCatastrofica?: string;
 };

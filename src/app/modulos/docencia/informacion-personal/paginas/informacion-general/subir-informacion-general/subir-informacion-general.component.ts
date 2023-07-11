@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { DocenteInformacion } from '../../../modelos/DocenteInformacion';
+import { Discapacidad } from '../../../modelos/Discapacidad';
 
 @Component({
   selector: 'app-subir-informacion-general',
@@ -12,6 +13,7 @@ export class SubirInformacionGeneralComponent implements OnInit {
 
   blockedDocument: boolean = false;
   docente:DocenteInformacion={};
+  discapacidad: Discapacidad={};
 
   constructor(private router:Router,private messageService: MessageService) { }
 

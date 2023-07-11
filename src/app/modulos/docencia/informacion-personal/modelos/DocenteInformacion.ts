@@ -26,7 +26,7 @@ export type DocenteInformacion = {
   telefonoTrabajo?: string;
   extension?: string;
   contactoEmergencia?: ContactoEmergencia;
-  informacionBancaria?:InformacionBancaria;
+  informacionBancaria?: InformacionBancaria;
   formacionAcademica?:FormacionAcademica;
   experienciaProfesionales?: ExperienciaProfesional[];
   fechaEntrega?:Date;

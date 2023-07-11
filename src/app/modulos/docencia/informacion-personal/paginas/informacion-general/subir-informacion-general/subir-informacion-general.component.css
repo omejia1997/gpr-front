@@ -21,3 +21,16 @@ form{
 mat-icon{
 font-size: 18px;;
 }
+
+.header-tab{
+  color: brown;
+}
+
+.container-document{
+  display: flex;
+}
+
+.container-align{
+  width: 95%;
+  margin: auto;
+}

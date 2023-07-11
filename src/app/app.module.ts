@@ -79,6 +79,7 @@ import { DashboardTareaVinculacionComponent } from './modulos/vinculacion/pagina
 import { EditarTareaComponent } from './pages/tarea/editar-tarea-programada/editar-tarea.component';
 import { HomeVinculacionComponent } from './modulos/vinculacion/paginas/home/home-vinculacion.component';
 import { SubirInformacionGeneralComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/subir-informacion-general/subir-informacion-general.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -161,7 +162,8 @@ import { SubirInformacionGeneralComponent } from './modulos/docencia/informacion
     ToastModule,
     BlockUIModule,
     NgxChartsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTabsModule
     //ComponentsModule
     //PagesModule
   ],
