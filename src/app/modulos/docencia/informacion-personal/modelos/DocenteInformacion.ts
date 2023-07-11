@@ -1,0 +1,33 @@
+import { ContactoEmergencia } from "./ContactoEmergencia";
+import { Discapacidad } from "./Discapacidad";
+import { Domicilio } from "./Domicilio";
+import { ExperienciaProfesional } from "./ExperienciaProfesional";
+import { FormacionAcademica } from "./FormacionAcademica";
+import { InformacionBancaria } from "./InformacionBancaria";
+
+export type DocenteInformacion = {
+  id?: string;
+  tipoDocumento?: string;
+  numeroDocumento?: string;
+  nombreCompleto?: string;
+  fechaNacimiento?: Date;
+  genero?: string;
+  estadoCivil?: string;
+  nacionalidad?: string;
+  edad?: number;
+  tipoSangre?: string;
+  aniosResidencia?: number;
+  etnia?: string;
+  grupoEtnico?: string;
+  correoPrincipal?: string;
+  correoAlternativo?: string;
+  discapacidad?: Discapacidad;
+  domicilio?: Domicilio;
+  telefonoTrabajo?: string;
+  extension?: string;
+  contactoEmergencia?: ContactoEmergencia;
+  informacionBancaria?:InformacionBancaria;
+  formacionAcademica?:FormacionAcademica;
+  experienciaProfesionales?: ExperienciaProfesional[];
+  fechaEntrega?:Date;
+};

@@ -78,6 +78,7 @@ import { DashboardVinculacionComponent } from './modulos/vinculacion/paginas/das
 import { DashboardTareaVinculacionComponent } from './modulos/vinculacion/paginas/dashboard/dashboard-tarea/dashboard-tarea-vinculacion.component';
 import { EditarTareaComponent } from './pages/tarea/editar-tarea-programada/editar-tarea.component';
 import { HomeVinculacionComponent } from './modulos/vinculacion/paginas/home/home-vinculacion.component';
+import { SubirInformacionGeneralComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/subir-informacion-general/subir-informacion-general.component';
 
 @NgModule({
   declarations: [
@@ -136,7 +137,9 @@ import { HomeVinculacionComponent } from './modulos/vinculacion/paginas/home/hom
     VerTareaDocenteVinculacionComponent,
     ListarTareasRevisadasVinculacionComponent,
     DashboardVinculacionComponent,
-    DashboardTareaVinculacionComponent
+    DashboardTareaVinculacionComponent,
+    //Docencia
+    SubirInformacionGeneralComponent
   ],
   imports: [
     BrowserModule,

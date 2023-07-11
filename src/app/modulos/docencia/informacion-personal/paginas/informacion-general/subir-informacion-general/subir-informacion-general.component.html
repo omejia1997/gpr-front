@@ -1,0 +1,58 @@
+<app-navbar></app-navbar>
+<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-blockUI [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="overlay">
+      <p-progressSpinner *ngIf="blockedDocument"
+        [style]="{width: '150px', height: '150px', margin:'auto'}"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </div>
+    <div class="col-md-5" style="margin: auto;">
+      <button type="button" (click)="regresar()" class="btn btn-dark btn-sm btn-regresar">Regresar</button>
+      <h2 style="text-align: center;"><mat-icon>device_hub</mat-icon> HOJA DE VIDA ESPE</h2>
+      INFORMACIÓN PERSONAL
+      <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
+        Datos Personales
+        <div class="form-group">
+          <label for="tipoDocumento"><mat-icon>assignment</mat-icon>Tipo de Documento:</label>
+          <input [(ngModel)]="docente.tipoDocumento" id="tipoDocumento" name="tipoDocumento" type="text"
+            class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="numeroDocumento"><mat-icon> scatter_plot</mat-icon>N&#8728; de documento:</label>
+          <input [disabled]="true" [(ngModel)]="docente.numeroDocumento" name="numeroDocumento" type="text"
+            class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label for="nombreCompleto"><mat-icon>description</mat-icon>Apellidos y Nombres:</label>
+          <input [(ngModel)]="docente.nombreCompleto" id="nombreCompleto" name="nombreCompleto"
+            type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="fechaNacimiento"><mat-icon>description</mat-icon>Fecha de Nacimiento</label>
+          <input [(ngModel)]="docente.fechaNacimiento" id="fechaNacimiento" name="fechaNacimiento"
+            type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="genero"><mat-icon>description</mat-icon>Género</label>
+          <input [(ngModel)]="docente.genero" id="genero" name="genero"
+            type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="estadoCivil"><mat-icon>description</mat-icon>Estado civil</label>
+          <input [(ngModel)]="docente.estadoCivil" id="estadoCivil" name="estadoCivil"
+            type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label for="estadoCivil"><mat-icon>description</mat-icon>Estado civil</label>
+          <input [(ngModel)]="docente.estadoCivil" id="estadoCivil" name="estadoCivil"
+            type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-sm form-control">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
