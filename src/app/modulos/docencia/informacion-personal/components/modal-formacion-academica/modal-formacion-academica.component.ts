@@ -6,9 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-modal-formacion-academica',
   template: `
-    <h2>Formulario</h2>
+    <!-- <h2>Formulario</h2> -->
     <form [formGroup]="myForm" (ngSubmit)="submitForm()">
-      <!-- Agrega los campos de tu formulario aquí -->
       <mat-form-field class="custom-form-field">
         <input
           matInput
@@ -120,7 +119,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./modal-formacion-academica.component.css'],
 })
 export class ModalFormacionAcademicaComponent implements OnInit {
-  formacionAcademicaAdicional: FormacionAcademicaAdicional = {};
   myForm!: FormGroup;
   @Inject(MAT_DIALOG_DATA) public data: any
 

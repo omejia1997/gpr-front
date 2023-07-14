@@ -15,6 +15,7 @@ import { DocenteInformacionService } from '../../../servicios/DocenteInformacion
 import { MatDialog } from '@angular/material/dialog';
 import { ModalFormacionAcademicaComponent } from '../../../components/modal-formacion-academica/modal-formacion-academica.component';
 import { FormacionAcademicaAdicional } from '../../../modelos/FormacionAcademicaAdicional';
+import { ModalExperienciaProfesionalComponent } from '../../../components/modal-experiencia-profesional/modal-experiencia-profesional.component';
 
 @Component({
   selector: 'app-subir-informacion-general',
@@ -145,6 +146,7 @@ export class SubirInformacionGeneralComponent implements OnInit {
     this.gruposEtnicos$ = this.docenteInformacionService.loadGruposEtnicos();
     this.paises$=this.docenteInformacionService.loadPaises();
     this.formacionAcademica.formacionAcademicaAdicionales=[];
+    this.docente.experienciaProfesionales=[];
   }
 
   ngOnInit() {
@@ -294,10 +296,10 @@ export class SubirInformacionGeneralComponent implements OnInit {
     }
   }
 
-  recibirDatosFormulario(datos: any) {
-    console.log(datos);
-    // Lógica adicional con los datos del formulario
-  }
+  // recibirDatosFormulario(datos: any) {
+  //   console.log(datos);
+  //   // Lógica adicional con los datos del formulario
+  // }
 
   save() {
     this.docente.discapacidad = this.discapacidad;
@@ -347,10 +349,23 @@ export class SubirInformacionGeneralComponent implements OnInit {
       }
     });
   }
+
   eliminarFormacionAdicional(FormacionAcademicaAdicional: FormacionAcademicaAdicional) {
     this.formacionAcademica.formacionAcademicaAdicionales = this.formacionAcademica.formacionAcademicaAdicionales?.filter(
       (item) =>
         item.numeroSenescyt !== FormacionAcademicaAdicional.numeroSenescyt
     );
+  }
+
+  openModalExperienciaProfesional() {
+    const dialogRef = this.dialog.open(ModalExperienciaProfesionalComponent,{
+      width: '450px'
+    });
+
+    dialogRef.afterClosed().subscribe((formValue) => {
+      if (formValue) {
+        this.docente.experienciaProfesionales?.push(formValue);
+      }
+    });
   }
 }

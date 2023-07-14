@@ -58,3 +58,9 @@ mat-tab-group{
 .row{
   margin: 5px;
 }
+#butonModalFormacionAcademica{
+  margin: auto;
+}
+.table-responsive{
+  margin-top: 10px;
+}

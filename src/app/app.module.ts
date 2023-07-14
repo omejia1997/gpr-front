@@ -82,6 +82,8 @@ import { SubirInformacionGeneralComponent } from './modulos/docencia/informacion
 import {MatTabsModule} from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog'
 import { ModalFormacionAcademicaComponent } from './modulos/docencia/informacion-personal/components/modal-formacion-academica/modal-formacion-academica.component';
+import { ModalExperienciaProfesionalComponent } from './modulos/docencia/informacion-personal/components/modal-experiencia-profesional/modal-experiencia-profesional.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -143,7 +145,8 @@ import { ModalFormacionAcademicaComponent } from './modulos/docencia/informacion
     DashboardTareaVinculacionComponent,
     //Docencia
     SubirInformacionGeneralComponent,
-    ModalFormacionAcademicaComponent
+    ModalFormacionAcademicaComponent,
+    ModalExperienciaProfesionalComponent
   ],
   imports: [
     BrowserModule,
@@ -167,7 +170,8 @@ import { ModalFormacionAcademicaComponent } from './modulos/docencia/informacion
     NgxChartsModule,
     MatPaginatorModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
     //ComponentsModule
     //PagesModule
   ],

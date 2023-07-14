@@ -617,9 +617,13 @@
               <div class="row">
                 <hr>
                 <h2>Formación académica adicional</h2>
-                <button type="button" (click)="openModalFormacionAcademicaAdicional()" class="btn btn-outline-success btn-sm">Abrir Modal</button>
+                <div style="display: flex;">
+                  <button id="butonModalFormacionAcademica" type="button" (click)="openModalFormacionAcademicaAdicional()"
+                    class="btn btn-outline-success btn-sm">Agregar Formación Adicional</button>
+                </div>
                 <div class="table-responsive" *ngIf="formacionAcademica.formacionAcademicaAdicionales">
-                  <table class="table table-hover text-center table-sm" *ngIf="formacionAcademica.formacionAcademicaAdicionales.length!=0">
+                  <table class="table table-hover text-center table-sm"
+                    *ngIf="formacionAcademica.formacionAcademicaAdicionales.length!=0">
                     <thead class="table-dark">
                       <tr>
                         <th>Nivel de Instrucción</th>
@@ -630,7 +634,7 @@
                         <th>Fecha de Graduación</th>
                         <th>País</th>
                         <th>Tiempo de Estudio en Años</th>
-                        <th>Acciones</th>
+                        <th>Acción</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -654,7 +658,6 @@
               </div>
             </div>
           </div>
-
         </mat-tab>
         <mat-tab>
           <ng-template mat-tab-label>
@@ -662,7 +665,50 @@
           </ng-template>
           <div class="container-document">
             <div class="container-align">
-              Hola Tab1
+              <div class="contenedor">
+                <div class="centrar-elemento">
+                  <h2> EXPERIENCIA PROFESIONAL (últimos 5 años) </h2>
+                  <button type="button" (click)="openModalExperienciaProfesional()"
+                    class="btn btn-outline-success btn-sm">Agregar Experiencia</button>
+                  <div class="table-responsive" *ngIf="docente.experienciaProfesionales">
+                    <table class="table table-hover text-center table-sm" *ngIf="docente.experienciaProfesionales.length!=0" >
+                      <thead class="table-dark">
+                        <tr>
+                          <th>Institución</th>
+                          <th>Puesto</th>
+                          <th>Unidad administrativa</th>
+                          <th>Tipo de Institución</th>
+                          <th>Modalidad de contratación</th>
+                          <th>Fecha de ingreso</th>
+                          <th>Motivo de salida laboral</th>
+                          <th>Fecha de salida</th>
+                          <th>País</th>
+                          <th>Provincia</th>
+                          <th>Acción</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let experienciaProfesional of docente.experienciaProfesionales">
+                          <td>{{ experienciaProfesional.nombreInstitucion }}</td>
+                          <td>{{ experienciaProfesional.puesto }}</td>
+                          <td>{{ experienciaProfesional.unidadAdministrativa }}</td>
+                          <td>{{ experienciaProfesional.tipoInstitucion }}</td>
+                          <td>{{ experienciaProfesional.modalidadContratacion }}</td>
+                          <td>{{ experienciaProfesional.fechaIngreso }}</td>
+                          <td>{{ experienciaProfesional.motivoSalidaLaboral }}</td>
+                          <td>{{ experienciaProfesional.fechaSalida }}</td>
+                          <td>{{ experienciaProfesional.pais }}</td>
+                          <td>{{ experienciaProfesional.provincia }}</td>
+                          <td>
+                            <!-- <mat-icon (click)="editarTarea(tarea)">edit</mat-icon> -->
+                            <mat-icon (click)="eliminarFormacionAdicional(formacionAcademica)">delete</mat-icon>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </mat-tab>
@@ -674,60 +720,6 @@
 
     <div class="col-md-5" style="margin: auto;">
 
-
-      <!-- Formación académica -->
-
-      <div class="form-group" *ngIf="docente.formacionAcademica">
-        <div>
-
-        </div>
-        <div>
-          <label for="institucion"><mat-icon>description</mat-icon>institucion</label>
-          <input [(ngModel)]="docente.formacionAcademica.institucion" id="institucion" name="institucion" type="text"
-            class="form-control form-control-sm" />
-        </div>
-        <div>
-          <label for="tituloObtenido"><mat-icon>description</mat-icon>tituloObtenido</label>
-          <input [(ngModel)]="docente.formacionAcademica.tituloObtenido" id="tituloObtenido" name="tituloObtenido"
-            type="text" class="form-control form-control-sm" />
-        </div>
-        <div>
-          <label for="tiempoEstudio"><mat-icon>description</mat-icon>tiempoEstudio</label>
-          <input [(ngModel)]="docente.formacionAcademica.tiempoEstudio" id="tiempoEstudio" name="tiempoEstudio"
-            type="text" class="form-control form-control-sm" />
-        </div>
-        <div>
-          <label for="periodoEstudio"><mat-icon>description</mat-icon>periodoEstudio</label>
-          <input [(ngModel)]="docente.formacionAcademica.periodoEstudio" id="periodoEstudio" name="periodoEstudio"
-            type="text" class="form-control form-control-sm" />
-        </div>
-        <div>
-          <label for="numeroRegistroSenescyt"><mat-icon>description</mat-icon>numeroRegistroSenescyt</label>
-          <input [(ngModel)]="docente.formacionAcademica.numeroRegistroSenescyt" id="numeroRegistroSenescyt"
-            name="numeroRegistroSenescyt" type="text" class="form-control form-control-sm" />
-        </div>
-        <div>
-          <label for="fechaRegistroSenescyt"><mat-icon>description</mat-icon>fechaRegistroSenescyt</label>
-          <input [(ngModel)]="docente.formacionAcademica.fechaRegistroSenescyt" id="fechaRegistroSenescyt"
-            name="fechaRegistroSenescyt" type="text" class="form-control form-control-sm" />
-        </div>
-        <div>
-          <label for="pais"><mat-icon>description</mat-icon>pais</label>
-          <input [(ngModel)]="docente.formacionAcademica.pais" id="pais" name="pais" type="text"
-            class="form-control form-control-sm" />
-        </div>
-        <div>
-          <label for="fechaGraduacion"><mat-icon>description</mat-icon>fechaGraduacion</label>
-          <input [(ngModel)]="docente.formacionAcademica.pais" id="fechaGraduacion" name="fechaGraduacion" type="text"
-            class="form-control form-control-sm" />
-        </div>
-        <!-- lista con formaciones académica adicionales -->
-      </div>
-
-      <!-- Experiencia profesional -->
-
     </div>
   </div>
 </div>
-
-
