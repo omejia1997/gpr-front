@@ -1,0 +1,11 @@
+.custom-form-field{
+  width: 95%;
+}
+.custom-form-field-medium{
+  width: 45%;
+  margin-right: 10px;
+}
+
+.custom-form-field.mat-focused .mat-form-field-underline::before {
+  background-color: blue; /* Cambia el color de la línea inferior cuando está enfocado */
+}

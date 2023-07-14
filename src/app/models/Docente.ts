@@ -1,4 +1,3 @@
-import { Cargo } from "./Cargo";
 import { CargoDocente } from "./CargoDocente";
 import { TareaDocente } from "./TareaDocente";
 
@@ -10,6 +9,7 @@ export type Docente = {
   cedulaDocente?: string;
   telefonoDocente?: string;
   correoDocente?: string;
+  sexo?: string;
   //codCargo?:Cargo;
   numLogueo?: number;
   tareaDocenteList?: TareaDocente[];

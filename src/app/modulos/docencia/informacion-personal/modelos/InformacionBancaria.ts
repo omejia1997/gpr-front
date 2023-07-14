@@ -1,5 +1,5 @@
 export type InformacionBancaria = {
-  tipoinstitucionFinanciera: string;
+  tipoinstitucionFinanciera?: string;
   nombreinstitucionFinanciera?: string;
   tipoCuenta?: string;
   numeroCuenta?: string;

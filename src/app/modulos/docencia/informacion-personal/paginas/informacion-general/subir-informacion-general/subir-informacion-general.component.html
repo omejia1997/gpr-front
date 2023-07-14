@@ -9,416 +9,692 @@
         styleClass="custom-spinner"></p-progressSpinner>
     </div>
 
-    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" selectedIndex="0" style="border: 1px solid red;">
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <span class="header-tab">Información General</span>
-        </ng-template>
-        <div class="container-document">
-          <div class="container-align">
-            <div class="row">
-              <div class="col-2">
-                <label for="tipoDocumento"><mat-icon>assignment</mat-icon>Tipo de Documento:</label>
+
+    <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" selectedIndex="0">
+        <mat-tab class="mat-tab-container">
+          <ng-template mat-tab-label>
+            <span class="header-tab">Información General</span>
+          </ng-template>
+          <div class="container-document">
+            <div class="container-align">
+              <div class="contenedor">
+                <div class="centrar-elemento">
+                  <!-- <h1> HOJA DE VIDA ESPE</h1> -->
+                  <h2> INFORMACIÓN PERSONAL</h2>
+                </div>
               </div>
-              <div class="col-4">
-                <input [(ngModel)]="docente.tipoDocumento" id="tipoDocumento" name="tipoDocumento" type="text"
-                  class="form-control form-control-sm" required />
+              <div class="row">
+                <div class="col-2">
+                  <label for="tipoDocumento"><mat-icon>assignment</mat-icon>Tipo de Documento:</label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="tipoDocumento" name="tipoDocumento"
+                    [(ngModel)]="docente.tipoDocumento" (change)="detectarCambioTipoDocumento()">
+                    <option [value]="tipoDocumento" *ngFor="let tipoDocumento of comboTipoDocumento"
+                      [selected]="tipoDocumento === docente.tipoDocumento">
+                      {{tipoDocumento}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  <label for="numeroDocumento"><mat-icon> scatter_plot</mat-icon>N&#8728; de documento:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="docente.numeroDocumento" [disabled]="checkNumeroDocumento" id="numeroDocumento"
+                    name="numeroDocumento" type="text" class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-2">
-                <label for="numeroDocumento"><mat-icon> scatter_plot</mat-icon>N&#8728; de documento:</label>
+              <div class="row">
+                <div class="col-2">
+                  <label for="nombreCompleto"><mat-icon>description</mat-icon>Apellidos y Nombres:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="docente.nombreCompleto" [disabled]="checkInformacionDocente" id="nombreCompleto"
+                    name="nombreCompleto" type="text" class="form-control form-control-sm" />
+                </div>
+                <div class="col-2">
+                  <label for="fechaNacimiento"><mat-icon>description</mat-icon>Fecha de Nacimiento:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="docente.fechaNacimiento" id="fechaNacimiento" name="fechaNacimiento" type="date"
+                    class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-4">
-                <!-- <input [disabled]="true" [(ngModel)]="docente.numeroDocumento" name="numeroDocumento" type="text"
-                  class="form-control" required /> -->
-                <input [(ngModel)]="docente.numeroDocumento" id="numeroDocumento" name="numeroDocumento" type="text"
-                  class="form-control form-control-sm" required />
+              <div class="row">
+                <div class="col-2">
+                  <label for="genero"><mat-icon>description</mat-icon>Género</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="docente.genero" [disabled]="checkInformacionDocente" id="genero" name="genero"
+                    type="text" class="form-control form-control-sm" />
+                </div>
+                <div class="col-2">
+                  <label for="estadoCivil"><mat-icon>description</mat-icon>Estado civil</label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="estadoCivil" name="estadoCivil"
+                    [(ngModel)]="docente.estadoCivil">
+                    <option [value]="estadoCivil" *ngFor="let estadoCivil of comboEstadoCivil"
+                      [selected]="estadoCivil === docente.estadoCivil">
+                      {{estadoCivil}}
+                    </option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-2">
-                <label for="nombreCompleto"><mat-icon>description</mat-icon>Apellidos y Nombres:</label>
+              <div class="row">
+                <div class="col-2">
+                  <label for="nacionalidad"><mat-icon>description</mat-icon>Nacionalidad</label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="nacionalidad" name="nacionalidad"
+                    [(ngModel)]="docente.nacionalidad">
+                    <option [value]="nacionalidad" *ngFor="let nacionalidad of nacionalidades"
+                      [selected]="nacionalidad === docente.nacionalidad">
+                      {{nacionalidad}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  <label for="aniosResidencia"><mat-icon>description</mat-icon>En caso de extranjero, indicar años de
+                    residencia:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="docente.aniosResidencia" id="aniosResidencia" name="aniosResidencia" type="text"
+                    class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-4">
-                <input [(ngModel)]="docente.nombreCompleto" id="nombreCompleto" name="nombreCompleto" type="text"
-                  class="form-control" />
+              <div class="row">
+                <div class="col-2">
+                  <label for="etnia"><mat-icon>description</mat-icon>Auto identificación étnica:</label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="etnia" name="etnia" [(ngModel)]="docente.etnia">
+                    <option [value]="etnia" *ngFor="let etnia of comboEtnia" [selected]="etnia === docente.etnia">
+                      {{etnia}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  <label for="grupoEtnico"><mat-icon>description</mat-icon>En caso de ser indígena, indique el grupo
+                    étnico:</label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="grupoEtnico" name="grupoEtnico"
+                    [(ngModel)]="docente.grupoEtnico">
+                    <option [value]="grupoEtnico" *ngFor="let grupoEtnico of gruposEtnicos"
+                      [selected]="grupoEtnico === docente.grupoEtnico">
+                      {{grupoEtnico}}
+                    </option>
+                  </select>
+                </div>
               </div>
-              <div class="col-2">
-                <label for="fechaNacimiento"><mat-icon>description</mat-icon>Fecha de Nacimiento:</label>
+              <div class="row">
+                <div class="col-2">
+                  <label for="correoPrincipal"><mat-icon>description</mat-icon>Correo electrónico principal:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="docente.correoPrincipal" [disabled]="checkInformacionDocente" id="correoPrincipal"
+                    name="correoPrincipal" type="text" class="form-control form-control-sm" />
+                </div>
+                <div class="col-2">
+                  <label for="correoAlternativo"><mat-icon>description</mat-icon>Correo electrónico alternativo:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="docente.correoAlternativo" id="correoAlternativo" name="correoAlternativo"
+                    type="text" class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-4">
-                <input [(ngModel)]="docente.fechaNacimiento" id="fechaNacimiento" name="fechaNacimiento" type="text"
-                  class="form-control" />
+              <div class="row">
+                <hr>
+                <h2>Información adicional de discapacidad y/o enfermedad catastrófica</h2>
+                <div class="col-2">
+                  <label for="discapacidadEspecial"><mat-icon>description</mat-icon>Discapacidad Especial:</label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="discapacidadEspecial" name="discapacidadEspecial"
+                    [(ngModel)]="discapacidad.discapacidadEspecial" (change)="detectarCambioInputDiscapacidad()">
+                    <option [value]="opcionCerrada" *ngFor="let opcionCerrada of comboOpcionesCerradas"
+                      [selected]="opcionCerrada === discapacidad.discapacidadEspecial">
+                      {{opcionCerrada}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  <label for="enfermedadCatastrofica"><mat-icon>description</mat-icon>Enfermedad Catastrófica:</label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="enfermedadCatastrofica" name="enfermedadCatastrofica"
+                    [(ngModel)]="discapacidad.enfermedadCatastrofica"
+                    (change)="detectarCambioInputEnfermedadCatastrofica()">
+                    <option [value]="opcionCerrada" *ngFor="let opcionCerrada of comboOpcionesCerradas"
+                      [selected]="opcionCerrada === discapacidad.enfermedadCatastrofica">
+                      {{opcionCerrada}}
+                    </option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-2">
-                <label for="genero"><mat-icon>description</mat-icon>Género</label>
+              <div class="row">
+                <div class="col-2">
+                  <label for="tipoDiscapacidad"><mat-icon>description</mat-icon>Tipo de Discapacidad:</label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="tipoDiscapacidad" name="tipoDiscapacidad"
+                    [(ngModel)]="discapacidad.tipoDiscapacidad" [disabled]="checkDiscapacidadEspecial">
+                    <option [value]="tipoDiscapacidad" *ngFor="let tipoDiscapacidad of comboTipoDiscapacidad"
+                      [selected]="tipoDiscapacidad === discapacidad.tipoDiscapacidad">
+                      {{tipoDiscapacidad}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  <label for="tipoEnfermedadCatastrofica"><mat-icon>description</mat-icon>Tipo de Enfermedad
+                    Catastrófica:</label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="tipoEnfermedadCatastrofica"
+                    name="tipoEnfermedadCatastrofica" [(ngModel)]="discapacidad.tipoEnfermedadCatastrofica"
+                    [disabled]="checkEnfermedadCatastrofica">
+                    <option [value]="tipoEnfermedadCatastrofica"
+                      *ngFor="let tipoEnfermedadCatastrofica of comboTipoEnfermedadCatastrofica"
+                      [selected]="tipoEnfermedadCatastrofica === discapacidad.tipoEnfermedadCatastrofica">
+                      {{tipoEnfermedadCatastrofica}}
+                    </option>
+                  </select>
+                </div>
               </div>
-              <div class="col-4">
-                <input [(ngModel)]="docente.genero" id="genero" name="genero" type="text" class="form-control" />
+              <div class="row">
+                <div class="col-2">
+                  <label for="porcentajeDiscapacidad"><mat-icon>description</mat-icon>% de discapacidad:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="discapacidad.porcentajeDiscapacidad" [disabled]="checkDiscapacidadEspecial"
+                    id="porcentajeDiscapacidad" name="porcentajeDiscapacidad" type="text"
+                    class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-2">
-                <label for="estadoCivil"><mat-icon>description</mat-icon>Estado civil</label>
+              <div class="row">
+                <div class="col-2">
+                  <label for="numeroCarnet"><mat-icon>description</mat-icon>No. Carnet M.S.P.:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="discapacidad.numeroCarnet" [disabled]="checkDiscapacidadEspecial"
+                    id="numeroCarnet" name="numeroCarnet" type="text" class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-4">
-                <input [(ngModel)]="docente.estadoCivil" id="estadoCivil" name="estadoCivil" type="text"
-                  class="form-control" />
+              <div class="row">
+                <hr>
+                <h2>Dirección domiciliaria permanente</h2>
+                <div class="col-2">
+                  <label for="provincia"><mat-icon>description</mat-icon>Provincia</label>
+                </div>
+                <div class="col-4">
+                  <select id="provincia" name="provincia" class="form-select form-select-sm"
+                    [(ngModel)]="domicilio.provincia" (change)="onProvinciaChange()">
+                    <option [value]="provinciaId" *ngFor="let provinciaId of provinciaIds"
+                      [selected]="provinciaId === domicilio.provincia">{{ provincias[provinciaId].provincia }}</option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  <label for="canton"><mat-icon>description</mat-icon>Canton</label>
+                </div>
+                <div class="col-4">
+                  <select id="canton" name="canton" class="form-select form-select-sm" [(ngModel)]="domicilio.canton"
+                    (change)="onCantonChange()">
+                    <option [value]="cantonId" *ngFor="let cantonId of cantonIds"
+                      [selected]="cantonId === domicilio.canton">{{ cantones[cantonId].canton }}</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-2">
-                <label for="nacionalidad"><mat-icon>description</mat-icon>Nacionalidad</label>
+              <div class="row">
+                <div class="col-2">
+                  <label for="parroquia"><mat-icon>description</mat-icon>Parroquia:</label>
+                </div>
+                <div class="col-4">
+                  <!-- <select id="parroquia" name="parroquia" class="form-select form-select-sm" [(ngModel)]="domicilio.parroquia">
+                    <option [value]="parroquia.id" *ngFor="let parroquia of parroquias" [selected]="parroquia === domicilio.parroquia">{{ parroquia.nombre }}</option>
+                  </select> -->
+                  <select id="parroquia" name="parroquia" class="form-select form-select-sm"
+                    [(ngModel)]="domicilio.parroquia">
+                    <option [value]="parroquia.nombre" *ngFor="let parroquia of parroquias"
+                      [selected]="parroquia.nombre== domicilio.parroquia">{{ parroquia.nombre }}</option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  <label for="callePrincipal"><mat-icon>description</mat-icon>CallePrincipal</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="domicilio.callePrincipal" id="callePrincipal" name="callePrincipal" type="text"
+                    class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-4">
-                <input [(ngModel)]="docente.nacionalidad" id="nacionalidad" name="nacionalidad" type="text"
-                  class="form-control" />
+              <div class="row">
+                <div class="col-2">
+                  <label for="calleSecundaria"><mat-icon>description</mat-icon>Calle Secundaria:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="domicilio.calleSecundaria" id="calleSecundaria" name="calleSecundaria" type="text"
+                    class="form-control form-control-sm" />
+                </div>
+                <div class="col-2">
+                  <label for="numeroDomicilio"><mat-icon>description</mat-icon>Número de Domicilio:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="domicilio.numeroDomicilio" id="numeroDomicilio" name="numeroDomicilio" type="text"
+                    class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-2">
-                <label for="aniosResidencia"><mat-icon>description</mat-icon>En caso de extranjero, indicar años de
-                  residencia:</label>
+              <div class="row">
+                <div class="col-2">
+                  <label for="referencia"><mat-icon>description</mat-icon>Referencia:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="domicilio.referencia" id="referencia" name="referencia" type="text"
+                    class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-4">
-                <input [(ngModel)]="docente.aniosResidencia" id="aniosResidencia" name="aniosResidencia" type="text"
-                  class="form-control" />
+              <div class="row">
+                <div class="col-2">
+                  <label for="telefonoDomicilio"><mat-icon>description</mat-icon>Teléfono domicilio: </label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="domicilio.telefonoDomicilio" id="telefonoDomicilio" name="telefonoDomicilio"
+                    type="text" class="form-control form-control-sm" />
+                </div>
+                <div class="col-2">
+                  <label for="telefonoCelular"><mat-icon>description</mat-icon>Teléfono celular: </label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="domicilio.telefonoCelular" id="telefonoCelular" name="telefonoCelular" type="text"
+                    class="form-control form-control-sm" />
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-2">
-                <label for="etnia"><mat-icon>description</mat-icon>Etnia</label>
+              <div class="row">
+                <div class="col-2">
+                  <label for="telefonoTrabajo"><mat-icon>description</mat-icon>Teléfono trabajo: </label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="docente.telefonoTrabajo" id="telefonoTrabajo" name="telefonoTrabajo" type="text"
+                    class="form-control form-control-sm" />
+                </div>
+                <div class="col-2">
+                  <label for="extension"><mat-icon>description</mat-icon>Extensión: </label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="docente.extension" id="extension" name="extension" type="text"
+                    class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-4">
-                <input [(ngModel)]="docente.etnia" id="etnia" name="etnia" type="text" class="form-control" />
+              <div class="row">
+                <hr>
+                <h2>Contacto de emergencia</h2>
+                <div class="col-2">
+                  <label for="provincia"><mat-icon>description</mat-icon>Apellidos y Nombres:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="contactoEmergencia.nombresCompletos" id="nombresCompletos" name="nombresCompletos"
+                    type="text" class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-2">
-                <label for="grupoEtnico"><mat-icon>description</mat-icon>Grupo Etnico</label>
+              <div class="row">
+                <div class="col-2">
+                  <label for="tipoDocumentoContacto"><mat-icon>assignment</mat-icon>Tipo de Documento:</label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="tipoDocumentoContacto" name="tipoDocumentoContacto"
+                    [(ngModel)]="contactoEmergencia.tipoDocumento">
+                    <option [value]="tipoDocumento" *ngFor="let tipoDocumento of comboTipoDocumento"
+                      [selected]="tipoDocumento === contactoEmergencia.tipoDocumento">
+                      {{tipoDocumento}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  <label for="numeroDocumentoContacto"><mat-icon> scatter_plot</mat-icon>N&#8728; de documento:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="contactoEmergencia.numeroDocumento" id="numeroDocumentoContacto"
+                    name="numeroDocumentoContacto" type="text" class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-4">
-                <input [(ngModel)]="docente.etnia" id="grupoEtnico" name="grupoEtnico" type="text"
-                  class="form-control" />
+              <div class="row">
+                <div class="col-2">
+                  <label for="parentesco"><mat-icon>description</mat-icon>Parentesco:</label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="parentesco" name="parentesco"
+                    [(ngModel)]="contactoEmergencia.parentesco">
+                    <option [value]="parentesco" *ngFor="let parentesco of comboParentesco"
+                      [selected]="parentesco === contactoEmergencia.parentesco">
+                      {{parentesco}}
+                    </option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-2">
-                <label for="correoPrincipal"><mat-icon>description</mat-icon>Correo Principal</label>
+              <div class="row">
+                <hr>
+                <h2>Dirección domiciliaria del Contacto</h2>
+                <div class="col-2">
+                  <label for="provinciaContacto"><mat-icon>description</mat-icon>Provincia</label>
+                </div>
+                <div class="col-4">
+                  <select id="provinciaContacto" name="provinciaContacto" class="form-select form-select-sm"
+                    [(ngModel)]="domicilioContacto.provincia" (change)="onProvinciaContactoChange()">
+                    <option [value]="provinciaId" *ngFor="let provinciaId of provinciaIds"
+                      [selected]="provinciaId === domicilioContacto.provincia">{{ provincias[provinciaId].provincia }}
+                    </option>
+                  </select>
+                  <!-- <input [(ngModel)]="domicilioContacto.provincia" id="provinciaContacto" name="provinciaContacto"
+                    type="text" class="form-control form-control-sm" /> -->
+                </div>
+                <div class="col-2">
+                  <label for="cantonContacto"><mat-icon>description</mat-icon>Canton</label>
+                </div>
+                <div class="col-4">
+                  <select id="cantonContacto" name="cantonContacto" class="form-select form-select-sm"
+                    [(ngModel)]="domicilioContacto.canton" (change)="onCantonContactoChange()">
+                    <option [value]="cantonId" *ngFor="let cantonId of cantonIdsContacto"
+                      [selected]="cantonId === domicilio.canton">{{ cantonesContacto[cantonId].canton }}</option>
+                  </select>
+                  <!-- <input [(ngModel)]="domicilioContacto.canton" id="cantonContacto" name="cantonContacto" type="text"
+                    class="form-control form-control-sm" /> -->
+                </div>
               </div>
-              <div class="col-4">
-                <input [(ngModel)]="docente.correoPrincipal" id="correoPrincipal" name="correoPrincipal" type="text"
-                  class="form-control" />
+              <div class="row">
+                <div class="col-2">
+                  <label for="parroquiaContacto"><mat-icon>description</mat-icon>Parroquia:</label>
+                </div>
+                <div class="col-4">
+                  <!-- <select id="parroquiaContacto" name="parroquiaContacto" class="form-select form-select-sm" [(ngModel)]="domicilioContacto.parroquia">
+                    <option [value]="parroquia.id" *ngFor="let parroquia of parroquiasContacto" [selected]="parroquia === domicilioContacto.parroquia">{{ parroquia.nombre }}</option>
+                  </select> -->
+                  <select id="parroquiaContacto" name="parroquiaContacto" class="form-select form-select-sm"
+                    [(ngModel)]="domicilioContacto.parroquia">
+                    <option [value]="parroquia.nombre" *ngFor="let parroquia of parroquiasContacto"
+                      [selected]="parroquia === domicilioContacto.parroquia">{{ parroquia.nombre }}</option>
+                  </select>
+                  <!-- <input [(ngModel)]="domicilioContacto.parroquia" id="parroquiaContacto" name="parroquiaContacto"
+                    type="text" class="form-control form-control-sm" /> -->
+                </div>
+                <div class="col-2">
+                  <label for="callePrincipalContacto"><mat-icon>description</mat-icon>CallePrincipal</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="domicilioContacto.callePrincipal" id="callePrincipalContacto"
+                    name="callePrincipalContacto" type="text" class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-2">
-                <label for="correoAlternativo"><mat-icon>description</mat-icon>Correo Alternativo</label>
+              <div class="row">
+                <div class="col-2">
+                  <label for="calleSecundariaContacto"><mat-icon>description</mat-icon>Calle Secundaria:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="domicilioContacto.calleSecundaria" id="calleSecundariaContacto"
+                    name="calleSecundariaContacto" type="text" class="form-control form-control-sm" />
+                </div>
+                <div class="col-2">
+                  <label for="numeroDomicilioContacto"><mat-icon>description</mat-icon>Número de Domicilio:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="domicilioContacto.numeroDomicilio" id="numeroDomicilioContacto"
+                    name="numeroDomicilioContacto" type="text" class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-4">
-                <input [(ngModel)]="docente.correoAlternativo" id="correoAlternativo" name="correoAlternativo"
-                  type="text" class="form-control" />
+              <div class="row">
+                <div class="col-2">
+                  <label for="referenciaContacto"><mat-icon>description</mat-icon>Referencia:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="domicilioContacto.referencia" id="referenciaContacto" name="referenciaContacto"
+                    type="text" class="form-control form-control-sm" />
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <hr>
-              <h2>Información adicional de discapacidad y/o enfermedad catastrófica</h2>
-              <div class="col-2">
-                <label for="discapacidadEspecial"><mat-icon>description</mat-icon>discapacidadEspecial</label>
+              <div class="row">
+                <div class="col-2">
+                  <label for="telefonoDomicilioContacto"><mat-icon>description</mat-icon>Teléfono domicilio: </label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="domicilioContacto.telefonoDomicilio" id="telefonoDomicilioContacto"
+                    name="telefonoDomicilioContacto" type="text" class="form-control form-control-sm" />
+                </div>
+                <div class="col-2">
+                  <label for="telefonoCelularContacto"><mat-icon>description</mat-icon>Teléfono celular: </label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="domicilioContacto.telefonoCelular" id="telefonoCelularContacto"
+                    name="telefonoCelularContacto" type="text" class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-4">
-                <input [(ngModel)]="discapacidad.discapacidadEspecial" id="discapacidadEspecial" name="discapacidad" type="text"
-                  class="form-control" />
+              <div class="row">
+                <hr>
+                <h2>Información bancaria</h2>
+                <div class="col-2">
+                  <label for="tipoinstitucionFinanciera"><mat-icon>description</mat-icon>Tipo de Institución Financiera:
+                  </label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="tipoinstitucionFinanciera"
+                    name="tipoinstitucionFinanciera" [(ngModel)]="informacionBancaria.tipoinstitucionFinanciera">
+                    <option [value]="tipoinstitucionFinanciera"
+                      *ngFor="let tipoinstitucionFinanciera of comboTipoInstitucionFinanciera"
+                      [selected]="tipoinstitucionFinanciera === informacionBancaria.tipoinstitucionFinanciera">
+                      {{tipoinstitucionFinanciera}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  <label for="nombreinstitucionFinanciera"><mat-icon>description</mat-icon>Nombre Institución
+                    Financiera:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="informacionBancaria.nombreinstitucionFinanciera" id="nombreinstitucionFinanciera"
+                    name="nombreinstitucionFinanciera" type="text" class="form-control form-control-sm" />
+                </div>
               </div>
-              <div class="col-2">
-                <label for="enfermedadCatastrofica"><mat-icon>description</mat-icon>Enfermedad Catastrófica:</label>
-              </div>
-              <div class="col-4">
-                <input [(ngModel)]="discapacidad.enfermedadCatastrofica" id="enfermedadCatastrofica" name="enfermedadCatastrofica" type="text"
-                  class="form-control" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-2">
-                <label for="tipoDiscapacidad"><mat-icon>description</mat-icon>Tipo de Discapacidad:</label>
-              </div>
-              <div class="col-4">
-                <input [(ngModel)]="discapacidad.tipoDiscapacidad" id="tipoDiscapacidad" name="tipoDiscapacidad" type="text"
-                  class="form-control" />
-              </div>
-              <div class="col-2">
-                <label for="tipoEnfermedadCatastrofica"><mat-icon>description</mat-icon>Tipo de Enfermedad Catastrófica:</label>
-              </div>
-              <div class="col-4">
-                <input [(ngModel)]="discapacidad.tipoEnfermedadCatastrofica" id="tipoEnfermedadCatastrofica" name="tipoEnfermedadCatastrofica" type="text"
-                  class="form-control" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-2">
-                <label for="porcentajeDiscapacidad"><mat-icon>description</mat-icon>% de discapacidad:</label>
-              </div>
-              <div class="col-4">
-                <input [(ngModel)]="discapacidad.porcentajeDiscapacidad" id="porcentajeDiscapacidad" name="porcentajeDiscapacidad" type="text"
-                  class="form-control" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-2">
-                <label for="numeroCarnet"><mat-icon>description</mat-icon>No. Carnet M.S.P.:</label>
-              </div>
-              <div class="col-4">
-                <input [(ngModel)]="discapacidad.numeroCarnet" id="numeroCarnet" name="numeroCarnet" type="text"
-                  class="form-control" />
-              </div>
-            </div>
-            <div class="row">
-              <hr>
-              <h2>Dirección domiciliaria permanente</h2>
-              <div class="col-2">
-                <label for="discapacidad"><mat-icon>description</mat-icon>Discapacidad</label>
-              </div>
-              <div class="col-4">
-                <input [(ngModel)]="docente.discapacidad" id="discapacidad" name="discapacidad" type="text"
-                  class="form-control" />
-              </div>
-              <div class="col-2">
-                <label for="domicilio"><mat-icon>description</mat-icon>Domicilio</label>
-              </div>
-              <div class="col-4">
-                <input [(ngModel)]="docente.domicilio" id="domicilio" name="domicilio" type="text"
-                  class="form-control" />
+              <div class="row">
+                <div class="col-2">
+                  <label for="tipoCuenta"><mat-icon>description</mat-icon>Tipo de cuenta: </label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="tipoCuenta" name="tipoCuenta"
+                    [(ngModel)]="informacionBancaria.tipoCuenta">
+                    <option [value]="tipoCuenta" *ngFor="let tipoCuenta of comboTipoCuenta"
+                      [selected]="tipoCuenta === informacionBancaria.tipoCuenta">
+                      {{tipoCuenta}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  <label for="numeroCuenta"><mat-icon>description</mat-icon>No. de cuenta: </label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="informacionBancaria.numeroCuenta" id="numeroCuenta" name="numeroCuenta"
+                    type="text" class="form-control form-control-sm" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </mat-tab>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <span class="header-tab">Formación Académica</span>
-        </ng-template>
-        <div class="container-document">
-          <div class="container-align">
-            Hola Tab1
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span class="header-tab">Formación Académica</span>
+          </ng-template>
+          <div class="container-document">
+            <div class="container-align">
+              <div class="contenedor">
+                <div class="centrar-elemento">
+                  <h2> FORMACIÓN ACADÉMICA Y PUBLICACIONES</h2>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <label for="nivelInstruccion">Nivel de Instrucción: <br>(máximo nivel alcanzado)</label>
+                </div>
+                <div class="col-3">
+                  <select class="form-select form-select-sm" id="nivelInstruccion" name="nivelInstruccion"
+                    [(ngModel)]="formacionAcademica.nivelInstruccion">
+                    <option [value]="nivelInstruccion" *ngFor="let nivelInstruccion of comboNivelInstruccion"
+                      [selected]="nivelInstruccion === formacionAcademica.nivelInstruccion">
+                      {{nivelInstruccion}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-2">
+                  <label for="institucion">Institución:</label>
+                </div>
+                <div class="col-4">
+                  <input [(ngModel)]="formacionAcademica.institucion" id="institucion" name="institucion" type="text"
+                    class="form-control form-control-sm" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <label for="tituloObtenido">Título Obtenido:</label>
+                </div>
+                <div class="col-9">
+                  <input [(ngModel)]="formacionAcademica.tituloObtenido" id="tituloObtenido" name="tituloObtenido"
+                    type="text" class="form-control form-control-sm" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <label for="tiempoEstudio">Tiempo de Estudio:</label>
+                </div>
+                <div class="col-3">
+                  <input [(ngModel)]="formacionAcademica.tiempoEstudio" id="tiempoEstudio" name="tiempoEstudio"
+                    type="number" class="form-control form-control-sm" />
+                </div>
+                <!-- <div class="col-2">
+                  <label for="periodoEstudio"><mat-icon>description</mat-icon>Estado civil</label>
+                </div> -->
+                <div class="col-3">
+                  <select class="form-select form-select-sm" id="periodoEstudio" name="periodoEstudio"
+                    [(ngModel)]="formacionAcademica.periodoEstudio">
+                    <option [value]="periodoEstudio" *ngFor="let periodoEstudio of comboPeriodoInstruccion"
+                      [selected]="periodoEstudio === formacionAcademica.periodoEstudio">
+                      {{periodoEstudio}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <label for="numeroRegistroSenescyt"><mat-icon>description</mat-icon>No. de Registro SENESCYT</label>
+                </div>
+                <div class="col-3">
+                  <input [(ngModel)]="formacionAcademica.numeroRegistroSenescyt" id="numeroRegistroSenescyt"
+                    name="numeroRegistroSenescyt" type="text" class="form-control form-control-sm" />
+                </div>
+                <div class="col-3">
+                  <label for="fechaRegistroSenescyt"><mat-icon>description</mat-icon>Fecha de Registro Senescyt:</label>
+                </div>
+                <div class="col-3">
+                  <input [(ngModel)]="formacionAcademica.fechaRegistroSenescyt" id="fechaRegistroSenescyt"
+                    name="fechaRegistroSenescyt" type="date" class="form-control form-control-sm" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <label for="paisFormacionAcademica"><mat-icon>description</mat-icon>País:</label>
+                </div>
+                <div class="col-3">
+                  <select class="form-select form-select-sm" id="paisFormacionAcademica" name="paisFormacionAcademica"
+                    [(ngModel)]="formacionAcademica.pais">
+                    <option [value]="paisFormacionAcademica" *ngFor="let paisFormacionAcademica of paises"
+                      [selected]="paisFormacionAcademica === formacionAcademica.pais">
+                      {{paisFormacionAcademica}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-3">
+                  <label for="fechaGraduacion"><mat-icon>description</mat-icon>Fecha de Graduación:</label>
+                </div>
+                <div class="col-3">
+                  <input [(ngModel)]="formacionAcademica.fechaGraduacion" id="fechaGraduacion" name="fechaGraduacion"
+                    type="date" class="form-control form-control-sm" />
+                </div>
+              </div>
+              <div class="row">
+                <hr>
+                <h2>Formación académica adicional</h2>
+                <button type="button" (click)="openModal()" class="btn btn-outline-success btn-sm">Abrir Modal</button>
+              </div>
+            </div>
           </div>
-        </div>
-      </mat-tab>
-      <mat-tab>
-        <ng-template mat-tab-label>
-          <span class="header-tab">Experiencia</span>
-        </ng-template>
-        <div class="container-document">
-          <div class="container-align">
-            Hola Tab1
+
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span class="header-tab">Experiencia</span>
+          </ng-template>
+          <div class="container-document">
+            <div class="container-align">
+              Hola Tab1
+            </div>
           </div>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
+        </mat-tab>
+      </mat-tab-group>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-sm form-control">Guardar Información</button>
+      </div>
+    </form>
 
     <div class="col-md-5" style="margin: auto;">
-      <!-- <button type="button" (click)="regresar()" class="btn btn-dark btn-sm btn-regresar">Regresar</button> -->
-      <h2 style="text-align: center;"><mat-icon>device_hub</mat-icon> HOJA DE VIDA ESPE</h2>
-      INFORMACIÓN PERSONAL
-
-      <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
-        Datos Personales
-        <div class="form-group">
-        </div>
-        <div class="form-group">
-
-        </div>
-        <div class="form-group">
-
-        </div>
-        <div class="form-group">
-
-        </div>
-        <div class="form-group">
-        </div>
-        <div class="form-group">
-
-        </div>
-        <div class="form-group">
-
-        </div>
-        <div class="form-group">
-
-        </div>
-        <div class="form-group">
-
-        </div>
-        <div class="form-group">
-        </div>
-        <div class="form-group">
-        </div>
-        <div class="form-group">
-
-        </div>
-        <div class="form-group">
-        </div>
-        <div class="form-group">
-
-        </div>
-        <div class="form-group">
-        </div>
-        <div class="form-group">
-          <label for="telefonoTrabajo"><mat-icon>description</mat-icon>Telefono de Trabajo</label>
-          <input [(ngModel)]="docente.telefonoTrabajo" id="telefonoTrabajo" name="telefonoTrabajo" type="text"
-            class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="extension"><mat-icon>description</mat-icon>Extension</label>
-          <input [(ngModel)]="docente.extension" id="extension" name="extension" type="text" class="form-control" />
-        </div>
-        <!-- Contacto -->
-
-        <div class="form-group" *ngIf="docente.contactoEmergencia">
-          <div>
-            <label for="nombresCompletos"><mat-icon>description</mat-icon>nombresCompletos</label>
-            <input [(ngModel)]="docente.contactoEmergencia.nombresCompletos" id="nombresCompletos"
-              name="nombresCompletos" type="text" class="form-control" />
-          </div>
-          <div>
-            <label for="tipoDocumento"><mat-icon>description</mat-icon>tipoDocumento</label>
-            <input [(ngModel)]="docente.contactoEmergencia.tipoDocumento" id="tipoDocumento" name="tipoDocumento"
-              type="text" class="form-control" />
-          </div>
-          <div>
-            <label for="numeroDocumento"><mat-icon>description</mat-icon>numeroDocumento</label>
-            <input [(ngModel)]="docente.contactoEmergencia.numeroDocumento" id="numeroDocumento" name="numeroDocumento"
-              type="text" class="form-control" />
-          </div>
-          <div>
-            <label for="parentesco"><mat-icon>description</mat-icon>parentesco</label>
-            <input [(ngModel)]="docente.contactoEmergencia.parentesco" id="parentesco" name="parentesco" type="text"
-              class="form-control" />
-          </div>
-          <div *ngIf="docente.contactoEmergencia.domicilio">
-            <div>
-              <label for="provinciaContacto"><mat-icon>description</mat-icon>provincia</label>
-              <input [(ngModel)]="docente.contactoEmergencia.domicilio.provincia" id="provinciaContacto"
-                name="provinciaContacto" type="text" class="form-control" />
-            </div>
-            <div>
-              <label for="cantonContacto"><mat-icon>description</mat-icon>canton</label>
-              <input [(ngModel)]="docente.contactoEmergencia.domicilio.canton" id="cantonContacto" name="cantonContacto"
-                type="text" class="form-control" />
-            </div>
-            <div>
-              <label for="parroquiaContacto"><mat-icon>description</mat-icon>parroquia</label>
-              <input [(ngModel)]="docente.contactoEmergencia.domicilio.parroquia" id="parroquiaContacto"
-                name="parroquiaContacto" type="text" class="form-control" />
-            </div>
-            <div>
-              <label for="callePrincipalContacto"><mat-icon>description</mat-icon>callePrincipal</label>
-              <input [(ngModel)]="docente.contactoEmergencia.domicilio.callePrincipal" id="callePrincipalContacto"
-                name="callePrincipalContacto" type="text" class="form-control" />
-            </div>
-            <div>
-              <label for="calleSecundariaContacto"><mat-icon>description</mat-icon>calleSecundaria</label>
-              <input [(ngModel)]="docente.contactoEmergencia.domicilio.calleSecundaria" id="calleSecundariaContacto"
-                name="calleSecundariaContacto" type="text" class="form-control" />
-            </div>
-            <div>
-              <label for="numeroDomicilioContacto"><mat-icon>description</mat-icon>numeroDomicilio</label>
-              <input [(ngModel)]="docente.contactoEmergencia.domicilio.numeroDomicilio" id="numeroDomicilioContacto"
-                name="numeroDomicilioContacto" type="text" class="form-control" />
-            </div>
-            <div>
-              <label for="referenciaContacto"><mat-icon>description</mat-icon>referencia</label>
-              <input [(ngModel)]="docente.contactoEmergencia.domicilio.referencia" id="referenciaContacto"
-                name="referenciaContacto" type="text" class="form-control" />
-            </div>
-            <div>
-              <label for="telefonoDomicilioContacto"><mat-icon>description</mat-icon>telefonoDomicilio</label>
-              <input [(ngModel)]="docente.contactoEmergencia.domicilio.telefonoDomicilio" id="telefonoDomicilioContacto"
-                name="telefonoDomicilioContacto" type="text" class="form-control" />
-            </div>
-            <div>
-              <label for="telefonoCelularContacto"><mat-icon>description</mat-icon>telefonoCelular</label>
-              <input [(ngModel)]="docente.contactoEmergencia.domicilio.telefonoCelular" id="telefonoCelularContacto"
-                name="telefonoCelularContacto" type="text" class="form-control" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Información Bancaria -->
-
-        <div class="form-group" *ngIf="docente.informacionBancaria">
-          <div>
-            <label for="tipoinstitucionFinanciera"><mat-icon>description</mat-icon>tipoinstitucionFinanciera</label>
-            <input [(ngModel)]="docente.informacionBancaria.tipoinstitucionFinanciera" id="tipoinstitucionFinanciera"
-              name="tipoinstitucionFinanciera" type="text" class="form-control" />
-          </div>
-          <div>
-            <label for="nombreinstitucionFinanciera"><mat-icon>description</mat-icon>nombreinstitucionFinanciera</label>
-            <input [(ngModel)]="docente.informacionBancaria.nombreinstitucionFinanciera"
-              id="nombreinstitucionFinanciera" name="nombreinstitucionFinanciera" type="text" class="form-control" />
-          </div>
-          <div>
-            <label for="tipoCuenta"><mat-icon>description</mat-icon>tipoCuenta</label>
-            <input [(ngModel)]="docente.informacionBancaria.tipoCuenta" id="tipoCuenta" name="tipoCuenta" type="text"
-              class="form-control" />
-          </div>
-          <div>
-            <label for="numeroCuenta"><mat-icon>description</mat-icon>numeroCuenta</label>
-            <input [(ngModel)]="docente.informacionBancaria.numeroCuenta" id="numeroCuenta" name="numeroCuenta"
-              type="text" class="form-control" />
-          </div>
-        </div>
-
-        <!-- Formación académica -->
-
-        <div class="form-group" *ngIf="docente.formacionAcademica">
-          <div>
-            <label for="nivelInstruccion"><mat-icon>description</mat-icon>nivelInstruccion</label>
-            <input [(ngModel)]="docente.formacionAcademica.nivelInstruccion" id="nivelInstruccion"
-              name="nivelInstruccion" type="text" class="form-control" />
-          </div>
-          <div>
-            <label for="institucion"><mat-icon>description</mat-icon>institucion</label>
-            <input [(ngModel)]="docente.formacionAcademica.institucion" id="institucion" name="institucion" type="text"
-              class="form-control" />
-          </div>
-          <div>
-            <label for="tituloObtenido"><mat-icon>description</mat-icon>tituloObtenido</label>
-            <input [(ngModel)]="docente.formacionAcademica.tituloObtenido" id="tituloObtenido" name="tituloObtenido"
-              type="text" class="form-control" />
-          </div>
-          <div>
-            <label for="tiempoEstudio"><mat-icon>description</mat-icon>tiempoEstudio</label>
-            <input [(ngModel)]="docente.formacionAcademica.tiempoEstudio" id="tiempoEstudio" name="tiempoEstudio"
-              type="text" class="form-control" />
-          </div>
-          <div>
-            <label for="periodoEstudio"><mat-icon>description</mat-icon>periodoEstudio</label>
-            <input [(ngModel)]="docente.formacionAcademica.periodoEstudio" id="periodoEstudio" name="periodoEstudio"
-              type="text" class="form-control" />
-          </div>
-          <div>
-            <label for="numeroRegistroSenescyt"><mat-icon>description</mat-icon>numeroRegistroSenescyt</label>
-            <input [(ngModel)]="docente.formacionAcademica.numeroRegistroSenescyt" id="numeroRegistroSenescyt"
-              name="numeroRegistroSenescyt" type="text" class="form-control" />
-          </div>
-          <div>
-            <label for="fechaRegistroSenescyt"><mat-icon>description</mat-icon>fechaRegistroSenescyt</label>
-            <input [(ngModel)]="docente.formacionAcademica.fechaRegistroSenescyt" id="fechaRegistroSenescyt"
-              name="fechaRegistroSenescyt" type="text" class="form-control" />
-          </div>
-          <div>
-            <label for="pais"><mat-icon>description</mat-icon>pais</label>
-            <input [(ngModel)]="docente.formacionAcademica.pais" id="pais" name="pais" type="text"
-              class="form-control" />
-          </div>
-          <div>
-            <label for="fechaGraduacion"><mat-icon>description</mat-icon>fechaGraduacion</label>
-            <input [(ngModel)]="docente.formacionAcademica.pais" id="fechaGraduacion" name="fechaGraduacion" type="text"
-              class="form-control" />
-          </div>
-          <!-- lista con formaciones académica adicionales -->
-        </div>
-
-        <!-- Experiencia profesional -->
 
 
+      <!-- Formación académica -->
 
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-sm form-control">Guardar</button>
+      <div class="form-group" *ngIf="docente.formacionAcademica">
+        <div>
+
         </div>
-      </form>
+        <div>
+          <label for="institucion"><mat-icon>description</mat-icon>institucion</label>
+          <input [(ngModel)]="docente.formacionAcademica.institucion" id="institucion" name="institucion" type="text"
+            class="form-control form-control-sm" />
+        </div>
+        <div>
+          <label for="tituloObtenido"><mat-icon>description</mat-icon>tituloObtenido</label>
+          <input [(ngModel)]="docente.formacionAcademica.tituloObtenido" id="tituloObtenido" name="tituloObtenido"
+            type="text" class="form-control form-control-sm" />
+        </div>
+        <div>
+          <label for="tiempoEstudio"><mat-icon>description</mat-icon>tiempoEstudio</label>
+          <input [(ngModel)]="docente.formacionAcademica.tiempoEstudio" id="tiempoEstudio" name="tiempoEstudio"
+            type="text" class="form-control form-control-sm" />
+        </div>
+        <div>
+          <label for="periodoEstudio"><mat-icon>description</mat-icon>periodoEstudio</label>
+          <input [(ngModel)]="docente.formacionAcademica.periodoEstudio" id="periodoEstudio" name="periodoEstudio"
+            type="text" class="form-control form-control-sm" />
+        </div>
+        <div>
+          <label for="numeroRegistroSenescyt"><mat-icon>description</mat-icon>numeroRegistroSenescyt</label>
+          <input [(ngModel)]="docente.formacionAcademica.numeroRegistroSenescyt" id="numeroRegistroSenescyt"
+            name="numeroRegistroSenescyt" type="text" class="form-control form-control-sm" />
+        </div>
+        <div>
+          <label for="fechaRegistroSenescyt"><mat-icon>description</mat-icon>fechaRegistroSenescyt</label>
+          <input [(ngModel)]="docente.formacionAcademica.fechaRegistroSenescyt" id="fechaRegistroSenescyt"
+            name="fechaRegistroSenescyt" type="text" class="form-control form-control-sm" />
+        </div>
+        <div>
+          <label for="pais"><mat-icon>description</mat-icon>pais</label>
+          <input [(ngModel)]="docente.formacionAcademica.pais" id="pais" name="pais" type="text"
+            class="form-control form-control-sm" />
+        </div>
+        <div>
+          <label for="fechaGraduacion"><mat-icon>description</mat-icon>fechaGraduacion</label>
+          <input [(ngModel)]="docente.formacionAcademica.pais" id="fechaGraduacion" name="fechaGraduacion" type="text"
+            class="form-control form-control-sm" />
+        </div>
+        <!-- lista con formaciones académica adicionales -->
+      </div>
+
+      <!-- Experiencia profesional -->
+
     </div>
   </div>
 </div>
+
+

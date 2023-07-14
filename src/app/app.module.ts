@@ -80,6 +80,8 @@ import { EditarTareaComponent } from './pages/tarea/editar-tarea-programada/edit
 import { HomeVinculacionComponent } from './modulos/vinculacion/paginas/home/home-vinculacion.component';
 import { SubirInformacionGeneralComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/subir-informacion-general/subir-informacion-general.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog'
+import { ModalFormacionAcademicaComponent } from './modulos/docencia/informacion-personal/components/modal-formacion-academica/modal-formacion-academica.component';
 
 @NgModule({
   declarations: [
@@ -140,7 +142,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     DashboardVinculacionComponent,
     DashboardTareaVinculacionComponent,
     //Docencia
-    SubirInformacionGeneralComponent
+    SubirInformacionGeneralComponent,
+    ModalFormacionAcademicaComponent
   ],
   imports: [
     BrowserModule,
@@ -163,7 +166,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     BlockUIModule,
     NgxChartsModule,
     MatPaginatorModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDialogModule
     //ComponentsModule
     //PagesModule
   ],
