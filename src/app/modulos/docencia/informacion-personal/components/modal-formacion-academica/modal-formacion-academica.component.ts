@@ -2,6 +2,8 @@ import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormacionAcademicaAdicional } from '../../modelos/FormacionAcademicaAdicional';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { DocenteInformacionService } from '../../servicios/DocenteInformacion.service';
 
 @Component({
   selector: 'app-modal-formacion-academica',
@@ -78,14 +80,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
       </mat-form-field>
 
       <mat-form-field class="custom-form-field">
-        <input
-          matInput
-          type="text"
-          placeholder="País"
-          formControlName="pais"
-          name="pais"
-          required
-        />
+        <mat-select placeholder="País" formControlName="pais" name="pais">
+          <mat-option *ngFor="let pais of paises" [value]="pais">
+            {{ pais }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field class="custom-form-field">
@@ -120,12 +119,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ModalFormacionAcademicaComponent implements OnInit {
   myForm!: FormGroup;
+  paises$: Observable<any>;
+  paises: string[] = [];
   @Inject(MAT_DIALOG_DATA) public data: any
 
   constructor(
     public dialogRef: MatDialogRef<ModalFormacionAcademicaComponent>,
-    private formBuilder: FormBuilder
-  ) {}
+    private formBuilder: FormBuilder,
+    private docenteInformacionService: DocenteInformacionService
+  ) {
+    this.paises$ = this.docenteInformacionService.loadPaises();
+  }
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
@@ -137,6 +141,13 @@ export class ModalFormacionAcademicaComponent implements OnInit {
       fechaGraduacion: ['', Validators.required],
       pais: ['', Validators.required],
       tiempoEstudio: ['', Validators.required],
+    });
+    this.cargarPaises();
+  }
+
+  cargarPaises() {
+    this.paises$.subscribe((data) => {
+      this.paises = data.paises;
     });
   }
 

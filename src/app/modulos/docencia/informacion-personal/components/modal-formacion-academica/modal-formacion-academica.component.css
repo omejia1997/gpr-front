@@ -4,8 +4,11 @@
 ::ng-deep .mat-form-field-label {
   color: rgb(245, 237, 231) !important;
 }
-input[type=date]::-webkit-calendar-picker-indicator {
-  background-color: rgb(245, 237, 231);
-  color: #e6e6e6;
+
+input[type="date"]::-webkit-inner-spin-button,::-webkit-calendar-picker-indicator{
+  filter: drop-shadow(16px 16px 20px rgb(245, 237, 231)) invert(100%);
+}
+
+input[type=date]::-webkit-calendar-picker-indicator:hover {
   cursor: pointer;
 }

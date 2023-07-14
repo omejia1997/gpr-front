@@ -1,4 +1,6 @@
 import { FormacionAcademicaAdicional } from "./FormacionAcademicaAdicional";
+import { Idioma } from "./Idioma";
+import { Publicacion } from "./Publicacion";
 
 export type FormacionAcademica = {
   nivelInstruccion?: string;
@@ -11,4 +13,6 @@ export type FormacionAcademica = {
   pais?: string;
   fechaGraduacion?: Date;
   formacionAcademicaAdicionales?: FormacionAcademicaAdicional[];
+  idiomas?: Idioma[];
+  publicaciones?: Publicacion[];
 };
