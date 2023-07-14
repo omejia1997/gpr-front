@@ -617,7 +617,40 @@
               <div class="row">
                 <hr>
                 <h2>Formación académica adicional</h2>
-                <button type="button" (click)="openModal()" class="btn btn-outline-success btn-sm">Abrir Modal</button>
+                <button type="button" (click)="openModalFormacionAcademicaAdicional()" class="btn btn-outline-success btn-sm">Abrir Modal</button>
+                <div class="table-responsive" *ngIf="formacionAcademica.formacionAcademicaAdicionales">
+                  <table class="table table-hover text-center table-sm" *ngIf="formacionAcademica.formacionAcademicaAdicionales.length!=0">
+                    <thead class="table-dark">
+                      <tr>
+                        <th>Nivel de Instrucción</th>
+                        <th>Institución</th>
+                        <th>Título Obtenido</th>
+                        <th>Nº. SENESCYT</th>
+                        <th>Fecha de Registro Senescyt</th>
+                        <th>Fecha de Graduación</th>
+                        <th>País</th>
+                        <th>Tiempo de Estudio en Años</th>
+                        <th>Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let formacionAcademica of formacionAcademica.formacionAcademicaAdicionales">
+                        <td>{{ formacionAcademica.nivelInstruccion }}</td>
+                        <td>{{ formacionAcademica.institucion }}</td>
+                        <td>{{ formacionAcademica.tituloObtenido }}</td>
+                        <td>{{ formacionAcademica.numeroSenescyt }}</td>
+                        <td>{{ formacionAcademica.fechaRegistroSenescyt }}</td>
+                        <td>{{ formacionAcademica.fechaGraduacion }}</td>
+                        <td>{{ formacionAcademica.pais }}</td>
+                        <td>{{ formacionAcademica.tiempoEstudio }}</td>
+                        <td>
+                          <!-- <mat-icon (click)="editarTarea(tarea)">edit</mat-icon> -->
+                          <mat-icon (click)="eliminarFormacionAdicional(formacionAcademica)">delete</mat-icon>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>

@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 import { DocenteInformacionService } from '../../../servicios/DocenteInformacion.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalFormacionAcademicaComponent } from '../../../components/modal-formacion-academica/modal-formacion-academica.component';
+import { FormacionAcademicaAdicional } from '../../../modelos/FormacionAcademicaAdicional';
 
 @Component({
   selector: 'app-subir-informacion-general',
@@ -143,6 +144,7 @@ export class SubirInformacionGeneralComponent implements OnInit {
       this.docenteInformacionService.getTerritorioEcuatoriano();
     this.gruposEtnicos$ = this.docenteInformacionService.loadGruposEtnicos();
     this.paises$=this.docenteInformacionService.loadPaises();
+    this.formacionAcademica.formacionAcademicaAdicionales=[];
   }
 
   ngOnInit() {
@@ -292,6 +294,11 @@ export class SubirInformacionGeneralComponent implements OnInit {
     }
   }
 
+  recibirDatosFormulario(datos: any) {
+    console.log(datos);
+    // Lógica adicional con los datos del formulario
+  }
+
   save() {
     this.docente.discapacidad = this.discapacidad;
     this.docente.domicilio = this.domicilio;
@@ -329,9 +336,21 @@ export class SubirInformacionGeneralComponent implements OnInit {
     // })
   }
 
-  openModal() {
-    const dialogRef = this.dialog.open(ModalFormacionAcademicaComponent, {
-      width: '30vw', // Ajusta el ancho del modal según tus necesidades
+  openModalFormacionAcademicaAdicional() {
+    const dialogRef = this.dialog.open(ModalFormacionAcademicaComponent,{
+      width: '450px'
     });
+
+    dialogRef.afterClosed().subscribe((formValue) => {
+      if (formValue) {
+        this.formacionAcademica.formacionAcademicaAdicionales?.push(formValue);
+      }
+    });
+  }
+  eliminarFormacionAdicional(FormacionAcademicaAdicional: FormacionAcademicaAdicional) {
+    this.formacionAcademica.formacionAcademicaAdicionales = this.formacionAcademica.formacionAcademicaAdicionales?.filter(
+      (item) =>
+        item.numeroSenescyt !== FormacionAcademicaAdicional.numeroSenescyt
+    );
   }
 }
