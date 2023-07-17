@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DocenteInformacion } from '../modelos/DocenteInformacion';
 
-const PROYECTO = environment.URL_MICROSERVICE_DOCENTE_INFORMACION + '/docente';
+const DOCENTE = environment.URL_MICROSERVICE_DOCENTE_INFORMACION + '/docente';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,10 @@ export class DocenteInformacionService {
   constructor(private http: HttpClient) {}
 
   public guardarInformacion(docenteInformacion: DocenteInformacion) {
-    return this.http.post<any>(PROYECTO, docenteInformacion);
+    if(docenteInformacion.id)
+      return this.http.put<any>(DOCENTE, docenteInformacion);
+    else
+      return this.http.post<any>(DOCENTE, docenteInformacion);
   }
 
   public loadNacionalidades(): Observable<any> {
@@ -35,9 +38,13 @@ export class DocenteInformacionService {
     return this.http.get<any>('/assets/json/paises.json');
   }
 
-  // public obtenerProyectosVinculacion(): Observable<ProyectoVinculacion[]>{
-  //   return this.http.get<ProyectoVinculacion[]>(`${PROYECTO}/listarProyectosVinculacion`);
-  // }
+  public loadIdiomas(): Observable<any> {
+    return this.http.get<any>('/assets/json/idiomas.json');
+  }
+
+  public obtenerDocentePorIdEspe(idEspe:any): Observable<DocenteInformacion>{
+    return this.http.get<DocenteInformacion>(`${DOCENTE}/obtenerDocentePorIdEspe/${idEspe}`);
+  }
 
   // // public obtenerProyectosPorTipoProceso(idProceso:number): Observable<ProyectoVinculacion[]>{
   // //   return this.http.get<ProyectoVinculacion[]>(`${PROYECTO}/listarProyectosPorProceso/${idProceso}`);

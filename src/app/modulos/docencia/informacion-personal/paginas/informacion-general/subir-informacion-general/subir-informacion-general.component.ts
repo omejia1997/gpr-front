@@ -16,6 +16,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { ModalFormacionAcademicaComponent } from '../../../components/modal-formacion-academica/modal-formacion-academica.component';
 import { FormacionAcademicaAdicional } from '../../../modelos/FormacionAcademicaAdicional';
 import { ModalExperienciaProfesionalComponent } from '../../../components/modal-experiencia-profesional/modal-experiencia-profesional.component';
+import { ModalIdiomaHabladoComponent } from '../../../components/modal-idioma-hablado/modal-idioma-hablado.component';
+import { ModalPublicacionRealizadaComponent } from '../../../components/modal-publicacion-realizada/modal-publicacion-realizada.component';
+import { v4 as uuidv4 } from 'uuid';
+import { Idioma } from '../../../modelos/Idioma';
+import { Publicacion } from '../../../modelos/Publicacion';
+import { ExperienciaProfesional } from '../../../modelos/ExperienciaProfesional';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-subir-informacion-general',
@@ -51,6 +58,7 @@ export class SubirInformacionGeneralComponent implements OnInit {
   parroquiasContacto!: any[];
   paises$: Observable<any>;
   paises: string[] = [];
+  pipe = new DatePipe('en-US');
 
   // provinciaSeleccionada!: string;
   // cantonSeleccionado!: string;
@@ -144,9 +152,11 @@ export class SubirInformacionGeneralComponent implements OnInit {
     this.geTerritorioEcuatoriano$ =
       this.docenteInformacionService.getTerritorioEcuatoriano();
     this.gruposEtnicos$ = this.docenteInformacionService.loadGruposEtnicos();
-    this.paises$=this.docenteInformacionService.loadPaises();
-    this.formacionAcademica.formacionAcademicaAdicionales=[];
-    this.docente.experienciaProfesionales=[];
+    this.paises$ = this.docenteInformacionService.loadPaises();
+    this.formacionAcademica.formacionAcademicaAdicionales = [];
+    this.formacionAcademica.idiomas = [];
+    this.formacionAcademica.publicaciones = [];
+    this.docente.experienciaProfesionales = [];
   }
 
   ngOnInit() {
@@ -196,6 +206,27 @@ export class SubirInformacionGeneralComponent implements OnInit {
       this.datosDocente.apellidoDocente + ' ' + this.datosDocente.nombreDocente;
     this.docente.genero = this.datosDocente.sexo;
     this.docente.correoPrincipal = this.datosDocente.correoDocente;
+    this.docente.idEspe = this.datosDocente.idDocente;
+    this.docenteInformacionService.obtenerDocentePorIdEspe(this.docente.idEspe).subscribe((data) => {
+      //console.log(data);
+      if(data){
+        this.docente = data;
+        // if(this.docente.fechaNacimiento)
+        //   this.docente.fechaNacimiento = this.pipe.transform(this.docente.fechaNacimiento,'yyyy-MM-dd','UTC');
+        if(this.docente.discapacidad)
+          this.discapacidad = this.docente.discapacidad;
+        if(this.docente.domicilio)
+          this.domicilio = this.docente.domicilio;
+        if(this.docente.contactoEmergencia)
+          this.contactoEmergencia = this.docente.contactoEmergencia;
+        if(this.docente.contactoEmergencia && this.docente.contactoEmergencia.domicilio)
+          this.domicilioContacto = this.docente.contactoEmergencia.domicilio;
+        if(this.docente.informacionBancaria)
+          this.informacionBancaria = this.docente.informacionBancaria;
+        if(this.docente.formacionAcademica)
+          this.formacionAcademica = this.docente.formacionAcademica;
+      }
+    });
   }
 
   onProvinciaChange() {
@@ -246,26 +277,6 @@ export class SubirInformacionGeneralComponent implements OnInit {
     }
   }
 
-  iniciarFormulario() {
-    // this.comboSexo = ['FEMENINO', 'MASCULINO', 'OTRO'];
-    // this.comboPuestoTrabajo = [
-    //   'TECNICO LABORATORIO',
-    //   'TIEMPO COMPLETO',
-    //   'TIEMPO PARCIAL',
-    // ];
-    // this.formularioActDoc = this.fb.group({
-    //   nombres: ['', Validators.required],
-    //   apellidos: ['', Validators.required],
-    //   cedula: ['', Validators.required],
-    //   id: ['', Validators.required],
-    //   telefono: ['', Validators.required],
-    //   correo: ['', [Validators.required, Validators.email]],
-    //   //cargo:[''],
-    //   sexo: [''],
-    //   puesto: ['', Validators.required],
-    // });
-  }
-
   detectarCambioTipoDocumento() {
     if (this.docente.tipoDocumento == 'PASAPORTE') {
       this.checkNumeroDocumento = false;
@@ -296,76 +307,190 @@ export class SubirInformacionGeneralComponent implements OnInit {
     }
   }
 
-  // recibirDatosFormulario(datos: any) {
-  //   console.log(datos);
-  //   // Lógica adicional con los datos del formulario
-  // }
-
   save() {
+    console.log(this.discapacidad)
     this.docente.discapacidad = this.discapacidad;
     this.docente.domicilio = this.domicilio;
     this.docente.contactoEmergencia = this.contactoEmergencia;
     this.docente.contactoEmergencia.domicilio = this.domicilioContacto;
     this.docente.informacionBancaria = this.informacionBancaria;
     this.docente.formacionAcademica = this.formacionAcademica;
-    console.log('data', this.docente);
-    // this.blockedDocument = true;
-    // this.proyecto.tipoProceso = this.tipoProceso;
-    // this.proyectoService.crearProyecto(this.proyecto)
-    // .subscribe({
-    //   next: (data) => {
-    //     this.messageService.add({
-    //       severity: 'success',
-    //       summary: 'Éxito',
-    //       detail: 'El proyecto ha sido creado con éxito'
-    //     });
-    //     setTimeout(() => {
-    //       this.blockedDocument = false;
-    //       this.router.navigate(["listar-proyectos"])
-    //     }, 2000);
-    //   },
-    //   error: (err) => {
-    //     this.messageService.add({
-    //       severity: 'error',
-    //       summary: 'Error',
-    //       detail: err?.message ?? ' Error al crear el proyecto'
-    //     });
-    //     this.blockedDocument = false;
-    //   },
-    //   complete: () => {
-    //     // this.isLoading = false;
-    //   },
-    // })
+    // console.log('data', this.docente);
+    this.blockedDocument = true;
+    this.docenteInformacionService.guardarInformacion(this.docente)
+    .subscribe({
+      next: (data) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Éxito',
+          detail: 'Datos Actualizados con éxito'
+        });
+        setTimeout(() => {
+          this.blockedDocument = false;
+          this.router.navigate(["/subir-informacion-general"])
+        }, 2000);
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err?.message ?? ' Error al actualizar la información'
+        });
+        this.blockedDocument = false;
+      },
+      complete: () => {
+      },
+    })
   }
 
   openModalFormacionAcademicaAdicional() {
-    const dialogRef = this.dialog.open(ModalFormacionAcademicaComponent,{
-      width: '450px'
+    const dialogRef = this.dialog.open(ModalFormacionAcademicaComponent, {
+      width: '450px',
     });
 
     dialogRef.afterClosed().subscribe((formValue) => {
       if (formValue) {
+        formValue.codigoFormacionAdicional = uuidv4();
         this.formacionAcademica.formacionAcademicaAdicionales?.push(formValue);
       }
     });
   }
 
-  eliminarFormacionAdicional(FormacionAcademicaAdicional: FormacionAcademicaAdicional) {
-    this.formacionAcademica.formacionAcademicaAdicionales = this.formacionAcademica.formacionAcademicaAdicionales?.filter(
-      (item) =>
-        item.numeroSenescyt !== FormacionAcademicaAdicional.numeroSenescyt
-    );
-  }
-
-  openModalExperienciaProfesional() {
-    const dialogRef = this.dialog.open(ModalExperienciaProfesionalComponent,{
-      width: '450px'
+  editarFormacionAdicional(formacionAcademica: FormacionAcademicaAdicional) {
+    const dialogRef = this.dialog.open(ModalFormacionAcademicaComponent, {
+      width: '450px',
+      data: formacionAcademica,
     });
 
     dialogRef.afterClosed().subscribe((formValue) => {
       if (formValue) {
+        this.formacionAcademica.formacionAcademicaAdicionales =
+          this.formacionAcademica.formacionAcademicaAdicionales?.filter(
+            (item) =>
+              item.codigoFormacionAdicional !==
+              formacionAcademica.codigoFormacionAdicional
+          );
+        this.formacionAcademica.formacionAcademicaAdicionales?.push(formValue);
+      }
+    });
+  }
+
+  eliminarFormacionAdicional(formacionAcademica: FormacionAcademicaAdicional) {
+    this.formacionAcademica.formacionAcademicaAdicionales =
+      this.formacionAcademica.formacionAcademicaAdicionales?.filter(
+        (item) =>
+          item.codigoFormacionAdicional !==
+          formacionAcademica.codigoFormacionAdicional
+      );
+  }
+
+  openModalIdiomas() {
+    const dialogRef = this.dialog.open(ModalIdiomaHabladoComponent, {
+      width: '450px',
+    });
+
+    dialogRef.afterClosed().subscribe((formValue) => {
+      if (formValue) {
+        formValue.codigoIdioma = uuidv4();
+        this.formacionAcademica.idiomas?.push(formValue);
+      }
+    });
+  }
+
+  editarIdiomaIngresado(idioma: Idioma) {
+    const dialogRef = this.dialog.open(ModalIdiomaHabladoComponent, {
+      width: '450px',
+      data: idioma,
+    });
+
+    dialogRef.afterClosed().subscribe((formValue) => {
+      if (formValue) {
+        this.formacionAcademica.idiomas =
+          this.formacionAcademica.idiomas?.filter(
+            (item) => item.codigoIdioma !== idioma.codigoIdioma
+          );
+        this.formacionAcademica.idiomas?.push(formValue);
+      }
+    });
+  }
+
+  eliminarIdiomaIngresado(idioma: Idioma) {
+    this.formacionAcademica.idiomas = this.formacionAcademica.idiomas?.filter(
+      (item) => item.codigoIdioma !== idioma.codigoIdioma
+    );
+  }
+
+  openModalPublicaciones() {
+    const dialogRef = this.dialog.open(ModalPublicacionRealizadaComponent, {
+      width: '450px',
+    });
+
+    dialogRef.afterClosed().subscribe((formValue) => {
+      if (formValue) {
+        formValue.idPublicacion = uuidv4();
+        this.formacionAcademica.publicaciones?.push(formValue);
+      }
+    });
+  }
+
+  editarPublicacionIngresada(publicacion: Publicacion) {
+    const dialogRef = this.dialog.open(ModalPublicacionRealizadaComponent, {
+      width: '450px',
+      data: publicacion,
+    });
+
+    dialogRef.afterClosed().subscribe((formValue) => {
+      if (formValue) {
+        this.formacionAcademica.publicaciones =
+          this.formacionAcademica.publicaciones?.filter(
+            (item) => item.idPublicacion !== publicacion.idPublicacion
+          );
+        this.formacionAcademica.publicaciones?.push(formValue);
+      }
+    });
+  }
+
+  eliminarPublicacionIngresada(publicacion: Publicacion) {
+    this.formacionAcademica.publicaciones =
+      this.formacionAcademica.publicaciones?.filter(
+        (item) => item.idPublicacion !== publicacion.idPublicacion
+      );
+  }
+
+  openModalExperienciaProfesional() {
+    const dialogRef = this.dialog.open(ModalExperienciaProfesionalComponent, {
+      width: '450px',
+    });
+
+    dialogRef.afterClosed().subscribe((formValue) => {
+      if (formValue) {
+        formValue.codigoExperiencia = uuidv4();
         this.docente.experienciaProfesionales?.push(formValue);
       }
     });
+  }
+
+  editarExperienciaIngresada(experiencia: ExperienciaProfesional) {
+    const dialogRef = this.dialog.open(ModalExperienciaProfesionalComponent, {
+      width: '450px',
+      data: experiencia,
+    });
+
+    dialogRef.afterClosed().subscribe((formValue) => {
+      if (formValue) {
+        this.docente.experienciaProfesionales =
+          this.docente.experienciaProfesionales?.filter(
+            (item) => item.codigoExperiencia !== experiencia.codigoExperiencia
+          );
+        this.docente.experienciaProfesionales?.push(formValue);
+      }
+    });
+  }
+
+  eliminarExperienciaIngresada(experiencia: ExperienciaProfesional) {
+    this.docente.experienciaProfesionales =
+      this.docente.experienciaProfesionales?.filter(
+        (item) => item.codigoExperiencia !== experiencia.codigoExperiencia
+      );
   }
 }

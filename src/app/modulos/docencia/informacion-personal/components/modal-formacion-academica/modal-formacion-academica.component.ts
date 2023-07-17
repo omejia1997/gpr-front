@@ -9,16 +9,13 @@ import { DocenteInformacionService } from '../../servicios/DocenteInformacion.se
   selector: 'app-modal-formacion-academica',
   template: `
     <!-- <h2>Formulario</h2> -->
-    <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+    <form [formGroup]="myForm" (ngSubmit)="submitForm()" class="text-center">
       <mat-form-field class="custom-form-field">
-        <input
-          matInput
-          placeholder="Nivel de Instrucción"
-          formControlName="nivelInstruccion"
-          name="nivelInstruccion"
-          class="custom-input"
-          required
-        />
+        <mat-select placeholder="Nivel de Instrucción" formControlName="nivelInstruccion" name="nivelInstruccion">
+          <mat-option *ngFor="let nivelInstruccion of comboNivelInstruccion" [value]="nivelInstruccion">
+            {{ nivelInstruccion }}
+          </mat-option>
+        </mat-select>
         <mat-error
           *ngIf="myForm.controls['nivelInstruccion'].hasError('required')"
           >Ingrese el nivel de Instrucción</mat-error
@@ -121,12 +118,28 @@ export class ModalFormacionAcademicaComponent implements OnInit {
   myForm!: FormGroup;
   paises$: Observable<any>;
   paises: string[] = [];
-  @Inject(MAT_DIALOG_DATA) public data: any
+  comboNivelInstruccion: string[] = [
+    'BACHILLERATO',
+    'CUARTO NIVEL - DIPLOMADO',
+    'CUARTO NIVEL - ESPECIALIDAD',
+    'CUARTO NIVEL - MAESTRIA',
+    'CUARTO NIVEL-DOCTORADO',
+    'EDUCACIÓN BÁSICA',
+    'ESTUDIANTE UNIVERSITARIO',
+    'PRIMARIA',
+    'SECUNDARIA',
+    'SIN INSTRUCCIÓN',
+    'TÉCNICO SUPERIOR',
+    'TECNOLOGÍA',
+    'TECNOLOGÍA',
+  ];
+
 
   constructor(
     public dialogRef: MatDialogRef<ModalFormacionAcademicaComponent>,
     private formBuilder: FormBuilder,
-    private docenteInformacionService: DocenteInformacionService
+    private docenteInformacionService: DocenteInformacionService,
+    @Inject(MAT_DIALOG_DATA) public formacionAcademica: FormacionAcademicaAdicional
   ) {
     this.paises$ = this.docenteInformacionService.loadPaises();
   }
@@ -142,12 +155,26 @@ export class ModalFormacionAcademicaComponent implements OnInit {
       pais: ['', Validators.required],
       tiempoEstudio: ['', Validators.required],
     });
+    if(this.formacionAcademica){
+      this.myForm.patchValue({
+        nivelInstruccion: this.formacionAcademica.nivelInstruccion,
+        institucion: this.formacionAcademica.institucion,
+        tituloObtenido: this.formacionAcademica.tituloObtenido,
+        numeroSenescyt: this.formacionAcademica.numeroSenescyt,
+        fechaRegistroSenescyt: this.formacionAcademica.fechaRegistroSenescyt,
+        fechaGraduacion: this.formacionAcademica.fechaGraduacion,
+        pais: this.formacionAcademica.pais,
+        tiempoEstudio: this.formacionAcademica.tiempoEstudio
+      });
+    }
     this.cargarPaises();
   }
 
   cargarPaises() {
     this.paises$.subscribe((data) => {
       this.paises = data.paises;
+    console.log(this.paises)
+
     });
   }
 
@@ -160,165 +187,3 @@ export class ModalFormacionAcademicaComponent implements OnInit {
     this.dialogRef.close();
   }
 }
-
-// import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
-// import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-// import { FormacionAcademicaAdicional } from '../../modelos/FormacionAcademicaAdicional';
-// import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-// @Component({
-//   selector: 'app-modal-formacion-academica',
-//   template: `
-//     <h2>Formulario</h2>
-//     <form [formGroup]="myForm" (ngSubmit)="submitForm()">
-//       <!-- Agrega los campos de tu formulario aquí -->
-//       <mat-form-field class="custom-form-field">
-//         <input
-//           matInput
-//           placeholder="Nivel de Instrucción"
-//           [(ngModel)]="formacionAcademicaAdicional.nivelInstruccion"
-//           formControlName="nivelInstruccion"
-//           name="nivelInstruccion"
-//           class="custom-input"
-//           required
-//         />
-//         <mat-error
-//           *ngIf="myForm.controls['nivelInstruccion'].hasError('required')"
-//           >Ingrese el nivel de Instrucción</mat-error
-//         >
-//       </mat-form-field>
-//       <mat-form-field class="custom-form-field">
-//         <input
-//           matInput
-//           type="text"
-//           placeholder="Institución"
-//           [(ngModel)]="formacionAcademicaAdicional.institucion"
-//           formControlName="institucion"
-//           name="institucion"
-//           required
-//         />
-//       </mat-form-field>
-
-//       <mat-form-field class="custom-form-field">
-//         <input
-//           matInput
-//           type="text"
-//           placeholder="Título Obtenido"
-//           [(ngModel)]="formacionAcademicaAdicional.tituloObtenido"
-//           formControlName="tituloObtenido"
-//           name="tituloObtenido"
-//           required
-//         />
-//       </mat-form-field>
-
-//       <mat-form-field class="custom-form-field">
-//         <input
-//           matInput
-//           type="text"
-//           placeholder="Nº. SENESCYT"
-//           [(ngModel)]="formacionAcademicaAdicional.numeroSenescyt"
-//           formControlName="numeroSenescyt"
-//           name="numeroSenescyt"
-//           required
-//         />
-//       </mat-form-field>
-
-//       <mat-form-field class="custom-form-field-medium">
-//         <input
-//           matInput
-//           type="date"
-//           placeholder="Fecha de Registro Senescyt"
-//           [(ngModel)]="formacionAcademicaAdicional.fechaRegistroSenescyt"
-//           formControlName="fechaRegistroSenescyt"
-//           name="fechaRegistroSenescyt"
-//           required
-//         />
-//       </mat-form-field>
-
-//       <mat-form-field class="custom-form-field-medium">
-//         <input
-//           matInput
-//           type="date"
-//           placeholder="Fecha de Graduación"
-//           [(ngModel)]="formacionAcademicaAdicional.fechaGraduacion"
-//           formControlName="fechaGraduacion"
-//           name="fechaGraduacion"
-//           required
-//         />
-//       </mat-form-field>
-
-//       <mat-form-field class="custom-form-field">
-//         <input
-//           matInput
-//           type="text"
-//           placeholder="País"
-//           [(ngModel)]="formacionAcademicaAdicional.pais"
-//           formControlName="pais"
-//           name="pais"
-//           required
-//         />
-//       </mat-form-field>
-
-//       <mat-form-field class="custom-form-field">
-//         <input
-//           matInput
-//           type="number"
-//           placeholder="Tiempo de Estudio en Años"
-//           [(ngModel)]="formacionAcademicaAdicional.tiempoEstudio"
-//           formControlName="tiempoEstudio"
-//           name="tiempoEstudio"
-//           required
-//         />
-//       </mat-form-field>
-
-//       <button
-//         mat-raised-button
-//         color="primary"
-//         type="submit"
-//         [disabled]="myForm.invalid"
-//       >
-//         Guardar
-//       </button>
-//       <button
-//         type="button"
-//         (click)="closeModal()"
-//         class="btn btn-outline-success btn-sm"
-//       >
-//         Cancelar
-//       </button>
-//     </form>
-//   `,
-//   styleUrls: ['./modal-formacion-academica.component.css'],
-// })
-// export class ModalFormacionAcademicaComponent implements OnInit {
-//   formacionAcademicaAdicional: FormacionAcademicaAdicional = {};
-//   myForm!: FormGroup;
-//   @Inject(MAT_DIALOG_DATA) public data: any
-
-//   constructor(
-//     public dialogRef: MatDialogRef<ModalFormacionAcademicaComponent>,
-//     private formBuilder: FormBuilder
-//   ) {}
-
-//   ngOnInit() {
-//     this.myForm = this.formBuilder.group({
-//       nivelInstruccion: ['', Validators.required],
-//       institucion: ['', Validators.required],
-//       tituloObtenido: ['', Validators.required],
-//       numeroSenescyt: ['', Validators.required],
-//       fechaRegistroSenescyt: ['', Validators.required],
-//       fechaGraduacion: ['', Validators.required],
-//       pais: ['', Validators.required],
-//       tiempoEstudio: ['', Validators.required],
-//     });
-//   }
-
-//   submitForm() {
-//     const formValue = this.myForm.value;
-//     this.dialogRef.close(formValue);
-//   }
-
-//   closeModal() {
-//     this.dialogRef.close();
-//   }
-// }

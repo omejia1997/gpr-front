@@ -236,7 +236,7 @@
                   </select>
                 </div>
                 <div class="col-2">
-                  <label for="canton"><mat-icon>description</mat-icon>Canton</label>
+                  <label for="canton"><mat-icon>description</mat-icon>Cantón</label>
                 </div>
                 <div class="col-4">
                   <select id="canton" name="canton" class="form-select form-select-sm" [(ngModel)]="domicilio.canton"
@@ -388,7 +388,7 @@
                     type="text" class="form-control form-control-sm" /> -->
                 </div>
                 <div class="col-2">
-                  <label for="cantonContacto"><mat-icon>description</mat-icon>Canton</label>
+                  <label for="cantonContacto"><mat-icon>description</mat-icon>Cantón</label>
                 </div>
                 <div class="col-4">
                   <select id="cantonContacto" name="cantonContacto" class="form-select form-select-sm"
@@ -634,7 +634,7 @@
                         <th>Fecha de Graduación</th>
                         <th>País</th>
                         <th>Tiempo de Estudio en Años</th>
-                        <th>Acción</th>
+                        <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -648,7 +648,7 @@
                         <td>{{ formacionAcademica.pais }}</td>
                         <td>{{ formacionAcademica.tiempoEstudio }}</td>
                         <td>
-                          <!-- <mat-icon (click)="editarTarea(tarea)">edit</mat-icon> -->
+                          <mat-icon (click)="editarFormacionAdicional(formacionAcademica)">edit</mat-icon>
                           <mat-icon (click)="eliminarFormacionAdicional(formacionAcademica)">delete</mat-icon>
                         </td>
                       </tr>
@@ -660,12 +660,12 @@
                 <hr>
                 <h2>Idiomas</h2>
                 <div style="display: flex;">
-                  <button id="butonModalFormacionAcademica" type="button" (click)="openModalFormacionAcademicaAdicional()"
+                  <button id="butonModalFormacionAcademica" type="button" (click)="openModalIdiomas()"
                     class="btn btn-outline-success btn-sm">Agregar Idioma</button>
                 </div>
-                <div class="table-responsive" *ngIf="formacionAcademica.formacionAcademicaAdicionales">
+                <div class="table-responsive" *ngIf="formacionAcademica.idiomas">
                   <table class="table table-hover text-center table-sm"
-                    *ngIf="formacionAcademica.formacionAcademicaAdicionales.length!=0">
+                    *ngIf="formacionAcademica.idiomas.length!=0">
                     <thead class="table-dark">
                       <tr>
                         <th>Idioma</th>
@@ -676,18 +676,14 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let formacionAcademica of formacionAcademica.formacionAcademicaAdicionales">
-                        <td>{{ formacionAcademica.nivelInstruccion }}</td>
-                        <td>{{ formacionAcademica.institucion }}</td>
-                        <td>{{ formacionAcademica.tituloObtenido }}</td>
-                        <td>{{ formacionAcademica.numeroSenescyt }}</td>
-                        <td>{{ formacionAcademica.fechaRegistroSenescyt }}</td>
-                        <td>{{ formacionAcademica.fechaGraduacion }}</td>
-                        <td>{{ formacionAcademica.pais }}</td>
-                        <td>{{ formacionAcademica.tiempoEstudio }}</td>
+                      <tr *ngFor="let idioma of formacionAcademica.idiomas">
+                        <td>{{ idioma.idioma }}</td>
+                        <td>{{ idioma.porcentajeHablado }}</td>
+                        <td>{{ idioma.porcentajeEscrito }}</td>
+                        <td>{{ idioma.porcentajeComprension }}</td>
                         <td>
-                          <!-- <mat-icon (click)="editarTarea(tarea)">edit</mat-icon> -->
-                          <mat-icon (click)="eliminarFormacionAdicional(formacionAcademica)">delete</mat-icon>
+                          <mat-icon (click)="editarIdiomaIngresado(idioma)">edit</mat-icon>
+                          <mat-icon (click)="eliminarIdiomaIngresado(idioma)">delete</mat-icon>
                         </td>
                       </tr>
                     </tbody>
@@ -698,12 +694,12 @@
                 <hr>
                 <h2>Publicaciones</h2>
                 <div style="display: flex;">
-                  <button id="butonModalFormacionAcademica" type="button" (click)="openModalFormacionAcademicaAdicional()"
+                  <button id="butonModalFormacionAcademica" type="button" (click)="openModalPublicaciones()"
                     class="btn btn-outline-success btn-sm">Agregar Publicación</button>
                 </div>
-                <div class="table-responsive" *ngIf="formacionAcademica.formacionAcademicaAdicionales">
+                <div class="table-responsive" *ngIf="formacionAcademica.publicaciones">
                   <table class="table table-hover text-center table-sm"
-                    *ngIf="formacionAcademica.formacionAcademicaAdicionales.length!=0">
+                    *ngIf="formacionAcademica.publicaciones.length!=0">
                     <thead class="table-dark">
                       <tr>
                         <th>Tipo de Investigación</th>
@@ -716,22 +712,24 @@
                         <th>Fecha de Publicación</th>
                         <th>N° Volumen de la Publicación</th>
                         <th>Revisión de Pares</th>
-                        <th>Acción</th>
+                        <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let formacionAcademica of formacionAcademica.formacionAcademicaAdicionales">
-                        <td>{{ formacionAcademica.nivelInstruccion }}</td>
-                        <td>{{ formacionAcademica.institucion }}</td>
-                        <td>{{ formacionAcademica.tituloObtenido }}</td>
-                        <td>{{ formacionAcademica.numeroSenescyt }}</td>
-                        <td>{{ formacionAcademica.fechaRegistroSenescyt }}</td>
-                        <td>{{ formacionAcademica.fechaGraduacion }}</td>
-                        <td>{{ formacionAcademica.pais }}</td>
-                        <td>{{ formacionAcademica.tiempoEstudio }}</td>
+                      <tr *ngFor="let publicacion of formacionAcademica.publicaciones">
+                        <td>{{ publicacion.tipoInvestigacion }}</td>
+                        <td>{{ publicacion.tituloCompleto }}</td>
+                        <td>{{ publicacion.publicador }}</td>
+                        <td>{{ publicacion.codigoPublicacion }}</td>
+                        <td>{{ publicacion.participacion }}</td>
+                        <td>{{ publicacion.idioma }}</td>
+                        <td>{{ publicacion.estadoPublicacion }}</td>
+                        <td>{{ publicacion.fechaPublicacion }}</td>
+                        <td>{{ publicacion.volumenPublicacion }}</td>
+                        <td>{{ publicacion.revisionPares }}</td>
                         <td>
-                          <!-- <mat-icon (click)="editarTarea(tarea)">edit</mat-icon> -->
-                          <mat-icon (click)="eliminarFormacionAdicional(formacionAcademica)">delete</mat-icon>
+                          <mat-icon (click)="editarPublicacionIngresada(publicacion)">edit</mat-icon>
+                          <mat-icon (click)="eliminarPublicacionIngresada(publicacion)">delete</mat-icon>
                         </td>
                       </tr>
                     </tbody>
@@ -766,7 +764,7 @@
                           <th>Fecha de salida</th>
                           <th>País</th>
                           <th>Provincia</th>
-                          <th>Acción</th>
+                          <th>Acciones</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -782,8 +780,8 @@
                           <td>{{ experienciaProfesional.pais }}</td>
                           <td>{{ experienciaProfesional.provincia }}</td>
                           <td>
-                            <!-- <mat-icon (click)="editarTarea(tarea)">edit</mat-icon> -->
-                            <mat-icon (click)="eliminarFormacionAdicional(formacionAcademica)">delete</mat-icon>
+                            <mat-icon (click)="editarExperienciaIngresada(experienciaProfesional)">edit</mat-icon>
+                            <mat-icon (click)="eliminarExperienciaIngresada(experienciaProfesional)">delete</mat-icon>
                           </td>
                         </tr>
                       </tbody>

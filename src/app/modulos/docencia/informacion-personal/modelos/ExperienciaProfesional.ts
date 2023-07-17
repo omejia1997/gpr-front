@@ -1,12 +1,13 @@
 export type ExperienciaProfesional = {
+  codigoExperiencia?: string;
   nombreInstitucion?: string;
   puesto?: string;
   unidadAdministrativa?: string;
   tipoInstitucion?: string;
   modalidadContratacion?: string;
-  fechaIngreso?: string;
+  fechaIngreso?: Date;
   motivoSalidaLaboral?: string;
-  fechaSalida?: string;
+  fechaSalida?: Date;
   pais?: string;
   provincia?: string;
 };

@@ -3,11 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DocenteInformacionService } from '../../servicios/DocenteInformacion.service';
 import { Observable } from 'rxjs';
+import { ExperienciaProfesional } from '../../modelos/ExperienciaProfesional';
 
 @Component({
   selector: 'app-modal-experiencia-profesional',
   template: `
-    <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+    <form [formGroup]="myForm" (ngSubmit)="submitForm()" class="text-center">
       <mat-form-field class="custom-form-field">
         <input
           matInput
@@ -178,12 +179,13 @@ export class ModalExperienciaProfesionalComponent implements OnInit {
     'VISTO BUENO',
   ];
 
-  @Inject(MAT_DIALOG_DATA) public data: any;
+
 
   constructor(
     public dialogRef: MatDialogRef<ModalExperienciaProfesionalComponent>,
     private formBuilder: FormBuilder,
-    private docenteInformacionService: DocenteInformacionService
+    private docenteInformacionService: DocenteInformacionService,
+    @Inject(MAT_DIALOG_DATA) public experienciaProfesional: ExperienciaProfesional
   ) {
     this.paises$ = this.docenteInformacionService.loadPaises();
   }
@@ -201,6 +203,19 @@ export class ModalExperienciaProfesionalComponent implements OnInit {
       pais: ['', Validators.required],
       //provincia: ['', Validators.required],
     });
+    if(this.experienciaProfesional){
+      this.myForm.patchValue({
+        nombreInstitucion: this.experienciaProfesional.nombreInstitucion,
+        puesto: this.experienciaProfesional.puesto,
+        unidadAdministrativa: this.experienciaProfesional.unidadAdministrativa,
+        tipoInstitucion: this.experienciaProfesional.tipoInstitucion,
+        modalidadContratacion: this.experienciaProfesional.modalidadContratacion,
+        fechaIngreso: this.experienciaProfesional.fechaIngreso,
+        motivoSalidaLaboral: this.experienciaProfesional.motivoSalidaLaboral,
+        fechaSalida: this.experienciaProfesional.fechaSalida,
+        pais: this.experienciaProfesional.pais,
+      });
+    }
     this.cargarPaises();
   }
 

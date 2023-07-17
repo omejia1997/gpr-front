@@ -1,6 +1,7 @@
 export type Idioma = {
+  codigoIdioma?: string;
   idioma?: string;
-  porcentajeHablado?: string;
-  porcentajeEscrito?: string;
-  porcentajeComprension?: string;
+  porcentajeHablado?: number;
+  porcentajeEscrito?: number;
+  porcentajeComprension?: number;
 };

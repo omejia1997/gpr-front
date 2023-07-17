@@ -110,7 +110,7 @@ const routes: Routes = [
   {path: 'dashboard-vinculacion', component:DashboardVinculacionComponent,canActivate:[AuthGuard]},
   {path: 'dashboard-tarea-vinculacion', component:DashboardTareaVinculacionComponent,canActivate:[AuthGuard]},
   //docente
-  {path: 'subir-informacion-general', component:SubirInformacionGeneralComponent,canActivate:[AuthGuard]},
+  {path: 'subir-informacion-general', component:SubirInformacionGeneralComponent},
   {path: '**', component:LoginComponent}
 ];
 

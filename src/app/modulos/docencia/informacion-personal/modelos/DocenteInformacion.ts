@@ -9,8 +9,9 @@ export type DocenteInformacion = {
   id?: string;
   tipoDocumento?: string;
   numeroDocumento?: string;
+  idEspe?: string;
   nombreCompleto?: string;
-  fechaNacimiento?: Date;
+  fechaNacimiento?: Date |null|string;
   genero?: string;
   estadoCivil?: string;
   nacionalidad?: string;

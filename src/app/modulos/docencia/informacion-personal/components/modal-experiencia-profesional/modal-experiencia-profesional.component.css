@@ -12,11 +12,3 @@ input[type="date"]::-webkit-inner-spin-button,::-webkit-calendar-picker-indicato
 input[type=date]::-webkit-calendar-picker-indicator:hover {
   cursor: pointer;
 }
-
-/*
-:host {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 70vh;
-} */

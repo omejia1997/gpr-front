@@ -1,4 +1,5 @@
 export type FormacionAcademicaAdicional = {
+  codigoFormacionAdicional?: string;
   nivelInstruccion?: string;
   institucion?: string;
   tituloObtenido?: string;

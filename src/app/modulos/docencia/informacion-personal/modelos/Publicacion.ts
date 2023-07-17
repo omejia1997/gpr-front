@@ -1,4 +1,5 @@
 export type Publicacion = {
+  idPublicacion?:string;
   tipoInvestigacion?: string;
   tituloCompleto?: string;
   publicador?: string;
@@ -6,7 +7,7 @@ export type Publicacion = {
   participacion?: string;
   idioma?: string;
   estadoPublicacion?: string;
-  fechaPublicacion?: string;
-  volumenPublicacion?: string;
+  fechaPublicacion?: Date;
+  volumenPublicacion?: number;
   revisionPares?: string;
 };
