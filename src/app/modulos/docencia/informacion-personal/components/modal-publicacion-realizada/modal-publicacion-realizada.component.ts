@@ -75,7 +75,7 @@ import { Publicacion } from '../../modelos/Publicacion';
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="custom-form-field-medium">
         <mat-select placeholder="Idioma" formControlName="idioma" name="idioma">
           <mat-option *ngFor="let idioma of idiomas" [value]="idioma">
             {{ idioma }}
@@ -86,7 +86,7 @@ import { Publicacion } from '../../modelos/Publicacion';
         >
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="custom-form-field-medium">
         <mat-select
           placeholder="Estado de Publicación"
           formControlName="estadoPublicacion"
@@ -101,7 +101,7 @@ import { Publicacion } from '../../modelos/Publicacion';
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="custom-form-field-medium">
         <input
           matInput
           type="date"
@@ -112,7 +112,7 @@ import { Publicacion } from '../../modelos/Publicacion';
         />
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="custom-form-field-medium">
         <input
           matInput
           type="number"
@@ -123,7 +123,7 @@ import { Publicacion } from '../../modelos/Publicacion';
         />
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="custom-form-field-medium">
         <mat-select
           placeholder="Revisión de Pares"
           formControlName="revisionPares"
@@ -139,9 +139,8 @@ import { Publicacion } from '../../modelos/Publicacion';
       </mat-form-field>
 
       <button
-        mat-raised-button
-        color="primary"
         type="submit"
+        class="btn btn-success btn-sm"
         [disabled]="myForm.invalid"
       >
         Guardar
@@ -149,7 +148,7 @@ import { Publicacion } from '../../modelos/Publicacion';
       <button
         type="button"
         (click)="closeModal()"
-        class="btn btn-outline-success btn-sm"
+        class="btn btn-outline-danger btn-sm"
       >
         Cancelar
       </button>

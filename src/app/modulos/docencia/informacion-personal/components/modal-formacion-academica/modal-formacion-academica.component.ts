@@ -96,9 +96,8 @@ import { DocenteInformacionService } from '../../servicios/DocenteInformacion.se
       </mat-form-field>
 
       <button
-        mat-raised-button
-        color="primary"
         type="submit"
+        class="btn btn-success btn-sm"
         [disabled]="myForm.invalid"
       >
         Guardar
@@ -106,7 +105,7 @@ import { DocenteInformacionService } from '../../servicios/DocenteInformacion.se
       <button
         type="button"
         (click)="closeModal()"
-        class="btn btn-outline-success btn-sm"
+        class="btn btn-outline-danger btn-sm"
       >
         Cancelar
       </button>

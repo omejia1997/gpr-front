@@ -12,3 +12,12 @@ input[type="date"]::-webkit-inner-spin-button,::-webkit-calendar-picker-indicato
 input[type=date]::-webkit-calendar-picker-indicator:hover {
   cursor: pointer;
 }
+
+.custom-form-field-medium{
+  margin: 0 7px 0 7px;
+}
+
+button{
+  width: 45%;
+  margin: 0 5px 0 5px;
+}

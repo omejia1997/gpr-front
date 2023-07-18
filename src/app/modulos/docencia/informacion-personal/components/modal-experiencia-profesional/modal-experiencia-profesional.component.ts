@@ -82,7 +82,7 @@ import { ExperienciaProfesional } from '../../modelos/ExperienciaProfesional';
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="custom-form-field-medium">
         <input
           matInput
           type="date"
@@ -93,7 +93,7 @@ import { ExperienciaProfesional } from '../../modelos/ExperienciaProfesional';
         />
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field class="custom-form-field-medium">
         <mat-select placeholder="País" formControlName="pais" name="pais">
           <mat-option *ngFor="let pais of paises" [value]="pais">
             {{ pais }}
@@ -110,9 +110,8 @@ import { ExperienciaProfesional } from '../../modelos/ExperienciaProfesional';
       </mat-form-field> -->
 
       <button
-        mat-raised-button
-        color="primary"
         type="submit"
+        class="btn btn-success btn-sm"
         [disabled]="myForm.invalid"
       >
         Guardar
@@ -120,7 +119,7 @@ import { ExperienciaProfesional } from '../../modelos/ExperienciaProfesional';
       <button
         type="button"
         (click)="closeModal()"
-        class="btn btn-outline-success btn-sm"
+        class="btn btn-outline-danger btn-sm"
       >
         Cancelar
       </button>
