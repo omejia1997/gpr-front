@@ -1,0 +1,517 @@
+<app-navbar></app-navbar>
+<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="overlay">
+      <p-progressSpinner *ngIf="blockedDocument" [style]="{width: '150px', height: '150px', margin:'auto'}"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </div>
+  </div>
+</div>
+<div style="display: flex;">
+  <div style="margin: auto;">
+    <button (click)="exportToExcel()" class="btn btn-dark btn-sm" style="margin-bottom: 10px;">Exportar Datos a
+      Excel</button>
+  </div>
+</div>
+<form style="display: flex" [formGroup]="formControl | asFormGroup">
+  <div class="w-100 p-3">
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource" id="dataPdf" class="table text-center table-sm">
+
+        <ng-container matColumnDef="tipoDocumento">
+          <th mat-header-cell *matHeaderCellDef> Tipo de Documento
+            <mat-form-field class="numberCss">
+              <input type="text" matInput formControlName="tipoDocumento">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.tipoDocumento}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numeroDocumento">
+          <th mat-header-cell *matHeaderCellDef> Número de Documento
+            <mat-form-field>
+              <input type="text" matInput formControlName="numeroDocumento">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.numeroDocumento}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="idEspe">
+          <th mat-header-cell *matHeaderCellDef> ID ESPE
+            <mat-form-field>
+              <input matInput formControlName="idEspe">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.idEspe}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombreCompleto">
+          <th mat-header-cell *matHeaderCellDef> Nombre Completo
+            <mat-form-field>
+              <input matInput formControlName="nombreCompleto">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.nombreCompleto}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="fechaNacimiento">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content">Fecha de Nacimiento</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.fechaNacimiento}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="edad">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content">Edad</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.edad}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="genero">
+          <th mat-header-cell *matHeaderCellDef> Género
+            <mat-form-field>
+              <input matInput formControlName="genero">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.genero}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="estadoCivil">
+          <th mat-header-cell *matHeaderCellDef> Estado Civil
+            <mat-form-field>
+              <input matInput formControlName="estadoCivil">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.estadoCivil}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nacionalidad">
+          <th mat-header-cell *matHeaderCellDef> Nacionalidad
+            <mat-form-field>
+              <input matInput formControlName="nacionalidad">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.nacionalidad}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipoSangre">
+          <th mat-header-cell *matHeaderCellDef> Tipo de Sangre
+            <mat-form-field>
+              <input matInput formControlName="tipoSangre">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.tipoSangre}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="aniosResidencia">
+          <th mat-header-cell *matHeaderCellDef> Años de Residencia
+            <mat-form-field>
+              <input matInput formControlName="aniosResidencia">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.aniosResidencia}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="etnia">
+          <th mat-header-cell *matHeaderCellDef> Etnia
+            <mat-form-field>
+              <input matInput formControlName="etnia">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.etnia}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="grupoEtnico">
+          <th mat-header-cell *matHeaderCellDef> Grupo Étnico
+            <mat-form-field>
+              <input matInput formControlName="grupoEtnico">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.grupoEtnico}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="correoPrincipal">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">Correo Principal</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.correoPrincipal}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="correoAlternativo">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">Correo Alternativo</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.correoAlternativo}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="discapacidadEspecial">
+          <th mat-header-cell *matHeaderCellDef> Discapacidad Especial
+            <mat-form-field>
+              <input matInput formControlName="discapacidadEspecial">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.discapacidad.discapacidadEspecial}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipoDiscapacidad">
+          <th mat-header-cell *matHeaderCellDef> Tipo Discapacidad
+            <mat-form-field>
+              <input matInput formControlName="tipoDiscapacidad">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.discapacidad.tipoDiscapacidad}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="porcentajeDiscapacidad">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content">% de Discapacidad</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.discapacidad.porcentajeDiscapacidad}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="numeroCarnet">
+          <th mat-header-cell *matHeaderCellDef> N° Carnet M.S.P
+            <mat-form-field>
+              <input matInput formControlName="numeroCarnet">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.discapacidad.numeroCarnet}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="enfermedadCatastrofica">
+          <th mat-header-cell *matHeaderCellDef> Enfermedad catastrófica
+            <mat-form-field>
+              <input matInput formControlName="enfermedadCatastrofica">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.discapacidad.enfermedadCatastrofica}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipoEnfermedadCatastrofica">
+          <th mat-header-cell *matHeaderCellDef> Tipo de Enfermedad catastrófica
+            <mat-form-field>
+              <input matInput formControlName="tipoEnfermedadCatastrofica">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.discapacidad.tipoEnfermedadCatastrofica}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="provincia">
+          <th mat-header-cell *matHeaderCellDef>Domicilio Provincia.
+            <mat-form-field>
+              <input matInput formControlName="provincia">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.domicilio.provincia}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="canton">
+          <th mat-header-cell *matHeaderCellDef>Domicilio Cantón.
+            <mat-form-field>
+              <input matInput formControlName="canton">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.domicilio.canton}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="parroquia">
+          <th mat-header-cell *matHeaderCellDef>Domicilio Parroquia.
+            <mat-form-field>
+              <input matInput formControlName="parroquia">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.domicilio.parroquia}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="callePrincipal">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">Domicilio Calle Principal</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.domicilio.callePrincipal}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="calleSecundaria">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">Domicilio Calle Secundaria</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.domicilio.calleSecundaria}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numeroDomicilio">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content">% de Discapacidad</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.domicilio.numeroDomicilio}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="referencia">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">Referencia</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.domicilio.referencia}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefonoDomicilio">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">Teléfono de Domicilio</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.domicilio.telefonoDomicilio}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefonoCelular">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">Teléfono Celular</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.domicilio.telefonoCelular}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefonoTrabajo">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">Teléfono de Trabajo</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table">{{element.telefonoTrabajo}}   {{element.extension}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombresCompletosContacto">
+          <th mat-header-cell *matHeaderCellDef> Nombre Completo del Contacto
+            <mat-form-field>
+              <input matInput formControlName="nombresCompletosContacto">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.contactoEmergencia.nombresCompletos}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="tipoDocumentoContacto">
+          <th mat-header-cell *matHeaderCellDef> Tipo de Documento del Contacto
+            <mat-form-field>
+              <input matInput formControlName="tipoDocumentoContacto">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.contactoEmergencia.tipoDocumento}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numeroDocumentoContacto">
+          <th mat-header-cell *matHeaderCellDef> N° Documento del Contacto
+            <mat-form-field>
+              <input matInput formControlName="numeroDocumentoContacto">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.contactoEmergencia.numeroDocumento}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="parentesco">
+          <th mat-header-cell *matHeaderCellDef> Parentesco
+            <mat-form-field>
+              <input matInput formControlName="parentesco">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.contactoEmergencia.parentesco}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="provinciaContacto">
+          <th mat-header-cell *matHeaderCellDef> Dirección de la Provincia del Contacto
+            <mat-form-field>
+              <input matInput formControlName="provinciaContacto">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.domicilio.provincia}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="cantonContacto">
+          <th mat-header-cell *matHeaderCellDef> Dirección del Cantón de Contacto
+            <mat-form-field>
+              <input matInput formControlName="provinciaContacto">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.domicilio.canton}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="parroquiaContacto">
+          <th mat-header-cell *matHeaderCellDef> Dirección de Parroquia del Contacto
+            <mat-form-field>
+              <input matInput formControlName="parroquiaContacto">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.domicilio.parroquia}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="callePrincipalContacto">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">Calle Principal del Contacto</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.domicilio.callePrincipal}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="calleSecundariaContacto">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">Calle Secundaria del Contacto</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.domicilio.calleSecundaria}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numeroDomicilioContacto">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">N° de Domicilio del Contacto</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.domicilio.numeroDomicilio}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="referenciaContacto">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">Referencia</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.domicilio.referencia}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefonoDomicilioContacto">
+          <th mat-header-cell *matHeaderCellDef>  <div class="header-content-big">Teléfono de Domiclio</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.domicilio.telefonoDomicilio}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="telefonoCelularContacto">
+          <th mat-header-cell *matHeaderCellDef>  <div class="header-content-big"> Teléfono Celular</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.domicilio.telefonoCelular}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipoinstitucionFinanciera">
+          <th mat-header-cell *matHeaderCellDef> Tipo de Institución Financiera
+            <mat-form-field>
+              <input matInput formControlName="tipoinstitucionFinanciera">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.informacionBancaria.tipoinstitucionFinanciera}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombreinstitucionFinanciera">
+          <th mat-header-cell *matHeaderCellDef> Nombre Institución Financiera
+            <mat-form-field>
+              <input matInput formControlName="nombreinstitucionFinanciera">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.informacionBancaria.nombreinstitucionFinanciera}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipoCuenta">
+          <th mat-header-cell *matHeaderCellDef> Tipo de cuenta
+            <mat-form-field>
+              <input matInput formControlName="tipoCuenta">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.informacionBancaria.tipoCuenta}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numeroCuenta">
+          <th mat-header-cell *matHeaderCellDef> N° de cuenta
+            <mat-form-field>
+              <input matInput formControlName="numeroCuenta">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.informacionBancaria.numeroCuenta}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nivelInstruccion">
+          <th mat-header-cell *matHeaderCellDef> Nivel de Instrucción (máximo nivel alcanzado)
+            <mat-form-field>
+              <input matInput formControlName="nivelInstruccion">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.formacionAcademica.nivelInstruccion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="institucion">
+          <th mat-header-cell *matHeaderCellDef> Institución
+            <mat-form-field>
+              <input matInput formControlName="institucion">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.formacionAcademica.institucion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tituloObtenido">
+          <th mat-header-cell *matHeaderCellDef> Título Obtenido
+            <mat-form-field>
+              <input matInput formControlName="tituloObtenido">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.formacionAcademica.tituloObtenido}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tiempoEstudio">
+          <th mat-header-cell *matHeaderCellDef>  <div class="header-content">Tiempo de Estudio</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.formacionAcademica.tiempoEstudio}} {{element.formacionAcademica.periodoEstudio}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="numeroRegistroSenescyt">
+          <th mat-header-cell *matHeaderCellDef> N° Registro Senescyt
+            <mat-form-field>
+              <input matInput formControlName="numeroRegistroSenescyt">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.formacionAcademica.numeroRegistroSenescyt}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pais">
+          <th mat-header-cell *matHeaderCellDef> País
+            <mat-form-field>
+              <input matInput formControlName="pais">
+              <mat-placeholder class="color-input"></mat-placeholder>
+            </mat-form-field>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.formacionAcademica.pais}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fechaRegistroSenescyt">
+          <th mat-header-cell *matHeaderCellDef>  <div class="header-content">Fecha Registro Senescyt</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.formacionAcademica.fechaRegistroSenescyt}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="fechaGraduacion">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content">Fecha de Graduación</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"> {{element.formacionAcademica.fechaGraduacion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="export">
+          <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">Exportar Toda la Información</div>
+          </th>
+          <td mat-cell *matCellDef="let element" class="body-table"><button (click)="exportarDatosDocenteToExcel(element)" type="button" class="btn btn-outline-primary btn-sm" >Exportar Datos a Excel</button> </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+    </div>
+    <div class="row">
+      <div class="col">
+        <mat-paginator [pageSizeOptions]="[5, 10, 20,100]" showFirstLastButtons
+          aria-label="Seleccionar página de elementos periódicos"> </mat-paginator>
+      </div>
+    </div>
+  </div>
+</form>

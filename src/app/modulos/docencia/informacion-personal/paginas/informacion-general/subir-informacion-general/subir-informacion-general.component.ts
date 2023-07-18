@@ -1,28 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { MessageService } from 'primeng/api';
-import { DocenteInformacion } from '../../../modelos/DocenteInformacion';
-import { Discapacidad } from '../../../modelos/Discapacidad';
-import { Domicilio } from '../../../modelos/Domicilio';
-import { ContactoEmergencia } from '../../../modelos/ContactoEmergencia';
-import { InformacionBancaria } from '../../../modelos/InformacionBancaria';
-import { FormacionAcademica } from '../../../modelos/FormacionAcademica';
-import { UsuarioService } from 'src/app/servicios/usuario.service';
-import { Docente } from 'src/app/models/Docente';
-import { Observable } from 'rxjs';
-import { DocenteInformacionService } from '../../../servicios/DocenteInformacion.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalFormacionAcademicaComponent } from '../../../components/modal-formacion-academica/modal-formacion-academica.component';
-import { FormacionAcademicaAdicional } from '../../../modelos/FormacionAcademicaAdicional';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { Observable } from 'rxjs';
+import { Docente } from 'src/app/models/Docente';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { v4 as uuidv4 } from 'uuid';
 import { ModalExperienciaProfesionalComponent } from '../../../components/modal-experiencia-profesional/modal-experiencia-profesional.component';
+import { ModalFormacionAcademicaComponent } from '../../../components/modal-formacion-academica/modal-formacion-academica.component';
 import { ModalIdiomaHabladoComponent } from '../../../components/modal-idioma-hablado/modal-idioma-hablado.component';
 import { ModalPublicacionRealizadaComponent } from '../../../components/modal-publicacion-realizada/modal-publicacion-realizada.component';
-import { v4 as uuidv4 } from 'uuid';
-import { Idioma } from '../../../modelos/Idioma';
-import { Publicacion } from '../../../modelos/Publicacion';
+import { ContactoEmergencia } from '../../../modelos/ContactoEmergencia';
+import { Discapacidad } from '../../../modelos/Discapacidad';
+import { DocenteInformacion } from '../../../modelos/DocenteInformacion';
+import { Domicilio } from '../../../modelos/Domicilio';
 import { ExperienciaProfesional } from '../../../modelos/ExperienciaProfesional';
-import { DatePipe } from '@angular/common';
+import { FormacionAcademica } from '../../../modelos/FormacionAcademica';
+import { FormacionAcademicaAdicional } from '../../../modelos/FormacionAcademicaAdicional';
+import { Idioma } from '../../../modelos/Idioma';
+import { InformacionBancaria } from '../../../modelos/InformacionBancaria';
+import { Publicacion } from '../../../modelos/Publicacion';
+import { DocenteInformacionService } from '../../../servicios/DocenteInformacion.service';
 
 @Component({
   selector: 'app-subir-informacion-general',
@@ -58,7 +56,7 @@ export class SubirInformacionGeneralComponent implements OnInit {
   parroquiasContacto!: any[];
   paises$: Observable<any>;
   paises: string[] = [];
-  pipe = new DatePipe('en-US');
+  // pipe = new DatePipe('en-US');
 
   // provinciaSeleccionada!: string;
   // cantonSeleccionado!: string;
@@ -86,6 +84,8 @@ export class SubirInformacionGeneralComponent implements OnInit {
     'NEGRO/A',
     'OTRO/A',
   ];
+
+  comboTiposSangre: string[] = ["A-", "A+", "AB-", "AB+", "B-", "B+", "O-", "O+"];
   comboOpcionesCerradas: string[] = ['NO', 'SI'];
   comboTipoDiscapacidad: string[] = [
     'AUDITIVA',
@@ -136,7 +136,7 @@ export class SubirInformacionGeneralComponent implements OnInit {
     'SIN INSTRUCCIÓN',
     'TÉCNICO SUPERIOR',
     'TECNOLOGÍA',
-    'TECNOLOGÍA',
+    'TERCER NIVEL',
   ];
   comboPeriodoInstruccion: string[] = ['AÑOS', 'SEMESTRES'];
 
@@ -208,25 +208,49 @@ export class SubirInformacionGeneralComponent implements OnInit {
     this.docente.correoPrincipal = this.datosDocente.correoDocente;
     this.docente.idEspe = this.datosDocente.idDocente;
     this.docenteInformacionService.obtenerDocentePorIdEspe(this.docente.idEspe).subscribe((data) => {
-      //console.log(data);
       if(data){
         this.docente = data;
-        // if(this.docente.fechaNacimiento)
-        //   this.docente.fechaNacimiento = this.pipe.transform(this.docente.fechaNacimiento,'yyyy-MM-dd','UTC');
         if(this.docente.discapacidad)
           this.discapacidad = this.docente.discapacidad;
-        if(this.docente.domicilio)
+        if(this.docente.domicilio){
           this.domicilio = this.docente.domicilio;
+          this.cargarDomicilioCantones();
+          this.cargarDomicilioParroquia();
+        }
         if(this.docente.contactoEmergencia)
           this.contactoEmergencia = this.docente.contactoEmergencia;
-        if(this.docente.contactoEmergencia && this.docente.contactoEmergencia.domicilio)
+        if(this.docente.contactoEmergencia && this.docente.contactoEmergencia.domicilio){
           this.domicilioContacto = this.docente.contactoEmergencia.domicilio;
+          this.cargarCantonContacto();
+          this.cargarParroquiaContacto();
+        }
         if(this.docente.informacionBancaria)
           this.informacionBancaria = this.docente.informacionBancaria;
-        if(this.docente.formacionAcademica)
+        if(this.docente.formacionAcademica){
           this.formacionAcademica = this.docente.formacionAcademica;
+        }
       }
     });
+  }
+
+  cargarDomicilioCantones() {
+    if (this.domicilio.provincia) {
+      this.cantones = Object.values(
+        this.provincias[this.domicilio.provincia].cantones
+      ).sort((a: any, b: any) => a.canton.localeCompare(b.canton));
+
+      this.cantonIds = Object.keys(this.cantones);
+    }
+  }
+
+  cargarDomicilioParroquia() {
+    if (this.domicilio.canton) {
+      this.parroquias = Object.entries(
+        this.cantones[this.domicilio.canton].parroquias
+      )
+        .map(([id, nombre]) => ({ id, nombre }))
+        .sort((a: any, b: any) => a.nombre.localeCompare(b.nombre));
+    }
   }
 
   onProvinciaChange() {
@@ -250,6 +274,26 @@ export class SubirInformacionGeneralComponent implements OnInit {
         .map(([id, nombre]) => ({ id, nombre }))
         .sort((a: any, b: any) => a.nombre.localeCompare(b.nombre));
       this.domicilio.parroquia = '';
+    }
+  }
+
+  cargarCantonContacto() {
+    if (this.domicilioContacto.provincia) {
+      this.cantonesContacto = Object.values(
+        this.provincias[this.domicilioContacto.provincia].cantones
+      ).sort((a: any, b: any) => a.canton.localeCompare(b.canton));
+
+      this.cantonIdsContacto = Object.keys(this.cantonesContacto);
+    }
+  }
+
+  cargarParroquiaContacto() {
+    if (this.domicilioContacto.canton) {
+      this.parroquiasContacto = Object.entries(
+        this.cantonesContacto[this.domicilioContacto.canton].parroquias
+      )
+        .map(([id, nombre]) => ({ id, nombre }))
+        .sort((a: any, b: any) => a.nombre.localeCompare(b.nombre));
     }
   }
 
@@ -308,7 +352,7 @@ export class SubirInformacionGeneralComponent implements OnInit {
   }
 
   save() {
-    console.log(this.discapacidad)
+    // console.log(this.discapacidad)
     this.docente.discapacidad = this.discapacidad;
     this.docente.domicilio = this.domicilio;
     this.docente.contactoEmergencia = this.contactoEmergencia;
@@ -370,6 +414,7 @@ export class SubirInformacionGeneralComponent implements OnInit {
               item.codigoFormacionAdicional !==
               formacionAcademica.codigoFormacionAdicional
           );
+        formValue.codigoFormacionAdicional = formacionAcademica.codigoFormacionAdicional;
         this.formacionAcademica.formacionAcademicaAdicionales?.push(formValue);
       }
     });
@@ -409,6 +454,7 @@ export class SubirInformacionGeneralComponent implements OnInit {
           this.formacionAcademica.idiomas?.filter(
             (item) => item.codigoIdioma !== idioma.codigoIdioma
           );
+        formValue.codigoIdioma = idioma.codigoIdioma;
         this.formacionAcademica.idiomas?.push(formValue);
       }
     });
@@ -445,6 +491,7 @@ export class SubirInformacionGeneralComponent implements OnInit {
           this.formacionAcademica.publicaciones?.filter(
             (item) => item.idPublicacion !== publicacion.idPublicacion
           );
+        formValue.idPublicacion = publicacion.idPublicacion;
         this.formacionAcademica.publicaciones?.push(formValue);
       }
     });
@@ -482,6 +529,7 @@ export class SubirInformacionGeneralComponent implements OnInit {
           this.docente.experienciaProfesionales?.filter(
             (item) => item.codigoExperiencia !== experiencia.codigoExperiencia
           );
+          formValue.codigoExperiencia = experiencia.codigoExperiencia;
         this.docente.experienciaProfesionales?.push(formValue);
       }
     });

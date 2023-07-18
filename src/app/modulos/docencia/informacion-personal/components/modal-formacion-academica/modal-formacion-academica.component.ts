@@ -131,7 +131,7 @@ export class ModalFormacionAcademicaComponent implements OnInit {
     'SIN INSTRUCCIÓN',
     'TÉCNICO SUPERIOR',
     'TECNOLOGÍA',
-    'TECNOLOGÍA',
+    'TERCER NIVEL',
   ];
 
 

@@ -146,6 +146,20 @@
                 </div>
               </div>
               <div class="row">
+                <div class="col-2">
+                  <label for="correoPrincipal">Tipo de Sangre:</label>
+                </div>
+                <div class="col-4">
+                  <select class="form-select form-select-sm" id="grupoEtnico" name="grupoEtnico"
+                    [(ngModel)]="docente.tipoSangre">
+                    <option [value]="tipoSangre" *ngFor="let tipoSangre of comboTiposSangre"
+                      [selected]="tipoSangre === docente.tipoSangre">
+                      {{tipoSangre}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
                 <hr>
                 <h2>Información adicional de discapacidad y/o enfermedad catastrófica</h2>
                 <div class="col-2">

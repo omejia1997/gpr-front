@@ -54,6 +54,7 @@ import { DashboardTareaVinculacionComponent } from './modulos/vinculacion/pagina
 import { EditarTareaComponent } from './pages/tarea/editar-tarea-programada/editar-tarea.component';
 import { HomeVinculacionComponent } from './modulos/vinculacion/paginas/home/home-vinculacion.component';
 import { SubirInformacionGeneralComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/subir-informacion-general/subir-informacion-general.component';
+import { ListarDocentesInformacionComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/listar-docentes-informacion/listar-docentes-informacion.component';
 
 const routes: Routes = [
  {path: '', redirectTo:'/login' ,pathMatch:'full'},
@@ -110,7 +111,8 @@ const routes: Routes = [
   {path: 'dashboard-vinculacion', component:DashboardVinculacionComponent,canActivate:[AuthGuard]},
   {path: 'dashboard-tarea-vinculacion', component:DashboardTareaVinculacionComponent,canActivate:[AuthGuard]},
   //docente
-  {path: 'subir-informacion-general', component:SubirInformacionGeneralComponent},
+  {path: 'subir-informacion-general', component:SubirInformacionGeneralComponent,canActivate:[AuthGuard]},
+  {path: 'listar-docentes-informacion', component:ListarDocentesInformacionComponent,canActivate:[AuthGuard]},
   {path: '**', component:LoginComponent}
 ];
 
