@@ -200,42 +200,41 @@ export class ListarDocentesInformacionComponent implements OnInit {
           const f = !filter.estadoCivil || data.estadoCivil.includes(filter.estadoCivil);
           const g = !filter.nacionalidad || data.nacionalidad.toLowerCase().includes(filter.nacionalidad);
           const h = !filter.tipoSangre || data.tipoSangre.includes(filter.tipoSangre);
-          const i = !filter.aniosResidencia || data.aniosResidencia.includes(filter.aniosResidencia);
+          const i = !filter.aniosResidencia || data.aniosResidencia===filter.aniosResidencia;
           const j = !filter.etnia || data.etnia.includes(filter.etnia);
-          const k = !filter.grupoEtnico || data.numeroDocumento.includes(filter.grupoEtnico);
+          const k = !filter.grupoEtnico || data.grupoEtnico.includes(filter.grupoEtnico);
 
-          const l = !filter.discapacidadEspecial || data.discapacidadEspecial.includes(filter.discapacidadEspecial);
-          const m = !filter.tipoDiscapacidad || data.tipoDiscapacidad.includes(filter.tipoDiscapacidad);
-          const n = !filter.numeroCarnet || data.numeroDocumento.includes(filter.numeroCarnet);
-          const o = !filter.enfermedadCatastrofica || data.tipoEnfermedadCatastrofica.toLowerCase().includes(filter.tipoEnfermedadCatastrofica);
-          const p = !filter.tipoEnfermedadCatastrofica || data.tipoEnfermedadCatastrofica.toLowerCase().includes(filter.tipoEnfermedadCatastrofica);
+          const l = !filter.discapacidadEspecial || data.discapacidad.discapacidadEspecial.includes(filter.discapacidadEspecial);
+          const m = !filter.tipoDiscapacidad || data.discapacidad.tipoDiscapacidad.includes(filter.tipoDiscapacidad);
+          const n = !filter.numeroCarnet || data.discapacidad.numeroCarnet.includes(filter.numeroCarnet);
+          const o = !filter.enfermedadCatastrofica || data.discapacidad.enfermedadCatastrofica.toLowerCase().includes(filter.enfermedadCatastrofica);
+          const p = !filter.tipoEnfermedadCatastrofica || data.discapacidad.tipoEnfermedadCatastrofica.toLowerCase().includes(filter.tipoEnfermedadCatastrofica);
 
-          const q = !filter.provincia || data.provincia.toLowerCase().includes(filter.provincia);
-          const r = !filter.canton || data.canton.toLowerCase().includes(filter.canton);
-          const s = !filter.parroquia || data.parroquia.toLowerCase().includes(filter.parroquia);
+          const q = !filter.provincia || data.domicilio.provincia.toLowerCase().includes(filter.provincia);
+          const r = !filter.canton || data.domicilio.canton.toLowerCase().includes(filter.canton);
+          const s = !filter.parroquia || data.domicilio.parroquia.toLowerCase().includes(filter.parroquia);
 
-          const t = !filter.nombresCompletosContacto || data.nombresCompletosContacto.toLowerCase().includes(filter.nombresCompletosContacto);
-          const u = !filter.tipoDocumentoContacto || data.tipoDocumentoContacto.toLowerCase().includes(filter.tipoDocumentoContacto);
-          const v = !filter.numeroDocumentoContacto || data.numeroDocumentoContacto.includes(filter.numeroDocumentoContacto);
-          const w = !filter.parentesco || data.parentesco.toLowerCase().includes(filter.parentesco);
-          const x = !filter.provinciaContacto || data.provinciaContacto.toLowerCase().includes(filter.provinciaContacto);
-          const y = !filter.cantonContacto || data.cantonContacto.toLowerCase().includes(filter.cantonContacto);
-          const z = !filter.parroquiaContacto || data.parroquiaContacto.toLowerCase().includes(filter.parroquiaContacto);
+          const t = !filter.nombresCompletosContacto || data.contactoEmergencia.nombresCompletos.toLowerCase().includes(filter.nombresCompletosContacto);
+          const u = !filter.tipoDocumentoContacto || data.contactoEmergencia.tipoDocumento.toLowerCase().includes(filter.tipoDocumentoContacto);
+          const v = !filter.numeroDocumentoContacto || data.contactoEmergencia.numeroDocumento.includes(filter.numeroDocumentoContacto);
+          const w = !filter.parentesco || data.contactoEmergencia.parentesco.toLowerCase().includes(filter.parentesco);
+          const x = !filter.provinciaContacto || data.contactoEmergencia.domicilio.provincia.toLowerCase().includes(filter.provinciaContacto);
+          const y = !filter.cantonContacto || data.contactoEmergencia.domicilio.canton.toLowerCase().includes(filter.cantonContacto);
+          const z = !filter.parroquiaContacto || data.contactoEmergencia.domicilio.parroquia.toLowerCase().includes(filter.parroquiaContacto);
 
-          const aa = !filter.tipoinstitucionFinanciera || data.tipoinstitucionFinanciera.toLowerCase().includes(filter.tipoinstitucionFinanciera);
-          const bb = !filter.nombreinstitucionFinanciera || data.nombreinstitucionFinanciera.toLowerCase().includes(filter.nombreinstitucionFinanciera);
-          const cc = !filter.tipoCuenta || data.tipoCuenta.includes(filter.tipoCuenta);
+          const aa = !filter.tipoinstitucionFinanciera || data.informacionBancaria.tipoinstitucionFinanciera.toLowerCase().includes(filter.tipoinstitucionFinanciera);
+          const bb = !filter.nombreinstitucionFinanciera || data.informacionBancaria.nombreinstitucionFinanciera.toLowerCase().includes(filter.nombreinstitucionFinanciera);
+          const cc = !filter.tipoCuenta || data.informacionBancaria.tipoCuenta.includes(filter.tipoCuenta);
 
-          const dd = !filter.nivelInstruccion || data.nivelInstruccion.toLowerCase().includes(filter.nivelInstruccion);
-          const ee = !filter.institucion || data.institucion.toLowerCase().includes(filter.institucion);
-          const ff = !filter.tituloObtenido || data.tituloObtenido.toLowerCase().includes(filter.tituloObtenido);
-          const gg = !filter.tiempoEstudio || data.tiempoEstudio.includes(filter.tiempoEstudio);
-          const hh = !filter.numeroRegistroSenescyt || data.numeroRegistroSenescyt.includes(filter.numeroRegistroSenescyt);
-          const ii = !filter.pais || data.pais.toLowerCase().includes(filter.pais);
-          const jj = !filter.institucion || data.institucion.toLowerCase().includes(filter.institucion);
+          const dd = !filter.nivelInstruccion || data.formacionAcademica.nivelInstruccion.toLowerCase().includes(filter.nivelInstruccion);
+          const ee = !filter.institucion || data.formacionAcademica.institucion.toLowerCase().includes(filter.institucion);
+          const ff = !filter.tituloObtenido || data.formacionAcademica.tituloObtenido.toLowerCase().includes(filter.tituloObtenido);
+          const gg = !filter.tiempoEstudio || data.formacionAcademica.tiempoEstudio.includes(filter.tiempoEstudio);
+          const hh = !filter.numeroRegistroSenescyt || data.formacionAcademica.numeroRegistroSenescyt.includes(filter.numeroRegistroSenescyt);
+          const ii = !filter.pais || data.formacionAcademica.pais.toLowerCase().includes(filter.pais);
 
             return a && b && c &&d && e && f && g && h && i && j && k && l && m && n && o && p && q && r && s && t && u && v && w && x && y && z &&
-              aa && bb && cc && dd && ee && ff && gg && hh && ii && jj;
+              aa && bb && cc && dd && ee && ff && gg && hh && ii;
         }) as (PeriodicElement: any, string: any) => boolean;
 
         this.dataSource.paginator = this.paginator;
@@ -268,7 +267,6 @@ export class ListarDocentesInformacionComponent implements OnInit {
   }
 
   exportarDatosDocenteToExcel(docenteInformacion:DocenteInformacion): void {
-    console.log(docenteInformacion)
 
     // for (const clave in docenteInformacion) {
     //   if (typeof docenteInformacion[clave] === 'object') {
@@ -358,8 +356,7 @@ export class ListarDocentesInformacionComponent implements OnInit {
     XLSX.utils.book_append_sheet(book, worksheet, 'INFORMACIÓN_PERSONAL');
 
 
-    let formacionAcademicaAdicionalesCopy =docenteInformacion.formacionAcademica?.formacionAcademicaAdicionales
-    console.log(formacionAcademicaAdicionalesCopy)
+    let formacionAcademicaAdicionalesCopy =docenteInformacion.formacionAcademica?.formacionAcademicaAdicionales;
     if(formacionAcademicaAdicionalesCopy){
       const formacionAcademicaAdicionales = formacionAcademicaAdicionalesCopy.map((items:FormacionAcademicaAdicional) => {
         return {
@@ -375,13 +372,10 @@ export class ListarDocentesInformacionComponent implements OnInit {
       });
 
       const worksheetFormacionAcademicaAdicionales: XLSX.WorkSheet = XLSX.utils.json_to_sheet(formacionAcademicaAdicionales);
-      console.log("append")
       XLSX.utils.book_append_sheet(book, worksheetFormacionAcademicaAdicionales, 'FORMACIÓN_ACADÉMICA');
     }
 
     let idiomasCopy = docenteInformacion.formacionAcademica?.idiomas;
-    console.log(idiomasCopy)
-
     if(idiomasCopy){
       const idiomas = idiomasCopy.map((items:Idioma) => {
         return {
@@ -396,9 +390,7 @@ export class ListarDocentesInformacionComponent implements OnInit {
     }
 
     let publicacionesCopy =  docenteInformacion.formacionAcademica?.publicaciones;
-    console.log(publicacionesCopy)
     if(publicacionesCopy){
-      console.log("entro")
       const publicaciones = publicacionesCopy.map((items:Publicacion) => {
         return {
          "Tipo de Investigación": items?.tipoInvestigacion,
