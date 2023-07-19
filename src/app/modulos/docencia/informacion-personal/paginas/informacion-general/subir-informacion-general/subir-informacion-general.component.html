@@ -8,15 +8,26 @@
       <p-progressSpinner *ngIf="blockedDocument" [style]="{width: '150px', height: '150px', margin:'auto'}"
         styleClass="custom-spinner"></p-progressSpinner>
     </div>
-
-
+    <!-- <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
+        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">Home</div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">Profile</div>
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">Contact</div>
+    </div>
+    <button (click)="generarPDF()">sss</button> -->
     <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
-      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" selectedIndex="0">
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" selectedIndex="0" >
         <mat-tab class="mat-tab-container">
           <ng-template mat-tab-label>
             <span class="header-tab">Información General</span>
           </ng-template>
-          <div class="container-document">
+          <div class="container-document" id="tab1">
             <div class="container-align">
               <div class="contenedor">
                 <div class="centrar-elemento">
@@ -25,61 +36,65 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-2">
-                  <label for="tipoDocumento"><mat-icon>assignment</mat-icon>Tipo de Documento:</label>
+                <div class="col-6" >
+                  <div class="row row-left">
+                    <div class="col-4 container-lef-image">
+                      <label for="tipoDocumento"><mat-icon>assignment</mat-icon>Tipo de Documento:</label>
+                    </div>
+                    <div class="col-8 container-lef-image-content">
+                      <select class="form-select form-select-sm" id="tipoDocumento" name="tipoDocumento"
+                        [(ngModel)]="docente.tipoDocumento" (change)="detectarCambioTipoDocumento()">
+                        <option [value]="tipoDocumento" *ngFor="let tipoDocumento of comboTipoDocumento"
+                          [selected]="tipoDocumento === docente.tipoDocumento">
+                          {{tipoDocumento}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-4 container-lef-image">
+                      <label for="numeroDocumento"><mat-icon> scatter_plot</mat-icon>N&#8728; de documento:</label>
+                    </div>
+                    <div class="col-8 container-lef-image-content">
+                      <input [(ngModel)]="docente.numeroDocumento" [disabled]="checkNumeroDocumento" id="numeroDocumento"
+                        name="numeroDocumento" type="text" class="form-control form-control-sm" />
+                    </div>
+                    <div class="col-4 container-lef-image">
+                      <label for="nombreCompleto"><mat-icon>description</mat-icon>Apellidos y Nombres:</label>
+                    </div>
+                    <div class="col-8 container-lef-image-content">
+                      <input [(ngModel)]="docente.nombreCompleto" [disabled]="checkInformacionDocente" id="nombreCompleto"
+                        name="nombreCompleto" type="text" class="form-control form-control-sm" />
+                    </div>
+                    <div class="col-4 container-lef-image">
+                      <label for="fechaNacimiento"><mat-icon>description</mat-icon>Fecha de Nacimiento:</label>
+                    </div>
+                    <div class="col-8 container-lef-image-content">
+                      <input [(ngModel)]="docente.fechaNacimiento" id="fechaNacimiento" name="fechaNacimiento" type="date"
+                        class="form-control form-control-sm" />
+                    </div>
+                    <div class="col-4 container-lef-image">
+                      <label for="genero"><mat-icon>description</mat-icon>Género</label>
+                    </div>
+                    <div class="col-8 container-lef-image-content">
+                      <input [(ngModel)]="docente.genero" [disabled]="checkInformacionDocente" id="genero" name="genero"
+                        type="text" class="form-control form-control-sm" />
+                    </div>
+                    <div class="col-4 container-lef-image">
+                      <label for="estadoCivil"><mat-icon>description</mat-icon>Estado civil</label>
+                    </div>
+                    <div class="col-8 container-lef-image-content">
+                      <select class="form-select form-select-sm" id="estadoCivil" name="estadoCivil"
+                        [(ngModel)]="docente.estadoCivil">
+                        <option [value]="estadoCivil" *ngFor="let estadoCivil of comboEstadoCivil"
+                          [selected]="estadoCivil === docente.estadoCivil">
+                          {{estadoCivil}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-                <div class="col-4">
-                  <select class="form-select form-select-sm" id="tipoDocumento" name="tipoDocumento"
-                    [(ngModel)]="docente.tipoDocumento" (change)="detectarCambioTipoDocumento()">
-                    <option [value]="tipoDocumento" *ngFor="let tipoDocumento of comboTipoDocumento"
-                      [selected]="tipoDocumento === docente.tipoDocumento">
-                      {{tipoDocumento}}
-                    </option>
-                  </select>
-                </div>
-                <div class="col-2">
-                  <label for="numeroDocumento"><mat-icon> scatter_plot</mat-icon>N&#8728; de documento:</label>
-                </div>
-                <div class="col-4">
-                  <input [(ngModel)]="docente.numeroDocumento" [disabled]="checkNumeroDocumento" id="numeroDocumento"
-                    name="numeroDocumento" type="text" class="form-control form-control-sm" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-2">
-                  <label for="nombreCompleto"><mat-icon>description</mat-icon>Apellidos y Nombres:</label>
-                </div>
-                <div class="col-4">
-                  <input [(ngModel)]="docente.nombreCompleto" [disabled]="checkInformacionDocente" id="nombreCompleto"
-                    name="nombreCompleto" type="text" class="form-control form-control-sm" />
-                </div>
-                <div class="col-2">
-                  <label for="fechaNacimiento"><mat-icon>description</mat-icon>Fecha de Nacimiento:</label>
-                </div>
-                <div class="col-4">
-                  <input [(ngModel)]="docente.fechaNacimiento" id="fechaNacimiento" name="fechaNacimiento" type="date"
-                    class="form-control form-control-sm" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-2">
-                  <label for="genero"><mat-icon>description</mat-icon>Género</label>
-                </div>
-                <div class="col-4">
-                  <input [(ngModel)]="docente.genero" [disabled]="checkInformacionDocente" id="genero" name="genero"
-                    type="text" class="form-control form-control-sm" />
-                </div>
-                <div class="col-2">
-                  <label for="estadoCivil"><mat-icon>description</mat-icon>Estado civil</label>
-                </div>
-                <div class="col-4">
-                  <select class="form-select form-select-sm" id="estadoCivil" name="estadoCivil"
-                    [(ngModel)]="docente.estadoCivil">
-                    <option [value]="estadoCivil" *ngFor="let estadoCivil of comboEstadoCivil"
-                      [selected]="estadoCivil === docente.estadoCivil">
-                      {{estadoCivil}}
-                    </option>
-                  </select>
+                <div class="col-6 container-img">
+                  <img src="https://icon-library.com/images/user-image-icon/user-image-icon-19.jpg" width="40%">
+                  <input type="file" (change)="onFileImageSelected($event)" accept="image/*">
                 </div>
               </div>
               <div class="row">
@@ -533,7 +548,8 @@
           <ng-template mat-tab-label>
             <span class="header-tab">Formación Académica</span>
           </ng-template>
-          <div class="container-document">
+
+          <div class="container-document" id="tab2">
             <div class="container-align">
               <div class="contenedor">
                 <div class="centrar-elemento">
@@ -757,7 +773,7 @@
           <ng-template mat-tab-label>
             <span class="header-tab">Experiencia</span>
           </ng-template>
-          <div class="container-document">
+          <div class="container-document" id="tab3">
             <div class="container-align">
               <div class="contenedor">
                 <div class="centrar-elemento">

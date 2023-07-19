@@ -56,6 +56,7 @@ export class SubirInformacionGeneralComponent implements OnInit {
   parroquiasContacto!: any[];
   paises$: Observable<any>;
   paises: string[] = [];
+  imagenSeleccionada: File | null = null;
   // pipe = new DatePipe('en-US');
 
   // provinciaSeleccionada!: string;
@@ -351,6 +352,17 @@ export class SubirInformacionGeneralComponent implements OnInit {
     }
   }
 
+  onFileImageSelected(event: any) {
+    const file: File = event.target.files[0];
+
+    if (file && file.type.startsWith('image/')) {
+      this.imagenSeleccionada = file;
+    } else {
+      this.imagenSeleccionada = null;
+    }
+  }
+
+
   save() {
     // console.log(this.discapacidad)
     this.docente.discapacidad = this.discapacidad;
@@ -541,4 +553,26 @@ export class SubirInformacionGeneralComponent implements OnInit {
         (item) => item.codigoExperiencia !== experiencia.codigoExperiencia
       );
   }
+
+  // generarPDF() {
+  //   const doc = new jspdf();
+  //   const tabContent = document.getElementById("nav-tabContent");
+  //   if(tabContent){
+  //     const tabPanes = tabContent.getElementsByClassName("tab-pane");
+  //     for (let i = 0; i < tabPanes.length; i++) {
+  //       const tabPane = tabPanes[i];
+  //       const contenido = tabPane.innerHTML;
+  //       if (contenido.trim() !== '') {
+  //         if (i > 0) {
+  //           doc.addPage();
+  //         }
+  //       doc.text(contenido, 10, 10);
+  //       }
+  //     }
+  //     doc.save('contenido.pdf');
+  //   }
+
+  // }
+
+
 }

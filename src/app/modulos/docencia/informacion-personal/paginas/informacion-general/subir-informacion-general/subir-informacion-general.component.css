@@ -8,6 +8,20 @@
 height:100%;
 }
 
+.row-left{
+  width: 99%
+}
+
+.container-lef-image-content{
+  padding: 0;
+  margin: 5px 0 5px 0;
+  padding-left: 2px;
+}
+.container-lef-image{
+  padding: 0;
+  margin: 5px 0 5px 0;
+}
+
 form{
   margin: auto;
   padding:30px;
@@ -45,6 +59,12 @@ mat-tab-group{
 .container-align{
   width: 100%;
   margin: auto;
+}
+
+.container-img{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .contenedor {
