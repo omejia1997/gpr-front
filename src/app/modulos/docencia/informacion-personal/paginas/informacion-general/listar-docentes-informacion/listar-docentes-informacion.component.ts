@@ -11,6 +11,7 @@ import { FormacionAcademicaAdicional } from '../../../modelos/FormacionAcademica
 import { Idioma } from '../../../modelos/Idioma';
 import { Publicacion } from '../../../modelos/Publicacion';
 import { ExperienciaProfesional } from '../../../modelos/ExperienciaProfesional';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-docentes-informacion',
@@ -98,7 +99,8 @@ export class ListarDocentesInformacionComponent implements OnInit {
   constructor(
     private docenteInformacionService: DocenteInformacionService,
     formBuilder: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router,
   ) {
     this.getInformacionDocentes$ =
       this.docenteInformacionService.listarTodosDocentes();
@@ -402,7 +404,8 @@ export class ListarDocentesInformacionComponent implements OnInit {
          "Estado de Publicación": items?.estadoPublicacion,
          "fecha de Publicación": items?.fechaPublicacion,
          "Volumen de Publicación": items?.volumenPublicacion,
-         "Revisión de Pares": items?.revisionPares
+         "Revisión de Pares": items?.revisionPares,
+         "DOI": items?.doi
        }
       });
       const worksheetpublicaciones: XLSX.WorkSheet = XLSX.utils.json_to_sheet(publicaciones);
@@ -430,6 +433,11 @@ export class ListarDocentesInformacionComponent implements OnInit {
       XLSX.utils.book_append_sheet(book, worksheetExperienciaProfesional, 'EXPERIENCIA_PROFESIONAL');
     }
     XLSX.writeFile(book, this.name);
+  }
+
+  verInformacionDocente(docenteInformacion:DocenteInformacion){
+    this.docenteInformacionService.setDocente(docenteInformacion);
+    this.router.navigate(['ver-docente-informacion']);
   }
 
 }

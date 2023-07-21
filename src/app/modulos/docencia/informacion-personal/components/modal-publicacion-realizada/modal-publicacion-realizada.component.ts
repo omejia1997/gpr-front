@@ -53,7 +53,7 @@ import { Publicacion } from '../../modelos/Publicacion';
         <input
           matInput
           type="text"
-          placeholder="ISSN/ISBN/DOI"
+          placeholder="ISSN/ISBN"
           formControlName="codigoPublicacion"
           name="codigoPublicacion"
           required
@@ -138,6 +138,17 @@ import { Publicacion } from '../../modelos/Publicacion';
         </mat-select>
       </mat-form-field>
 
+      <mat-form-field class="custom-form-field">
+      <input
+          matInput
+          type="text"
+          placeholder="DOI"
+          formControlName="doi"
+          name="doi"
+          required
+        />
+      </mat-form-field>
+
       <button
         type="submit"
         class="btn btn-success btn-sm"
@@ -192,6 +203,7 @@ export class ModalPublicacionRealizadaComponent implements OnInit {
       fechaPublicacion: ['', Validators.required],
       volumenPublicacion: ['', Validators.required],
       revisionPares: ['', Validators.required],
+      doi:['', Validators.required],
     });
     if(this.publicacion){
       this.myForm.patchValue({
@@ -204,7 +216,8 @@ export class ModalPublicacionRealizadaComponent implements OnInit {
         estadoPublicacion: this.publicacion.estadoPublicacion,
         fechaPublicacion: this.publicacion.fechaPublicacion,
         volumenPublicacion: this.publicacion.volumenPublicacion,
-        revisionPares: this.publicacion.revisionPares
+        revisionPares: this.publicacion.revisionPares,
+        doi: this.publicacion.doi
       });
     }
     this.cargarIdiomas();

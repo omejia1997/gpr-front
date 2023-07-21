@@ -10,4 +10,5 @@ export type Publicacion = {
   fechaPublicacion?: Date;
   volumenPublicacion?: number;
   revisionPares?: string;
+  doi?: string;
 };

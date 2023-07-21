@@ -500,7 +500,7 @@
         <ng-container matColumnDef="export">
           <th mat-header-cell *matHeaderCellDef> <div class="header-content-big">Exportar Toda la Información</div>
           </th>
-          <td mat-cell *matCellDef="let element" class="body-table"><button (click)="exportarDatosDocenteToExcel(element)" type="button" class="btn btn-outline-primary btn-sm" >Exportar Datos a Excel</button> </td>
+          <td mat-cell *matCellDef="let element" class="body-table"><button (click)="exportarDatosDocenteToExcel(element)" type="button" class="btn btn-outline-primary btn-sm" >Exportar Datos a Excel</button>&nbsp;&nbsp;<mat-icon (click)="verInformacionDocente(element)">remove_red_eye</mat-icon> </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

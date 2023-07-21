@@ -87,6 +87,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ModalIdiomaHabladoComponent } from './modulos/docencia/informacion-personal/components/modal-idioma-hablado/modal-idioma-hablado.component';
 import { ModalPublicacionRealizadaComponent } from './modulos/docencia/informacion-personal/components/modal-publicacion-realizada/modal-publicacion-realizada.component';
 import { ListarDocentesInformacionComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/listar-docentes-informacion/listar-docentes-informacion.component';
+import { VerDocenteInformacionComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/ver-docente-informacion/ver-docente-informacion.component';
 
 @NgModule({
   declarations: [
@@ -152,7 +153,8 @@ import { ListarDocentesInformacionComponent } from './modulos/docencia/informaci
     ModalIdiomaHabladoComponent,
     ModalPublicacionRealizadaComponent,
     ModalExperienciaProfesionalComponent,
-    ListarDocentesInformacionComponent
+    ListarDocentesInformacionComponent,
+    VerDocenteInformacionComponent
   ],
   imports: [
     BrowserModule,

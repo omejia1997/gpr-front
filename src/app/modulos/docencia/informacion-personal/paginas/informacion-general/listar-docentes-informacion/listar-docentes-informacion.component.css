@@ -26,9 +26,9 @@ table th{
   width: 100px;
 }
 
-mat-icon{
-  font-size: 18px;
-}
+/* mat-icon{
+  font-size: 30px;
+} */
 
 a{
   text-decoration: none;

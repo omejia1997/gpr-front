@@ -3,6 +3,7 @@ import { Discapacidad } from "./Discapacidad";
 import { Domicilio } from "./Domicilio";
 import { ExperienciaProfesional } from "./ExperienciaProfesional";
 import { FormacionAcademica } from "./FormacionAcademica";
+import { ImagenUser } from "./ImagenUser";
 import { InformacionBancaria } from "./InformacionBancaria";
 
 export type DocenteInformacion = {
@@ -31,4 +32,5 @@ export type DocenteInformacion = {
   formacionAcademica?:FormacionAcademica;
   experienciaProfesionales?: ExperienciaProfesional[];
   fechaEntrega?:Date;
+  imagenUser?:ImagenUser;
 };

@@ -55,6 +55,7 @@ import { EditarTareaComponent } from './pages/tarea/editar-tarea-programada/edit
 import { HomeVinculacionComponent } from './modulos/vinculacion/paginas/home/home-vinculacion.component';
 import { SubirInformacionGeneralComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/subir-informacion-general/subir-informacion-general.component';
 import { ListarDocentesInformacionComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/listar-docentes-informacion/listar-docentes-informacion.component';
+import { VerDocenteInformacionComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/ver-docente-informacion/ver-docente-informacion.component';
 
 const routes: Routes = [
  {path: '', redirectTo:'/login' ,pathMatch:'full'},
@@ -113,6 +114,7 @@ const routes: Routes = [
   //docente
   {path: 'subir-informacion-general', component:SubirInformacionGeneralComponent,canActivate:[AuthGuard]},
   {path: 'listar-docentes-informacion', component:ListarDocentesInformacionComponent,canActivate:[AuthGuard]},
+  {path: 'ver-docente-informacion', component:VerDocenteInformacionComponent,canActivate:[AuthGuard]},
   {path: '**', component:LoginComponent}
 ];
 

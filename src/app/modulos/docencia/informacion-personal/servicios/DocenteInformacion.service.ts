@@ -10,6 +10,8 @@ const DOCENTE = environment.URL_MICROSERVICE_DOCENTE_INFORMACION + '/docente';
   providedIn: 'root',
 })
 export class DocenteInformacionService {
+  private docenteInformacion$$ = new BehaviorSubject<DocenteInformacion | null>(null);
+  //docenteInformacion$ = this.docenteInformacion$$.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -41,11 +43,17 @@ export class DocenteInformacionService {
     return this.http.get<DocenteInformacion[]>(`${DOCENTE}/listarTodosDocentes`);
   }
 
+  public setDocente(docente: DocenteInformacion) {
+    this.docenteInformacion$$.next(docente);
+  }
 
-  public guardarInformacion(docenteInformacion: DocenteInformacion) {
+  public guardarInformacion(docenteInformacion: DocenteInformacion,imagenSeleccionada:File) {
+    const formData: FormData = new FormData();
+    formData.append("docente",JSON.stringify(docenteInformacion));
+    formData.append('file', imagenSeleccionada);
     if(docenteInformacion.id)
-      return this.http.put<any>(DOCENTE, docenteInformacion);
+      return this.http.put<any>(DOCENTE, formData);
     else
-      return this.http.post<any>(DOCENTE, docenteInformacion);
+      return this.http.post<any>(DOCENTE, formData);
   }
 }

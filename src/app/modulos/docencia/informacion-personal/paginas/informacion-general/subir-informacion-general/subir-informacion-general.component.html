@@ -21,7 +21,7 @@
       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">Contact</div>
     </div>
     <button (click)="generarPDF()">sss</button> -->
-    <form (ngSubmit)="f.form.valid && save()" #f="ngForm">
+    <form (ngSubmit)="f.form.valid && save()" #f="ngForm" enctype="multipart/form-data">
       <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center" selectedIndex="0" >
         <mat-tab class="mat-tab-container">
           <ng-template mat-tab-label>
@@ -93,7 +93,7 @@
                   </div>
                 </div>
                 <div class="col-6 container-img">
-                  <img src="https://icon-library.com/images/user-image-icon/user-image-icon-19.jpg" width="40%">
+                  <img [src]="imagenURL" width="200px" height="200px">
                   <input type="file" (change)="onFileImageSelected($event)" accept="image/*">
                 </div>
               </div>
@@ -138,7 +138,7 @@
                   <select class="form-select form-select-sm" id="grupoEtnico" name="grupoEtnico"
                     [(ngModel)]="docente.grupoEtnico">
                     <option [value]="grupoEtnico" *ngFor="let grupoEtnico of gruposEtnicos"
-                      [selected]="grupoEtnico === docente.grupoEtnico">
+                      [selected]="grupoEtnico == docente.grupoEtnico">
                       {{grupoEtnico}}
                     </option>
                   </select>
@@ -165,7 +165,7 @@
                   <label for="correoPrincipal">Tipo de Sangre:</label>
                 </div>
                 <div class="col-4">
-                  <select class="form-select form-select-sm" id="grupoEtnico" name="grupoEtnico"
+                  <select class="form-select form-select-sm" id="tipoSangre" name="comboTiposSangre"
                     [(ngModel)]="docente.tipoSangre">
                     <option [value]="tipoSangre" *ngFor="let tipoSangre of comboTiposSangre"
                       [selected]="tipoSangre === docente.tipoSangre">
@@ -735,13 +735,14 @@
                         <th>Tipo de Investigación</th>
                         <th>Titulo Completo</th>
                         <th>Publicador</th>
-                        <th>ISSN/ISBN/DOI</th>
+                        <th>ISSN/ISBN</th>
                         <th>Participación</th>
                         <th>Idioma</th>
                         <th>Estado de Publicación</th>
                         <th>Fecha de Publicación</th>
                         <th>N° Volumen de la Publicación</th>
                         <th>Revisión de Pares</th>
+                        <th>DOI</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
@@ -757,6 +758,7 @@
                         <td>{{ publicacion.fechaPublicacion }}</td>
                         <td>{{ publicacion.volumenPublicacion }}</td>
                         <td>{{ publicacion.revisionPares }}</td>
+                        <td><a href="{{publicacion.doi}}" target="_blank">DOI</a></td>
                         <td>
                           <mat-icon (click)="editarPublicacionIngresada(publicacion)">edit</mat-icon>
                           <mat-icon (click)="eliminarPublicacionIngresada(publicacion)">delete</mat-icon>

@@ -56,7 +56,8 @@ export class SubirInformacionGeneralComponent implements OnInit {
   parroquiasContacto!: any[];
   paises$: Observable<any>;
   paises: string[] = [];
-  imagenSeleccionada: File | null = null;
+  imagenSeleccionada: any;
+  imagenURL: any;
   // pipe = new DatePipe('en-US');
 
   // provinciaSeleccionada!: string;
@@ -158,6 +159,7 @@ export class SubirInformacionGeneralComponent implements OnInit {
     this.formacionAcademica.idiomas = [];
     this.formacionAcademica.publicaciones = [];
     this.docente.experienciaProfesionales = [];
+    this.imagenURL= "https://icon-library.com/images/user-image-icon/user-image-icon-19.jpg";//foto por defualt
   }
 
   ngOnInit() {
@@ -211,6 +213,8 @@ export class SubirInformacionGeneralComponent implements OnInit {
     this.docenteInformacionService.obtenerDocentePorIdEspe(this.docente.idEspe).subscribe((data) => {
       if(data){
         this.docente = data;
+        if(this.docente.imagenUser?.urlImagen)
+          this.imagenURL = this.docente.imagenUser?.urlImagen;
         if(this.docente.discapacidad)
           this.discapacidad = this.docente.discapacidad;
         if(this.docente.domicilio){
@@ -354,26 +358,32 @@ export class SubirInformacionGeneralComponent implements OnInit {
 
   onFileImageSelected(event: any) {
     const file: File = event.target.files[0];
-
     if (file && file.type.startsWith('image/')) {
       this.imagenSeleccionada = file;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imagenURL = e.target.result;
+      };
+      reader.readAsDataURL(file);
     } else {
       this.imagenSeleccionada = null;
+      if(this.docente.imagenUser?.urlImagen)
+        this.imagenURL = this.docente.imagenUser?.urlImagen;
+      else
+        this.imagenURL = "https://icon-library.com/images/user-image-icon/user-image-icon-19.jpg";
     }
   }
 
 
   save() {
-    // console.log(this.discapacidad)
     this.docente.discapacidad = this.discapacidad;
     this.docente.domicilio = this.domicilio;
     this.docente.contactoEmergencia = this.contactoEmergencia;
     this.docente.contactoEmergencia.domicilio = this.domicilioContacto;
     this.docente.informacionBancaria = this.informacionBancaria;
     this.docente.formacionAcademica = this.formacionAcademica;
-    // console.log('data', this.docente);
     this.blockedDocument = true;
-    this.docenteInformacionService.guardarInformacion(this.docente)
+    this.docenteInformacionService.guardarInformacion(this.docente,this.imagenSeleccionada)
     .subscribe({
       next: (data) => {
         this.messageService.add({
