@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DocenteInformacion } from '../modelos/DocenteInformacion';
+import { ImagenUser } from '../modelos/ImagenUser';
 
 const DOCENTE = environment.URL_MICROSERVICE_DOCENTE_INFORMACION + '/docente';
 
@@ -38,6 +39,11 @@ export class DocenteInformacionService {
   public obtenerDocentePorIdEspe(idEspe:any): Observable<DocenteInformacion>{
     return this.http.get<DocenteInformacion>(`${DOCENTE}/obtenerDocentePorIdEspe/${idEspe}`);
   }
+
+  public obtenerImagenUser(fileName:any): Observable<ImagenUser>{
+    return this.http.get<ImagenUser>(`${DOCENTE}/obtenerImagenBase64/${fileName}`);
+  }
+
 
   public listarTodosDocentes(): Observable<DocenteInformacion[]>{
     return this.http.get<DocenteInformacion[]>(`${DOCENTE}/listarTodosDocentes`);

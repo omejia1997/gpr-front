@@ -84,3 +84,6 @@ mat-tab-group{
 .table-responsive{
   margin-top: 10px;
 }
+.button-container{
+  height:30px;
+}
