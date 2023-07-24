@@ -178,6 +178,41 @@ export class ListarDocentesInformacionComponent implements OnInit {
         // proyecto: value.proyecto.trim().toLowerCase(),
         // tarea: value.tarea.trim().toLowerCase(),
         // responsable: value.responsable.trim().toLowerCase(),
+        tipoDocumento:value.tipoDocumento.trim().toLowerCase(),
+        // numeroDocumento: value.numeroDocumento.trim().toLowerCase(),
+        idEspe: value.idEspe.trim().toLowerCase(),
+        nombreCompleto:value.nombreCompleto.trim().toLowerCase(),
+        genero:value.genero.trim().toLowerCase(),
+        estadoCivil:value.estadoCivil.trim().toLowerCase(),
+        nacionalidad:value.nacionalidad.trim().toLowerCase(),
+        tipoSangre:value.tipoSangre.trim().toLowerCase(),
+        etnia:value.etnia.trim().toLowerCase(),
+        grupoEtnico:value.grupoEtnico.trim().toLowerCase(),
+
+        discapacidadEspecial:value.discapacidadEspecial.trim().toLowerCase(),
+        tipoDiscapacidad:value.tipoDiscapacidad.trim().toLowerCase(),
+        enfermedadCatastrofica:value.enfermedadCatastrofica.trim().toLowerCase(),
+        tipoEnfermedadCatastrofica:value.tipoEnfermedadCatastrofica.trim().toLowerCase(),
+
+        // provincia:value.numeroDocumento.trim().toLowerCase(),
+        // canton:value.numeroDocumento.trim().toLowerCase(),
+        // parroquia:value.numeroDocumento.trim().toLowerCase(),
+
+        nombresCompletosContacto:value.nombresCompletosContacto.trim().toLowerCase(),
+        tipoDocumentoContacto:value.tipoDocumentoContacto.trim().toLowerCase(),
+        parentesco:value.parentesco.trim().toLowerCase(),
+        // provinciaContacto:value.numeroDocumento.trim().toLowerCase(),
+        // cantonContacto:value.numeroDocumento.trim().toLowerCase(),
+        // parroquiaContacto:value.numeroDocumento.trim().toLowerCase(),
+
+        tipoinstitucionFinanciera:value.tipoinstitucionFinanciera.trim().toLowerCase(),
+        nombreinstitucionFinanciera:value.nombreinstitucionFinanciera.trim().toLowerCase(),
+        tipoCuenta:value.tipoCuenta.trim().toLowerCase(),
+
+        nivelInstruccion:value.nivelInstruccion.trim().toLowerCase(),
+        institucion:value.institucion.trim().toLowerCase(),
+        tituloObtenido:value.tituloObtenido.trim().toLowerCase(),
+        pais:value.pais.trim().toLowerCase(),
       } as string;
       this.dataSource.filter = filter;
     });
@@ -193,21 +228,21 @@ export class ListarDocentesInformacionComponent implements OnInit {
         this.dataTable = [];
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.filterPredicate = ((data, filter) => {
-          const a = !filter.tipoDocumento || data.tipoDocumento.includes(filter.tipoDocumento);
+          const a = !filter.tipoDocumento || data.tipoDocumento.toLowerCase().includes(filter.tipoDocumento);
           const b = !filter.numeroDocumento || data.numeroDocumento.includes(filter.numeroDocumento);
-          const c = !filter.idEspe || data.idEspe.includes(filter.idEspe);
+          const c = !filter.idEspe || data.idEspe.toLowerCase().includes(filter.idEspe);
           const d = !filter.nombreCompleto || data.nombreCompleto.toLowerCase().includes(filter.nombreCompleto);
 
           const e = !filter.genero || data.genero.toLowerCase().includes(filter.genero);
-          const f = !filter.estadoCivil || data.estadoCivil.includes(filter.estadoCivil);
+          const f = !filter.estadoCivil || data.estadoCivil.toLowerCase().includes(filter.estadoCivil);
           const g = !filter.nacionalidad || data.nacionalidad.toLowerCase().includes(filter.nacionalidad);
-          const h = !filter.tipoSangre || data.tipoSangre.includes(filter.tipoSangre);
+          const h = !filter.tipoSangre || data.tipoSangre.toLowerCase().includes(filter.tipoSangre);
           const i = !filter.aniosResidencia || data.aniosResidencia===filter.aniosResidencia;
-          const j = !filter.etnia || data.etnia.includes(filter.etnia);
-          const k = !filter.grupoEtnico || data.grupoEtnico.includes(filter.grupoEtnico);
+          const j = !filter.etnia || data.etnia.toLowerCase().includes(filter.etnia);
+          const k = !filter.grupoEtnico || data.grupoEtnico.toLowerCase().includes(filter.grupoEtnico);
 
-          const l = !filter.discapacidadEspecial || data.discapacidad.discapacidadEspecial.includes(filter.discapacidadEspecial);
-          const m = !filter.tipoDiscapacidad || data.discapacidad.tipoDiscapacidad.includes(filter.tipoDiscapacidad);
+          const l = !filter.discapacidadEspecial || data.discapacidad.discapacidadEspecial.toLowerCase().includes(filter.discapacidadEspecial);
+          const m = !filter.tipoDiscapacidad || data.discapacidad.tipoDiscapacidad.toLowerCase().includes(filter.tipoDiscapacidad);
           const n = !filter.numeroCarnet || data.discapacidad.numeroCarnet.includes(filter.numeroCarnet);
           const o = !filter.enfermedadCatastrofica || data.discapacidad.enfermedadCatastrofica.toLowerCase().includes(filter.enfermedadCatastrofica);
           const p = !filter.tipoEnfermedadCatastrofica || data.discapacidad.tipoEnfermedadCatastrofica.toLowerCase().includes(filter.tipoEnfermedadCatastrofica);
@@ -226,12 +261,12 @@ export class ListarDocentesInformacionComponent implements OnInit {
 
           const aa = !filter.tipoinstitucionFinanciera || data.informacionBancaria.tipoinstitucionFinanciera.toLowerCase().includes(filter.tipoinstitucionFinanciera);
           const bb = !filter.nombreinstitucionFinanciera || data.informacionBancaria.nombreinstitucionFinanciera.toLowerCase().includes(filter.nombreinstitucionFinanciera);
-          const cc = !filter.tipoCuenta || data.informacionBancaria.tipoCuenta.includes(filter.tipoCuenta);
+          const cc = !filter.tipoCuenta || data.informacionBancaria.tipoCuenta.toLowerCase().includes(filter.tipoCuenta);
 
           const dd = !filter.nivelInstruccion || data.formacionAcademica.nivelInstruccion.toLowerCase().includes(filter.nivelInstruccion);
           const ee = !filter.institucion || data.formacionAcademica.institucion.toLowerCase().includes(filter.institucion);
           const ff = !filter.tituloObtenido || data.formacionAcademica.tituloObtenido.toLowerCase().includes(filter.tituloObtenido);
-          const gg = !filter.tiempoEstudio || data.formacionAcademica.tiempoEstudio.includes(filter.tiempoEstudio);
+          const gg = !filter.tiempoEstudio || data.formacionAcademica.tiempoEstudio.includes(filter.tiempoEstudio);//Revisar creo no va
           const hh = !filter.numeroRegistroSenescyt || data.formacionAcademica.numeroRegistroSenescyt.includes(filter.numeroRegistroSenescyt);
           const ii = !filter.pais || data.formacionAcademica.pais.toLowerCase().includes(filter.pais);
 
