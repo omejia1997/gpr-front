@@ -12,7 +12,7 @@ const DOCENTE = environment.URL_MICROSERVICE_DOCENTE_INFORMACION + '/docente';
 })
 export class DocenteInformacionService {
   private docenteInformacion$$ = new BehaviorSubject<DocenteInformacion | null>(null);
-  //docenteInformacion$ = this.docenteInformacion$$.asObservable();
+  docenteInformacion$ = this.docenteInformacion$$.asObservable();
 
   constructor(private http: HttpClient) {}
 

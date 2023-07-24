@@ -159,7 +159,6 @@ export class SubirInformacionGeneralComponent implements OnInit {
     this.formacionAcademica.idiomas = [];
     this.formacionAcademica.publicaciones = [];
     this.docente.experienciaProfesionales = [];
-    this.imagenURL= "https://icon-library.com/images/user-image-icon/user-image-icon-19.jpg";//foto por defualt
   }
 
   ngOnInit() {
@@ -213,8 +212,12 @@ export class SubirInformacionGeneralComponent implements OnInit {
     this.docenteInformacionService.obtenerDocentePorIdEspe(this.docente.idEspe).subscribe((data) => {
       if(data){
         this.docente = data;
-        if(this.docente.imagenUser?.urlImagen)
+        if(this.docente.imagenUser?.urlImagen){
           this.imagenURL = this.docente.imagenUser?.urlImagen;
+        }else{
+          this.imagenURL =
+          'https://icon-library.com/images/user-image-icon/user-image-icon-19.jpg'; //foto por defualt
+        }
         if(this.docente.discapacidad)
           this.discapacidad = this.docente.discapacidad;
         if(this.docente.domicilio){

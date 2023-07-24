@@ -1,13 +1,13 @@
 <app-navbar></app-navbar>
-<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
-<p-blockUI [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI>
+<!-- <p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-blockUI [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI> -->
 <div class="container">
 
   <div class="row justify-content-center">
-    <div class="overlay">
+    <!-- <div class="overlay">
       <p-progressSpinner *ngIf="blockedDocument" [style]="{width: '150px', height: '150px', margin:'auto'}"
         styleClass="custom-spinner"></p-progressSpinner>
-    </div>
+    </div> -->
 
     <div class="d-flex justify-content-center button-container">
       <button (click)="generarPDF()" class="" type="button" class="btn btn-outline-primary btn-sm">Exportar Datos a PDF</button>
@@ -43,22 +43,25 @@
                     <label for="nombreCompleto"><mat-icon>description</mat-icon>Apellidos y Nombres:</label>
                   </div>
                   <div class="col-8 container-lef-image-content">
-                    <input [(ngModel)]="docente.nombreCompleto" [disabled]="checkInformacionDocente" id="nombreCompleto"
-                      name="nombreCompleto" type="text" class="form-control form-control-sm" />
+                    {{docente.nombreCompleto}}
+                    <!-- <input [(ngModel)]="docente.nombreCompleto" [disabled]="checkInformacionDocente" id="nombreCompleto"
+                      name="nombreCompleto" type="text" class="form-control form-control-sm" /> -->
                   </div>
                   <div class="col-4 container-lef-image">
                     <label for="fechaNacimiento"><mat-icon>description</mat-icon>Fecha de Nacimiento:</label>
                   </div>
                   <div class="col-8 container-lef-image-content">
-                    <input [(ngModel)]="docente.fechaNacimiento" id="fechaNacimiento" name="fechaNacimiento" type="date"
-                      class="form-control form-control-sm" />
+                    {{docente.fechaNacimiento}}
+                    <!-- <input [(ngModel)]="docente.fechaNacimiento" id="fechaNacimiento" name="fechaNacimiento" type="date"
+                      class="form-control form-control-sm" /> -->
                   </div>
                   <div class="col-4 container-lef-image">
                     <label for="genero"><mat-icon>description</mat-icon>Género</label>
                   </div>
                   <div class="col-8 container-lef-image-content">
-                    <input [(ngModel)]="docente.genero" [disabled]="checkInformacionDocente" id="genero" name="genero"
-                      type="text" class="form-control form-control-sm" />
+                    {{docente.genero}}
+                    <!-- <input [(ngModel)]="docente.genero" [disabled]="checkInformacionDocente" id="genero" name="genero"
+                      type="text" class="form-control form-control-sm" /> -->
                   </div>
                   <div class="col-4 container-lef-image">
                     <label for="estadoCivil"><mat-icon>description</mat-icon>Estado civil</label>
@@ -84,8 +87,9 @@
                   residencia:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="docente.aniosResidencia" id="aniosResidencia" name="aniosResidencia" type="number"
-                  class="form-control form-control-sm" />
+                {{docente.aniosResidencia}}
+                <!-- <input [(ngModel)]="docente.aniosResidencia" id="aniosResidencia" name="aniosResidencia" type="number"
+                  class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -100,13 +104,14 @@
                   étnico:</label>
               </div>
               <div class="col-4">
-                <select class="form-select form-select-sm" id="grupoEtnico" name="grupoEtnico"
+                {{docente.grupoEtnico}}
+                <!-- <select class="form-select form-select-sm" id="grupoEtnico" name="grupoEtnico"
                   [(ngModel)]="docente.grupoEtnico">
                   <option [value]="grupoEtnico" *ngFor="let grupoEtnico of gruposEtnicos"
                     [selected]="grupoEtnico == docente.grupoEtnico">
                     {{grupoEtnico}}
                   </option>
-                </select>
+                </select> -->
               </div>
             </div>
             <div class="row">
@@ -114,15 +119,17 @@
                 <label for="correoPrincipal"><mat-icon>description</mat-icon>Correo electrónico principal:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="docente.correoPrincipal" [disabled]="checkInformacionDocente" id="correoPrincipal"
-                  name="correoPrincipal" type="text" class="form-control form-control-sm" />
+                {{docente.correoPrincipal}}
+                <!-- <input [(ngModel)]="docente.correoPrincipal" [disabled]="checkInformacionDocente" id="correoPrincipal"
+                  name="correoPrincipal" type="text" class="form-control form-control-sm" /> -->
               </div>
               <div class="col-2">
                 <label for="correoAlternativo"><mat-icon>description</mat-icon>Correo electrónico alternativo:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="docente.correoAlternativo" id="correoAlternativo" name="correoAlternativo"
-                  type="text" class="form-control form-control-sm" />
+                {{docente.correoAlternativo}}
+                <!-- <input [(ngModel)]="docente.correoAlternativo" id="correoAlternativo" name="correoAlternativo"
+                  type="text" class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -169,9 +176,10 @@
                 <label for="porcentajeDiscapacidad"><mat-icon>description</mat-icon>% de discapacidad:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="discapacidad.porcentajeDiscapacidad" [disabled]="checkDiscapacidadEspecial"
+                {{discapacidad.porcentajeDiscapacidad}}
+                <!-- <input [(ngModel)]="discapacidad.porcentajeDiscapacidad" [disabled]="checkDiscapacidadEspecial"
                   id="porcentajeDiscapacidad" name="porcentajeDiscapacidad" type="number"
-                  class="form-control form-control-sm" />
+                  class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -179,8 +187,9 @@
                 <label for="numeroCarnet"><mat-icon>description</mat-icon>No. Carnet M.S.P.:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="discapacidad.numeroCarnet" [disabled]="checkDiscapacidadEspecial" id="numeroCarnet"
-                  name="numeroCarnet" type="text" class="form-control form-control-sm" />
+                {{discapacidad.numeroCarnet}}
+                <!-- <input [(ngModel)]="discapacidad.numeroCarnet" [disabled]="checkDiscapacidadEspecial" id="numeroCarnet"
+                  name="numeroCarnet" type="text" class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -189,22 +198,19 @@
               <div class="col-2">
                 <label for="provincia"><mat-icon>description</mat-icon>Provincia</label>
               </div>
-              <div class="col-4">
-                <select id="provincia" name="provincia" class="form-select form-select-sm"
+              <div class="col-4" *ngIf="domicilio.provincia">
+                {{provincias[domicilio.provincia].provincia}}
+                <!-- <select id="provincia" name="provincia" class="form-select form-select-sm"
                   [(ngModel)]="domicilio.provincia" (change)="onProvinciaChange()">
                   <option [value]="provinciaId" *ngFor="let provinciaId of provinciaIds"
                     [selected]="provinciaId === domicilio.provincia">{{ provincias[provinciaId].provincia }}</option>
-                </select>
+                </select> -->
               </div>
               <div class="col-2">
                 <label for="canton"><mat-icon>description</mat-icon>Cantón</label>
               </div>
-              <div class="col-4">
-                <select id="canton" name="canton" class="form-select form-select-sm" [(ngModel)]="domicilio.canton"
-                  (change)="onCantonChange()">
-                  <option [value]="cantonId" *ngFor="let cantonId of cantonIds"
-                    [selected]="cantonId === domicilio.canton">{{ cantones[cantonId].canton }}</option>
-                </select>
+              <div class="col-4" *ngIf="domicilio.canton">
+                {{ cantonesContacto[domicilio.canton].canton }}
               </div>
             </div>
             <div class="row">
@@ -212,18 +218,15 @@
                 <label for="parroquia"><mat-icon>description</mat-icon>Parroquia:</label>
               </div>
               <div class="col-4">
-                <select id="parroquia" name="parroquia" class="form-select form-select-sm"
-                  [(ngModel)]="domicilio.parroquia">
-                  <option [value]="parroquia.nombre" *ngFor="let parroquia of parroquias"
-                    [selected]="parroquia.nombre== domicilio.parroquia">{{ parroquia.nombre }}</option>
-                </select>
+                {{ domicilio.parroquia }}
               </div>
               <div class="col-2">
                 <label for="callePrincipal"><mat-icon>description</mat-icon>CallePrincipal</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="domicilio.callePrincipal" id="callePrincipal" name="callePrincipal" type="text"
-                  class="form-control form-control-sm" />
+                {{ domicilio.callePrincipal }}
+                <!-- <input [(ngModel)]="domicilio.callePrincipal" id="callePrincipal" name="callePrincipal" type="text"
+                  class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -231,15 +234,17 @@
                 <label for="calleSecundaria"><mat-icon>description</mat-icon>Calle Secundaria:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="domicilio.calleSecundaria" id="calleSecundaria" name="calleSecundaria" type="text"
-                  class="form-control form-control-sm" />
+                {{ domicilio.calleSecundaria }}
+                <!-- <input [(ngModel)]="domicilio.calleSecundaria" id="calleSecundaria" name="calleSecundaria" type="text"
+                  class="form-control form-control-sm" /> -->
               </div>
               <div class="col-2">
                 <label for="numeroDomicilio"><mat-icon>description</mat-icon>Número de Domicilio:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="domicilio.numeroDomicilio" id="numeroDomicilio" name="numeroDomicilio" type="text"
-                  class="form-control form-control-sm" />
+                {{ domicilio.numeroDomicilio }}
+                <!-- <input [(ngModel)]="domicilio.numeroDomicilio" id="numeroDomicilio" name="numeroDomicilio" type="text"
+                  class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -247,8 +252,9 @@
                 <label for="referencia"><mat-icon>description</mat-icon>Referencia:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="domicilio.referencia" id="referencia" name="referencia" type="text"
-                  class="form-control form-control-sm" />
+                {{ domicilio.referencia }}
+                <!-- <input [(ngModel)]="domicilio.referencia" id="referencia" name="referencia" type="text"
+                  class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -256,15 +262,17 @@
                 <label for="telefonoDomicilio"><mat-icon>description</mat-icon>Teléfono domicilio: </label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="domicilio.telefonoDomicilio" id="telefonoDomicilio" name="telefonoDomicilio"
-                  type="text" class="form-control form-control-sm" />
+                {{ domicilio.telefonoDomicilio}}
+                <!-- <input [(ngModel)]="domicilio.telefonoDomicilio" id="telefonoDomicilio" name="telefonoDomicilio"
+                  type="text" class="form-control form-control-sm" /> -->
               </div>
               <div class="col-2">
                 <label for="telefonoCelular"><mat-icon>description</mat-icon>Teléfono celular: </label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="domicilio.telefonoCelular" id="telefonoCelular" name="telefonoCelular" type="text"
-                  class="form-control form-control-sm" />
+                {{ domicilio.telefonoCelular}}
+                <!-- <input [(ngModel)]="domicilio.telefonoCelular" id="telefonoCelular" name="telefonoCelular" type="text"
+                  class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -272,15 +280,17 @@
                 <label for="telefonoTrabajo"><mat-icon>description</mat-icon>Teléfono trabajo: </label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="docente.telefonoTrabajo" id="telefonoTrabajo" name="telefonoTrabajo" type="text"
-                  class="form-control form-control-sm" />
+                {{ docente.telefonoTrabajo}}
+                <!-- <input [(ngModel)]="docente.telefonoTrabajo" id="telefonoTrabajo" name="telefonoTrabajo" type="text"
+                  class="form-control form-control-sm" /> -->
               </div>
               <div class="col-2">
                 <label for="extension"><mat-icon>description</mat-icon>Extensión: </label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="docente.extension" id="extension" name="extension" type="text"
-                  class="form-control form-control-sm" />
+                {{ docente.extension}}
+                <!-- <input [(ngModel)]="docente.extension" id="extension" name="extension" type="text"
+                  class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -290,8 +300,9 @@
                 <label for="provincia"><mat-icon>description</mat-icon>Apellidos y Nombres:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="contactoEmergencia.nombresCompletos" id="nombresCompletos" name="nombresCompletos"
-                  type="text" class="form-control form-control-sm" />
+                {{ contactoEmergencia.nombresCompletos}}
+                <!-- <input [(ngModel)]="contactoEmergencia.nombresCompletos" id="nombresCompletos" name="nombresCompletos"
+                  type="text" class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -305,8 +316,9 @@
                 <label for="numeroDocumentoContacto"><mat-icon> scatter_plot</mat-icon>N&#8728; de documento:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="contactoEmergencia.numeroDocumento" id="numeroDocumentoContacto"
-                  name="numeroDocumentoContacto" type="text" class="form-control form-control-sm" />
+                {{contactoEmergencia.numeroDocumento}}
+                <!-- <input [(ngModel)]="contactoEmergencia.numeroDocumento" id="numeroDocumentoContacto"
+                  name="numeroDocumentoContacto" type="text" class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -341,13 +353,6 @@
                 <div *ngIf="domicilioContacto.canton">
                   {{ cantonesContacto[domicilioContacto.canton].canton }}
                 </div>
-                <select id="cantonContacto" name="cantonContacto" class="form-select form-select-sm"
-                  [(ngModel)]="domicilioContacto.canton" (change)="onCantonContactoChange()">
-                  <option [value]="cantonId" *ngFor="let cantonId of cantonIdsContacto"
-                    [selected]="cantonId === domicilio.canton">{{ cantonesContacto[cantonId].canton }}</option>
-                </select>
-                <!-- <input [(ngModel)]="domicilioContacto.canton" id="cantonContacto" name="cantonContacto" type="text"
-                    class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -355,23 +360,20 @@
                 <label for="parroquiaContacto"><mat-icon>description</mat-icon>Parroquia:</label>
               </div>
               <div class="col-4">
-                <!-- <select id="parroquiaContacto" name="parroquiaContacto" class="form-select form-select-sm" [(ngModel)]="domicilioContacto.parroquia">
-                    <option [value]="parroquia.id" *ngFor="let parroquia of parroquiasContacto" [selected]="parroquia === domicilioContacto.parroquia">{{ parroquia.nombre }}</option>
-                  </select> -->
-                <select id="parroquiaContacto" name="parroquiaContacto" class="form-select form-select-sm"
+                {{ domicilioContacto.parroquia }}
+                <!-- <select id="parroquiaContacto" name="parroquiaContacto" class="form-select form-select-sm"
                   [(ngModel)]="domicilioContacto.parroquia">
                   <option [value]="parroquia.nombre" *ngFor="let parroquia of parroquiasContacto"
                     [selected]="parroquia === domicilioContacto.parroquia">{{ parroquia.nombre }}</option>
-                </select>
-                <!-- <input [(ngModel)]="domicilioContacto.parroquia" id="parroquiaContacto" name="parroquiaContacto"
-                    type="text" class="form-control form-control-sm" /> -->
+                </select> -->
               </div>
               <div class="col-2">
                 <label for="callePrincipalContacto"><mat-icon>description</mat-icon>CallePrincipal</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="domicilioContacto.callePrincipal" id="callePrincipalContacto"
-                  name="callePrincipalContacto" type="text" class="form-control form-control-sm" />
+                {{ domicilioContacto.callePrincipal }}
+                <!-- <input [(ngModel)]="domicilioContacto.callePrincipal" id="callePrincipalContacto"
+                  name="callePrincipalContacto" type="text" class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -379,15 +381,17 @@
                 <label for="calleSecundariaContacto"><mat-icon>description</mat-icon>Calle Secundaria:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="domicilioContacto.calleSecundaria" id="calleSecundariaContacto"
-                  name="calleSecundariaContacto" type="text" class="form-control form-control-sm" />
+                {{ domicilioContacto.calleSecundaria }}
+                <!-- <input [(ngModel)]="domicilioContacto.calleSecundaria" id="calleSecundariaContacto"
+                  name="calleSecundariaContacto" type="text" class="form-control form-control-sm" /> -->
               </div>
               <div class="col-2">
                 <label for="numeroDomicilioContacto"><mat-icon>description</mat-icon>Número de Domicilio:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="domicilioContacto.numeroDomicilio" id="numeroDomicilioContacto"
-                  name="numeroDomicilioContacto" type="text" class="form-control form-control-sm" />
+                {{ domicilioContacto.numeroDomicilio }}
+                <!-- <input [(ngModel)]="domicilioContacto.numeroDomicilio" id="numeroDomicilioContacto"
+                  name="numeroDomicilioContacto" type="text" class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -395,8 +399,9 @@
                 <label for="referenciaContacto"><mat-icon>description</mat-icon>Referencia:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="domicilioContacto.referencia" id="referenciaContacto" name="referenciaContacto"
-                  type="text" class="form-control form-control-sm" />
+                {{ domicilioContacto.referencia }}
+                <!-- <input [(ngModel)]="domicilioContacto.referencia" id="referenciaContacto" name="referenciaContacto"
+                  type="text" class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -404,15 +409,17 @@
                 <label for="telefonoDomicilioContacto"><mat-icon>description</mat-icon>Teléfono domicilio: </label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="domicilioContacto.telefonoDomicilio" id="telefonoDomicilioContacto"
-                  name="telefonoDomicilioContacto" type="text" class="form-control form-control-sm" />
+                {{ domicilioContacto.telefonoDomicilio }}
+                <!-- <input [(ngModel)]="domicilioContacto.telefonoDomicilio" id="telefonoDomicilioContacto"
+                  name="telefonoDomicilioContacto" type="text" class="form-control form-control-sm" /> -->
               </div>
               <div class="col-2">
                 <label for="telefonoCelularContacto"><mat-icon>description</mat-icon>Teléfono celular: </label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="domicilioContacto.telefonoCelular" id="telefonoCelularContacto"
-                  name="telefonoCelularContacto" type="text" class="form-control form-control-sm" />
+                {{ domicilioContacto.telefonoCelular }}
+                <!-- <input [(ngModel)]="domicilioContacto.telefonoCelular" id="telefonoCelularContacto"
+                  name="telefonoCelularContacto" type="text" class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -430,8 +437,9 @@
                   Financiera:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="informacionBancaria.nombreinstitucionFinanciera" id="nombreinstitucionFinanciera"
-                  name="nombreinstitucionFinanciera" type="text" class="form-control form-control-sm" />
+                {{ informacionBancaria.nombreinstitucionFinanciera }}
+                <!-- <input [(ngModel)]="informacionBancaria.nombreinstitucionFinanciera" id="nombreinstitucionFinanciera"
+                  name="nombreinstitucionFinanciera" type="text" class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -445,8 +453,9 @@
                 <label for="numeroCuenta"><mat-icon>description</mat-icon>No. de cuenta: </label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="informacionBancaria.numeroCuenta" id="numeroCuenta" name="numeroCuenta" type="text"
-                  class="form-control form-control-sm" />
+                {{ informacionBancaria.numeroCuenta }}
+                <!-- <input [(ngModel)]="informacionBancaria.numeroCuenta" id="numeroCuenta" name="numeroCuenta" type="text"
+                  class="form-control form-control-sm" /> -->
               </div>
             </div>
           </div>
@@ -475,8 +484,9 @@
                 <label for="institucion">Institución:</label>
               </div>
               <div class="col-4">
-                <input [(ngModel)]="formacionAcademica.institucion" id="institucion" name="institucion" type="text"
-                  class="form-control form-control-sm" />
+                {{formacionAcademica.institucion}}
+                <!-- <input [(ngModel)]="formacionAcademica.institucion" id="institucion" name="institucion" type="text"
+                  class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -484,8 +494,9 @@
                 <label for="tituloObtenido">Título Obtenido:</label>
               </div>
               <div class="col-9">
-                <input [(ngModel)]="formacionAcademica.tituloObtenido" id="tituloObtenido" name="tituloObtenido"
-                  type="text" class="form-control form-control-sm" />
+                {{formacionAcademica.tituloObtenido}}
+                <!-- <input [(ngModel)]="formacionAcademica.tituloObtenido" id="tituloObtenido" name="tituloObtenido"
+                  type="text" class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -493,8 +504,9 @@
                 <label for="tiempoEstudio">Tiempo de Estudio:</label>
               </div>
               <div class="col-3">
-                <input [(ngModel)]="formacionAcademica.tiempoEstudio" id="tiempoEstudio" name="tiempoEstudio"
-                  type="number" class="form-control form-control-sm" />
+                {{formacionAcademica.tiempoEstudio}}
+                <!-- <input [(ngModel)]="formacionAcademica.tiempoEstudio" id="tiempoEstudio" name="tiempoEstudio"
+                  type="number" class="form-control form-control-sm" /> -->
               </div>
               <!-- <div class="col-2">
                   <label for="periodoEstudio"><mat-icon>description</mat-icon>Estado civil</label>
@@ -508,15 +520,17 @@
                 <label for="numeroRegistroSenescyt"><mat-icon>description</mat-icon>No. de Registro SENESCYT</label>
               </div>
               <div class="col-3">
-                <input [(ngModel)]="formacionAcademica.numeroRegistroSenescyt" id="numeroRegistroSenescyt"
-                  name="numeroRegistroSenescyt" type="text" class="form-control form-control-sm" />
+                {{formacionAcademica.numeroRegistroSenescyt}}
+                <!-- <input [(ngModel)]="formacionAcademica.numeroRegistroSenescyt" id="numeroRegistroSenescyt"
+                  name="numeroRegistroSenescyt" type="text" class="form-control form-control-sm" /> -->
               </div>
               <div class="col-3">
                 <label for="fechaRegistroSenescyt"><mat-icon>description</mat-icon>Fecha de Registro Senescyt:</label>
               </div>
               <div class="col-3">
-                <input [(ngModel)]="formacionAcademica.fechaRegistroSenescyt" id="fechaRegistroSenescyt"
-                  name="fechaRegistroSenescyt" type="date" class="form-control form-control-sm" />
+                {{formacionAcademica.fechaRegistroSenescyt}}
+                <!-- <input [(ngModel)]="formacionAcademica.fechaRegistroSenescyt" id="fechaRegistroSenescyt"
+                  name="fechaRegistroSenescyt" type="date" class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">
@@ -524,20 +538,22 @@
                 <label for="paisFormacionAcademica"><mat-icon>description</mat-icon>País:</label>
               </div>
               <div class="col-3">
-                <select class="form-select form-select-sm" id="paisFormacionAcademica" name="paisFormacionAcademica"
+                {{formacionAcademica.pais}}
+                <!-- <select class="form-select form-select-sm" id="paisFormacionAcademica" name="paisFormacionAcademica"
                   [(ngModel)]="formacionAcademica.pais">
                   <option [value]="paisFormacionAcademica" *ngFor="let paisFormacionAcademica of paises"
                     [selected]="paisFormacionAcademica === formacionAcademica.pais">
                     {{paisFormacionAcademica}}
                   </option>
-                </select>
+                </select> -->
               </div>
               <div class="col-3">
                 <label for="fechaGraduacion"><mat-icon>description</mat-icon>Fecha de Graduación:</label>
               </div>
               <div class="col-3">
-                <input [(ngModel)]="formacionAcademica.fechaGraduacion" id="fechaGraduacion" name="fechaGraduacion"
-                  type="date" class="form-control form-control-sm" />
+                {{formacionAcademica.fechaGraduacion}}
+                <!-- <input [(ngModel)]="formacionAcademica.fechaGraduacion" id="fechaGraduacion" name="fechaGraduacion"
+                  type="date" class="form-control form-control-sm" /> -->
               </div>
             </div>
             <div class="row">

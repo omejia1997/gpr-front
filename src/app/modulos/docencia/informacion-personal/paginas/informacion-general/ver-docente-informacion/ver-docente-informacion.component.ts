@@ -74,6 +74,14 @@ export class VerDocenteInformacionComponent implements OnInit {
     private docenteInformacionService: DocenteInformacionService,
     private dialog: MatDialog
   ) {
+    this.docenteInformacionService.docenteInformacion$.subscribe((res) => {
+      this.docente = res!;
+      if (this.docente == null) {
+        this.back();
+      } else {
+        this.datosDocente.idDocente = this.docente.idEspe;
+      }
+     });
     this.geTerritorioEcuatoriano$ =
       this.docenteInformacionService.getTerritorioEcuatoriano();
     this.gruposEtnicos$ = this.docenteInformacionService.loadGruposEtnicos();
@@ -82,12 +90,15 @@ export class VerDocenteInformacionComponent implements OnInit {
     this.formacionAcademica.idiomas = [];
     this.formacionAcademica.publicaciones = [];
     this.docente.experienciaProfesionales = [];
-    this.imagenURL =
-      'https://icon-library.com/images/user-image-icon/user-image-icon-19.jpg'; //foto por defualt
+
+  }
+
+  back(){
+    this.router.navigate(['listar-docentes-informacion']);
   }
 
   ngOnInit() {
-    this.cargarDatosDocente();
+    this.procesarDocente();
     this.cargarTerritorioEcuatoriano();
     this.cargarGruposEtnicos();
     this.cargarPaises();
@@ -112,20 +123,8 @@ export class VerDocenteInformacionComponent implements OnInit {
     });
   }
 
-  cargarDatosDocente() {
-    this.usuarioService
-      .obtenerUsuarioPorNombre(this.nombreUsuario)
-      .subscribe((respuesta) => {
-        this.procesarDocente(respuesta);
-      });
-  }
 
-  procesarDocente(resp: any) {
-    this.datosDocente = resp.docenteResponse.docente[0];
-    this.docente.nombreCompleto =
-      this.datosDocente.apellidoDocente + ' ' + this.datosDocente.nombreDocente;
-    this.docente.genero = this.datosDocente.sexo;
-    this.docente.correoPrincipal = this.datosDocente.correoDocente;
+  procesarDocente() {
     this.docente.idEspe = this.datosDocente.idDocente;
     this.docenteInformacionService
       .obtenerDocentePorIdEspe(this.docente.idEspe)
@@ -141,6 +140,9 @@ export class VerDocenteInformacionComponent implements OnInit {
                 this.calcularDimensionesImagen(this.imagenUser.fileBase64);
               }
             });
+          }else{
+            this.imagenURL =
+            'https://icon-library.com/images/user-image-icon/user-image-icon-19.jpg'; //foto por defualt
           }
           if (this.docente.discapacidad)
             this.discapacidad = this.docente.discapacidad;

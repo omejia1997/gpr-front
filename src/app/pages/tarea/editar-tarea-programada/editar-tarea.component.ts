@@ -108,7 +108,6 @@ export class EditarTareaComponent implements OnInit {
     this.tipoTarea = tipoTarea;
     this.getIndicadores$ = this.tareaService.obtenerIndicadores();
     this.tareaService.tareas$.subscribe((res) => {
-      console.log('res', res);
       this.tareaDocenteProyecto = res;
       if (this.tareaDocenteProyecto == null) {
         this.visualBlockedDocument = false;
