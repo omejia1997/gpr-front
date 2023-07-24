@@ -32,11 +32,11 @@ export class LoginComponent implements OnInit {
   dataTable:any[] = [];
 
   constructor(
-    private fb:FormBuilder, 
+    private fb:FormBuilder,
     private _usuario: UsuarioService,
     private router: Router,
     private tareaService: TareaService
-    ) { 
+    ) {
     this.iniciarFormulario();
     this.getTareasDocente$ = this.tareaService.obtenerTodasTareasRevisar();
   }
@@ -44,45 +44,45 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getTareas() {
-    this.getTareasDocente$.subscribe(tareas =>{
-      this.tareasDocente = tareas; 
-      var cont=0;
-      this.tareasDocente.forEach(tareaDocent => {
-        cont++;
-        let objetoTarea = {
-          "id":cont,
-          "revisor":tareaDocent.nombreDocenteRevisor,
-          "proceso":tareaDocent.tipoProceso,
-          "proyecto":tareaDocent.nombreProyecto,
-          "tarea":tareaDocent.nombreTarea, 
-          "tipoTarea":tareaDocent.tipoTarea,
-          "prioridad":tareaDocent.prioridadTarea,
-          "peso":tareaDocent.pesoTarea,
-          "fechaInicio":tareaDocent.fechaCreaciontarea, 
-          "fechaVencimiento":tareaDocent.fechaEntregaTarea, 
-          "responsable":tareaDocent.responsable,
-          "tareaIndicadors":tareaDocent.tareaIndicadors,
-          "nombreArchivo":tareaDocent.nombreArchivo,
-          "urlArchivo":tareaDocent.urlArchivo
-        }
-        this.dataTable.push(objetoTarea);
-      });
-      //this.tareaService.setTareasDocenteModel(this.dataTable);
-      localStorage.setItem('dataTable', JSON.stringify(this.dataTable));
-    });
-  }
+  // getTareas() {
+  //   this.getTareasDocente$.subscribe(tareas =>{
+  //     this.tareasDocente = tareas;
+  //     var cont=0;
+  //     this.tareasDocente.forEach(tareaDocent => {
+  //       cont++;
+  //       let objetoTarea = {
+  //         "id":cont,
+  //         "revisor":tareaDocent.nombreDocenteRevisor,
+  //         "proceso":tareaDocent.tipoProceso,
+  //         "proyecto":tareaDocent.nombreProyecto,
+  //         "tarea":tareaDocent.nombreTarea,
+  //         "tipoTarea":tareaDocent.tipoTarea,
+  //         "prioridad":tareaDocent.prioridadTarea,
+  //         "peso":tareaDocent.pesoTarea,
+  //         "fechaInicio":tareaDocent.fechaCreaciontarea,
+  //         "fechaVencimiento":tareaDocent.fechaEntregaTarea,
+  //         "responsable":tareaDocent.responsable,
+  //         "tareaIndicadors":tareaDocent.tareaIndicadors,
+  //         "nombreArchivo":tareaDocent.nombreArchivo,
+  //         "urlArchivo":tareaDocent.urlArchivo
+  //       }
+  //       this.dataTable.push(objetoTarea);
+  //     });
+  //     //this.tareaService.setTareasDocenteModel(this.dataTable);
+  //     localStorage.setItem('dataTable', JSON.stringify(this.dataTable));
+  //   });
+  // }
 
   iniciarFormulario(){
     this.formulario2=this.fb.group({
       usuario:['',Validators.required],
       password:['',Validators.required],
     })
-    
+
   }
 
   consultar(){
-    
+
     //console.log(this.formulario2);
 
     this._usuario.login(this.formulario2.value.usuario,this.formulario2.value.password).subscribe(respuesta=>{
@@ -103,28 +103,27 @@ export class LoginComponent implements OnInit {
       }) => {
         //console.log(element.nombreUsuario)
         if(element.nombreUsuario!=null){
-          this.getTareas();
+          // this.getTareas();
           localStorage.setItem('usuario',element.nombreUsuario);
           localStorage.setItem('est', element.estadoUsuario);
           //console.log("ingresa");
-          
+
           //obtenerperfilUsuario
           this.perfil = this._usuario.obtenerPerfil(element.codigoUsuario).subscribe({
             next: (res) => {
               if(res) {
                 this.perfil =res;
                 //this._usuario.setDescPerfil(this.perfil.descPerfil);
-                
+
                 //console.log(this.docente.codigoDocente);
-                
+
                 localStorage.setItem('codigoPerfil',this.perfil.codigoPerfil);
                 localStorage.setItem('descPerfil',this.perfil.descPerfil);
-                //console.log(this.perfil.descPerfil)
               }
             }
           });
 
-         
+
           localStorage.setItem('codUsuario',element.codigoUsuario);
           if(element.nombreUsuario!='admin'){
             this.docente = this._usuario.obtenerDocente(element.codigoUsuario).subscribe({
@@ -138,7 +137,7 @@ export class LoginComponent implements OnInit {
                 }
               }
             });
-          }  
+          }
         }
 
     });
@@ -148,7 +147,7 @@ export class LoginComponent implements OnInit {
 
       }else if(localStorage.getItem('est') == '2'){
         this.router.navigate(['./cambiar-contrasenia']);
-      }     
+      }
       else {
         this.router.navigate(['./home']);
       }
@@ -166,7 +165,7 @@ export class LoginComponent implements OnInit {
   mostrarcontrasenia(){
     this.visible=!this.visible;
     this.changetype=!this.changetype;
- 
+
   }
 
 }

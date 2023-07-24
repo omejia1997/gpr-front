@@ -23,7 +23,6 @@ export class NavbarComponent implements OnInit {
   codigo: any;
   descPerfil: any;
   nombreDocenteRevisor: any;
-
   codigousuario: any;
 
   menus: any;
@@ -44,7 +43,8 @@ export class NavbarComponent implements OnInit {
   cargarPerfil() {
     this.codigousuario = localStorage.getItem('codUsuario');
     this.usuarioService.obtenerPerfil(this.codigousuario).subscribe((resp) => {
-      this.cargarOpcionesPerfil(resp.codigoPerfil);
+      //this.cargarOpcionesPerfil(resp.codigoPerfil); //descomentar cuando se ponga bn los datos en la BD
+      this.descPerfil= resp.descPerfil;
     });
   }
 
