@@ -131,15 +131,27 @@ export class VerDocenteInformacionComponent implements OnInit {
       .subscribe((data) => {
         if (data) {
           this.docente = data;
-          if (this.docente.imagenUser?.urlImagen){
-            this.imagenURL = this.docente.imagenUser?.urlImagen;
+          if(this.docente.imagenUser?.urlImagen){
+            //this.imagenURL = this.docente.imagenUser?.urlImagen;
             this.docenteInformacionService.obtenerImagenUser(this.docente.imagenUser?.nombreImagen)
-            .subscribe((data)=>{
-              this.imagenUser=data;
-              if(this.imagenUser.fileBase64){
-                this.calcularDimensionesImagen(this.imagenUser.fileBase64);
-              }
-            });
+              .subscribe((data)=>{
+                this.docente.imagenUser=data;
+                this.imagenUser= data;
+                this.imagenURL = this.docente.imagenUser?.urlImagen;
+                this.imagenURL= "data:image/jpeg;base64,"+this.docente.imagenUser.fileBase64;
+                if(this.imagenUser.fileBase64){
+                  this.calcularDimensionesImagen(this.imagenUser.fileBase64);
+                }
+              });
+          // if (this.docente.imagenUser?.urlImagen){
+          //   this.imagenURL = this.docente.imagenUser?.urlImagen;
+          //   this.docenteInformacionService.obtenerImagenUser(this.docente.imagenUser?.nombreImagen)
+          //   .subscribe((data)=>{
+          //     this.imagenUser=data;
+          //     if(this.imagenUser.fileBase64){
+          //       this.calcularDimensionesImagen(this.imagenUser.fileBase64);
+          //     }
+          //   });
           }else{
             this.imagenURL =
             'https://icon-library.com/images/user-image-icon/user-image-icon-19.jpg'; //foto por defualt
@@ -341,7 +353,8 @@ export class VerDocenteInformacionComponent implements OnInit {
     doc.text(this.docente.tipoSangre?this.docente.tipoSangre:'', columnX4 + 10, 70);
 
     //ImagenUser
-    if(this.imagenUser.fileBase64){
+    console.log(this.imagenUser)
+    if(this.imagenUser?.fileBase64){
       let anchoDisponible = (200-(columnX3+10));
       let coordenadaX = (anchoDisponible-this.widthImagenUser)/2;
       coordenadaX = columnX3+10+coordenadaX;
