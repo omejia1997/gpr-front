@@ -88,6 +88,8 @@ import { ModalIdiomaHabladoComponent } from './modulos/docencia/informacion-pers
 import { ModalPublicacionRealizadaComponent } from './modulos/docencia/informacion-personal/components/modal-publicacion-realizada/modal-publicacion-realizada.component';
 import { ListarDocentesInformacionComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/listar-docentes-informacion/listar-docentes-informacion.component';
 import { VerDocenteInformacionComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/ver-docente-informacion/ver-docente-informacion.component';
+import { ListarTareaDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/listar-tarea-docente/listar-tarea-docente.component';
+import { GestionarTareaDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/gestionar-tarea-docente/gestionar-tarea-docente.component';
 
 @NgModule({
   declarations: [
@@ -154,7 +156,9 @@ import { VerDocenteInformacionComponent } from './modulos/docencia/informacion-p
     ModalPublicacionRealizadaComponent,
     ModalExperienciaProfesionalComponent,
     ListarDocentesInformacionComponent,
-    VerDocenteInformacionComponent
+    VerDocenteInformacionComponent,
+    ListarTareaDocenteComponent,
+    GestionarTareaDocenteComponent
   ],
   imports: [
     BrowserModule,

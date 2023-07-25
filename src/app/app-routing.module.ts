@@ -56,6 +56,8 @@ import { HomeVinculacionComponent } from './modulos/vinculacion/paginas/home/hom
 import { SubirInformacionGeneralComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/subir-informacion-general/subir-informacion-general.component';
 import { ListarDocentesInformacionComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/listar-docentes-informacion/listar-docentes-informacion.component';
 import { VerDocenteInformacionComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/ver-docente-informacion/ver-docente-informacion.component';
+import { ListarTareaDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/listar-tarea-docente/listar-tarea-docente.component';
+import { GestionarTareaDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/gestionar-tarea-docente/gestionar-tarea-docente.component';
 
 const routes: Routes = [
  {path: '', redirectTo:'/login' ,pathMatch:'full'},
@@ -115,6 +117,9 @@ const routes: Routes = [
   {path: 'subir-informacion-general', component:SubirInformacionGeneralComponent,canActivate:[AuthGuard]},
   {path: 'listar-docentes-informacion', component:ListarDocentesInformacionComponent,canActivate:[AuthGuard]},
   {path: 'ver-docente-informacion', component:VerDocenteInformacionComponent,canActivate:[AuthGuard]},
+  //tarea-docente
+  {path: 'listar-tarea-docente', component:ListarTareaDocenteComponent,canActivate:[AuthGuard]},
+  {path: 'gestionar-tarea-docente', component:GestionarTareaDocenteComponent,canActivate:[AuthGuard]},
   {path: '**', component:LoginComponent}
 ];
 

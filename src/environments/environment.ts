@@ -7,7 +7,8 @@ export const environment = {
   URL_STORAGE: "https://documents-grp-decem.azurewebsites.net",//http://localhost:8090
   URL_MICROSERVICE_VINCULACION: "http://localhost:8088",
   URL_MICROSERVICE_INVESTIGACION: "https://gpr-decem-espe.azurewebsites.net",//http://localhost:8080
-  URL_MICROSERVICE_DOCENTE_INFORMACION: "http://localhost:8888"
+  URL_MICROSERVICE_DOCENTE_INFORMACION: "http://localhost:8888",
+  URL_MICROSERVICE_DOCENTE_TAREAS: "http://localhost:9999"
 };
 
 /*

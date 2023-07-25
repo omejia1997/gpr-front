@@ -1,0 +1,66 @@
+<app-navbar></app-navbar>
+<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-blockUI [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="overlay">
+      <p-progressSpinner *ngIf="blockedDocument"
+        [style]="{width: '150px', height: '150px', margin:'auto'}"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </div>
+    <div class="col-md-5" style="margin: auto;">
+      <button type="button" (click)="back()" class="btn btn-dark btn-sm btn-regresar">Regresar</button>
+      <h2 style="text-align: center;"><mat-icon>assignment_ind</mat-icon> Crear una nueva Actividad</h2>
+      <form (ngSubmit)="f.form.valid" #f="ngForm">
+        <div class="form-group">
+          <label for="nombreTareas">Nombre de la Actividad:</label>
+          <input [(ngModel)]="tareaDocenciaRequest.nombreTarea" name="nombreTareas" type="text" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <hr>
+          <h2>Cargos:</h2>
+          <label for="">Seleccione un Cargo:</label>
+          <p>
+            <select name="miselect" [(ngModel)]="cargoSeleccionado" (change)="buscarDocentesPorCargo()" class="form-select">
+              <option [ngValue]="cargo" *ngFor="let cargo of cargos">{{cargo}}</option>
+            </select>
+          </p>
+        </div>
+        <div class="form-group">
+          <div *ngIf="docentes.length!=0">
+            <input (click)="cambiarTodosDocentes()" type="checkbox"><span> Seleccionar todos los docentes</span>
+          </div>
+          <div *ngFor="let docente of docentes">
+            <input (click)="cambiarCheckDocente(docente)" [(ngModel)]="docente.checked"
+              [ngModelOptions]="{standalone: true}" type="checkbox"><span> {{docente.apellidoDocente +"
+              "+docente.nombreDocente}}</span>
+          </div>
+        </div>
+        <div class="form-group" style="text-align: center;">
+          <h2>DOCENTES ASIGNADOS:</h2>
+          <span *ngIf="docentesAsignados.length==0">NINGÚN DOCENTE ASIGNADO</span>
+          <ul class="heroes">
+            <li *ngFor="let d of docentesAsignados" style="text-align: left;">
+              <span>{{d.apellidoDocente+' '+d.nombreDocente}}</span>
+            </li>
+          </ul>
+        </div>
+        <hr>
+        <div class="form-group" style="text-align: center;">
+          <button type="button" class="btn btn-outline-success btn-sm" >Agregar Actividad</button>
+          <br>
+          <br>
+          <label for="actividades-realizar">Actividad:</label>
+          <input [(ngModel)]="actividadRealizar" name="actividades-realizar" type="text" class="form-control" required />
+          <br>
+          <button type="button" class="btn btn-success btn-sm form-control" (click)="agregarActividadTarea()" >Agregar Actividad</button>
+          <h2>ACTIVIDADES A REALIZAR:</h2>
+        </div>
+        <div class="form-group">
+          <button type="button" (click)="save()" class="btn btn-primary btn-sm form-control">Guardar</button>
+        </div>
+      </form>
+      <br>
+    </div>
+  </div>
+</div>

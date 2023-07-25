@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Proyecto } from 'src/app/models/Proyecto';
-import { ProyectoService } from 'src/app/servicios/proyecto.service';
 import { Observable } from 'rxjs';
 import { TareaDocente } from 'src/app/models/TareaDocente';
-import { TareaService } from 'src/app/servicios/tarea.service';
-import { UsuarioService } from 'src/app/servicios/usuario.service';
-import { TareaDocenteProyecto } from 'src/app/models/TareaDocenteProyecto';
+import { TareaDocenteDocenciaDTO } from 'src/app/modulos/tarea-docencia/modelos/dto/TareaDocenteDocenciaDTO';
+import { TareaDocenciaService } from 'src/app/modulos/tarea-docencia/servicios/TareaDocenciaService';
 import { TareaDocenteVinculacion } from 'src/app/modulos/vinculacion/modelos/TareaDocenteVinculacion';
 import { TareaVinculacionService } from 'src/app/modulos/vinculacion/servicios/tarea-vinculacion.service';
+import { TareaService } from 'src/app/servicios/tarea.service';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-listar-tareas',
@@ -18,6 +17,7 @@ export class ListarTareasDocenteComponent implements OnInit {
 
   getTareas$: Observable<TareaDocente[]>;
   getTareasVinculacion$: Observable<TareaDocenteVinculacion[]>;
+  getTareasDocencia$: Observable<TareaDocenteDocenciaDTO[]>;
   tareas: TareaDocente[] = [];
   tareasVinculacion: TareaDocenteVinculacion[] = [];
   totalTareasrealizar: any=[];
@@ -27,6 +27,7 @@ export class ListarTareasDocenteComponent implements OnInit {
   constructor(
     private tareaService: TareaService,
     private tareaVinculacionService: TareaVinculacionService,
+    private tareaDocenciaService: TareaDocenciaService,
     private usuarioService: UsuarioService,
     private router: Router,
   ) {
@@ -40,6 +41,7 @@ export class ListarTareasDocenteComponent implements OnInit {
     //this.getTareas$ = this.tareaService.obtenerTareasPorDocente(this.docente.codigoDocente);
     this.getTareas$ = this.tareaService.obtenerTareasPorDocente(this.codigoDocente);
     this.getTareasVinculacion$ = this.tareaVinculacionService.obtenerTareasPorDocente(this.codigoDocente);
+    this.getTareasDocencia$ = this.tareaDocenciaService.obtenerTareasPorDocente(this.codigoDocente);
 
   }
 

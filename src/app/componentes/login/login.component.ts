@@ -132,6 +132,7 @@ export class LoginComponent implements OnInit {
                   this.docente =res;
                   this._usuario.setCodigoDocente(this.docente);
                   localStorage.setItem('codigoDocente',this.docente.codigoDocente);
+                  localStorage.setItem('idEspeDocenteRevisor',this.docente.idDocente);
                   localStorage.setItem('idDocenteRevisor',this.docente.cedulaDocente);
                   localStorage.setItem('nombreDocenteRevisor',this.docente.nombreDocente+" "+this.docente.apellidoDocente);
                 }
