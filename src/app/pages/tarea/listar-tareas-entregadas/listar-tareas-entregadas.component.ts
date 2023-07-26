@@ -42,15 +42,15 @@ export class ListarTareasEntregadasComponent implements OnInit {
     this.getTareasDocente$.subscribe((tareas) => {
       this.tareasDocente = tareas;
       this.getTodasLasTareas();
+      this.totalTareasRevisar = this.totalTareasRevisar.concat(
+        this.tareasDocente,
+        this.tareasVinculacion
+      );
     });
   }
   getTodasLasTareas() {
     this.getTareasVinculacion$.subscribe((tareas) => {
       this.tareasVinculacion = tareas;
-      this.totalTareasRevisar = this.totalTareasRevisar.concat(
-        this.tareasDocente,
-        this.tareasVinculacion
-      );
       // this.totalTareasrealizar.sort(function (a:any, b:any) {//Ordenar Array
       //   if (a.fechaEntregadaTareaDocente === "ASIGNADA") {
       //     return -1;

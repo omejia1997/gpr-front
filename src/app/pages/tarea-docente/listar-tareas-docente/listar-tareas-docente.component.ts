@@ -54,12 +54,6 @@ export class ListarTareasDocenteComponent implements OnInit {
     this.getTareas$.subscribe(tareas =>{
       this.tareas = tareas;
       this.getTareasVinculacion();
-    });
-  }
-
-  getTareasVinculacion() {
-    this.getTareasVinculacion$.subscribe(tareas =>{
-      this.tareasVinculacion = tareas;
       this.totalTareasrealizar=this.totalTareasrealizar.concat(this.tareas,this.tareasVinculacion);
       this.totalTareasrealizar.sort(function (a:any, b:any) {//Ordenar Array
         if (a.estadoTareaDocente === "ASIGNADA") {
@@ -67,6 +61,13 @@ export class ListarTareasDocenteComponent implements OnInit {
         }
         return 0;
       });
+    });
+  }
+
+  getTareasVinculacion() {
+    this.getTareasVinculacion$.subscribe(tareas =>{
+      console.log(tareas)
+      this.tareasVinculacion = tareas;
     });
   }
 
