@@ -1,0 +1,35 @@
+export type EvaluacionDocente = {
+  componente1?: string;
+  componente2?: string;
+  componente3?: string;
+  componente4?: string;
+  componente5?: string;
+  componente6?: string;
+  componente7?: string;
+  componente8?: string;
+  componente9?: string;
+  componente10?: string;
+  componente11?: string;
+  componente12?: string;
+  componente13?: string;
+  componente14?: string;
+  componente15?: string;
+  componente16?: string;
+
+  razonamiento1?: string;
+  razonamiento2?: string;
+  razonamiento3?: string;
+  razonamiento4?: string;
+  razonamiento5?: string;
+  razonamiento6?: string;
+  razonamiento7?: string;
+  razonamiento8?: string;
+  razonamiento9?: string;
+  razonamiento10?: string;
+  razonamiento11?: string;
+  razonamiento12?: string;
+  razonamiento13?: string;
+  razonamiento14?: string;
+  razonamiento15?: string;
+  razonamiento16?: string;
+};

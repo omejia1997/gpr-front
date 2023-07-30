@@ -1,0 +1,99 @@
+.container {
+  width: 95vw;
+  height: 80%;
+}
+
+.row{
+  display: flex;
+height:100%;
+}
+
+.row-left{
+  width: 99%
+}
+
+.container-lef-image-content{
+  padding: 0;
+  margin: 5px 0 5px 0;
+  padding-left: 2px;
+}
+.container-lef-image{
+  padding: 0;
+  margin: 5px 0 5px 0;
+}
+
+form{
+  margin: auto;
+  padding:30px;
+  opacity: .85;
+  box-shadow: 0px 0px 10px rgb(32, 31, 30),0px 0px 30px rgb(123, 197, 139);
+}
+.form-group{
+  margin-top: 15px;
+}
+
+mat-icon{
+font-size: 18px;;
+}
+
+.mat-tab-container{
+  width: 100vw;
+  padding: 0;
+  background-color: blue;
+}
+
+mat-tab-group{
+  padding: 0;
+}
+
+.header-tab{
+  color: brown;
+  width: 100%;
+}
+
+.container-document{
+  display: flex;
+  width: 100%;
+}
+
+.container-align{
+  width: 100%;
+  margin: auto;
+}
+
+.container-img{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contenedor {
+  text-align: center;
+}
+
+.centrar-elemento{
+  display: inline-block;
+  margin: auto;
+}
+.row{
+  margin: 5px;
+}
+#butonModalFormacionAcademica{
+  margin: auto;
+}
+.table-responsive{
+  margin-top: 10px;
+}
+
+h1{
+  font-weight: bold;
+  font-size: 14px;
+}
+
+h2{
+  font-size: 14px;
+}
+
+.btn-sm{
+  margin-left: 10px;
+}

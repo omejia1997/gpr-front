@@ -1,0 +1,724 @@
+<app-navbar></app-navbar>
+<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-blockUI [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI>
+<div class="container">
+
+  <div class="row justify-content-center">
+    <div class="overlay">
+      <p-progressSpinner *ngIf="blockedDocument" [style]="{width: '150px', height: '150px', margin:'auto'}"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </div>
+    <form (ngSubmit)="f.form.valid && save()" #f="ngForm" enctype="multipart/form-data">
+
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+            type="button" role="tab" aria-controls="nav-home" aria-selected="true">Información <br> General</button>
+          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
+            role="tab" aria-controls="nav-profile" aria-selected="false">Desarrollo y <br> Análisis</button>
+          <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button"
+            role="tab" aria-controls="nav-contact" aria-selected="false">Tutorías</button>
+          <button class="nav-link" id="nav-evaluacion-docente-tab" data-bs-toggle="tab"
+            data-bs-target="#nav-evaluacion-docente" type="button" role="tab" aria-controls="nav-evaluacion-docente"
+            aria-selected="false">Evaluación <br> Docente</button>
+          <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-apreciacion-global"
+            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Apreciación Global <br> de los
+            Estudiantes</button>
+          <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-acciones-mejora"
+            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Acciones para mejorar <br> la
+            Gestión del Docente</button>
+          <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-conclusiones"
+            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Conclusiones y
+            Recomendaciones</button>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <h1>1. DATOS GENERALES</h1>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <td>
+                    <h2>Área de conocimiento</h2>
+                  </td>
+                  <td><input [(ngModel)]="informeFinalDTO.datosGenerales!.areaConocimiento" id="tiempoEstudio"
+                      name="tiempoEstudio" type="text" class="form-control form-control-sm"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <h2>Nombre del Docente que presenta el informe</h2>
+                  </td>
+                  <td><input [(ngModel)]="informeFinalDTO.datosGenerales!.nombreDocentePresentaInforme"
+                      id="tiempoEstudio" name="tiempoEstudio" type="text" class="form-control form-control-sm"></td>
+                </tr>
+                <tr>
+                  <td>
+                    <h2>Nombre del Coordinador de Área de Conocimiento</h2>
+                  </td>
+                  <td><input [(ngModel)]="informeFinalDTO.datosGenerales!.nombreCoordinadorArea" id="tiempoEstudio"
+                      name="tiempoEstudio" type="text" class="form-control form-control-sm"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <h1>2. ANTECEDENTES <button id="button-antecedentes" type="button" (click)="addAntecedentes()"
+              class="btn btn-outline-success btn-sm">Agregar Antecedente</button></h1>
+          <ul *ngFor="let antecedente of informeFinalDTO.antecedentes">
+            <li>{{antecedente}}</li>
+          </ul>
+
+
+          <h1>3. OBJETIVO <button id="button-objetivo" type="button" (click)="addObjetivo()"
+              class="btn btn-outline-success btn-sm" *ngIf="!informeFinalDTO.objetivo">Agregar Objetivo</button></h1>
+          <ul *ngIf="informeFinalDTO.objetivo">
+            <li>{{informeFinalDTO.objetivo}}</li>
+          </ul>
+
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <h1>4. DESARROLLO Y ANÁLISIS</h1>
+          <h1>4.1 DATOS INFORMATIVOS <button id="button-objetivo" type="button" (click)="addDatosInformativos()"
+            class="btn btn-outline-success btn-sm">Agregar Datos Informativos</button></h1>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>CARRERA</th>
+                  <th>ASIGNATURA</th>
+                  <th>COMPONENTE DOCENCIA/PRÁCTICO</th>
+                  <th>NRC</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let datosAsignatura of informeFinalDTO.datosAsignatura">
+                  <td>{{datosAsignatura.carrera}}</td>
+                  <td>{{datosAsignatura.asignatura}}</td>
+                  <td>{{datosAsignatura.componente}}</td>
+                  <td>{{datosAsignatura.nrc}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <h1>4.2. RESULTADOS RENDIMIENTO ACADÉMICO <button id="button-objetivo" type="button" (click)="addResultadosRendimientoAcademico()"
+            class="btn btn-outline-success btn-sm" *ngIf="this.informeFinalDTO.datosAsignatura?.length!=0">Agregar Resultados de Rendimiento Académico</button></h1>
+
+          A continuación, se presentan los datos estadísticos de rendimiento académico de los estudiantes en las
+          asignaturas asignadas en el presente período
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th rowspan="3">ASIGNATURA</th>
+                  <th rowspan="3">NRC</th>
+                  <th colspan="8">CONDICIÓN (Nro. ESTUDIANTES)</th>
+                </tr>
+                <tr>
+                  <th colspan="2">ESTUDIANTES MATRICULADOS</th>
+                  <th colspan="2">ESTUDIANTES RETIRADOS</th>
+                  <th colspan="2">ESTUDIANTES REPROBADOS</th>
+                  <th colspan="2">ESTUDIANTES APROBADOS</th>
+                </tr>
+                <tr>
+                  <th>HOMBRES</th>
+                  <th>MUJERES</th>
+                  <th>HOMBRES</th>
+                  <th>MUJERES</th>
+                  <th>HOMBRES</th>
+                  <th>MUJERES</th>
+                  <th>HOMBRES</th>
+                  <th>MUJERES</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let datosAsignatura of informeFinalDTO.datosAsignatura">
+                  <td>{{datosAsignatura.asignatura}}</td>
+                  <td>{{datosAsignatura.nrc}}</td>
+                  <td>{{datosAsignatura.estudiantesMatriculados?.numeroHombres}}</td>
+                  <td>{{datosAsignatura.estudiantesMatriculados?.numeroMujeres}}</td>
+                  <td>{{datosAsignatura.estudiantesRetirados?.numeroHombres}}</td>
+                  <td>{{datosAsignatura.estudiantesRetirados?.numeroMujeres}}</td>
+                  <td>{{datosAsignatura.estudiantesReprobados?.numeroHombres}}</td>
+                  <td>{{datosAsignatura.estudiantesReprobados?.numeroMujeres}}</td>
+                  <td>{{datosAsignatura.estudiantesAprobados?.numeroHombres}}</td>
+                  <td>{{datosAsignatura.estudiantesAprobados?.numeroMujeres}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>ASIGNATURA</th>
+                  <th></th>
+                  <th>COMPONENTE DOCENCIA/PRÁCTICO</th>
+                  <th>NRC</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>NRC</th>
+                  <td>CONDICIÓN</td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th>CONDICIÓN</th>
+                  <td><input type="text"></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Estudiantes matriculados</td>
+                  <td><input type="text"></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Estudiantes retirados </td>
+                  <td><input type="text"></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Estudiantes reprobados</td>
+                  <td><input type="text"></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Estudiantes aprobados</td>
+                  <td><input type="text"></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div> -->
+
+          El promedio de rendimiento académico de los estudiantes en las asignaturas impartidas fue el siguiente: <button id="button-objetivo" type="button" (click)="addPromedioRendimientoAcademico()"
+          class="btn btn-outline-success btn-sm" *ngIf="this.informeFinalDTO.datosAsignatura?.length!=0">Agregar Promedio de Rendimiento Académico</button>
+
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th rowspan="3">NRC</th>
+                  <th colspan="8">PROMEDIO (Calificaciones)</th>
+                </tr>
+                <tr>
+                  <th colspan="3">Promedio de Rendimiento Académico</th>
+                  <th rowspan="2">Promedio final de rendimiento académico</th>
+                  <th colspan="3">Desviación Estándar</th>
+                  <th rowspan="2">Promedio final de desv. estándar</th>
+                </tr>
+                <tr>
+                  <th>I-UD</th>
+                  <th>II-UD</th>
+                  <th>III-UD</th>
+                  <th>I-UD</th>
+                  <th>II-UD</th>
+                  <th>III-UD</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let datosAsignatura of informeFinalDTO.datosAsignatura">
+                  <td>{{datosAsignatura.nrc}}</td>
+                  <td>{{datosAsignatura.promedioRendimientoAcademico?.primerParcial}}</td>
+                  <td>{{datosAsignatura.promedioRendimientoAcademico?.segundoParcial}}</td>
+                  <td>{{datosAsignatura.promedioRendimientoAcademico?.tercerParcial}}</td>
+                  <td>{{datosAsignatura.promedioFinalRendimientoAcademico}}</td>
+                  <td>{{datosAsignatura.desviacionEstandar?.primerParcial}}</td>
+                  <td>{{datosAsignatura.desviacionEstandar?.segundoParcial}}</td>
+                  <td>{{datosAsignatura.desviacionEstandar?.tercerParcial}}</td>
+                  <td>{{datosAsignatura.promedioFinalDesviacionEstandar}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>NRC</th>
+                  <td colspan="3"></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th rowspan="2">PROMEDIO</th>
+                  <td colspan="3">CALIFICACIONES</td>
+                </tr>
+                <tr>
+                  <td>I-UD</td>
+                  <td>II-UD</td>
+                  <td>III-UD</td>
+                </tr>
+                <tr>
+                  <td>Promedio de Rendimiento Académico </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td>Desviación Estándar</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Promedio final de rendimiento académico</td>
+                  <td colspan="3"></td>
+                </tr>
+                <tr>
+                  <td>Promedio final de desv. estándar</td>
+                  <td colspan="3"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div> -->
+        </div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+          <h1>5. TUTORÍAS <button id="button-objetivo" type="button" (click)="addDatosTutorias()"
+            class="btn btn-outline-success btn-sm" *ngIf="this.informeFinalDTO.datosAsignatura?.length!=0">Agregar Datos de Tutorías</button></h1>
+          <p>A continuación, se detallan los resultados de las tutorías de reforzamiento. Detallar las estrategias
+            planteadas y su respectivo análisis:</p>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th rowspan="2">NRC</th>
+                    <th colspan="3"># estudiantes promedio menor 14</th>
+                    <th colspan="3"># estudiantes promedio menor 14 asistieron tutorías </th>
+                    <th colspan="3"># estudiantes promedio menor 14 asistieron tutorías y NO aprobaron</th>
+                  </tr>
+                  <tr>
+                    <th>I-UD</th>
+                    <th>II-UD</th>
+                    <th>III-UD</th>
+                    <th>I-UD</th>
+                    <th>II-UD</th>
+                    <th>III-UD</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let datosAsignatura of informeFinalDTO.datosAsignatura">
+                    <td>{{datosAsignatura.nrc}}</td>
+                    <td>{{datosAsignatura.promedioRendimientoAcademico?.primerParcial}}</td>
+                    <td>{{datosAsignatura.promedioRendimientoAcademico?.segundoParcial}}</td>
+                    <td>{{datosAsignatura.promedioRendimientoAcademico?.tercerParcial}}</td>
+                    <td>{{datosAsignatura.promedioFinalRendimientoAcademico}}</td>
+                    <td>{{datosAsignatura.desviacionEstandar?.primerParcial}}</td>
+                    <td>{{datosAsignatura.desviacionEstandar?.segundoParcial}}</td>
+                    <td>{{datosAsignatura.desviacionEstandar?.tercerParcial}}</td>
+                    <td>{{datosAsignatura.promedioFinalDesviacionEstandar}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+          <!-- <div class="table-responsive">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th rowspan="2">NRC</th>
+                  <td colspan="3">wwww</td>
+                </tr>
+                <tr>
+                  <td>I-UD</td>
+                  <td>II-UD</td>
+                  <td>III-UD</td>
+                </tr>
+                <tr>
+                  <td># estudiantes promedio menor 14 </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+
+                <tr>
+                  <td># estudiantes promedio menor 14 asistieron tutorías </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td># estudiantes promedio menor 14 asistieron tutorías y NO aprobaron</td>
+                  <td colspan="3"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div> -->
+
+        </div>
+        <div class="tab-pane fade" id="nav-evaluacion-docente" role="tabpanel"
+          aria-labelledby="nav-evaluacion-docente-tab">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>COMPONENTE</th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>RAZONAMIENTO</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Actualicé los sílabos en el sistema académico y entregué a los estudiante</td>
+                  <td><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="1"
+                      name="componente1" value="1"></td>
+                  <td><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="2"
+                      name="componente1" value="2"></td>
+                  <td><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="3"
+                      name="componente1" value="3"></td>
+                  <td><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="4"
+                      name="componente1" value="4"></td>
+                  <td><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="5"
+                      name="componente1" value="5"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento1"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Asistí regular y puntualmente a las clases</td>
+                  <td><input type="radio" name="componente2" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
+                  <td><input type="radio" name="componente2" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
+                  <td><input type="radio" name="componente2" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
+                  <td><input type="radio" name="componente2" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
+                  <td><input type="radio" name="componente2" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento2"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Cumplí con las fechas del calendario académico</td>
+                  <td><input type="radio" name="componente3" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
+                  <td><input type="radio" name="componente3" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
+                  <td><input type="radio" name="componente3" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
+                  <td><input type="radio" name="componente3" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
+                  <td><input type="radio" name="componente3" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento3"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Elaboré apuntes y/o material didáctico de la asignatura </td>
+                  <td><input type="radio" name="componente4" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
+                  <td><input type="radio" name="componente4" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
+                  <td><input type="radio" name="componente4" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
+                  <td><input type="radio" name="componente4" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
+                  <td><input type="radio" name="componente4" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento4"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Desarrolle guías y prácticas de laboratorio según los recursos existentes </td>
+                  <td><input type="radio" name="componente5" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
+                  <td><input type="radio" name="componente5" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
+                  <td><input type="radio" name="componente5" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
+                  <td><input type="radio" name="componente5" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
+                  <td><input type="radio" name="componente5" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento5"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>Vincule la teoría con la práctica profesional </td>
+                  <td><input type="radio" name="componente6" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
+                  <td><input type="radio" name="componente6" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
+                  <td><input type="radio" name="componente6" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
+                  <td><input type="radio" name="componente6" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
+                  <td><input type="radio" name="componente6" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento6"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>Aplique técnicas/estrategias innovadoras en clase </td>
+                  <td><input type="radio" name="componente7" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
+                  <td><input type="radio" name="componente7" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
+                  <td><input type="radio" name="componente7" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
+                  <td><input type="radio" name="componente7" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
+                  <td><input type="radio" name="componente7" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento7"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>Realice una articulación horizontal y vertical con otras asignaturas </td>
+                  <td><input type="radio" name="componente8" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
+                  <td><input type="radio" name="componente8" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
+                  <td><input type="radio" name="componente8" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
+                  <td><input type="radio" name="componente8" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
+                  <td><input type="radio" name="componente8" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento8"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>Realice el seguimiento al sílabo y se cumplieron los contenidos previstos</td>
+                  <td><input type="radio" name="componente9" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
+                  <td><input type="radio" name="componente9" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
+                  <td><input type="radio" name="componente9" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
+                  <td><input type="radio" name="componente9" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
+                  <td><input type="radio" name="componente9" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento9"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>Se alcanzaron los resultados de aprendizaje planeados en el sílabo </td>
+                  <td><input type="radio" name="componente10" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
+                  <td><input type="radio" name="componente10" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
+                  <td><input type="radio" name="componente10" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
+                  <td><input type="radio" name="componente10" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
+                  <td><input type="radio" name="componente10" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento10"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>Utilice los recursos bibliográficos propuestos</td>
+                  <td><input type="radio" name="componente11" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
+                  <td><input type="radio" name="componente11" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
+                  <td><input type="radio" name="componente11" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
+                  <td><input type="radio" name="componente11" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
+                  <td><input type="radio" name="componente11" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento11"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>Realice retroalimentación oportuna de las soluciones de las evaluaciones </td>
+                  <td><input type="radio" name="componente12" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
+                  <td><input type="radio" name="componente12" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
+                  <td><input type="radio" name="componente12" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
+                  <td><input type="radio" name="componente12" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
+                  <td><input type="radio" name="componente12" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento12"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>13</td>
+                  <td>Brinde confianza para responder preguntas e interactuar sin temores</td>
+                  <td><input type="radio" name="componente13" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
+                  <td><input type="radio" name="componente13" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
+                  <td><input type="radio" name="componente13" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
+                  <td><input type="radio" name="componente13" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
+                  <td><input type="radio" name="componente13" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento13"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>14</td>
+                  <td>Se propuso un horario de consultas, tutorías de reforzamiento</td>
+                  <td><input type="radio" name="componente14" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
+                  <td><input type="radio" name="componente14" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
+                  <td><input type="radio" name="componente14" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
+                  <td><input type="radio" name="componente14" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
+                  <td><input type="radio" name="componente14" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento14"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>15</td>
+                  <td>Coordine el avance de los contenidos con otros docentes de la misma asignatura </td>
+                  <td><input type="radio" name="componente15" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
+                  <td><input type="radio" name="componente15" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
+                  <td><input type="radio" name="componente15" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
+                  <td><input type="radio" name="componente15" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
+                  <td><input type="radio" name="componente15" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento15"> </textarea></td>
+                </tr>
+                <tr>
+                  <td>16</td>
+                  <td>Realicé los portafolios docentes de las asignaturas conforme la normativa establecida </td>
+                  <td><input type="radio" name="componente16" value="1"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
+                  <td><input type="radio" name="componente16" value="2"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
+                  <td><input type="radio" name="componente16" value="3"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
+                  <td><input type="radio" name="componente16" value="4"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
+                  <td><input type="radio" name="componente16" value="5"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
+                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento16"> </textarea></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <h1>6.2 FORTALEZAS Y DEBILIDADES</h1>
+          <p>(Describa las fortalezas y debilidades de su gestión docente que le permitirán generar acciones de mejora
+            para el siguiente periodo).</p>
+          <h1>Fortalezas:<button id="button-objetivo" type="button" (click)="addFortaleza()"
+              class="btn btn-outline-success btn-sm">Agregar Fortaleza</button></h1>
+          <ul *ngFor="let fortaleza of informeFinalDTO.fortalezas">
+            <li>{{fortaleza}}</li>
+          </ul>
+
+          <h1>Debilidades:<button id="button-objetivo" type="button" (click)="addDebilidad()"
+              class="btn btn-outline-success btn-sm">Agregar Debilidad</button></h1>
+          <ul *ngFor="let debilidad of informeFinalDTO.debilidades">
+            <li>{{debilidad}}</li>
+          </ul>
+        </div>
+        <div class="tab-pane fade" id="nav-apreciacion-global" role="tabpanel"
+          aria-labelledby="nav-apreciacion-global-tab">
+          <h1>7 APRECIACIÓN GLOBAL DE LOS ESTUDIANTES</h1>
+          <h1>Fortalezas: <button id="button-objetivo" type="button" (click)="addFortalezaApreciacionEstudiantes()"
+              class="btn btn-outline-success btn-sm">Agregar Fortaleza</button></h1>
+          <ul *ngFor="let fortaleza of informeFinalDTO.apreciacionGlobalFortalezas">
+            <li>{{fortaleza}}</li>
+          </ul>
+          <h1>Debilidades: <button id="button-objetivo" type="button" (click)="addDebilidadApreciacionEstudiantes()"
+              class="btn btn-outline-success btn-sm">Agregar Debilidad</button></h1>
+          <ul *ngFor="let debilidad of informeFinalDTO.apreciacionGlobalDebilidades">
+            <li>{{debilidad}}</li>
+          </ul>
+        </div>
+        <div class="tab-pane fade" id="nav-acciones-mejora" role="tabpanel" aria-labelledby="nav-contact-tab">
+          <h1>8 ACCIONES PARA MEJORAR LA GESTIÓN DOCENTE</h1>
+          <p>(Describa las acciones que se deberían implementar para mejorar su gestión docente y los resultados en el
+            siguiente periodo).</p>
+          <h1>Acción 1: Relacionado con mejoras al plan analítico de las asignaturas <button id="button-objetivo"
+              type="button" (click)="addAccion1()" class="btn btn-outline-success btn-sm">Agregar Acción 1</button></h1>
+          <ul *ngFor="let accion of informeFinalDTO.accionesMejoraDocente!.accion1">
+            <li>{{accion}}</li>
+          </ul>
+          <h1>Acción 2: Relacionadas con los estudiantes y mejorar el proceso enseñanza-aprendizaje <button
+              id="button-objetivo" type="button" (click)="addAccion2()" class="btn btn-outline-success btn-sm">Agregar
+              Acción 2</button></h1>
+          <ul *ngFor="let accion of informeFinalDTO.accionesMejoraDocente!.accion2">
+            <li>{{accion}}</li>
+          </ul>
+          <h1>Acción 3: Relacionadas con la mejora de sus capacidades docentes <button id="button-objetivo"
+              type="button" (click)="addAccion3()" class="btn btn-outline-success btn-sm">Agregar Acción 3</button></h1>
+          <ul *ngFor="let accion of informeFinalDTO.accionesMejoraDocente!.accion3">
+            <li>{{accion}}</li>
+          </ul>
+          <h1>Acción 4: Otros ámbitos de mejora <button id="button-objetivo" type="button" (click)="addAccion4()"
+              class="btn btn-outline-success btn-sm">Agregar Acción 4</button></h1>
+          <ul *ngFor="let accion of informeFinalDTO.accionesMejoraDocente!.accion4">
+            <li>{{accion}}</li>
+          </ul>
+          <h1> Acciones tomadas para la solución de las novedades que se hayan presentado en clases y laboratorios y
+            tutorías <button id="button-objetivo" type="button" (click)="addAccionLaboratorioTutoria()"
+              class="btn btn-outline-success btn-sm">Agregar Acciones para laboratorios y tutorías</button></h1>
+          <ul *ngFor="let accion of informeFinalDTO.accionesMejoraDocente!.accionLaboratorioTutoria">
+            <li>{{accion}}</li>
+          </ul>
+          <h1>Otras <button id="button-objetivo" type="button" (click)="addOtrasAcciones()"
+              class="btn btn-outline-success btn-sm">Agregar Otras Acciones</button></h1>
+          <ul *ngFor="let accion of informeFinalDTO.accionesMejoraDocente!.otrasAcciones">
+            <li>{{accion}}</li>
+          </ul>
+          <p>A continuación, se exponen las temáticas de capacitación en los que requiero actualización para mejorar mi
+            desempeño docente</p>
+
+        </div>
+        <div class="tab-pane fade" id="nav-conclusiones" role="tabpanel" aria-labelledby="nav-contact-tab">
+          <h1>9 CONCLUSIONES <button id="button-objetivo" type="button" (click)="addConclusion()"
+              class="btn btn-outline-success btn-sm">Agregar Conclusión</button></h1>
+          <ul *ngFor="let conclusion of informeFinalDTO.conclusiones">
+            <li>{{conclusion}}</li>
+          </ul>
+          <h1>10 RECOMENDACIONES <button id="button-objetivo" type="button" (click)="addRecomendacion()"
+              class="btn btn-outline-success btn-sm">Agregar Recomendación</button></h1>
+          <ul *ngFor="let recomendacion of informeFinalDTO.recomendaciones">
+            <li>{{recomendacion}}</li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-sm form-control">Guardar Información</button>
+      </div>
+    </form>
+  </div>
+</div>
+

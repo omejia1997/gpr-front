@@ -90,6 +90,11 @@ import { ListarDocentesInformacionComponent } from './modulos/docencia/informaci
 import { VerDocenteInformacionComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/ver-docente-informacion/ver-docente-informacion.component';
 import { ListarTareaDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/listar-tarea-docente/listar-tarea-docente.component';
 import { GestionarTareaDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/gestionar-tarea-docente/gestionar-tarea-docente.component';
+import { ModalStringComponent } from './modulos/tarea-docencia/components/modal-string/modal-string.component';
+import { RealizarInformeFinalDocenciaComponent } from './modulos/tarea-docencia/paginas/tarea-docente/realizar-informe-final/realizar-informe-final-docencia.component';
+import { ModalAsignaturaComponent } from './modulos/tarea-docencia/components/modal-asignatura/modal-asignatura.component';
+import { ModalRendimientoAcademicoComponent } from './modulos/tarea-docencia/components/modal-rendimiento-academico/modal-rendimiento-academico.component';
+import { ModalPromedioAcademicoComponent } from './modulos/tarea-docencia/components/modal-promedio-academico/modal-promedio-academico.component';
 
 @NgModule({
   declarations: [
@@ -158,7 +163,12 @@ import { GestionarTareaDocenteComponent } from './modulos/tarea-docencia/paginas
     ListarDocentesInformacionComponent,
     VerDocenteInformacionComponent,
     ListarTareaDocenteComponent,
-    GestionarTareaDocenteComponent
+    GestionarTareaDocenteComponent,
+    RealizarInformeFinalDocenciaComponent,
+    ModalStringComponent,
+    ModalAsignaturaComponent,
+    ModalRendimientoAcademicoComponent,
+    ModalPromedioAcademicoComponent
   ],
   imports: [
     BrowserModule,

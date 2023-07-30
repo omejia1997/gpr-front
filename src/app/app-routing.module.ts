@@ -58,6 +58,7 @@ import { ListarDocentesInformacionComponent } from './modulos/docencia/informaci
 import { VerDocenteInformacionComponent } from './modulos/docencia/informacion-personal/paginas/informacion-general/ver-docente-informacion/ver-docente-informacion.component';
 import { ListarTareaDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/listar-tarea-docente/listar-tarea-docente.component';
 import { GestionarTareaDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/gestionar-tarea-docente/gestionar-tarea-docente.component';
+import { RealizarInformeFinalDocenciaComponent } from './modulos/tarea-docencia/paginas/tarea-docente/realizar-informe-final/realizar-informe-final-docencia.component';
 
 const routes: Routes = [
  {path: '', redirectTo:'/login' ,pathMatch:'full'},
@@ -120,6 +121,7 @@ const routes: Routes = [
   //tarea-docente
   {path: 'listar-tarea-docente', component:ListarTareaDocenteComponent,canActivate:[AuthGuard]},
   {path: 'gestionar-tarea-docente', component:GestionarTareaDocenteComponent,canActivate:[AuthGuard]},
+  {path: 'realizar-informe-final-docencia', component:RealizarInformeFinalDocenciaComponent,canActivate:[AuthGuard]},
   {path: '**', component:LoginComponent}
 ];
 
