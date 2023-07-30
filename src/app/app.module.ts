@@ -95,6 +95,8 @@ import { RealizarInformeFinalDocenciaComponent } from './modulos/tarea-docencia/
 import { ModalAsignaturaComponent } from './modulos/tarea-docencia/components/modal-asignatura/modal-asignatura.component';
 import { ModalRendimientoAcademicoComponent } from './modulos/tarea-docencia/components/modal-rendimiento-academico/modal-rendimiento-academico.component';
 import { ModalPromedioAcademicoComponent } from './modulos/tarea-docencia/components/modal-promedio-academico/modal-promedio-academico.component';
+import { ModalTutoriaComponent } from './modulos/tarea-docencia/components/modal-tutoria/modal-tutoria.component';
+import { ModalMejoraDocenteComponent } from './modulos/tarea-docencia/components/modal-mejora-docente/modal-mejora-docente.component';
 
 @NgModule({
   declarations: [
@@ -168,7 +170,9 @@ import { ModalPromedioAcademicoComponent } from './modulos/tarea-docencia/compon
     ModalStringComponent,
     ModalAsignaturaComponent,
     ModalRendimientoAcademicoComponent,
-    ModalPromedioAcademicoComponent
+    ModalPromedioAcademicoComponent,
+    ModalTutoriaComponent,
+    ModalMejoraDocenteComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,8 @@ import { ModalAsignaturaComponent } from '../../../components/modal-asignatura/m
 import { DatosAsignatura } from '../../../modelos/DatosAsignatura';
 import { ModalRendimientoAcademicoComponent } from '../../../components/modal-rendimiento-academico/modal-rendimiento-academico.component';
 import { ModalPromedioAcademicoComponent } from '../../../components/modal-promedio-academico/modal-promedio-academico.component';
+import { ModalTutoriaComponent } from '../../../components/modal-tutoria/modal-tutoria.component';
+import { ModalMejoraDocenteComponent } from '../../../components/modal-mejora-docente/modal-mejora-docente.component';
 
 @Component({
   selector: 'app-realizar-informe-final-docencia',
@@ -35,6 +37,7 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     this.informeFinalDTO.accionesMejoraDocente.accion4=[];
     this.informeFinalDTO.accionesMejoraDocente.accionLaboratorioTutoria=[];
     this.informeFinalDTO.accionesMejoraDocente.otrasAcciones=[];
+    this.informeFinalDTO.tematicaCapacitaciones =[];
     this.informeFinalDTO.conclusiones=[];
     this.informeFinalDTO.recomendaciones=[];
   }
@@ -272,8 +275,8 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
   }
 
   addDatosTutorias(){
-    const dialogRef = this.dialog.open(ModalPromedioAcademicoComponent, {
-      width: '700px',
+    const dialogRef = this.dialog.open(ModalTutoriaComponent, {
+      width: '800px',
       data: this.informeFinalDTO.datosAsignatura,
     });
     dialogRef.afterClosed().subscribe((formValue) => {
@@ -299,6 +302,17 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
         } else {
           console.log('Elemento no encontrado.');
         }
+      }
+    });
+  }
+
+  addCapacitacionMejoraDocente(){
+    const dialogRef = this.dialog.open(ModalMejoraDocenteComponent, {
+      width: '500px'
+    });
+    dialogRef.afterClosed().subscribe((formValue) => {
+      if (formValue) {
+        this.informeFinalDTO.tematicaCapacitaciones?.push(formValue);
       }
     });
   }

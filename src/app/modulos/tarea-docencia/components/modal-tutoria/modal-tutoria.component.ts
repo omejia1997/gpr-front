@@ -1,0 +1,225 @@
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { DatosAsignatura } from '../../modelos/DatosAsignatura';
+
+function validarEntero(control: AbstractControl): { [key: string]: any } | null {
+  if (control.value && !Number.isInteger(control.value)) {
+    return { noEsEntero: true };
+  }
+  return null;
+}
+
+@Component({
+  selector: 'app-modal-promedio-academico',
+  template: `
+    <!-- <h2>Formulario</h2> -->
+    <form [formGroup]="myForm" (ngSubmit)="submitForm()" class="text-center">
+
+      <mat-form-field class="custom-form-field">
+          <mat-select placeholder="NRC" formControlName="asignatura" name="asignatura">
+            <mat-option *ngFor="let asignatura of datosAsignatura" [value]="asignatura">
+              {{ asignatura.nrc  }} - - - - {{ asignatura.asignatura  }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="myForm.controls['asignatura'].hasError('required')"
+          >Selecciona este campo</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="custom-form-field-medium">
+        <input
+          matInput
+          type="number"
+          placeholder="# estudiantes promedio menor 14 I-UD"
+          formControlName="tutoriaEstudiantesPromedioMenor14IUD"
+          name="tutoriaEstudiantesPromedioMenor14IUD"
+          required
+        />
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14IUD'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14IUD'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="custom-form-field-medium">
+        <input
+          matInput
+          type="number"
+          placeholder="# estudiantes promedio menor 14 II-UD"
+          formControlName="tutoriaEstudiantesPromedioMenor14IIUD"
+          name="tutoriaEstudiantesPromedioMenor14IIUD"
+          required
+        />
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14IIUD'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14IIUD'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="custom-form-field-medium">
+        <input
+          matInput
+          type="number"
+          placeholder="# estudiantes promedio menor 14 III-UD"
+          formControlName="tutoriaEstudiantesPromedioMenor14IIIUD"
+          name="tutoriaEstudiantesPromedioMenor14IIIUD"
+          required
+        />
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14IIIUD'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14IIIUD'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="custom-form-field-medium">
+        <input
+          matInput
+          type="number"
+          placeholder="# estudiantes promedio menor 14 asistieron tutorías I-UD"
+          formControlName="tutoriaEstudiantesPromedioMenor14AsistieronIUD"
+          name="tutoriaEstudiantesPromedioMenor14AsistieronIUD"
+          required
+        />
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14AsistieronIUD'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14AsistieronIUD'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="custom-form-field-medium">
+        <input
+          matInput
+          type="number"
+          placeholder="# estudiantes promedio menor 14 asistieron tutorías II-UD"
+          formControlName="tutoriaEstudiantesPromedioMenor14AsistieronIIUD"
+          name="tutoriaEstudiantesPromedioMenor14AsistieronIIUD"
+          required
+        />
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14AsistieronIIUD'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14AsistieronIIUD'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field class="custom-form-field-medium">
+        <input
+          matInput
+          type="number"
+          placeholder="# estudiantes promedio menor 14 asistieron tutorías III-UD"
+          formControlName="tutoriaEstudiantesPromedioMenor14AsistieronIIIUD"
+          name="tutoriaEstudiantesPromedioMenor14AsistieronIIIUD"
+          required
+        />
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14AsistieronIIIUD'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14AsistieronIIIUD'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="custom-form-field-medium">
+        <input
+          matInput
+          type="number"
+          placeholder="# estudiantes promedio menor 14 asistieron tutorías y NO aprobaron"
+          formControlName="tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron"
+          name="tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron"
+          required
+        />
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
+      </mat-form-field>
+    <br>
+      <button
+        type="submit"
+        class="btn btn-success btn-sm"
+        [disabled]="myForm.invalid"
+      >
+        Guardar
+      </button>
+      <button
+        type="button"
+        (click)="closeModal()"
+        class="btn btn-outline-danger btn-sm"
+      >
+        Cancelar
+      </button>
+    </form>
+  `,
+  styleUrls: ['./modal-tutoria.component.css'],
+})
+export class ModalTutoriaComponent implements OnInit {
+  myForm!: FormGroup;
+
+  constructor(
+    public dialogRef: MatDialogRef<ModalTutoriaComponent>,
+    private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public datosAsignatura: DatosAsignatura[]
+  ) {
+  }
+
+  ngOnInit() {
+    this.myForm = this.formBuilder.group({
+      asignatura: ['', Validators.required],
+      tutoriaEstudiantesPromedioMenor14IUD: ['', [Validators.required,validarEntero],],
+      tutoriaEstudiantesPromedioMenor14IIUD: ['', [Validators.required,validarEntero],],
+      tutoriaEstudiantesPromedioMenor14IIIUD: ['', [Validators.required,validarEntero],],
+      tutoriaEstudiantesPromedioMenor14AsistieronIUD: ['',  [Validators.required,validarEntero],],
+      tutoriaEstudiantesPromedioMenor14AsistieronIIUD: ['',  [Validators.required,validarEntero],],
+      tutoriaEstudiantesPromedioMenor14AsistieronIIIUD: ['',  [Validators.required,validarEntero],],
+      tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron: ['',  [Validators.required,validarEntero],]
+      // promedioFinalRendimientoAcademico: ['',[Validators.required, Validators.min(0), Validators.max(20)],],
+      // promedioFinalDesviacionEstandar: ['',[Validators.required, Validators.min(0)],],
+    });
+    // if(this.datosAsignatura){
+
+    //   this.myForm.patchValue({
+    //     nivelInstruccion: this.formacionAcademica.nivelInstruccion,
+    //     institucion: this.formacionAcademica.institucion,
+    //     tituloObtenido: this.formacionAcademica.tituloObtenido,
+    //     numeroSenescyt: this.formacionAcademica.numeroSenescyt,
+    //     fechaRegistroSenescyt: this.formacionAcademica.fechaRegistroSenescyt,
+    //     fechaGraduacion: this.formacionAcademica.fechaGraduacion,
+    //     pais: this.formacionAcademica.pais,
+    //     tiempoEstudio: this.formacionAcademica.tiempoEstudio
+    //   });
+    // }
+  }
+
+  validarDosDecimales(control: any): { dosDecimales: boolean } | null {
+    const DECIMAL_REGEX = /^\d+(\.\d{1,2})?$/; // Expresión regular para verificar dos decimales.
+    if (!DECIMAL_REGEX.test(control.value)) {
+      return { dosDecimales: true }; // Retorna un objeto con una propiedad para identificar el error.
+    }
+    return null; // Si pasa la validación, retorna null.
+  }
+
+
+  submitForm() {
+    const formValue = this.myForm.value;
+    this.dialogRef.close(formValue);
+  }
+
+  closeModal() {
+    this.dialogRef.close();
+  }
+}
