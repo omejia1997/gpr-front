@@ -81,7 +81,7 @@
           <h1>4.1 DATOS INFORMATIVOS <button id="button-objetivo" type="button" (click)="addDatosInformativos()"
               class="btn btn-outline-success btn-sm">Agregar Datos Informativos</button></h1>
           <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover text-center table-sm">
               <thead>
                 <tr>
                   <th>CARRERA</th>
@@ -108,42 +108,42 @@
           A continuación, se presentan los datos estadísticos de rendimiento académico de los estudiantes en las
           asignaturas asignadas en el presente período
           <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover table-sm">
               <thead>
                 <tr>
-                  <th rowspan="3">ASIGNATURA</th>
-                  <th rowspan="3">NRC</th>
-                  <th colspan="8">CONDICIÓN (Nro. ESTUDIANTES)</th>
+                  <th class="text-center align-middle" rowspan="3">ASIGNATURA</th>
+                  <th class="text-center align-middle" rowspan="3">NRC</th>
+                  <th class="text-center align-middle" colspan="8">CONDICIÓN (Nro. ESTUDIANTES)</th>
                 </tr>
                 <tr>
-                  <th colspan="2">ESTUDIANTES MATRICULADOS</th>
-                  <th colspan="2">ESTUDIANTES RETIRADOS</th>
-                  <th colspan="2">ESTUDIANTES REPROBADOS</th>
-                  <th colspan="2">ESTUDIANTES APROBADOS</th>
+                  <th class="text-center align-middle" colspan="2">ESTUDIANTES MATRICULADOS</th>
+                  <th class="text-center align-middle" colspan="2">ESTUDIANTES RETIRADOS</th>
+                  <th class="text-center align-middle" colspan="2">ESTUDIANTES REPROBADOS</th>
+                  <th class="text-center align-middle" colspan="2">ESTUDIANTES APROBADOS</th>
                 </tr>
                 <tr>
-                  <th>HOMBRES</th>
-                  <th>MUJERES</th>
-                  <th>HOMBRES</th>
-                  <th>MUJERES</th>
-                  <th>HOMBRES</th>
-                  <th>MUJERES</th>
-                  <th>HOMBRES</th>
-                  <th>MUJERES</th>
+                  <th class="text-center align-middle">HOMBRES</th>
+                  <th class="text-center align-middle">MUJERES</th>
+                  <th class="text-center align-middle">HOMBRES</th>
+                  <th class="text-center align-middle">MUJERES</th>
+                  <th class="text-center align-middle">HOMBRES</th>
+                  <th class="text-center align-middle">MUJERES</th>
+                  <th class="text-center align-middle">HOMBRES</th>
+                  <th class="text-center align-middle">MUJERES</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let datosAsignatura of informeFinalDTO.datosAsignatura">
-                  <td>{{datosAsignatura.asignatura}}</td>
-                  <td>{{datosAsignatura.nrc}}</td>
-                  <td>{{datosAsignatura.estudiantesMatriculados?.numeroHombres}}</td>
-                  <td>{{datosAsignatura.estudiantesMatriculados?.numeroMujeres}}</td>
-                  <td>{{datosAsignatura.estudiantesRetirados?.numeroHombres}}</td>
-                  <td>{{datosAsignatura.estudiantesRetirados?.numeroMujeres}}</td>
-                  <td>{{datosAsignatura.estudiantesReprobados?.numeroHombres}}</td>
-                  <td>{{datosAsignatura.estudiantesReprobados?.numeroMujeres}}</td>
-                  <td>{{datosAsignatura.estudiantesAprobados?.numeroHombres}}</td>
-                  <td>{{datosAsignatura.estudiantesAprobados?.numeroMujeres}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.asignatura}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.nrc}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.estudiantesMatriculados?.numeroHombres}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.estudiantesMatriculados?.numeroMujeres}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.estudiantesRetirados?.numeroHombres}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.estudiantesRetirados?.numeroMujeres}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.estudiantesReprobados?.numeroHombres}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.estudiantesReprobados?.numeroMujeres}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.estudiantesAprobados?.numeroHombres}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.estudiantesAprobados?.numeroMujeres}}</td>
                 </tr>
               </tbody>
             </table>
@@ -205,38 +205,38 @@
             Promedio de Rendimiento Académico</button>
 
           <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover table-sm">
               <thead>
                 <tr>
-                  <th rowspan="3">NRC</th>
-                  <th colspan="8">PROMEDIO (Calificaciones)</th>
+                  <th class="text-center align-middle" rowspan="3">NRC</th>
+                  <th class="text-center align-middle" colspan="8">PROMEDIO (Calificaciones)</th>
                 </tr>
                 <tr>
-                  <th colspan="3">Promedio de Rendimiento Académico</th>
-                  <th rowspan="2">Promedio final de rendimiento académico</th>
-                  <th colspan="3">Desviación Estándar</th>
-                  <th rowspan="2">Promedio final de desv. estándar</th>
+                  <th class="text-center align-middle" colspan="3">Promedio de Rendimiento Académico</th>
+                  <th class="text-center align-middle" rowspan="2">Promedio final de rendimiento académico</th>
+                  <th class="text-center align-middle" colspan="3">Desviación Estándar</th>
+                  <th class="text-center align-middle" rowspan="2">Promedio final de desv. estándar</th>
                 </tr>
                 <tr>
-                  <th>I-UD</th>
-                  <th>II-UD</th>
-                  <th>III-UD</th>
-                  <th>I-UD</th>
-                  <th>II-UD</th>
-                  <th>III-UD</th>
+                  <th class="text-center align-middle">I-UD</th>
+                  <th class="text-center align-middle">II-UD</th>
+                  <th class="text-center align-middle">III-UD</th>
+                  <th class="text-center align-middle">I-UD</th>
+                  <th class="text-center align-middle">II-UD</th>
+                  <th class="text-center align-middle">III-UD</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let datosAsignatura of informeFinalDTO.datosAsignatura">
-                  <td>{{datosAsignatura.nrc}}</td>
-                  <td>{{datosAsignatura.promedioRendimientoAcademico?.primerParcial}}</td>
-                  <td>{{datosAsignatura.promedioRendimientoAcademico?.segundoParcial}}</td>
-                  <td>{{datosAsignatura.promedioRendimientoAcademico?.tercerParcial}}</td>
-                  <td>{{datosAsignatura.promedioFinalRendimientoAcademico}}</td>
-                  <td>{{datosAsignatura.desviacionEstandar?.primerParcial}}</td>
-                  <td>{{datosAsignatura.desviacionEstandar?.segundoParcial}}</td>
-                  <td>{{datosAsignatura.desviacionEstandar?.tercerParcial}}</td>
-                  <td>{{datosAsignatura.promedioFinalDesviacionEstandar}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.nrc}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.promedioRendimientoAcademico?.primerParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.promedioRendimientoAcademico?.segundoParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.promedioRendimientoAcademico?.tercerParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.promedioFinalRendimientoAcademico}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.desviacionEstandar?.primerParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.desviacionEstandar?.segundoParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.desviacionEstandar?.tercerParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.promedioFinalDesviacionEstandar}}</td>
                 </tr>
               </tbody>
             </table>
@@ -292,34 +292,34 @@
           <p>A continuación, se detallan los resultados de las tutorías de reforzamiento. Detallar las estrategias
             planteadas y su respectivo análisis:</p>
           <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover table-sm">
               <thead>
                 <tr>
-                  <th rowspan="2">NRC</th>
-                  <th colspan="3"># estudiantes promedio menor 14</th>
-                  <th colspan="3"># estudiantes promedio menor 14 asistieron tutorías </th>
-                  <th rowspan="2"># estudiantes promedio menor 14 asistieron tutorías y NO aprobaron</th>
+                  <th class="text-center align-middle" rowspan="2">NRC</th>
+                  <th class="text-center align-middle" colspan="3"># estudiantes promedio menor 14</th>
+                  <th class="text-center align-middle" colspan="3"># estudiantes promedio menor 14 asistieron tutorías </th>
+                  <th class="text-center align-middle" rowspan="2"># estudiantes promedio menor 14 asistieron tutorías y NO aprobaron</th>
                 </tr>
                 <tr>
-                  <th>I-UD</th>
-                  <th>II-UD</th>
-                  <th>III-UD</th>
-                  <th>I-UD</th>
-                  <th>II-UD</th>
-                  <th>III-UD</th>
+                  <th class="text-center align-middle">I-UD</th>
+                  <th class="text-center align-middle">II-UD</th>
+                  <th class="text-center align-middle">III-UD</th>
+                  <th class="text-center align-middle">I-UD</th>
+                  <th class="text-center align-middle">II-UD</th>
+                  <th class="text-center align-middle">III-UD</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let datosAsignatura of informeFinalDTO.datosAsignatura">
-                  <td>{{datosAsignatura.nrc}}</td>
-                  <td>{{datosAsignatura.promedioRendimientoAcademico?.primerParcial}}</td>
-                  <td>{{datosAsignatura.promedioRendimientoAcademico?.segundoParcial}}</td>
-                  <td>{{datosAsignatura.promedioRendimientoAcademico?.tercerParcial}}</td>
-                  <td>{{datosAsignatura.promedioFinalRendimientoAcademico}}</td>
-                  <td>{{datosAsignatura.desviacionEstandar?.primerParcial}}</td>
-                  <td>{{datosAsignatura.desviacionEstandar?.segundoParcial}}</td>
-                  <td>{{datosAsignatura.desviacionEstandar?.tercerParcial}}</td>
-                  <td>{{datosAsignatura.promedioFinalDesviacionEstandar}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.nrc}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.promedioRendimientoAcademico?.primerParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.promedioRendimientoAcademico?.segundoParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.promedioRendimientoAcademico?.tercerParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.promedioFinalRendimientoAcademico}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.desviacionEstandar?.primerParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.desviacionEstandar?.segundoParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.desviacionEstandar?.tercerParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.promedioFinalDesviacionEstandar}}</td>
                 </tr>
               </tbody>
             </table>
@@ -363,274 +363,274 @@
         <div class="tab-pane fade" id="nav-evaluacion-docente" role="tabpanel"
           aria-labelledby="nav-evaluacion-docente-tab">
           <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover table-sm">
               <thead>
                 <tr>
                   <th></th>
-                  <th>COMPONENTE</th>
-                  <th>1</th>
-                  <th>2</th>
-                  <th>3</th>
-                  <th>4</th>
-                  <th>5</th>
-                  <th>RAZONAMIENTO</th>
+                  <th class="text-center align-middle">COMPONENTE</th>
+                  <th class="text-center align-middle">1</th>
+                  <th class="text-center align-middle">2</th>
+                  <th class="text-center align-middle">3</th>
+                  <th class="text-center align-middle">4</th>
+                  <th class="text-center align-middle">5</th>
+                  <th class="text-center align-middle">RAZONAMIENTO</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>1</td>
-                  <td>Actualicé los sílabos en el sistema académico y entregué a los estudiante</td>
-                  <td><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="1"
+                  <td class="text-center align-middle">1</td>
+                  <td class="text-center align-middle">Actualicé los sílabos en el sistema académico y entregué a los estudiante</td>
+                  <td class="text-center align-middle"><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="1"
                       name="componente1" value="1"></td>
-                  <td><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="2"
+                  <td class="text-center align-middle"><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="2"
                       name="componente1" value="2"></td>
-                  <td><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="3"
+                  <td class="text-center align-middle"><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="3"
                       name="componente1" value="3"></td>
-                  <td><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="4"
+                  <td class="text-center align-middle"><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="4"
                       name="componente1" value="4"></td>
-                  <td><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="5"
+                  <td class="text-center align-middle"><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="5"
                       name="componente1" value="5"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento1"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>2</td>
-                  <td>Asistí regular y puntualmente a las clases</td>
-                  <td><input type="radio" name="componente2" value="1"
+                  <td class="text-center align-middle">2</td>
+                  <td class="text-center align-middle">Asistí regular y puntualmente a las clases</td>
+                  <td class="text-center align-middle"><input type="radio" name="componente2" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
-                  <td><input type="radio" name="componente2" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente2" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
-                  <td><input type="radio" name="componente2" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente2" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
-                  <td><input type="radio" name="componente2" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente2" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
-                  <td><input type="radio" name="componente2" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente2" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento2"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>3</td>
-                  <td>Cumplí con las fechas del calendario académico</td>
-                  <td><input type="radio" name="componente3" value="1"
+                  <td class="text-center align-middle">3</td>
+                  <td class="text-center align-middle">Cumplí con las fechas del calendario académico</td>
+                  <td class="text-center align-middle"><input type="radio" name="componente3" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
-                  <td><input type="radio" name="componente3" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente3" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
-                  <td><input type="radio" name="componente3" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente3" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
-                  <td><input type="radio" name="componente3" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente3" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
-                  <td><input type="radio" name="componente3" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente3" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento3"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>4</td>
-                  <td>Elaboré apuntes y/o material didáctico de la asignatura </td>
-                  <td><input type="radio" name="componente4" value="1"
+                  <td class="text-center align-middle">4</td>
+                  <td class="text-center align-middle">Elaboré apuntes y/o material didáctico de la asignatura </td>
+                  <td class="text-center align-middle"><input type="radio" name="componente4" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
-                  <td><input type="radio" name="componente4" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente4" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
-                  <td><input type="radio" name="componente4" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente4" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
-                  <td><input type="radio" name="componente4" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente4" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
-                  <td><input type="radio" name="componente4" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente4" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento4"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>5</td>
-                  <td>Desarrolle guías y prácticas de laboratorio según los recursos existentes </td>
-                  <td><input type="radio" name="componente5" value="1"
+                  <td class="text-center align-middle">5</td>
+                  <td class="text-center align-middle">Desarrolle guías y prácticas de laboratorio según los recursos existentes </td>
+                  <td class="text-center align-middle"><input type="radio" name="componente5" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
-                  <td><input type="radio" name="componente5" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente5" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
-                  <td><input type="radio" name="componente5" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente5" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
-                  <td><input type="radio" name="componente5" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente5" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
-                  <td><input type="radio" name="componente5" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente5" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento5"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>6</td>
-                  <td>Vincule la teoría con la práctica profesional </td>
-                  <td><input type="radio" name="componente6" value="1"
+                  <td class="text-center align-middle">6</td>
+                  <td class="text-center align-middle">Vincule la teoría con la práctica profesional </td>
+                  <td class="text-center align-middle"><input type="radio" name="componente6" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
-                  <td><input type="radio" name="componente6" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente6" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
-                  <td><input type="radio" name="componente6" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente6" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
-                  <td><input type="radio" name="componente6" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente6" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
-                  <td><input type="radio" name="componente6" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente6" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento6"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>7</td>
-                  <td>Aplique técnicas/estrategias innovadoras en clase </td>
-                  <td><input type="radio" name="componente7" value="1"
+                  <td class="text-center align-middle">7</td>
+                  <td class="text-center align-middle">Aplique técnicas/estrategias innovadoras en clase </td>
+                  <td class="text-center align-middle"><input type="radio" name="componente7" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
-                  <td><input type="radio" name="componente7" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente7" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
-                  <td><input type="radio" name="componente7" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente7" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
-                  <td><input type="radio" name="componente7" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente7" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
-                  <td><input type="radio" name="componente7" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente7" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento7"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>8</td>
-                  <td>Realice una articulación horizontal y vertical con otras asignaturas </td>
-                  <td><input type="radio" name="componente8" value="1"
+                  <td class="text-center align-middle">8</td>
+                  <td class="text-center align-middle">Realice una articulación horizontal y vertical con otras asignaturas </td>
+                  <td class="text-center align-middle"><input type="radio" name="componente8" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
-                  <td><input type="radio" name="componente8" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente8" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
-                  <td><input type="radio" name="componente8" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente8" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
-                  <td><input type="radio" name="componente8" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente8" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
-                  <td><input type="radio" name="componente8" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente8" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento8"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>9</td>
-                  <td>Realice el seguimiento al sílabo y se cumplieron los contenidos previstos</td>
-                  <td><input type="radio" name="componente9" value="1"
+                  <td class="text-center align-middle">9</td>
+                  <td class="text-center align-middle">Realice el seguimiento al sílabo y se cumplieron los contenidos previstos</td>
+                  <td class="text-center align-middle"><input type="radio" name="componente9" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
-                  <td><input type="radio" name="componente9" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente9" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
-                  <td><input type="radio" name="componente9" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente9" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
-                  <td><input type="radio" name="componente9" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente9" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
-                  <td><input type="radio" name="componente9" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente9" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento9"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>10</td>
-                  <td>Se alcanzaron los resultados de aprendizaje planeados en el sílabo </td>
-                  <td><input type="radio" name="componente10" value="1"
+                  <td class="text-center align-middle">10</td>
+                  <td class="text-center align-middle">Se alcanzaron los resultados de aprendizaje planeados en el sílabo </td>
+                  <td class="text-center align-middle"><input type="radio" name="componente10" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
-                  <td><input type="radio" name="componente10" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente10" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
-                  <td><input type="radio" name="componente10" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente10" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
-                  <td><input type="radio" name="componente10" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente10" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
-                  <td><input type="radio" name="componente10" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente10" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento10"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>11</td>
-                  <td>Utilice los recursos bibliográficos propuestos</td>
-                  <td><input type="radio" name="componente11" value="1"
+                  <td class="text-center align-middle">11</td>
+                  <td class="text-center align-middle">Utilice los recursos bibliográficos propuestos</td>
+                  <td class="text-center align-middle"><input type="radio" name="componente11" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
-                  <td><input type="radio" name="componente11" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente11" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
-                  <td><input type="radio" name="componente11" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente11" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
-                  <td><input type="radio" name="componente11" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente11" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
-                  <td><input type="radio" name="componente11" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente11" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento11"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>12</td>
-                  <td>Realice retroalimentación oportuna de las soluciones de las evaluaciones </td>
-                  <td><input type="radio" name="componente12" value="1"
+                  <td class="text-center align-middle">12</td>
+                  <td class="text-center align-middle">Realice retroalimentación oportuna de las soluciones de las evaluaciones </td>
+                  <td class="text-center align-middle"><input type="radio" name="componente12" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
-                  <td><input type="radio" name="componente12" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente12" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
-                  <td><input type="radio" name="componente12" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente12" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
-                  <td><input type="radio" name="componente12" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente12" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
-                  <td><input type="radio" name="componente12" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente12" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento12"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>13</td>
-                  <td>Brinde confianza para responder preguntas e interactuar sin temores</td>
-                  <td><input type="radio" name="componente13" value="1"
+                  <td class="text-center align-middle">13</td>
+                  <td class="text-center align-middle">Brinde confianza para responder preguntas e interactuar sin temores</td>
+                  <td class="text-center align-middle"><input type="radio" name="componente13" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
-                  <td><input type="radio" name="componente13" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente13" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
-                  <td><input type="radio" name="componente13" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente13" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
-                  <td><input type="radio" name="componente13" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente13" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
-                  <td><input type="radio" name="componente13" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente13" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento13"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>14</td>
-                  <td>Se propuso un horario de consultas, tutorías de reforzamiento</td>
-                  <td><input type="radio" name="componente14" value="1"
+                  <td class="text-center align-middle">14</td>
+                  <td class="text-center align-middle">Se propuso un horario de consultas, tutorías de reforzamiento</td>
+                  <td class="text-center align-middle"><input type="radio" name="componente14" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
-                  <td><input type="radio" name="componente14" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente14" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
-                  <td><input type="radio" name="componente14" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente14" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
-                  <td><input type="radio" name="componente14" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente14" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
-                  <td><input type="radio" name="componente14" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente14" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento14"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>15</td>
-                  <td>Coordine el avance de los contenidos con otros docentes de la misma asignatura </td>
-                  <td><input type="radio" name="componente15" value="1"
+                  <td class="text-center align-middle">15</td>
+                  <td class="text-center align-middle">Coordine el avance de los contenidos con otros docentes de la misma asignatura </td>
+                  <td class="text-center align-middle"><input type="radio" name="componente15" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
-                  <td><input type="radio" name="componente15" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente15" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
-                  <td><input type="radio" name="componente15" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente15" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
-                  <td><input type="radio" name="componente15" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente15" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
-                  <td><input type="radio" name="componente15" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente15" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento15"> </textarea></td>
                 </tr>
                 <tr>
-                  <td>16</td>
-                  <td>Realicé los portafolios docentes de las asignaturas conforme la normativa establecida </td>
-                  <td><input type="radio" name="componente16" value="1"
+                  <td class="text-center align-middle">16</td>
+                  <td class="text-center align-middle">Realicé los portafolios docentes de las asignaturas conforme la normativa establecida </td>
+                  <td class="text-center align-middle"><input type="radio" name="componente16" value="1"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
-                  <td><input type="radio" name="componente16" value="2"
+                  <td class="text-center align-middle"><input type="radio" name="componente16" value="2"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
-                  <td><input type="radio" name="componente16" value="3"
+                  <td class="text-center align-middle"><input type="radio" name="componente16" value="3"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
-                  <td><input type="radio" name="componente16" value="4"
+                  <td class="text-center align-middle"><input type="radio" name="componente16" value="4"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
-                  <td><input type="radio" name="componente16" value="5"
+                  <td class="text-center align-middle"><input type="radio" name="componente16" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
-                  <td><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento16"> </textarea></td>
                 </tr>
               </tbody>
@@ -706,27 +706,27 @@
               class="btn btn-outline-success btn-sm">Agregar Capacitación</button></p>
 
           <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover table-sm">
               <thead>
                 <tr>
-                  <th rowspan="2">ÁREA DE CONOCIMIENTO</th>
+                  <th class="text-center align-middle" rowspan="2">ÁREA DE CONOCIMIENTO</th>
                   <!-- <th colspan="3">APELLIDOS Y NOMBRES DEL DOCENTE</th> -->
-                  <th colspan="4">CAPACITACIÓN: Registre las temáticas de capacitación en los que requeriría actualización para mejorar su desempeño docente. </th>
+                  <th class="text-center align-middle" colspan="4">CAPACITACIÓN: Registre las temáticas de capacitación en los que requeriría actualización para mejorar su desempeño docente. </th>
                 </tr>
                 <tr>
-                  <th>TEMA 1</th>
-                  <th>TEMA 2</th>
-                  <th>TEMA 3</th>
-                  <th>TEMA 4</th>
+                  <th class="text-center align-middle">TEMA 1</th>
+                  <th class="text-center align-middle">TEMA 2</th>
+                  <th class="text-center align-middle">TEMA 3</th>
+                  <th class="text-center align-middle">TEMA 4</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let tematicaCapacitacion of informeFinalDTO.tematicaCapacitaciones">
-                  <td>{{tematicaCapacitacion.areaConocimiento}}</td>
-                  <td>{{tematicaCapacitacion.tema1}}</td>
-                  <td>{{tematicaCapacitacion.tema2}}</td>
-                  <td>{{tematicaCapacitacion.tema3}}</td>
-                  <td>{{tematicaCapacitacion.tema4}}</td>
+                  <td class="text-center align-middle">{{tematicaCapacitacion.areaConocimiento}}</td>
+                  <td class="text-center align-middle">{{tematicaCapacitacion.tema1}}</td>
+                  <td class="text-center align-middle">{{tematicaCapacitacion.tema2}}</td>
+                  <td class="text-center align-middle">{{tematicaCapacitacion.tema3}}</td>
+                  <td class="text-center align-middle">{{tematicaCapacitacion.tema4}}</td>
                 </tr>
               </tbody>
             </table>

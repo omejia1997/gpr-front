@@ -97,3 +97,9 @@ h2{
 .btn-sm{
   margin-left: 10px;
 }
+
+.table-bordered,
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > td {
+  border: 3px solid #dee2e6; /* Puedes ajustar el grosor (3px) y el color (#dee2e6) según tus preferencias */
+}

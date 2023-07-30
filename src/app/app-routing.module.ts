@@ -59,6 +59,10 @@ import { VerDocenteInformacionComponent } from './modulos/docencia/informacion-p
 import { ListarTareaDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/listar-tarea-docente/listar-tarea-docente.component';
 import { GestionarTareaDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/gestionar-tarea-docente/gestionar-tarea-docente.component';
 import { RealizarInformeFinalDocenciaComponent } from './modulos/tarea-docencia/paginas/tarea-docente/realizar-informe-final/realizar-informe-final-docencia.component';
+import { ListarPeriodosComponent } from './pages/periodo/listar-periodos/listar-periodos.component';
+import { CrearPeriodoComponent } from './pages/periodo/crear-periodo/crear-periodo.component';
+import { EditarPeriodoComponent } from './pages/periodo/editar-periodo/editar-periodo.component';
+
 
 const routes: Routes = [
  {path: '', redirectTo:'/login' ,pathMatch:'full'},
@@ -67,6 +71,9 @@ const routes: Routes = [
   {path: 'password-olvidado', component:PasswordOlvidadoComponent},
   {path: 'home', component:HomeComponent,canActivate:[AuthGuard]},
   {path: 'docentes', component:DocenteComponent,canActivate:[AuthGuard]},
+  {path: 'listar-periodos', component:ListarPeriodosComponent,canActivate:[AuthGuard]},
+  {path: 'crear-periodo', component:CrearPeriodoComponent,canActivate:[AuthGuard]},
+  {path: 'editar-periodo', component:EditarPeriodoComponent,canActivate:[AuthGuard]},
   {path: 'listar-proyectos', component:ListarProyectosComponent,canActivate:[AuthGuard]},
   {path: 'crear-proyectos', component:CrearProyectosComponent,canActivate:[AuthGuard]},
   {path: 'editar-proyecto', component:EditarProyectoComponent,canActivate:[AuthGuard]},

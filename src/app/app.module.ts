@@ -97,6 +97,9 @@ import { ModalRendimientoAcademicoComponent } from './modulos/tarea-docencia/com
 import { ModalPromedioAcademicoComponent } from './modulos/tarea-docencia/components/modal-promedio-academico/modal-promedio-academico.component';
 import { ModalTutoriaComponent } from './modulos/tarea-docencia/components/modal-tutoria/modal-tutoria.component';
 import { ModalMejoraDocenteComponent } from './modulos/tarea-docencia/components/modal-mejora-docente/modal-mejora-docente.component';
+import { ListarPeriodosComponent } from './pages/periodo/listar-periodos/listar-periodos.component';
+import { CrearPeriodoComponent } from './pages/periodo/crear-periodo/crear-periodo.component';
+import { EditarPeriodoComponent } from './pages/periodo/editar-periodo/editar-periodo.component';
 
 @NgModule({
   declarations: [
@@ -107,6 +110,9 @@ import { ModalMejoraDocenteComponent } from './modulos/tarea-docencia/components
     RegistroComponent,
     DocenteComponent,
     FilterPipe,
+    ListarPeriodosComponent,
+    CrearPeriodoComponent,
+    EditarPeriodoComponent,
     ListarProyectosComponent,
     CrearProyectosComponent,
     EditarProyectoComponent,

@@ -1,0 +1,43 @@
+<app-navbar></app-navbar>
+<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-blockUI [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI>
+<div class="container">
+  <h2 style="text-align: center;">Periodos</h2>
+  <button class="btn btn-secondary btn-sm" (click)="navegarCrearPeriodo()"
+  style="margin-bottom:10px;">Crear un nuevo Período</button>
+  <div class="row justify-content-center">
+    <div class="overlay">
+      <p-progressSpinner *ngIf="blockedDocument"
+        [style]="{width: '150px', height: '150px', margin:'auto'}"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th class="text-center align-middle">Período Académico</th>
+          <th class="text-center align-middle">Descripción</th>
+          <th class="text-center align-middle">Estado</th>
+          <th class="text-center align-middle">Fecha de Creación</th>
+          <th class="text-center align-middle">Fecha de modificación</th>
+          <th class="text-center align-middle">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let periodo of periodos">
+          <td class="text-center align-middle">{{ periodo.nombrePeriodo }}</td>
+          <td class="text-center align-middle">{{ periodo.descripcionPeriodo }}</td>
+          <td class="text-center align-middle">{{ periodo.estadoPeriodo}}</td>
+          <td class="text-center align-middle">{{ periodo.fechaCreacionPeriodo | date: "dd-MM-yyyy HH:mm" }}</td>
+          <td class="text-center align-middle">{{ periodo.fechaModificacionPeriodo | date: "dd-MM-yyyy HH:mm" }}</td>
+          <td class="text-center align-middle">
+            <mat-icon (click)="editar(periodo)">edit</mat-icon>
+            <mat-icon *ngIf="periodo.estadoPeriodo==='INACTIVO'" (click)="cambiarEstado(periodo)">visibility</mat-icon>
+            <mat-icon *ngIf="periodo.estadoPeriodo==='ACTIVO'" (click)="cambiarEstado(periodo)">visibility_off</mat-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
