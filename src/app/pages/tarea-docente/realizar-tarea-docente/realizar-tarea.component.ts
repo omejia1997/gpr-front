@@ -170,25 +170,30 @@ export class RealizarTareaComponent implements OnInit {
               summary: 'Éxito',
               detail: 'La Actividad ha sido subida con éxito'
             });
-            this.storageFileService.saveFileTareaDocente("Investigacion",this.selectedFiles[0],data.archivoTareaDocente).subscribe({
-              next: (data) => {
-              setTimeout(() => {
-                this.blockedDocument = false;
-                this.router.navigate(["listar-tareas-docente"])
-              }, 2000);
-              },
-              error: (err) => {
-                this.messageService.add({
-                  severity: 'error',
-                  summary: 'Error',
-                  detail: err?.message ?? ' Error al subir el archivo'
-                });
-                this.blockedDocument = false;
-              },
-              complete: () => {
-                // this.isLoading = false;
-              },
-            })
+            setTimeout(() => {
+              this.blockedDocument = false;
+              this.router.navigate(["listar-tareas-docente"])
+            }, 2000);
+
+            // this.storageFileService.saveFileTareaDocente("Investigacion",this.selectedFiles[0],data.archivoTareaDocente).subscribe({
+            //   next: (data) => {
+            //   setTimeout(() => {
+            //     this.blockedDocument = false;
+            //     this.router.navigate(["listar-tareas-docente"])
+            //   }, 2000);
+            //   },
+            //   error: (err) => {
+            //     this.messageService.add({
+            //       severity: 'error',
+            //       summary: 'Error',
+            //       detail: err?.message ?? ' Error al subir el archivo'
+            //     });
+            //     this.blockedDocument = false;
+            //   },
+            //   complete: () => {
+            //     // this.isLoading = false;
+            //   },
+            // })
           },
           error: (err) => {
             this.messageService.add({

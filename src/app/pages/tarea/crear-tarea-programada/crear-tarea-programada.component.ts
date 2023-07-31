@@ -346,52 +346,53 @@ export class CrearTareaProgramadaComponent implements OnInit {
               summary: 'Éxito',
               detail: 'La Actividad ha sido creada con éxito',
             });
-            console.log('data', data);
-            if (Array.isArray(data)) {
-              data.forEach((tarea) => {
-                this.storageFileService
-                  .saveFile(
-                    'Investigacion',
-                    this.selectedFiles[0],
-                    tarea.archivoTarea
-                  )
-                  .subscribe({
-                    next: (data) => {},
-                    error: (err) => {
-                      this.messageService.add({
-                        severity: 'error',
-                        summary: 'Error',
-                        detail: err?.message ?? ' Error al subir el archivo',
-                      });
-                      this.blockedDocument = false;
-                    },
-                    complete: () => {
-                      // this.isLoading = false;
-                    },
-                  });
-              });
-            } else {
-              this.storageFileService
-                .saveFile(
-                  'Investigacion',
-                  this.selectedFiles[0],
-                  data.archivoTarea
-                )
-                .subscribe({
-                  next: (data) => {},
-                  error: (err) => {
-                    this.messageService.add({
-                      severity: 'error',
-                      summary: 'Error',
-                      detail: err?.message ?? ' Error al subir el archivo',
-                    });
-                    this.blockedDocument = false;
-                  },
-                  complete: () => {
-                    // this.isLoading = false;
-                  },
-                });
-            }
+            // console.log('data', data);
+            // if (Array.isArray(data)) {
+            //   data.forEach((tarea) => {
+            //     this.storageFileService
+            //       .saveFile(
+            //         'Investigacion',
+            //         this.selectedFiles[0],
+            //         tarea.archivoTarea
+            //       )
+            //       .subscribe({
+            //         next: (data) => {},
+            //         error: (err) => {
+            //           this.messageService.add({
+            //             severity: 'error',
+            //             summary: 'Error',
+            //             detail: err?.message ?? ' Error al subir el archivo',
+            //           });
+            //           this.blockedDocument = false;
+            //         },
+            //         complete: () => {
+            //           // this.isLoading = false;
+            //         },
+            //       });
+            //   });
+            // } else {
+            //   this.storageFileService
+            //     .saveFile(
+            //       'Investigacion',
+            //       this.selectedFiles[0],
+            //       data.archivoTarea
+            //     )
+            //     .subscribe({
+            //       next: (data) => {},
+            //       error: (err) => {
+            //         this.messageService.add({
+            //           severity: 'error',
+            //           summary: 'Error',
+            //           detail: err?.message ?? ' Error al subir el archivo',
+            //         });
+            //         this.blockedDocument = false;
+            //       },
+            //       complete: () => {
+            //         // this.isLoading = false;
+            //       },
+            //     });
+            // }
+
             setTimeout(() => {
               this.blockedDocument = false;
               this.router.navigate(['listar-tareas-programadas']);

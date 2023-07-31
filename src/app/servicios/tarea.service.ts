@@ -179,7 +179,7 @@ export class TareaService {
     const formData: FormData = new FormData();
     formData.append("tareaDocenteProyecto",JSON.stringify(tareaDocente));
     formData.append('file', file);
-    return this.http.post<any>(`${TAREA_DOCENTE}/editarTareaConArchivo`,formData);
+    return this.http.put<any>(`${TAREA_DOCENTE}/editarTareaConArchivo`,formData);
   }
 
   public guardarTareaAsignadaAlDocente(tareaIndicadors:TareaIndicador[],codigoTareaDocente:any){
