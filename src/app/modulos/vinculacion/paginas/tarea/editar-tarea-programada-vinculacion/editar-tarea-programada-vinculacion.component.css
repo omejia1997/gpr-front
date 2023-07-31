@@ -1,3 +1,37 @@
+#box1,
+#box2,
+#box3,
+#box4 {
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#box4 ul {
+    list-style: none;
+}
+
+#box4 ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#box4 ul li a {
+    text-decoration: none;
+    color: white;
+    margin-right: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
 .container {
     width: 95vw;
     height: 80%;

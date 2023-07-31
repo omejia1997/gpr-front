@@ -53,15 +53,26 @@ export class VerTareaDocenteComponent implements OnInit {
           this.tarea = this.tareaDocente.codigoTarea;
       });
       this.getIndicadorTarea$ = this.tareaService.obtenerIndicadoresTarea(this.tareaDocente.codigoTareaDocente);
-      this.fileModelGuia$ = this.uploadFilesService.getFileGuia(this.tarea.codigoTarea);
-      this.fileModel$ = this.uploadFilesService.getFileModel(this.tareaDocente.codigoTareaDocente);
+
+      if(this.tarea.nombreArchivoTarea){
+        this.fileModelGuia$ = this.tareaService.getFileGuia("Investigacion",this.tarea.codigoTarea);
+        this.getFileGuia();
+      }
+
+      if(this.tareaDocente.archivoTareaDocente){
+        this.fileModel$ = this.tareaService.getFileModel("Investigacion",this.tareaDocente.codigoTareaDocente);
+        this.getFileModel();
+      }
+
+      // this.fileModelGuia$ = this.uploadFilesService.getFileGuia(this.tarea.codigoTarea);
+      // this.fileModel$ = this.uploadFilesService.getFileModel(this.tareaDocente.codigoTareaDocente);
     }
 
   ngOnInit(): void {
     this.tareaDocente.descripcionTareadocente = "";
     this.getIndicadorTarea();
-    this.getFileGuia();
-    this.getFileModel();
+    // this.getFileGuia();
+    // this.getFileModel();
   }
 
   getIndicadorTarea() {
@@ -107,17 +118,17 @@ export class VerTareaDocenteComponent implements OnInit {
     .subscribe({
       next: (data) => {
         this.messageService.add({
-          severity: 'success', 
-          summary: 'Éxito', 
+          severity: 'success',
+          summary: 'Éxito',
           detail: 'La Actividad ha sido aprobada con éxito'
         });
-        setTimeout(() => {  
-          this.blockedDocument = false;                      
+        setTimeout(() => {
+          this.blockedDocument = false;
           this.router.navigate(["tareas-entregadas"])
         }, 2000);
       },
       error: (err) => {
-        this.blockedDocument = false; 
+        this.blockedDocument = false;
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
@@ -146,12 +157,12 @@ export class VerTareaDocenteComponent implements OnInit {
     .subscribe({
       next: (data) => {
         this.messageService.add({
-          severity: 'success', 
-          summary: 'Éxito', 
+          severity: 'success',
+          summary: 'Éxito',
           detail: 'La Actividad ha sido Denegada con éxito'
         });
-        setTimeout(() => {    
-          this.blockedDocument = false;                    
+        setTimeout(() => {
+          this.blockedDocument = false;
           this.router.navigate(["tareas-entregadas"])
         }, 2000);
       },
@@ -161,7 +172,7 @@ export class VerTareaDocenteComponent implements OnInit {
           summary: 'Error',
           detail: err?.message ?? ' Error al denegar la Actividad'
         });
-        this.blockedDocument = false; 
+        this.blockedDocument = false;
       },
       complete: () => {
         // this.isLoading = false;

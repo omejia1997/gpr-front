@@ -92,6 +92,9 @@ export class EditarTareaComponent implements OnInit {
   codCargo: any;
   codDocente: any;
 
+  fileModelGuia$: Observable<any>= new Observable;
+  fileModelClassGuia:any={}
+
   constructor(
     private router: Router,
     private cargoService: CargoService,
@@ -124,6 +127,10 @@ export class EditarTareaComponent implements OnInit {
         }
         this.indicadoresAsignados = this.tareaDocenteProyecto.indicadors;
         this.docentesAsignados = this.tareaDocenteProyecto.docentes;
+        if(this.tarea.nombreArchivoTarea){
+          this.fileModelGuia$ = this.tareaService.getFileGuia("Investigacion",this.tarea.codigoTarea);
+          this.getFileGuia();
+        }
       }
       //this.tareaDocente.fechaEntrega = new Date(this.tareaDocente.fechaEntrega);
       //this.tareaDocente.fechaEntrega = this.pipe.transform(this.tareaDocente.fechaEntrega, 'yyyy-MM-ddTHH:mm:ss');
@@ -144,6 +151,12 @@ export class EditarTareaComponent implements OnInit {
       return false;
     }
     return proyecto1.nombreProyecto === proyecto2.nombreProyecto;
+  }
+
+  getFileGuia() {
+    this.fileModelGuia$.subscribe(res =>{
+      this.fileModelClassGuia = res;
+    });
   }
 
   getCargos() {

@@ -95,6 +95,21 @@
           </ul>
         </div>
         <hr>
+        <div id="box4" *ngIf="tarea.nombreArchivoTarea">
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Archivo Guía Subido</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <ul>
+                <li>
+                  <mat-icon>archive</mat-icon>
+                  <a href="{{fileModelClassGuia.url}}">{{fileModelClassGuia.name}}</a>
+                </li>
+              </ul>
+            </mat-card-content>
+          </mat-card>
+        </div>
         <div id="box2">
           <label>Archivo GuÍa (Opcional) -- Máximo 5MB:</label>
           <p>

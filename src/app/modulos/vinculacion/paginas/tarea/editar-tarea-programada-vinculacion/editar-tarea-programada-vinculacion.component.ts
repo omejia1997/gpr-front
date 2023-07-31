@@ -97,6 +97,8 @@ export class EditarTareaProgramadaVinculacionComponent implements OnInit {
 
   codCargo: any;
   codDocente: any;
+  fileModelGuia$: Observable<any>= new Observable;
+  fileModelClassGuia:any={}
 
 
   constructor(
@@ -122,6 +124,10 @@ export class EditarTareaProgramadaVinculacionComponent implements OnInit {
         this.back();
       } else {
         this.tarea = this.tareaDocenteProyecto.tarea;
+        if(this.tarea.nombreArchivoTareaEnStorage){
+          this.fileModelGuia$ = this.tareaService.getFileGuia("Vinculacion",this.tarea.id);
+          this.getFileGuia();
+        }
         this.proyectoModelEdit= this.tarea.proyecto;
         // if (this.tarea.tipoTarea == "SOLICITUD")
         //   this.checkTipoTarea = false;
@@ -147,6 +153,12 @@ export class EditarTareaProgramadaVinculacionComponent implements OnInit {
   getProyectos() {
     this.getProyectos$.subscribe(proyectos => {
       this.proyectos = proyectos;
+    });
+  }
+
+  getFileGuia() {
+    this.fileModelGuia$.subscribe(res =>{
+      this.fileModelClassGuia = res;
     });
   }
 

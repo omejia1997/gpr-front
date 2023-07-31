@@ -139,26 +139,30 @@ export class RealizarTareaVinculacionComponent implements OnInit {
               summary: 'Éxito',
               detail: 'La Actividad ha sido subida con éxito'
             });
+            setTimeout(() => {
+              this.blockedDocument = false;
+              this.router.navigate(["listar-tareas-docente"])
+            }, 2000);
 
-            this.storageFileService.saveFileTareaDocente("Vinculacion",this.selectedFiles[0],data.nombreArchivoTareaDocenteEnStorage).subscribe({
-              next: (data) => {
-                setTimeout(() => {
-                  this.blockedDocument = false;
-                  this.router.navigate(["listar-tareas-docente"])
-                }, 2000);
-              },
-              error: (err) => {
-                this.messageService.add({
-                  severity: 'error',
-                  summary: 'Error',
-                  detail: err?.message ?? ' Error al subir el archivo'
-                });
-                this.blockedDocument = false;
-              },
-              complete: () => {
-                // this.isLoading = false;
-              },
-            })
+            // this.storageFileService.saveFileTareaDocente("Vinculacion",this.selectedFiles[0],data.nombreArchivoTareaDocenteEnStorage).subscribe({
+            //   next: (data) => {
+            //     setTimeout(() => {
+            //       this.blockedDocument = false;
+            //       this.router.navigate(["listar-tareas-docente"])
+            //     }, 2000);
+            //   },
+            //   error: (err) => {
+            //     this.messageService.add({
+            //       severity: 'error',
+            //       summary: 'Error',
+            //       detail: err?.message ?? ' Error al subir el archivo'
+            //     });
+            //     this.blockedDocument = false;
+            //   },
+            //   complete: () => {
+            //     // this.isLoading = false;
+            //   },
+            // })
           },
           error: (err) => {
             this.messageService.add({

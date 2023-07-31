@@ -284,51 +284,51 @@ export class CrearTareaProgramadaVinculacionComponent implements OnInit {
               summary: 'Éxito',
               detail: 'La Actividad ha sido creada con éxito',
             });
-            if (Array.isArray(data)) {
-              data.forEach((tarea) => {
-                this.storageFileService
-                  .saveFile(
-                    'Vinculacion',
-                    this.selectedFiles[0],
-                    tarea.nombreArchivoTareaEnStorage
-                  )
-                  .subscribe({
-                    next: (data) => {},
-                    error: (err) => {
-                      this.messageService.add({
-                        severity: 'error',
-                        summary: 'Error',
-                        detail: err?.message ?? ' Error al subir el archivo',
-                      });
-                      this.blockedDocument = false;
-                    },
-                    complete: () => {
-                      // this.isLoading = false;
-                    },
-                  });
-              });
-            } else {
-              this.storageFileService
-                .saveFile(
-                  'Vinculacion',
-                  this.selectedFiles[0],
-                  data.nombreArchivoTareaEnStorage
-                )
-                .subscribe({
-                  next: (data) => {},
-                  error: (err) => {
-                    this.messageService.add({
-                      severity: 'error',
-                      summary: 'Error',
-                      detail: err?.message ?? ' Error al subir el archivo',
-                    });
-                    this.blockedDocument = false;
-                  },
-                  complete: () => {
-                    // this.isLoading = false;
-                  },
-                });
-            }
+            // if (Array.isArray(data)) {
+            //   data.forEach((tarea) => {
+            //     this.storageFileService
+            //       .saveFile(
+            //         'Vinculacion',
+            //         this.selectedFiles[0],
+            //         tarea.nombreArchivoTareaEnStorage
+            //       )
+            //       .subscribe({
+            //         next: (data) => {},
+            //         error: (err) => {
+            //           this.messageService.add({
+            //             severity: 'error',
+            //             summary: 'Error',
+            //             detail: err?.message ?? ' Error al subir el archivo',
+            //           });
+            //           this.blockedDocument = false;
+            //         },
+            //         complete: () => {
+            //           // this.isLoading = false;
+            //         },
+            //       });
+            //   });
+            // } else {
+            //   this.storageFileService
+            //     .saveFile(
+            //       'Vinculacion',
+            //       this.selectedFiles[0],
+            //       data.nombreArchivoTareaEnStorage
+            //     )
+            //     .subscribe({
+            //       next: (data) => {},
+            //       error: (err) => {
+            //         this.messageService.add({
+            //           severity: 'error',
+            //           summary: 'Error',
+            //           detail: err?.message ?? ' Error al subir el archivo',
+            //         });
+            //         this.blockedDocument = false;
+            //       },
+            //       complete: () => {
+            //         // this.isLoading = false;
+            //       },
+            //     });
+            // }
             setTimeout(() => {
               this.blockedDocument = false;
               this.router.navigate(['listar-tareas-programadas-vinculacion']);
