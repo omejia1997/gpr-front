@@ -21,7 +21,7 @@
           <td *ngIf="!tarea.tarea">{{ tarea.codigoTarea?.fechaEntregaTarea | date:"short":'+00:00' }}</td>
           <td *ngIf="!tarea.codigoTarea">{{ tarea.tarea?.fechaEntregaTarea | date:"short":'+00:00' }}</td>
           <!-- <td>{{ tarea.codigoDocente?.nombreDocente }} {{ tarea.codigoDocente?.apellidoDocente }} </td> -->
-          <td *ngIf="!tarea.tarea">{{ tarea.codigoDocente?.nombreDocente }} {{ tarea.codigoDocente?.apellidoDocente }}/td>
+          <td *ngIf="!tarea.tarea">{{ tarea.codigoDocente?.nombreDocente }} {{ tarea.codigoDocente?.apellidoDocente }}</td>
           <td *ngIf="!tarea.codigoTarea">{{ tarea.docente?.nombreDocente }} {{ tarea.docente?.apellidoDocente }}</td>
 
           <td *ngIf="!tarea.tarea">{{ tarea.codigoTarea?.codigoProyecto?.nombreProyecto }}</td>
