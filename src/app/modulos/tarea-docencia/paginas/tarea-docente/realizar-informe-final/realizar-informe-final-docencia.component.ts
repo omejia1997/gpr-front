@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ModalAsignaturaComponent } from '../../../components/modal-asignatura/modal-asignatura.component';
+import { ModalMejoraDocenteComponent } from '../../../components/modal-mejora-docente/modal-mejora-docente.component';
+import { ModalPromedioAcademicoComponent } from '../../../components/modal-promedio-academico/modal-promedio-academico.component';
+import { ModalRendimientoAcademicoComponent } from '../../../components/modal-rendimiento-academico/modal-rendimiento-academico.component';
 import { ModalStringComponent } from '../../../components/modal-string/modal-string.component';
+import { ModalTutoriaComponent } from '../../../components/modal-tutoria/modal-tutoria.component';
 import { DataString } from '../../../modelos/DataString';
 import { InformeFinalDTO } from '../../../modelos/dto/InformeFinalDTO ';
-import { ModalAsignaturaComponent } from '../../../components/modal-asignatura/modal-asignatura.component';
-import { DatosAsignatura } from '../../../modelos/DatosAsignatura';
-import { ModalRendimientoAcademicoComponent } from '../../../components/modal-rendimiento-academico/modal-rendimiento-academico.component';
-import { ModalPromedioAcademicoComponent } from '../../../components/modal-promedio-academico/modal-promedio-academico.component';
-import { ModalTutoriaComponent } from '../../../components/modal-tutoria/modal-tutoria.component';
-import { ModalMejoraDocenteComponent } from '../../../components/modal-mejora-docente/modal-mejora-docente.component';
 
 @Component({
   selector: 'app-realizar-informe-final-docencia',

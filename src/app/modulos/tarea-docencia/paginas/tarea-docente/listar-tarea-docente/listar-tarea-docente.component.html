@@ -1,5 +1,13 @@
 <app-navbar></app-navbar>
 <div class="container">
+  <h2 style="text-align: center;">Período</h2>
+  <div style="display: flex;">
+    <div class="form-group col align-self-center col-sm-6" style="margin: auto;">
+      <select name="proyecto" [(ngModel)]="periodo" class="form-select">
+        <option [ngValue]="periodo" *ngFor="let periodo of periodos">{{periodo.descripcionPeriodo}}</option>
+      </select>
+    </div>
+  </div>
   <h2 style="text-align: center;">Actividades Creadas</h2>
   <button class="btn btn-secondary btn-sm" (click)="navegarCrearTarea()"
   style="margin-bottom:10px;">Crear una nueva Tarea</button>

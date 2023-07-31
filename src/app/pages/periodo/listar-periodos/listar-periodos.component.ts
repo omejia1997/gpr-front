@@ -13,6 +13,7 @@ export class ListarPeriodosComponent implements OnInit {
   blockedDocument: boolean = false;
   getPeriodos$: Observable<Periodo[]>;
   periodos: Periodo[] = [];
+  buscarTermino: string = '';
 
   constructor(
     private periodoService: PeriodoService,
@@ -30,6 +31,13 @@ export class ListarPeriodosComponent implements OnInit {
     this.getPeriodos$.subscribe(periodos =>{
       this.periodos = periodos;
     });
+  }
+
+  filtrarItems() {
+    // Filtrar la lista de items basándose en el término de búsqueda
+    return this.periodos.filter(item =>
+      item.nombrePeriodo?.toLowerCase().includes(this.buscarTermino.toLowerCase())
+    );
   }
 
   navegarCrearPeriodo(){

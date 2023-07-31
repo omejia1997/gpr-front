@@ -150,9 +150,14 @@ export class TareaService {
     return this.http.get<CargoDocente[]>(`${TAREA_DOCENTE}/listarCargoDocentePorCodDocente/${codDocente}`);
   }
 
+  public obtenerDocentesLikeNombreCargo(likeNombreCargo:any,codigoDocente:any): Observable<Docente[]>{
+    return this.http.get<Docente[]>(`${TAREA_DOCENTE}/listarDocentesLikeNombreCargo/${likeNombreCargo}/${codigoDocente}`);
+  }
+
   public obtenerDocentesPorCargo(idCargo:any,codigoDocente:any): Observable<Docente[]>{
     return this.http.get<Docente[]>(`${TAREA_DOCENTE}/listarDocentesPorCargo/${idCargo}/${codigoDocente}`);
   }
+
 
   public obtenerTodosDocentesPorCargo(idCargo:any): Observable<Docente[]>{
     return this.http.get<Docente[]>(`${TAREA_DOCENTE}/listarTodosDocentesPorCargo/${idCargo}`);

@@ -3,6 +3,8 @@ import { TareaDocencia } from '../../../modelos/TareaDocencia';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { TareaDocenciaService } from '../../../servicios/TareaDocenciaService';
+import { Periodo } from 'src/app/models/Periodo';
+import { PeriodoService } from 'src/app/servicios/periodo.service';
 
 @Component({
   selector: 'app-listar-tarea-docente',
@@ -13,19 +15,31 @@ export class ListarTareaDocenteComponent implements OnInit {
   getTareasDocenciaDocente$: Observable<TareaDocencia[]>;
   tareasDocencia: TareaDocencia[] = [];
   idEspeDocenteRevisor: any;
+  getPeriodos$: Observable<Periodo[]>;
+  periodos:Periodo[]=[];
+  periodo:Periodo={};
 
   constructor(
     private tareaDocenciaService: TareaDocenciaService,
+    private periodoService: PeriodoService,
     private router: Router,
   ) {
     this.idEspeDocenteRevisor = localStorage.getItem('idEspeDocenteRevisor');
     this.getTareasDocenciaDocente$ = this.tareaDocenciaService.listarTodasTareasPorDocente(
       this.idEspeDocenteRevisor
     );
+    this.getPeriodos$ = this.periodoService.listarPeriodosActivos();
   }
 
   ngOnInit(): void {
     this.getTareasDocencia();
+    this.getPeriodos();
+  }
+
+  getPeriodos() {
+    this.getPeriodos$.subscribe((periodos) => {
+      this.periodos = periodos;
+    });
   }
 
   getTareasDocencia() {

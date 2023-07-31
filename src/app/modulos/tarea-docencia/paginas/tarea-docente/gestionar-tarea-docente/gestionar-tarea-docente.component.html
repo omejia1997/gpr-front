@@ -21,8 +21,9 @@
           <h2>Cargos:</h2>
           <label for="">Seleccione un Cargo:</label>
           <p>
-            <select name="miselect" [(ngModel)]="cargoSeleccionado" (change)="buscarDocentesPorCargo()" class="form-select">
-              <option [ngValue]="cargo" *ngFor="let cargo of cargos">{{cargo}}</option>
+            <select name="miselect" [(ngModel)]="cargo" (change)="buscarDocentesPorCargo()" class="form-select">
+              <option [ngValue]="'Coordinador'">Todos los coordinadores</option>
+              <option [ngValue]="carg" *ngFor="let carg of cargos">{{carg.nombreCargo}}</option>
             </select>
           </p>
         </div>

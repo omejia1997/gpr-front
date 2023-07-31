@@ -5,6 +5,11 @@
   <h2 style="text-align: center;">Periodos</h2>
   <button class="btn btn-secondary btn-sm" (click)="navegarCrearPeriodo()"
   style="margin-bottom:10px;">Crear un nuevo Período</button>
+  <br>
+  <div class="col-md-4" style="margin: auto;">
+    <mat-icon>search</mat-icon><input type="text" style="width: 90%;" [(ngModel)]="buscarTermino" placeholder="Ingrese el Período Académico">
+  </div>
+  <br>
   <div class="row justify-content-center">
     <div class="overlay">
       <p-progressSpinner *ngIf="blockedDocument"
@@ -25,7 +30,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let periodo of periodos">
+        <tr *ngFor="let periodo of filtrarItems()">
           <td class="text-center align-middle">{{ periodo.nombrePeriodo }}</td>
           <td class="text-center align-middle">{{ periodo.descripcionPeriodo }}</td>
           <td class="text-center align-middle">{{ periodo.estadoPeriodo}}</td>
