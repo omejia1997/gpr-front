@@ -51,6 +51,7 @@ export class ListarTareasEntregadasComponent implements OnInit {
       this.tareasVinculacion
     );
     this.getTareasVinculacion$.subscribe((tareas) => {
+      this.totalTareasRevisar=[];
       this.tareasVinculacion = tareas;
       this.totalTareasRevisar = this.totalTareasRevisar.concat(
         this.tareasDocente,

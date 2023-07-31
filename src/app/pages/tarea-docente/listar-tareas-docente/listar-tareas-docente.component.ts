@@ -66,6 +66,7 @@ export class ListarTareasDocenteComponent implements OnInit {
         return 0;
       });
     this.getTareasVinculacion$.subscribe(tareas =>{
+      this.totalTareasrealizar = [];
       this.tareasVinculacion = tareas;
       this.totalTareasrealizar=this.totalTareasrealizar.concat(this.tareas,this.tareasVinculacion);
       this.totalTareasrealizar.sort(function (a:any, b:any) {//Ordenar Array
