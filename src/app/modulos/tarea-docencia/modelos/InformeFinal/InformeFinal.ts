@@ -1,8 +1,8 @@
-import { AccionesMejoraDocente } from "../AccionesMejoraDocente";
-import { DatosAsignatura } from "../DatosAsignatura";
-import { DatosGenerales } from "../DatosGenerales";
-import { EvaluacionDocente } from "../EvaluacionDocente";
-import { TematicaCapacitacion } from "../TematicaCapacitacion";
+import { AccionesMejoraDocente } from "./AccionesMejoraDocente";
+import { DatosAsignatura } from "./DatosAsignatura";
+import { DatosGenerales } from "./DatosGenerales";
+import { EvaluacionDocente } from "./EvaluacionDocente";
+import { TematicaCapacitacion } from "./TematicaCapacitacion";
 
 export type InformeFinalDTO = {
   datosGenerales?: DatosGenerales;

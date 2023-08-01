@@ -8,12 +8,14 @@ import { TareaDocenciaDTO } from '../../../modelos/dto/TareaDocenciaDTO';
 import { Cargo } from 'src/app/models/Cargo';
 import { Observable } from 'rxjs';
 import { CargoService } from 'src/app/servicios/cargo.service';
+import { Periodo } from 'src/app/models/Periodo';
 
-const cargos: string[] = ['Manufactura y Producción',
-'Mecatrónica',
-'Materiales y Mecánica de Sólidos',
-'Energía y Termofluidos',
-'Diseño y Mecánica Computacional'];
+// const cargos: string[] = ['Manufactura y Producción',
+// 'Mecatrónica',
+// 'Materiales y Mecánica de Sólidos',
+// 'Energía y Termofluidos',
+// 'Diseño y Mecánica Computacional'];
+
 
 @Component({
   selector: 'app-gestionar-tarea-docente',
@@ -22,17 +24,26 @@ const cargos: string[] = ['Manufactura y Producción',
 })
 
 export class GestionarTareaDocenteComponent implements OnInit {
+  visualBlockedDocument: boolean = true;
+  blockedDocument: boolean = false;
   getCargos$: Observable<Cargo[]>;
   cargos: Cargo[] = [];
   cargo: any={};
-  blockedDocument: boolean = false;
   tareaDocenciaRequest: TareaDocenciaDTO={};
   actividadRealizar!: string;
   cargoSeleccionado!: string;
   docentes: Docente[] = [];
   docentesAsignados: Docente[] = [];
   codDocente: any;
+  data:any;
+  periodo: any={};
 
+
+  checkboxesActividadesRealizar: any = [
+    { value: 'SUBIR INFORME DE GESTIÓN DOCENTE', checked: false },
+    // { value: 'option2', checked: false },
+    // { value: 'option3', checked: false },
+  ];
 
   constructor(
     private router: Router,
@@ -41,9 +52,18 @@ export class GestionarTareaDocenteComponent implements OnInit {
     private messageService: MessageService,
     private cargoService: CargoService
     ) {
+
       this.codDocente = localStorage.getItem('codigoDocente');
       this.getCargos$ = this.cargoService.obtenerCargosModel();
       this.tareaDocenciaRequest.observacionTarea=[];
+      this.tareaDocenciaService.periodo$.subscribe((res) => {
+        this.periodo = res;
+        if (this.periodo == null || Object.keys(this.periodo).length === 0) {
+          this.visualBlockedDocument = false;
+          this.back();
+        }
+      });
+
   }
 
   ngOnInit() {
@@ -161,34 +181,57 @@ export class GestionarTareaDocenteComponent implements OnInit {
 
   save() {
     this.blockedDocument = true;
+    this.tareaDocenciaRequest.docentesAsignados = this.docentesAsignados;
+    if(this.tareaDocenciaRequest.docentesAsignados?.length==0){
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Debe Asignar algún docente a la Actividad'
+      });
+      this.blockedDocument = false;
+      return;
+    }
+    this.tareaDocenciaRequest.observacionTarea = this.checkboxesActividadesRealizar
+    .filter((checkbox:any) => checkbox.checked)
+    .map((checkbox:any) => checkbox.value);
+    if(this.tareaDocenciaRequest.observacionTarea?.length==0){
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Debe Seleccionar alguna Actividad a Realizar'
+      });
+      this.blockedDocument = false;
+      return;
+    }
+    this.tareaDocenciaRequest.codigoPeriodo = this.periodo.codigoPeriodo;
     this.tareaDocenciaRequest.idEspeDocenteRevisor = localStorage.getItem('idEspeDocenteRevisor')!;
     this.tareaDocenciaRequest.nombreDocenteRevisor = localStorage.getItem('nombreDocenteRevisor')!;
-    this.tareaDocenciaRequest.periodo = "";
     this.tareaDocenciaRequest.docentesAsignados = this.docentesAsignados;
-    this.tareaDocenciaService.gestionarInformacion(this.tareaDocenciaRequest)
-    .subscribe({
-      next: (data) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Éxito',
-          detail: 'Datos Subidos con éxito'
-        });
-        setTimeout(() => {
-          this.blockedDocument = false;
-          this.router.navigate(['listar-tarea-docente']);
-        }, 2000);
-      },
-      error: (err) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: err?.message ?? ' Error ál subir los datos de la Tarea'
-        });
-        this.blockedDocument = false;
-      },
-      complete: () => {
-      },
-    })
+    console.log(this.tareaDocenciaRequest);
+    // this.tareaDocenciaService.gestionarInformacion(this.tareaDocenciaRequest)
+    // .subscribe({
+    //   next: (data) => {
+    //     this.messageService.add({
+    //       severity: 'success',
+    //       summary: 'Éxito',
+    //       detail: 'Datos Subidos con éxito'
+    //     });
+    //     setTimeout(() => {
+    //       this.blockedDocument = false;
+    //       this.router.navigate(['listar-tarea-docente']);
+    //     }, 2000);
+    //   },
+    //   error: (err) => {
+    //     this.messageService.add({
+    //       severity: 'error',
+    //       summary: 'Error',
+    //       detail: err?.message ?? ' Error ál subir los datos de la Tarea'
+    //     });
+    //     this.blockedDocument = false;
+    //   },
+    //   complete: () => {
+    //   },
+    // })
   }
 
 

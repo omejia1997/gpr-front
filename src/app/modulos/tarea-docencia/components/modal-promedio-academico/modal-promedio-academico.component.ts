@@ -2,7 +2,7 @@ import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { DatosAsignatura } from '../../modelos/DatosAsignatura';
+import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
 
 @Component({
   selector: 'app-modal-promedio-academico',

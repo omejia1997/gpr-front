@@ -7,7 +7,7 @@ import { ModalRendimientoAcademicoComponent } from '../../../components/modal-re
 import { ModalStringComponent } from '../../../components/modal-string/modal-string.component';
 import { ModalTutoriaComponent } from '../../../components/modal-tutoria/modal-tutoria.component';
 import { DataString } from '../../../modelos/DataString';
-import { InformeFinalDTO } from '../../../modelos/dto/InformeFinalDTO ';
+import { InformeFinalDTO } from '../../../modelos/InformeFinal/InformeFinal';
 
 @Component({
   selector: 'app-realizar-informe-final-docencia',

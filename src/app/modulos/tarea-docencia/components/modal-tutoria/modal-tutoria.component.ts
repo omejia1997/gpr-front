@@ -2,7 +2,7 @@ import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { DatosAsignatura } from '../../modelos/DatosAsignatura';
+import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
 
 function validarEntero(control: AbstractControl): { [key: string]: any } | null {
   if (control.value && !Number.isInteger(control.value)) {

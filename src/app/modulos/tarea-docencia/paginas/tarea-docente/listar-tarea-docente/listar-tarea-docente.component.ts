@@ -59,6 +59,8 @@ export class ListarTareaDocenteComponent implements OnInit {
   }
 
   navegarCrearTarea(){
+    this.tareaDocenciaService.setPeriodo(this.periodo);
+    // localStorage.setItem('periodo', JSON.stringify(this.periodo));
     this.router.navigate(['gestionar-tarea-docente']);
   }
 
