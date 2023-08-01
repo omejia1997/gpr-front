@@ -25,6 +25,10 @@ export class TareaDocenciaService {
     return this.http.get<TareaDocencia[]>(`${TAREA_DOCENCIA}/listarTodasTareasPorDocente/${idEspeDocente}`);
   }
 
+  public listarTodasTareasAsignadasPorDocente(idEspeDocente:any): Observable<TareaDocenteDocenciaDTO[]>{
+    return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTodasTareasAsignadasPorDocente/${idEspeDocente}`);
+  }
+
   public setTarea(tarea: TareaDocencia) {
     this.tarea$$.next(tarea);
   }

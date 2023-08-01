@@ -62,6 +62,7 @@ import { RealizarInformeFinalDocenciaComponent } from './modulos/tarea-docencia/
 import { ListarPeriodosComponent } from './pages/periodo/listar-periodos/listar-periodos.component';
 import { CrearPeriodoComponent } from './pages/periodo/crear-periodo/crear-periodo.component';
 import { EditarPeriodoComponent } from './pages/periodo/editar-periodo/editar-periodo.component';
+import { RevisarTareaAsignadaDocenciaComponent } from './modulos/tarea-docencia/paginas/tarea-docente/revisar-tarea-asignada-docencia/revisar-tarea-asignada-docencia.component';
 
 
 const routes: Routes = [
@@ -128,6 +129,7 @@ const routes: Routes = [
   //tarea-docente
   {path: 'listar-tarea-docente', component:ListarTareaDocenteComponent,canActivate:[AuthGuard]},
   {path: 'gestionar-tarea-docente', component:GestionarTareaDocenteComponent,canActivate:[AuthGuard]},
+  {path: 'revisar-tarea-asignada-docencia', component:RevisarTareaAsignadaDocenciaComponent,canActivate:[AuthGuard]},
   {path: 'realizar-informe-final-docencia', component:RealizarInformeFinalDocenciaComponent,canActivate:[AuthGuard]},
   {path: '**', component:LoginComponent}
 ];

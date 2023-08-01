@@ -1,13 +1,13 @@
-import { Docente } from "src/app/models/Docente";
+import { Docente } from "../Docente";
+import { InformeFinal } from "../InformeFinal/InformeFinal";
+import { TareaDocencia } from "../TareaDocencia";
 
 export type TareaDocenteDocenciaDTO = {
-  idEspeDocenteRevisor?: string;
-  nombreDocenteRevisor?: string;
-  nombreTarea?: string;
-  fechaCreaciontarea?: Date;
-  fechaModificaciontarea?: Date;
-  observacionTarea?: string[];
-  estadoTarea?: string;
-  periodo?: string;
-  docentesAsignados?: Docente[];
+  id?: string;
+  tareaDocencia?:TareaDocencia;
+  docenteAsignado?:Docente;
+  estadoTareaDocente?: string;
+  informeFinal?:InformeFinal;
+  fechaEntrega?:Date;
+  fechaModificacion?:Date;
 };

@@ -7,7 +7,7 @@ import { ModalRendimientoAcademicoComponent } from '../../../components/modal-re
 import { ModalStringComponent } from '../../../components/modal-string/modal-string.component';
 import { ModalTutoriaComponent } from '../../../components/modal-tutoria/modal-tutoria.component';
 import { DataString } from '../../../modelos/DataString';
-import { InformeFinalDTO } from '../../../modelos/InformeFinal/InformeFinal';
+import { InformeFinal } from '../../../modelos/InformeFinal/InformeFinal';
 
 @Component({
   selector: 'app-realizar-informe-final-docencia',
@@ -16,7 +16,7 @@ import { InformeFinalDTO } from '../../../modelos/InformeFinal/InformeFinal';
 })
 export class RealizarInformeFinalDocenciaComponent implements OnInit {
   blockedDocument: boolean = false;
-  informeFinalDTO: InformeFinalDTO={};
+  informeFinalDTO: InformeFinal={};
 
   dataString: DataString={};
   data: string="";

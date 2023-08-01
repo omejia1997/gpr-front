@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 style="text-align: center;">Actividades Asignadas de Docencia</h2>
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Tarea</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tareaDocenteDocencia of tareaDocenteDocenciaDTO">
+          <td>{{ tareaDocenteDocencia.tareaDocencia?.nombreTarea }}</td>
+          <td>
+            <!-- <mat-icon (click)="editarTarea(tareaDocencia)">edit</mat-icon> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -4,7 +4,7 @@ import { DatosGenerales } from "./DatosGenerales";
 import { EvaluacionDocente } from "./EvaluacionDocente";
 import { TematicaCapacitacion } from "./TematicaCapacitacion";
 
-export type InformeFinalDTO = {
+export type InformeFinal = {
   datosGenerales?: DatosGenerales;
   antecedentes?: string[];
   objetivo?: string;

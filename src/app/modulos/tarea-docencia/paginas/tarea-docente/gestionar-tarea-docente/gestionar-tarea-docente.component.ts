@@ -208,30 +208,30 @@ export class GestionarTareaDocenteComponent implements OnInit {
     this.tareaDocenciaRequest.nombreDocenteRevisor = localStorage.getItem('nombreDocenteRevisor')!;
     this.tareaDocenciaRequest.docentesAsignados = this.docentesAsignados;
     console.log(this.tareaDocenciaRequest);
-    // this.tareaDocenciaService.gestionarInformacion(this.tareaDocenciaRequest)
-    // .subscribe({
-    //   next: (data) => {
-    //     this.messageService.add({
-    //       severity: 'success',
-    //       summary: 'Éxito',
-    //       detail: 'Datos Subidos con éxito'
-    //     });
-    //     setTimeout(() => {
-    //       this.blockedDocument = false;
-    //       this.router.navigate(['listar-tarea-docente']);
-    //     }, 2000);
-    //   },
-    //   error: (err) => {
-    //     this.messageService.add({
-    //       severity: 'error',
-    //       summary: 'Error',
-    //       detail: err?.message ?? ' Error ál subir los datos de la Tarea'
-    //     });
-    //     this.blockedDocument = false;
-    //   },
-    //   complete: () => {
-    //   },
-    // })
+    this.tareaDocenciaService.gestionarInformacion(this.tareaDocenciaRequest)
+    .subscribe({
+      next: (data) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Éxito',
+          detail: 'Datos Subidos con éxito'
+        });
+        setTimeout(() => {
+          this.blockedDocument = false;
+          this.router.navigate(['listar-tarea-docente']);
+        }, 2000);
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err?.message ?? ' Error ál subir los datos de la Tarea'
+        });
+        this.blockedDocument = false;
+      },
+      complete: () => {
+      },
+    })
   }
 
 

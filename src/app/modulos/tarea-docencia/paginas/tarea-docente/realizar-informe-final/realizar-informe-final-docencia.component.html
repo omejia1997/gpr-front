@@ -36,27 +36,27 @@
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
           <h1>1. DATOS GENERALES</h1>
           <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered table-sm">
               <tbody>
                 <tr>
-                  <td>
-                    <h2>Área de conocimiento</h2>
-                  </td>
-                  <td><input [(ngModel)]="informeFinalDTO.datosGenerales!.areaConocimiento" id="tiempoEstudio"
+                  <th>
+                    Área de conocimiento
+                  </th>
+                  <td class="text-center align-middle"><input [(ngModel)]="informeFinalDTO.datosGenerales!.areaConocimiento" id="tiempoEstudio"
                       name="tiempoEstudio" type="text" class="form-control form-control-sm"></td>
                 </tr>
                 <tr>
-                  <td>
-                    <h2>Nombre del Docente que presenta el informe</h2>
-                  </td>
-                  <td><input [(ngModel)]="informeFinalDTO.datosGenerales!.nombreDocentePresentaInforme"
+                  <th>
+                    Nombre del Docente que presenta el informe
+                  </th>
+                  <td class="text-center align-middle"><input [(ngModel)]="informeFinalDTO.datosGenerales!.nombreDocentePresentaInforme"
                       id="tiempoEstudio" name="tiempoEstudio" type="text" class="form-control form-control-sm"></td>
                 </tr>
                 <tr>
-                  <td>
-                    <h2>Nombre del Coordinador de Área de Conocimiento</h2>
-                  </td>
-                  <td><input [(ngModel)]="informeFinalDTO.datosGenerales!.nombreCoordinadorArea" id="tiempoEstudio"
+                  <th>
+                    Nombre del Coordinador de Área de Conocimiento
+                  </th>
+                  <td class="text-center align-middle"><input [(ngModel)]="informeFinalDTO.datosGenerales!.nombreCoordinadorArea" id="tiempoEstudio"
                       name="tiempoEstudio" type="text" class="form-control form-control-sm"></td>
                 </tr>
               </tbody>
@@ -84,18 +84,18 @@
             <table class="table table-bordered table-hover text-center table-sm">
               <thead>
                 <tr>
-                  <th>CARRERA</th>
-                  <th>ASIGNATURA</th>
-                  <th>COMPONENTE DOCENCIA/PRÁCTICO</th>
-                  <th>NRC</th>
+                  <th class="text-center align-middle">CARRERA</th>
+                  <th class="text-center align-middle">ASIGNATURA</th>
+                  <th class="text-center align-middle">COMPONENTE DOCENCIA/PRÁCTICO</th>
+                  <th class="text-center align-middle">NRC</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let datosAsignatura of informeFinalDTO.datosAsignatura">
-                  <td>{{datosAsignatura.carrera}}</td>
-                  <td>{{datosAsignatura.asignatura}}</td>
-                  <td>{{datosAsignatura.componente}}</td>
-                  <td>{{datosAsignatura.nrc}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.carrera}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.asignatura}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.componente}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.nrc}}</td>
                 </tr>
               </tbody>
             </table>

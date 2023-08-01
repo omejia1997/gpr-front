@@ -100,6 +100,7 @@ import { ModalMejoraDocenteComponent } from './modulos/tarea-docencia/components
 import { ListarPeriodosComponent } from './pages/periodo/listar-periodos/listar-periodos.component';
 import { CrearPeriodoComponent } from './pages/periodo/crear-periodo/crear-periodo.component';
 import { EditarPeriodoComponent } from './pages/periodo/editar-periodo/editar-periodo.component';
+import { RevisarTareaAsignadaDocenciaComponent } from './modulos/tarea-docencia/paginas/tarea-docente/revisar-tarea-asignada-docencia/revisar-tarea-asignada-docencia.component';
 
 @NgModule({
   declarations: [
@@ -178,7 +179,8 @@ import { EditarPeriodoComponent } from './pages/periodo/editar-periodo/editar-pe
     ModalRendimientoAcademicoComponent,
     ModalPromedioAcademicoComponent,
     ModalTutoriaComponent,
-    ModalMejoraDocenteComponent
+    ModalMejoraDocenteComponent,
+    RevisarTareaAsignadaDocenciaComponent
   ],
   imports: [
     BrowserModule,
