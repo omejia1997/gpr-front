@@ -101,6 +101,8 @@ import { ListarPeriodosComponent } from './pages/periodo/listar-periodos/listar-
 import { CrearPeriodoComponent } from './pages/periodo/crear-periodo/crear-periodo.component';
 import { EditarPeriodoComponent } from './pages/periodo/editar-periodo/editar-periodo.component';
 import { RevisarTareaAsignadaDocenciaComponent } from './modulos/tarea-docencia/paginas/tarea-docente/revisar-tarea-asignada-docencia/revisar-tarea-asignada-docencia.component';
+import { ModalAnexo2Component } from './modulos/tarea-docencia/components/modal-anexo2/modal-anexo2.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -180,7 +182,8 @@ import { RevisarTareaAsignadaDocenciaComponent } from './modulos/tarea-docencia/
     ModalPromedioAcademicoComponent,
     ModalTutoriaComponent,
     ModalMejoraDocenteComponent,
-    RevisarTareaAsignadaDocenciaComponent
+    RevisarTareaAsignadaDocenciaComponent,
+    ModalAnexo2Component
   ],
   imports: [
     BrowserModule,
@@ -205,7 +208,8 @@ import { RevisarTareaAsignadaDocenciaComponent } from './modulos/tarea-docencia/
     MatPaginatorModule,
     MatTabsModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatRadioModule
     //ComponentsModule
     //PagesModule
   ],

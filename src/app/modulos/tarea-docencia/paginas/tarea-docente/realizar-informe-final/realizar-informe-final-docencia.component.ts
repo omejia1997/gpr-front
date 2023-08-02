@@ -14,6 +14,7 @@ import { TareaDocenciaDTO } from '../../../modelos/dto/TareaDocenciaDTO';
 import { TareaDocenteDocenciaDTO } from '../../../modelos/dto/TareaDocenteDocenciaDTO';
 import { TareaDocenteDocencia } from '../../../modelos/TareaDocenteDocencia';
 import { MessageService } from 'primeng/api';
+import { ModalAnexo2Component } from '../../../components/modal-anexo2/modal-anexo2.component';
 
 @Component({
   selector: 'app-realizar-informe-final-docencia',
@@ -52,14 +53,16 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     this.informeFinalDTO.accionesMejoraDocente.otrasAcciones=[];
     this.informeFinalDTO.tematicaCapacitaciones =[];
     this.informeFinalDTO.conclusiones=[];
+    this.informeFinalDTO.anexo1=[];
     this.informeFinalDTO.recomendaciones=[];
+
+    this.informeFinalDTO.anexo2=[];
     this.tareaDocenciaService.tareaDocenteDocenciaDTO$.subscribe((res) => {
       if (res == null) {
         this.visualBlockedDocument = false;
         this.back();
       } else {
         this.tareaDocenteDocenciaDTO = res;
-        console.log(res);
         this.tareaDocenteDocencia.id = this.tareaDocenteDocenciaDTO.id;
         this.tareaDocenteDocencia.idTareaDocencia = this.tareaDocenteDocenciaDTO.tareaDocencia?.id;
         this.tareaDocenteDocencia.docenteAsignado = this.tareaDocenteDocenciaDTO.docenteAsignado;
@@ -137,6 +140,11 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
           this.resetData();
         }else if(this.dataString.title== 'RECOMENDACIÓN'){
           this.informeFinalDTO.recomendaciones?.push(this.data);
+          this.resetData();
+        }else if(this.dataString.title== 'ANEXO'){
+          this.informeFinalDTO.anexo1?.push(this.data);
+          console.log(this.data);
+          console.log(this.informeFinalDTO.anexo1);
           this.resetData();
         }
       }
@@ -225,6 +233,24 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     this.dataString.title= 'RECOMENDACIÓN';
     this.dataString.data= '';
     this.openModalAddString();
+  }
+
+  addAnexo1(){
+    this.dataString.title= 'ANEXO';
+    this.dataString.data= '';
+    this.openModalAddString();
+  }
+
+  addAnexo2(){
+    const dialogRef = this.dialog.open(ModalAnexo2Component, {
+      width: '700px',
+      data: this.dataString,
+    });
+    dialogRef.afterClosed().subscribe((formValue) => {
+      if (formValue) {
+        this.informeFinalDTO.anexo2?.push(formValue);
+      }
+    });
   }
 
 

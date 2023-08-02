@@ -1,4 +1,5 @@
 import { AccionesMejoraDocente } from "./AccionesMejoraDocente";
+import { Anexo2 } from "./Anexo2";
 import { DatosAsignatura } from "./DatosAsignatura";
 import { DatosGenerales } from "./DatosGenerales";
 import { EvaluacionDocente } from "./EvaluacionDocente";
@@ -18,4 +19,6 @@ export type InformeFinal = {
   tematicaCapacitaciones?:TematicaCapacitacion[];
   conclusiones?: string[];
   recomendaciones?: string[];
+  anexo1?: string[];
+  anexo2?: Anexo2[];
 };

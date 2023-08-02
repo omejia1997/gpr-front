@@ -28,8 +28,10 @@
             type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Acciones para mejorar <br> la
             Gestión del Docente</button>
           <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-conclusiones"
-            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Conclusiones y
+            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Conclusiones y <br>
             Recomendaciones</button>
+          <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-anexos"
+            type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Anexos</button>
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">
@@ -758,7 +760,24 @@
             <li>{{recomendacion}}</li>
           </ul>
         </div>
+
+        <div class="tab-pane fade" id="nav-anexos" role="tabpanel" aria-labelledby="nav-contact-tab">
+          <h1> 11 ANEXOS</h1>
+          <h1 style="text-align: center;">ANEXO 1. REGISTRO DE TUTORÍAS DE REFORZAMIENTO <button id="button-objetivo" type="button" (click)="addAnexo1()"
+              class="btn btn-outline-success btn-sm">Agregar Información</button></h1>
+          <ul *ngFor="let anexo1 of informeFinalDTO.anexo1">
+            <li>{{anexo1}}</li>
+          </ul>
+
+          <h1>ANEXO 2. INDICADORES DE ACREDITACIÓN A REPORTAR POR PARTE DE LOS DOCENTES <button id="button-objetivo" type="button" (click)="addAnexo2()"
+              class="btn btn-outline-success btn-sm">Agregar Información</button></h1>
+              <p>Complete la siguiente información solicitada dentro de su gestión docente con las respectivas evidencias (indicar links de
+                informes, matrices, etc).</p>
+        </div>
+
       </div>
+
+
 
       <div class="form-group">
         <button type="button" (click)="guardarBorrador()" class="btn btn-primary btn-sm form-control">Guardar Información como un Borrador</button>
