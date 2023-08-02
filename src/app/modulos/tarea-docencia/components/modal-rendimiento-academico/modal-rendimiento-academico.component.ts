@@ -1,8 +1,15 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
+
+function validarEntero(control: AbstractControl): { [key: string]: any } | null {
+  if (control.value && !Number.isInteger(control.value)) {
+    return { noEsEntero: true };
+  }
+  return null;
+}
 
 @Component({
   selector: 'app-modal-rendimiento-academico',
@@ -16,10 +23,9 @@ import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
               {{ asignatura.nrc  }} - - - - {{ asignatura.asignatura  }}
             </mat-option>
           </mat-select>
-        <!-- <mat-error
-          *ngIf="myForm.controls['carrera'].hasError('required')"
-          >Seleccione una Carrera</mat-error
-        > -->
+        <mat-error *ngIf="myForm.controls['asignatura'].hasError('required')"
+          >Seleccione este campo</mat-error
+        >
       </mat-form-field>
 
       <mat-form-field class="custom-form-field-medium">
@@ -31,6 +37,12 @@ import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
           name="estudiantesMatriculadosHombres"
           required
         />
+        <mat-error *ngIf="myForm.controls['estudiantesMatriculadosHombres'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['estudiantesMatriculadosHombres'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
       </mat-form-field>
 
       <mat-form-field class="custom-form-field-medium">
@@ -42,6 +54,12 @@ import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
           name="estudiantesMatriculadosMujeres"
           required
         />
+        <mat-error *ngIf="myForm.controls['estudiantesMatriculadosMujeres'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['estudiantesMatriculadosMujeres'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
       </mat-form-field>
 
       <mat-form-field class="custom-form-field-medium">
@@ -50,9 +68,15 @@ import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
           type="number"
           placeholder="Estudiantes Retirados (Hombres)"
           formControlName="estudiantesRetiradosHombres"
-          name="estudiantesMatriculadosMujeres"
+          name="estudiantesRetiradosHombres"
           required
         />
+        <mat-error *ngIf="myForm.controls['estudiantesRetiradosHombres'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['estudiantesRetiradosHombres'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
       </mat-form-field>
 
       <mat-form-field class="custom-form-field-medium">
@@ -64,6 +88,12 @@ import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
           name="estudiantesRetiradosMujeres"
           required
         />
+        <mat-error *ngIf="myForm.controls['estudiantesRetiradosMujeres'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['estudiantesRetiradosMujeres'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
       </mat-form-field>
 
       <mat-form-field class="custom-form-field-medium">
@@ -75,6 +105,12 @@ import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
           name="estudiantesReprobadosHombres"
           required
         />
+        <mat-error *ngIf="myForm.controls['estudiantesReprobadosHombres'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['estudiantesReprobadosHombres'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
       </mat-form-field>
 
       <mat-form-field class="custom-form-field-medium">
@@ -86,8 +122,14 @@ import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
           name="estudiantesReprobadosMujeres"
           required
         />
+        <mat-error *ngIf="myForm.controls['estudiantesReprobadosMujeres'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['estudiantesReprobadosMujeres'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
       </mat-form-field>
-
+<!--
       <mat-form-field class="custom-form-field-medium">
         <input
           matInput
@@ -97,6 +139,12 @@ import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
           name="estudiantesAprobadosHombres"
           required
         />
+        <mat-error *ngIf="myForm.controls['estudiantesAprobadosHombres'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['estudiantesAprobadosHombres'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
       </mat-form-field>
 
       <mat-form-field class="custom-form-field-medium">
@@ -108,7 +156,13 @@ import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
           name="estudiantesAprobadosMujeres"
           required
         />
-      </mat-form-field>
+        <mat-error *ngIf="myForm.controls['estudiantesAprobadosMujeres'].hasError('required')"
+          >Ingrese este campo</mat-error
+        >
+        <mat-error *ngIf="myForm.controls['estudiantesAprobadosMujeres'].hasError('noEsEntero')"
+          >Ingrese solo números enteros.</mat-error
+        >
+      </mat-form-field> -->
 
       <!-- <mat-form-field class="custom-form-field-medium">
         <input
@@ -234,14 +288,14 @@ export class ModalRendimientoAcademicoComponent implements OnInit {
   ngOnInit() {
     this.myForm = this.formBuilder.group({
       asignatura: ['', Validators.required],
-      estudiantesMatriculadosHombres: ['', Validators.required],
-      estudiantesMatriculadosMujeres: ['', Validators.required],
-      estudiantesRetiradosHombres: ['', Validators.required],
-      estudiantesRetiradosMujeres: ['', Validators.required],
-      estudiantesReprobadosHombres: ['', Validators.required],
-      estudiantesReprobadosMujeres: ['', Validators.required],
-      estudiantesAprobadosHombres: ['', Validators.required],
-      estudiantesAprobadosMujeres: ['', Validators.required],
+      estudiantesMatriculadosHombres: ['', [Validators.required,validarEntero],],
+      estudiantesMatriculadosMujeres: ['', [Validators.required,validarEntero],],
+      estudiantesRetiradosHombres: ['',[Validators.required,validarEntero],],
+      estudiantesRetiradosMujeres: ['', [Validators.required,validarEntero],],
+      estudiantesReprobadosHombres: ['', [Validators.required,validarEntero],],
+      estudiantesReprobadosMujeres: ['', [Validators.required,validarEntero],],
+      // estudiantesAprobadosHombres: ['', [Validators.required,validarEntero],],
+      // estudiantesAprobadosMujeres: ['', [Validators.required,validarEntero],],
       // promedioRendimientoAcademicoIUD: ['', Validators.required],
       // promedioRendimientoAcademicoIIUD: ['', Validators.required],
       // promedioRendimientoAcademicoIIIUD: ['', Validators.required],

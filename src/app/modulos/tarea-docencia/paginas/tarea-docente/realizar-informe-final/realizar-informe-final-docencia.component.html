@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
-<p-blockUI [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI>
+<p-blockUI  *ngIf="visualBlockedDocument" [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI>
 <div class="container">
 
   <div class="row justify-content-center">
@@ -42,22 +42,22 @@
                   <th>
                     Área de conocimiento
                   </th>
-                  <td class="text-center align-middle"><input [(ngModel)]="informeFinalDTO.datosGenerales!.areaConocimiento" id="tiempoEstudio"
-                      name="tiempoEstudio" type="text" class="form-control form-control-sm"></td>
+                  <td class="text-center align-middle"><input [(ngModel)]="informeFinalDTO.datosGenerales!.areaConocimiento" id="areaConocimiento"
+                      name="areaConocimiento" type="text" class="form-control form-control-sm"></td>
                 </tr>
                 <tr>
                   <th>
                     Nombre del Docente que presenta el informe
                   </th>
                   <td class="text-center align-middle"><input [(ngModel)]="informeFinalDTO.datosGenerales!.nombreDocentePresentaInforme"
-                      id="tiempoEstudio" name="tiempoEstudio" type="text" class="form-control form-control-sm"></td>
+                      id="nombreDocentePresentaInforme" name="nombreDocentePresentaInforme" type="text" class="form-control form-control-sm"></td>
                 </tr>
                 <tr>
                   <th>
                     Nombre del Coordinador de Área de Conocimiento
                   </th>
-                  <td class="text-center align-middle"><input [(ngModel)]="informeFinalDTO.datosGenerales!.nombreCoordinadorArea" id="tiempoEstudio"
-                      name="tiempoEstudio" type="text" class="form-control form-control-sm"></td>
+                  <td class="text-center align-middle"><input [(ngModel)]="informeFinalDTO.datosGenerales!.nombreCoordinadorArea" id="nombreCoordinadorArea"
+                      name="nombreCoordinadorArea" type="text" class="form-control form-control-sm"></td>
                 </tr>
               </tbody>
             </table>
@@ -113,23 +113,27 @@
                 <tr>
                   <th class="text-center align-middle" rowspan="3">ASIGNATURA</th>
                   <th class="text-center align-middle" rowspan="3">NRC</th>
-                  <th class="text-center align-middle" colspan="8">CONDICIÓN (Nro. ESTUDIANTES)</th>
+                  <th class="text-center align-middle" colspan="12">CONDICIÓN (Nro. ESTUDIANTES)</th>
                 </tr>
                 <tr>
-                  <th class="text-center align-middle" colspan="2">ESTUDIANTES MATRICULADOS</th>
-                  <th class="text-center align-middle" colspan="2">ESTUDIANTES RETIRADOS</th>
-                  <th class="text-center align-middle" colspan="2">ESTUDIANTES REPROBADOS</th>
-                  <th class="text-center align-middle" colspan="2">ESTUDIANTES APROBADOS</th>
+                  <th class="text-center align-middle" colspan="3">ESTUDIANTES MATRICULADOS</th>
+                  <th class="text-center align-middle" colspan="3">ESTUDIANTES RETIRADOS</th>
+                  <th class="text-center align-middle" colspan="3">ESTUDIANTES REPROBADOS</th>
+                  <th class="text-center align-middle" colspan="3">ESTUDIANTES APROBADOS</th>
                 </tr>
                 <tr>
                   <th class="text-center align-middle">HOMBRES</th>
                   <th class="text-center align-middle">MUJERES</th>
+                  <th class="text-center align-middle">TOTAL</th>
                   <th class="text-center align-middle">HOMBRES</th>
                   <th class="text-center align-middle">MUJERES</th>
+                  <th class="text-center align-middle">TOTAL</th>
                   <th class="text-center align-middle">HOMBRES</th>
                   <th class="text-center align-middle">MUJERES</th>
+                  <th class="text-center align-middle">TOTAL</th>
                   <th class="text-center align-middle">HOMBRES</th>
                   <th class="text-center align-middle">MUJERES</th>
+                  <th class="text-center align-middle">TOTAL</th>
                 </tr>
               </thead>
               <tbody>
@@ -138,12 +142,16 @@
                   <td class="text-center align-middle">{{datosAsignatura.nrc}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.estudiantesMatriculados?.numeroHombres}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.estudiantesMatriculados?.numeroMujeres}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.estudiantesMatriculados?.total}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.estudiantesRetirados?.numeroHombres}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.estudiantesRetirados?.numeroMujeres}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.estudiantesRetirados?.total}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.estudiantesReprobados?.numeroHombres}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.estudiantesReprobados?.numeroMujeres}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.estudiantesReprobados?.total}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.estudiantesAprobados?.numeroHombres}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.estudiantesAprobados?.numeroMujeres}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.estudiantesAprobados?.total}}</td>
                 </tr>
               </tbody>
             </table>
@@ -312,14 +320,13 @@
               <tbody>
                 <tr *ngFor="let datosAsignatura of informeFinalDTO.datosAsignatura">
                   <td class="text-center align-middle">{{datosAsignatura.nrc}}</td>
-                  <td class="text-center align-middle">{{datosAsignatura.promedioRendimientoAcademico?.primerParcial}}</td>
-                  <td class="text-center align-middle">{{datosAsignatura.promedioRendimientoAcademico?.segundoParcial}}</td>
-                  <td class="text-center align-middle">{{datosAsignatura.promedioRendimientoAcademico?.tercerParcial}}</td>
-                  <td class="text-center align-middle">{{datosAsignatura.promedioFinalRendimientoAcademico}}</td>
-                  <td class="text-center align-middle">{{datosAsignatura.desviacionEstandar?.primerParcial}}</td>
-                  <td class="text-center align-middle">{{datosAsignatura.desviacionEstandar?.segundoParcial}}</td>
-                  <td class="text-center align-middle">{{datosAsignatura.desviacionEstandar?.tercerParcial}}</td>
-                  <td class="text-center align-middle">{{datosAsignatura.promedioFinalDesviacionEstandar}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.tutoriaEstudiantesPromedioMenor14?.primerParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.tutoriaEstudiantesPromedioMenor14?.segundoParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.tutoriaEstudiantesPromedioMenor14?.tercerParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.tutoriaEstudiantesPromedioMenor14Asistieron?.primerParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.tutoriaEstudiantesPromedioMenor14Asistieron?.segundoParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.tutoriaEstudiantesPromedioMenor14Asistieron?.tercerParcial}}</td>
+                  <td class="text-center align-middle">{{datosAsignatura.tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron}}</td>
                 </tr>
               </tbody>
             </table>
@@ -362,6 +369,12 @@
         </div>
         <div class="tab-pane fade" id="nav-evaluacion-docente" role="tabpanel"
           aria-labelledby="nav-evaluacion-docente-tab">
+          <h1>6. EVALUACIÓN DOCENTE </h1>
+          <h1>6.1 EVALUACIÓN</h1>
+          <p>Porfavor evalúe en base al siguiente criterio:</p>
+          <ul>
+            <li>Calificación: 1 (No, Nada, Mal)…………………….5 (Si, Mucho, Muy bien)</li>
+          </ul>
           <div class="table-responsive">
             <table class="table table-bordered table-hover table-sm">
               <thead>
@@ -390,7 +403,7 @@
                       name="componente1" value="4"></td>
                   <td class="text-center align-middle"><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="5"
                       name="componente1" value="5"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento1" name="razonamiento1" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento1"> </textarea></td>
                 </tr>
                 <tr>
@@ -406,7 +419,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente2" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento2" name="razonamiento2" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento2"> </textarea></td>
                 </tr>
                 <tr>
@@ -422,7 +435,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente3" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento3" name="razonamiento3" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento3"> </textarea></td>
                 </tr>
                 <tr>
@@ -438,7 +451,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente4" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento4" name="razonamiento4" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento4"> </textarea></td>
                 </tr>
                 <tr>
@@ -454,7 +467,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente5" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento5" name="razonamiento5" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento5"> </textarea></td>
                 </tr>
                 <tr>
@@ -470,7 +483,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente6" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento6" name="razonamiento6" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento6"> </textarea></td>
                 </tr>
                 <tr>
@@ -486,7 +499,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente7" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento7" name="razonamiento7" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento7"> </textarea></td>
                 </tr>
                 <tr>
@@ -502,7 +515,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente8" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento8" name="razonamiento8" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento8"> </textarea></td>
                 </tr>
                 <tr>
@@ -518,7 +531,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente9" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento9" name="razonamiento9" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento9"> </textarea></td>
                 </tr>
                 <tr>
@@ -534,7 +547,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente10" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento10" name="razonamiento10" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento10"> </textarea></td>
                 </tr>
                 <tr>
@@ -550,7 +563,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente11" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento11" name="razonamiento11" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento11"> </textarea></td>
                 </tr>
                 <tr>
@@ -566,7 +579,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente12" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento12" name="razonamiento12" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento12"> </textarea></td>
                 </tr>
                 <tr>
@@ -582,7 +595,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente13" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento13" name="razonamiento13" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento13"> </textarea></td>
                 </tr>
                 <tr>
@@ -598,7 +611,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente14" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento14" name="razonamiento14" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento14"> </textarea></td>
                 </tr>
                 <tr>
@@ -614,7 +627,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente15" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento15" name="razonamiento15" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento15"> </textarea></td>
                 </tr>
                 <tr>
@@ -630,7 +643,7 @@
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
                   <td class="text-center align-middle"><input type="radio" name="componente16" value="5"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
-                  <td class="text-center align-middle"><textarea id="w3review" name="w3review" rows="4" cols="70%"
+                  <td class="text-center align-middle"><textarea id="razonamiento16" name="razonamiento16" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento16"> </textarea></td>
                 </tr>
               </tbody>
@@ -747,9 +760,12 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <button type="button" (click)="guardarBorrador()" class="btn btn-primary btn-sm form-control">Guardar Información como un Borrador</button>
+      </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-sm form-control">Guardar Información</button>
+        <button type="submit" class="btn btn-outline-success btn-sm form-control">Guardar Información</button>
       </div>
     </form>
   </div>

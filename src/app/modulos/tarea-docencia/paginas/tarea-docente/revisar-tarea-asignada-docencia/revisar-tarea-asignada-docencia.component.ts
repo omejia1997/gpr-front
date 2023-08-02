@@ -3,6 +3,7 @@ import { TareaDocenteDocenciaDTO } from '../../../modelos/dto/TareaDocenteDocenc
 import { Observable } from 'rxjs';
 import { TareaDocenciaService } from '../../../servicios/TareaDocenciaService';
 import { Router } from '@angular/router';
+import { TareaDocenciaDTO } from '../../../modelos/dto/TareaDocenciaDTO';
 
 @Component({
   selector: 'app-revisar-tarea-asignada-docencia',
@@ -32,6 +33,11 @@ export class RevisarTareaAsignadaDocenciaComponent implements OnInit {
     this.getTareasDocenteDocencia$.subscribe((tareas) => {
       this.tareaDocenteDocenciaDTO = tareas;
     });
+  }
+
+  editarTareaDocencia(tareaDocencia: TareaDocenteDocenciaDTO){
+    this.tareaDocenciaService.setTareDocenteDocenciaDTO(tareaDocencia);
+    this.router.navigate(['realizar-informe-final-docencia']);
   }
 
 }

@@ -89,6 +89,7 @@ import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
           >El valor debe tener dos decimales.</mat-error
         >
       </mat-form-field>
+      <br>
 
       <mat-form-field class="custom-form-field-medium">
         <input
@@ -149,6 +150,7 @@ import { DatosAsignatura } from '../../modelos/InformeFinal/DatosAsignatura';
           >El valor debe tener dos decimales.</mat-error
         >
       </mat-form-field>
+      <br>
 
       <!-- <mat-form-field class="custom-form-field-medium">
         <input

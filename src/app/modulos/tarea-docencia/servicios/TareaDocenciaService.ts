@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { TareaDocencia } from '../modelos/TareaDocencia';
 import { TareaDocenteDocenciaDTO } from '../modelos/dto/TareaDocenteDocenciaDTO';
 import { Periodo } from 'src/app/models/Periodo';
+import { TareaDocenteDocencia } from '../modelos/TareaDocenteDocencia';
+import { InformeFinal } from '../modelos/InformeFinal/InformeFinal';
 
 
 const TAREA_DOCENCIA = environment.URL_MICROSERVICE_DOCENTE_TAREAS + '/tareaDocencia';
@@ -15,6 +17,9 @@ const TAREA_DOCENCIA = environment.URL_MICROSERVICE_DOCENTE_TAREAS + '/tareaDoce
 export class TareaDocenciaService {
   private tarea$$ = new BehaviorSubject<TareaDocencia | null>(null);
   tarea$ = this.tarea$$.asObservable();
+
+  private tareaDocenteDocenciaDTO$$ = new BehaviorSubject<TareaDocenteDocenciaDTO | null>(null);
+  tareaDocenteDocenciaDTO$ = this.tareaDocenteDocenciaDTO$$.asObservable();
 
   private periodo$$ = new BehaviorSubject<Periodo | null>(null);
   periodo$ = this.periodo$$.asObservable();
@@ -33,6 +38,10 @@ export class TareaDocenciaService {
     this.tarea$$.next(tarea);
   }
 
+  public setTareDocenteDocenciaDTO(tareaDocenteDocenciaDTO: TareaDocenteDocenciaDTO) {
+    this.tareaDocenteDocenciaDTO$$.next(tareaDocenteDocenciaDTO);
+  }
+
   public setPeriodo(periodo: Periodo) {
     this.periodo$$.next(periodo);
   }
@@ -47,6 +56,11 @@ export class TareaDocenciaService {
 
   public obtenerTareasPorDocente(codigoDocente:number): Observable<TareaDocenteDocenciaDTO[]>{
     return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTareaAsignadaPorDocente/${codigoDocente}`);
+  }
+
+  public guardarTareaComoBorrador(idTareaDocente:any,informeFinalDTO : InformeFinal) {
+    console.log(informeFinalDTO)
+    return this.http.put<any>(`${TAREA_DOCENCIA}/guardarTareaComoBorrador/${idTareaDocente}`, informeFinalDTO);
   }
 
 }

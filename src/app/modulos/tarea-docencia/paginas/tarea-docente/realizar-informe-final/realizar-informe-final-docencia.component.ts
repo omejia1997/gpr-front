@@ -8,6 +8,12 @@ import { ModalStringComponent } from '../../../components/modal-string/modal-str
 import { ModalTutoriaComponent } from '../../../components/modal-tutoria/modal-tutoria.component';
 import { DataString } from '../../../modelos/DataString';
 import { InformeFinal } from '../../../modelos/InformeFinal/InformeFinal';
+import { TareaDocenciaService } from '../../../servicios/TareaDocenciaService';
+import { Router } from '@angular/router';
+import { TareaDocenciaDTO } from '../../../modelos/dto/TareaDocenciaDTO';
+import { TareaDocenteDocenciaDTO } from '../../../modelos/dto/TareaDocenteDocenciaDTO';
+import { TareaDocenteDocencia } from '../../../modelos/TareaDocenteDocencia';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-realizar-informe-final-docencia',
@@ -15,12 +21,20 @@ import { InformeFinal } from '../../../modelos/InformeFinal/InformeFinal';
   styleUrls: ['./realizar-informe-final-docencia.component.css']
 })
 export class RealizarInformeFinalDocenciaComponent implements OnInit {
+  visualBlockedDocument: boolean = true;
   blockedDocument: boolean = false;
+  tareaDocenteDocenciaDTO: TareaDocenteDocenciaDTO={};
+  tareaDocenteDocencia: TareaDocenteDocencia={};
   informeFinalDTO: InformeFinal={};
 
   dataString: DataString={};
   data: string="";
-  constructor(private dialog: MatDialog) {
+  constructor(
+    private dialog: MatDialog,
+    private tareaDocenciaService: TareaDocenciaService,
+    private router: Router,
+    private messageService: MessageService,
+    ) {
     this.informeFinalDTO.datosGenerales={};
     this.informeFinalDTO.antecedentes=[];
     this.informeFinalDTO.datosAsignatura=[];
@@ -39,9 +53,32 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     this.informeFinalDTO.tematicaCapacitaciones =[];
     this.informeFinalDTO.conclusiones=[];
     this.informeFinalDTO.recomendaciones=[];
+    this.tareaDocenciaService.tareaDocenteDocenciaDTO$.subscribe((res) => {
+      if (res == null) {
+        this.visualBlockedDocument = false;
+        this.back();
+      } else {
+        this.tareaDocenteDocenciaDTO = res;
+        console.log(res);
+        this.tareaDocenteDocencia.id = this.tareaDocenteDocenciaDTO.id;
+        this.tareaDocenteDocencia.idTareaDocencia = this.tareaDocenteDocenciaDTO.tareaDocencia?.id;
+        this.tareaDocenteDocencia.docenteAsignado = this.tareaDocenteDocenciaDTO.docenteAsignado;
+        this.tareaDocenteDocencia.estadoTareaDocente = this.tareaDocenteDocenciaDTO.estadoTareaDocente;
+        this.tareaDocenteDocencia.informeFinal = this.tareaDocenteDocenciaDTO.informeFinal;
+        this.tareaDocenteDocencia.fechaEntrega = this.tareaDocenteDocenciaDTO.fechaEntrega;
+        this.tareaDocenteDocencia.fechaModificacion = this.tareaDocenteDocenciaDTO.fechaModificacion;
+        if(this.tareaDocenteDocenciaDTO.informeFinal){
+          this.informeFinalDTO = this.tareaDocenteDocenciaDTO.informeFinal;
+        }
+      }
+    });
   }
 
   ngOnInit() {
+  }
+
+  back(){
+    this.router.navigate(['revisar-tarea-asignada-docencia']);
   }
 
   resetData(){
@@ -230,9 +267,9 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
             this.informeFinalDTO.datosAsignatura![indiceEncontrado].estudiantesReprobados!.total= formValue.estudiantesReprobadosHombres+formValue.estudiantesReprobadosMujeres;
 
             this.informeFinalDTO.datosAsignatura![indiceEncontrado].estudiantesAprobados={};
-            this.informeFinalDTO.datosAsignatura![indiceEncontrado].estudiantesAprobados!.numeroHombres= formValue.estudiantesAprobadosHombres;
-            this.informeFinalDTO.datosAsignatura![indiceEncontrado].estudiantesAprobados!.numeroMujeres= formValue.estudiantesAprobadosMujeres;
-            this.informeFinalDTO.datosAsignatura![indiceEncontrado].estudiantesAprobados!.total= formValue.estudiantesAprobadosHombres+formValue.estudiantesAprobadosMujeres;
+            this.informeFinalDTO.datosAsignatura![indiceEncontrado].estudiantesAprobados!.numeroHombres= formValue.estudiantesMatriculadosHombres-formValue.estudiantesReprobadosHombres;
+            this.informeFinalDTO.datosAsignatura![indiceEncontrado].estudiantesAprobados!.numeroMujeres= formValue.estudiantesMatriculadosMujeres-formValue.estudiantesReprobadosMujeres;
+            this.informeFinalDTO.datosAsignatura![indiceEncontrado].estudiantesAprobados!.total= (formValue.estudiantesMatriculadosHombres-formValue.estudiantesReprobadosHombres)+(formValue.estudiantesMatriculadosMujeres-formValue.estudiantesReprobadosMujeres);
           }
         } else {
           console.log('Elemento no encontrado.');
@@ -264,7 +301,6 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
 
             this.informeFinalDTO.datosAsignatura![indiceEncontrado].promedioFinalRendimientoAcademico =parseFloat(((formValue.promedioRendimientoAcademicoIUD+ formValue.promedioRendimientoAcademicoIIUD +formValue.promedioRendimientoAcademicoIIIUD)/3).toFixed(2));;
             this.informeFinalDTO.datosAsignatura![indiceEncontrado].promedioFinalDesviacionEstandar =parseFloat(((formValue.desviacionEstandarIUD+ formValue.desviacionEstandarIIUD +formValue.desviacionEstandarIIIUD)/3).toFixed(2));
-
           }
         } else {
           console.log('Elemento no encontrado.');
@@ -284,19 +320,17 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
         if (indiceEncontrado !== -1) {
           console.log(indiceEncontrado);
           if(indiceEncontrado!=undefined){
-            this.informeFinalDTO.datosAsignatura![indiceEncontrado].promedioRendimientoAcademico={};
-            this.informeFinalDTO.datosAsignatura![indiceEncontrado].promedioRendimientoAcademico!.primerParcial= formValue.promedioRendimientoAcademicoIUD;
-            this.informeFinalDTO.datosAsignatura![indiceEncontrado].promedioRendimientoAcademico!.segundoParcial= formValue.promedioRendimientoAcademicoIIUD;
-            this.informeFinalDTO.datosAsignatura![indiceEncontrado].promedioRendimientoAcademico!.tercerParcial= formValue.promedioRendimientoAcademicoIIIUD;
+            this.informeFinalDTO.datosAsignatura![indiceEncontrado].tutoriaEstudiantesPromedioMenor14={};
+            this.informeFinalDTO.datosAsignatura![indiceEncontrado].tutoriaEstudiantesPromedioMenor14!.primerParcial= formValue.tutoriaEstudiantesPromedioMenor14IUD;
+            this.informeFinalDTO.datosAsignatura![indiceEncontrado].tutoriaEstudiantesPromedioMenor14!.segundoParcial= formValue.tutoriaEstudiantesPromedioMenor14IIUD;
+            this.informeFinalDTO.datosAsignatura![indiceEncontrado].tutoriaEstudiantesPromedioMenor14!.tercerParcial= formValue.tutoriaEstudiantesPromedioMenor14IIIUD;
 
-            this.informeFinalDTO.datosAsignatura![indiceEncontrado].desviacionEstandar={}
-            this.informeFinalDTO.datosAsignatura![indiceEncontrado].desviacionEstandar!.primerParcial= formValue.desviacionEstandarIUD;
-            this.informeFinalDTO.datosAsignatura![indiceEncontrado].desviacionEstandar!.segundoParcial= formValue.desviacionEstandarIIUD;
-            this.informeFinalDTO.datosAsignatura![indiceEncontrado].desviacionEstandar!.tercerParcial= formValue.desviacionEstandarIIIUD;
+            this.informeFinalDTO.datosAsignatura![indiceEncontrado].tutoriaEstudiantesPromedioMenor14Asistieron={}
+            this.informeFinalDTO.datosAsignatura![indiceEncontrado].tutoriaEstudiantesPromedioMenor14Asistieron!.primerParcial= formValue.tutoriaEstudiantesPromedioMenor14AsistieronIUD;
+            this.informeFinalDTO.datosAsignatura![indiceEncontrado].tutoriaEstudiantesPromedioMenor14Asistieron!.segundoParcial= formValue.tutoriaEstudiantesPromedioMenor14AsistieronIIUD;
+            this.informeFinalDTO.datosAsignatura![indiceEncontrado].tutoriaEstudiantesPromedioMenor14Asistieron!.tercerParcial= formValue.tutoriaEstudiantesPromedioMenor14AsistieronIIIUD;
 
-            this.informeFinalDTO.datosAsignatura![indiceEncontrado].promedioFinalRendimientoAcademico =parseFloat(((formValue.promedioRendimientoAcademicoIUD+ formValue.promedioRendimientoAcademicoIIUD +formValue.promedioRendimientoAcademicoIIIUD)/3).toFixed(2));;
-            this.informeFinalDTO.datosAsignatura![indiceEncontrado].promedioFinalDesviacionEstandar =parseFloat(((formValue.desviacionEstandarIUD+ formValue.desviacionEstandarIIUD +formValue.desviacionEstandarIIIUD)/3).toFixed(2));
-
+            this.informeFinalDTO.datosAsignatura![indiceEncontrado].tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron = formValue.tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron;
           }
         } else {
           console.log('Elemento no encontrado.');
@@ -317,6 +351,36 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
   }
 
   save(){
+    alert(1);
+  }
 
+  guardarBorrador(){
+    this.blockedDocument = true;
+    this.tareaDocenteDocencia.informeFinal = this.informeFinalDTO;
+    this.tareaDocenciaService.guardarTareaComoBorrador(this.tareaDocenteDocencia.id,this.informeFinalDTO)
+    .subscribe({
+      next: (data) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Éxito',
+          detail: 'Datos Subidos con éxito'
+        });
+        this.blockedDocument = false;
+        // setTimeout(() => {
+        //   this.blockedDocument = false;
+        //   this.router.navigate(['revisar-tarea-asignada-docencia']);
+        // }, 2000);
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err?.message ?? ' Error ál subir los datos del Informe'
+        });
+        this.blockedDocument = false;
+      },
+      complete: () => {
+      },
+    });
   }
 }
