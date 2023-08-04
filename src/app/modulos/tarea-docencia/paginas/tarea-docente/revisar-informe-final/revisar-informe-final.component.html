@@ -46,44 +46,38 @@
                   <th>
                     Área de conocimiento
                   </th>
-                  <td class="text-center align-middle"><input [(ngModel)]="informeFinalDTO.datosGenerales!.areaConocimiento" id="areaConocimiento"
-                      name="areaConocimiento" type="text" class="form-control form-control-sm"></td>
+                  <td class="text-center align-middle">{{informeFinalDTO.datosGenerales!.areaConocimiento}}</td>
                 </tr>
                 <tr>
                   <th>
                     Nombre del Docente que presenta el informe
                   </th>
-                  <td class="text-center align-middle"><input [(ngModel)]="informeFinalDTO.datosGenerales!.nombreDocentePresentaInforme"
-                      id="nombreDocentePresentaInforme" name="nombreDocentePresentaInforme" type="text" class="form-control form-control-sm"></td>
+                  <td class="text-center align-middle">{{informeFinalDTO.datosGenerales!.nombreDocentePresentaInforme}}</td>
                 </tr>
                 <tr>
                   <th>
                     Nombre del Coordinador de Área de Conocimiento
                   </th>
-                  <td class="text-center align-middle"><input [(ngModel)]="informeFinalDTO.datosGenerales!.nombreCoordinadorArea" id="nombreCoordinadorArea"
-                      name="nombreCoordinadorArea" type="text" class="form-control form-control-sm"></td>
+                  <td class="text-center align-middle">{{informeFinalDTO.datosGenerales!.nombreCoordinadorArea}}</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <h1>2. ANTECEDENTES <button id="button-antecedentes" type="button" (click)="addAntecedentes()"
-              class="btn btn-outline-success btn-sm">Agregar Antecedente</button></h1>
+          <h1>2. ANTECEDENTES </h1>
           <ul *ngFor="let antecedente of informeFinalDTO.antecedentes" >
-            <li>{{antecedente}}</li> &nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarAntecedente(antecedente)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{antecedente}}</li>
           </ul>
 
 
-          <h1>3. OBJETIVO <button id="button-objetivo" type="button" (click)="addObjetivo()"
-              class="btn btn-outline-success btn-sm" *ngIf="!informeFinalDTO.objetivo">Agregar Objetivo</button></h1>
+          <h1>3. OBJETIVO</h1>
           <ul *ngIf="informeFinalDTO.objetivo">
-            <li>{{informeFinalDTO.objetivo}}</li> &nbsp;&nbsp;&nbsp; <mat-icon class="edit-icon" (click)="editarObjetivo(informeFinalDTO.objetivo)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{informeFinalDTO.objetivo}}</li>
           </ul>
 
         </div>
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
           <h1>4. DESARROLLO Y ANÁLISIS</h1>
-          <h1>4.1 DATOS INFORMATIVOS <button id="button-objetivo" type="button" (click)="addDatosInformativos()"
-              class="btn btn-outline-success btn-sm">Agregar Datos Informativos</button></h1>
+          <h1>4.1 DATOS INFORMATIVOS</h1>
           <div class="table-responsive">
             <table class="table table-bordered table-hover text-center table-sm">
               <thead>
@@ -92,7 +86,6 @@
                   <th class="text-center align-middle">ASIGNATURA</th>
                   <th class="text-center align-middle">COMPONENTE DOCENCIA/PRÁCTICO</th>
                   <th class="text-center align-middle">NRC</th>
-                  <th class="text-center align-middle">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -101,16 +94,11 @@
                   <td class="text-center align-middle">{{datosAsignatura.asignatura}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.componente}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.nrc}}</td>
-                  <td class="text-center align-middle"><mat-icon class="edit-icon" (click)="addDatosInformativos(datosAsignatura)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon></td>
                 </tr>
               </tbody>
             </table>
           </div>
           <h1>4.2. RESULTADOS RENDIMIENTO ACADÉMICO
-             <!-- <button id="button-objetivo" type="button"
-              (click)="addResultadosRendimientoAcademico()" class="btn btn-outline-success btn-sm"
-              *ngIf="this.informeFinalDTO.datosAsignatura?.length!=0">Agregar Resultados de Rendimiento
-              Académico</button> -->
             </h1>
 
           A continuación, se presentan los datos estadísticos de rendimiento académico de los estudiantes en las
@@ -121,14 +109,13 @@
                 <tr>
                   <th class="text-center align-middle" rowspan="3">ASIGNATURA</th>
                   <th class="text-center align-middle" rowspan="3">NRC</th>
-                  <th class="text-center align-middle" colspan="13">CONDICIÓN (Nro. ESTUDIANTES)</th>
+                  <th class="text-center align-middle" colspan="12">CONDICIÓN (Nro. ESTUDIANTES)</th>
                 </tr>
                 <tr>
                   <th class="text-center align-middle" colspan="3">ESTUDIANTES MATRICULADOS</th>
                   <th class="text-center align-middle" colspan="3">ESTUDIANTES RETIRADOS</th>
                   <th class="text-center align-middle" colspan="3">ESTUDIANTES REPROBADOS</th>
                   <th class="text-center align-middle" colspan="3">ESTUDIANTES APROBADOS</th>
-                  <th class="text-center align-middle" rowspan="2">Editar</th>
                 </tr>
                 <tr>
                   <th class="text-center align-middle">HOMBRES</th>
@@ -161,16 +148,12 @@
                   <td class="text-center align-middle">{{datosAsignatura.estudiantesAprobados?.numeroHombres}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.estudiantesAprobados?.numeroMujeres}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.estudiantesAprobados?.total}}</td>
-                  <td class="text-center align-middle"><mat-icon class="edit-icon" (click)="addResultadosRendimientoAcademico(datosAsignatura)"> border_color</mat-icon></td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           El promedio de rendimiento académico de los estudiantes en las asignaturas impartidas fue el siguiente:
-          <!-- <button id="button-objetivo" type="button" (click)="addPromedioRendimientoAcademico()"
-            class="btn btn-outline-success btn-sm" *ngIf="this.informeFinalDTO.datosAsignatura?.length!=0">Agregar
-            Promedio de Rendimiento Académico</button> -->
 
           <div class="table-responsive">
             <table class="table table-bordered table-hover table-sm">
@@ -184,7 +167,6 @@
                   <th class="text-center align-middle" rowspan="2">Promedio final de rendimiento académico</th>
                   <th class="text-center align-middle" colspan="3">Desviación Estándar</th>
                   <th class="text-center align-middle" rowspan="2">Promedio final de desv. estándar</th>
-                  <th class="text-center align-middle" rowspan="2">Editar</th>
                 </tr>
                 <tr>
                   <th class="text-center align-middle">I-UD</th>
@@ -206,18 +188,13 @@
                   <td class="text-center align-middle">{{datosAsignatura.desviacionEstandar?.segundoParcial}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.desviacionEstandar?.tercerParcial}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.promedioFinalDesviacionEstandar}}</td>
-                  <td class="text-center align-middle"><mat-icon class="edit-icon" (click)="addPromedioRendimientoAcademico(datosAsignatura)"> border_color</mat-icon></td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-          <h1>5. TUTORÍAS
-            <!-- <button id="button-objetivo" type="button" (click)="addDatosTutorias()"
-              class="btn btn-outline-success btn-sm" *ngIf="this.informeFinalDTO.datosAsignatura?.length!=0">Agregar
-              Datos de Tutorías</button> -->
-            </h1>
+          <h1>5. TUTORÍAS </h1>
           <p>A continuación, se detallan los resultados de las tutorías de reforzamiento. Detallar las estrategias
             planteadas y su respectivo análisis:</p>
           <div class="table-responsive">
@@ -228,7 +205,6 @@
                   <th class="text-center align-middle" colspan="3"># estudiantes promedio menor 14</th>
                   <th class="text-center align-middle" colspan="3"># estudiantes promedio menor 14 asistieron tutorías </th>
                   <th class="text-center align-middle" rowspan="2"># estudiantes promedio menor 14 asistieron tutorías y NO aprobaron</th>
-                  <th class="text-center align-middle" rowspan="2">Editar</th>
                 </tr>
                 <tr>
                   <th class="text-center align-middle">I-UD</th>
@@ -249,45 +225,10 @@
                   <td class="text-center align-middle">{{datosAsignatura.tutoriaEstudiantesPromedioMenor14Asistieron?.segundoParcial}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.tutoriaEstudiantesPromedioMenor14Asistieron?.tercerParcial}}</td>
                   <td class="text-center align-middle">{{datosAsignatura.tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron}}</td>
-                  <td class="text-center align-middle"><mat-icon class="edit-icon" (click)="addDatosTutorias(datosAsignatura)"> border_color</mat-icon></td>
                 </tr>
               </tbody>
             </table>
           </div>
-
-
-          <!-- <div class="table-responsive">
-            <table class="table table-bordered">
-              <tbody>
-                <tr>
-                  <th rowspan="2">NRC</th>
-                  <td colspan="3">wwww</td>
-                </tr>
-                <tr>
-                  <td>I-UD</td>
-                  <td>II-UD</td>
-                  <td>III-UD</td>
-                </tr>
-                <tr>
-                  <td># estudiantes promedio menor 14 </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-
-                <tr>
-                  <td># estudiantes promedio menor 14 asistieron tutorías </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td># estudiantes promedio menor 14 asistieron tutorías y NO aprobaron</td>
-                  <td colspan="3"></td>
-                </tr>
-              </tbody>
-            </table>
-          </div> -->
 
         </div>
         <div class="tab-pane fade" id="nav-evaluacion-docente" role="tabpanel"
@@ -575,71 +516,59 @@
           <h1>6.2 FORTALEZAS Y DEBILIDADES</h1>
           <p>(Describa las fortalezas y debilidades de su gestión docente que le permitirán generar acciones de mejora
             para el siguiente periodo).</p>
-          <h1>Fortalezas:<button id="button-objetivo" type="button" (click)="addFortaleza()"
-              class="btn btn-outline-success btn-sm">Agregar Fortaleza</button></h1>
+          <h1>Fortalezas:</h1>
           <ul *ngFor="let fortaleza of informeFinalDTO.fortalezas">
-            <li>{{fortaleza}}</li>&nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarFortaleza(fortaleza)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{fortaleza}}
           </ul>
 
-          <h1>Debilidades:<button id="button-objetivo" type="button" (click)="addDebilidad()"
-              class="btn btn-outline-success btn-sm">Agregar Debilidad</button></h1>
+          <h1>Debilidades:</h1>
           <ul *ngFor="let debilidad of informeFinalDTO.debilidades">
-            <li>{{debilidad}}</li>&nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarDebilidad(debilidad)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{debilidad}}</li>
           </ul>
         </div>
         <div class="tab-pane fade" id="nav-apreciacion-global" role="tabpanel"
           aria-labelledby="nav-apreciacion-global-tab">
           <h1>7 APRECIACIÓN GLOBAL DE LOS ESTUDIANTES</h1>
-          <h1>Fortalezas: <button id="button-objetivo" type="button" (click)="addFortalezaApreciacionEstudiantes()"
-              class="btn btn-outline-success btn-sm">Agregar Fortaleza</button></h1>
+          <h1>Fortalezas:</h1>
           <ul *ngFor="let fortaleza of informeFinalDTO.apreciacionGlobalFortalezas">
-            <li>{{fortaleza}}</li>&nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarFortalezaApreciacionEstudiantes(fortaleza)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{fortaleza}}</li>
           </ul>
-          <h1>Debilidades: <button id="button-objetivo" type="button" (click)="addDebilidadApreciacionEstudiantes()"
-              class="btn btn-outline-success btn-sm">Agregar Debilidad</button></h1>
+          <h1>Debilidades:</h1>
           <ul *ngFor="let debilidad of informeFinalDTO.apreciacionGlobalDebilidades">
-            <li>{{debilidad}}</li>&nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarDebilidadApreciacionEstudiantes(debilidad)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{debilidad}}</li>
           </ul>
         </div>
         <div class="tab-pane fade" id="nav-acciones-mejora" role="tabpanel" aria-labelledby="nav-contact-tab">
           <h1>8 ACCIONES PARA MEJORAR LA GESTIÓN DOCENTE</h1>
           <p>(Describa las acciones que se deberían implementar para mejorar su gestión docente y los resultados en el
             siguiente periodo).</p>
-          <h1>Acción 1: Relacionado con mejoras al plan analítico de las asignaturas <button id="button-objetivo"
-              type="button" (click)="addAccion1()" class="btn btn-outline-success btn-sm">Agregar Acción 1</button></h1>
+          <h1>Acción 1: Relacionado con mejoras al plan analítico de las asignaturas</h1>
           <ul *ngFor="let accion of informeFinalDTO.accionesMejoraDocente!.accion1">
-            <li>{{accion}}</li>&nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarAccion1(accion)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{accion}}</li>
           </ul>
-          <h1>Acción 2: Relacionadas con los estudiantes y mejorar el proceso enseñanza-aprendizaje <button
-              id="button-objetivo" type="button" (click)="addAccion2()" class="btn btn-outline-success btn-sm">Agregar
-              Acción 2</button></h1>
+          <h1>Acción 2: Relacionadas con los estudiantes y mejorar el proceso enseñanza-aprendizaje</h1>
           <ul *ngFor="let accion of informeFinalDTO.accionesMejoraDocente!.accion2">
-            <li>{{accion}}</li>&nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarAccion2(accion)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{accion}}</li>
           </ul>
-          <h1>Acción 3: Relacionadas con la mejora de sus capacidades docentes <button id="button-objetivo"
-              type="button" (click)="addAccion3()" class="btn btn-outline-success btn-sm">Agregar Acción 3</button></h1>
+          <h1>Acción 3: Relacionadas con la mejora de sus capacidades docentes </h1>
           <ul *ngFor="let accion of informeFinalDTO.accionesMejoraDocente!.accion3">
-            <li>{{accion}}</li>&nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarAccion3(accion)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{accion}}</li>
           </ul>
-          <h1>Acción 4: Otros ámbitos de mejora <button id="button-objetivo" type="button" (click)="addAccion4()"
-              class="btn btn-outline-success btn-sm">Agregar Acción 4</button></h1>
+          <h1>Acción 4: Otros ámbitos de mejora </h1>
           <ul *ngFor="let accion of informeFinalDTO.accionesMejoraDocente!.accion4">
-            <li>{{accion}}</li>&nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarAccion4(accion)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{accion}}</li>
           </ul>
           <h1> Acciones tomadas para la solución de las novedades que se hayan presentado en clases y laboratorios y
-            tutorías <button id="button-objetivo" type="button" (click)="addAccionLaboratorioTutoria()"
-              class="btn btn-outline-success btn-sm">Agregar Acciones para laboratorios y tutorías</button></h1>
+            tutorías </h1>
           <ul *ngFor="let accion of informeFinalDTO.accionesMejoraDocente!.accionLaboratorioTutoria">
-            <li>{{accion}}</li>&nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarAccionLaboratorioTutoria(accion)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{accion}}</li>
           </ul>
-          <h1>Otras <button id="button-objetivo" type="button" (click)="addOtrasAcciones()"
-              class="btn btn-outline-success btn-sm">Agregar Otras Acciones</button></h1>
+          <h1>Otras</h1>
           <ul *ngFor="let accion of informeFinalDTO.accionesMejoraDocente!.otrasAcciones">
-            <li>{{accion}}</li>&nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarOtrasAcciones(accion)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{accion}}</li>
           </ul>
           <p>A continuación, se exponen las temáticas de capacitación en los que requiero actualización para mejorar mi
-            desempeño docente <button id="button-objetivo" type="button" (click)="addCapacitacionMejoraDocente()"
-              class="btn btn-outline-success btn-sm">Agregar Capacitación</button></p>
+            desempeño docente</p>
 
           <div class="table-responsive">
             <table class="table table-bordered table-hover table-sm">
@@ -670,42 +599,27 @@
 
         </div>
         <div class="tab-pane fade" id="nav-conclusiones" role="tabpanel" aria-labelledby="nav-contact-tab">
-          <h1>9 CONCLUSIONES <button id="button-objetivo" type="button" (click)="addConclusion()"
-              class="btn btn-outline-success btn-sm">Agregar Conclusión</button></h1>
+          <h1>9 CONCLUSIONES</h1>
           <ul *ngFor="let conclusion of informeFinalDTO.conclusiones">
-            <li>{{conclusion}}</li>&nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarConclusion(conclusion)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{conclusion}}</li>
           </ul>
-          <h1>10 RECOMENDACIONES <button id="button-objetivo" type="button" (click)="addRecomendacion()"
-              class="btn btn-outline-success btn-sm">Agregar Recomendación</button></h1>
+          <h1>10 RECOMENDACIONES </h1>
           <ul *ngFor="let recomendacion of informeFinalDTO.recomendaciones">
-            <li>{{recomendacion}}</li>&nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarRecomendacion(recomendacion)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{recomendacion}}</li>
           </ul>
         </div>
 
         <div class="tab-pane fade" id="nav-anexos" role="tabpanel" aria-labelledby="nav-contact-tab">
           <h1> 11 ANEXOS</h1>
-          <h1 style="text-align: center;">ANEXO 1. REGISTRO DE TUTORÍAS DE REFORZAMIENTO <button id="button-objetivo" type="button" (click)="addAnexo1()"
-              class="btn btn-outline-success btn-sm">Agregar Información</button></h1>
+          <h1 style="text-align: center;">ANEXO 1. REGISTRO DE TUTORÍAS DE REFORZAMIENTO </h1>
           <ul *ngFor="let anexo1 of informeFinalDTO.anexo1">
-            <li>{{anexo1}}</li>&nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarAnexo1(anexo1)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{anexo1}}</li>
           </ul>
 
-          <h1>ANEXO 2. INDICADORES DE ACREDITACIÓN A REPORTAR POR PARTE DE LOS DOCENTES <button id="button-objetivo" type="button" (click)="addAnexo2()"
-              class="btn btn-outline-success btn-sm">Agregar Información</button></h1>
+          <h1>ANEXO 2. INDICADORES DE ACREDITACIÓN A REPORTAR POR PARTE DE LOS DOCENTES </h1>
               <p>Complete la siguiente información solicitada dentro de su gestión docente con las respectivas evidencias (indicar links de
                 informes, matrices, etc).</p>
         </div>
-
-      </div>
-
-
-
-      <div class="form-group">
-        <button type="button" *ngIf="tareaDocenteDocencia.estadoTareaDocente=='ASIGNADA'" (click)="guardarBorrador()" class="btn btn-primary btn-sm form-control">Guardar Información como un Borrador</button>
-      </div>
-
-      <div class="form-group">
-        <button type="submit" *ngIf="tareaDocenteDocencia.estadoTareaDocente=='ASIGNADA'" class="btn btn-outline-success btn-sm form-control">Subir Información</button>
       </div>
     </form>
   </div>

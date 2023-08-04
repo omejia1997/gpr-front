@@ -78,8 +78,14 @@ export class TareaDocenciaService {
   }
 
   public guardarTareaComoBorrador(idTareaDocente:any,informeFinalDTO : InformeFinal) {
-    console.log(informeFinalDTO)
     return this.http.put<any>(`${TAREA_DOCENCIA}/guardarTareaComoBorrador/${idTareaDocente}`, informeFinalDTO);
   }
 
+  public guardarTareaParaSubir(idTareaDocente:any,informeFinalDTO : InformeFinal) {
+    return this.http.put<any>(`${TAREA_DOCENCIA}/guardarTareaParaSubir/${idTareaDocente}`, informeFinalDTO);
+  }
+
+  public habilitarTareaParaEditar(idTareaDocente:any){
+    return this.http.put<any>(`${TAREA_DOCENCIA}/habilitarTareaParaEditar`, idTareaDocente);
+  }
 }

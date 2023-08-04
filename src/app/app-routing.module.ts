@@ -66,6 +66,7 @@ import { RevisarTareaAsignadaDocenciaComponent } from './modulos/tarea-docencia/
 import { RevisarTodosInformeFinalSubidos } from './modulos/tarea-docencia/paginas/tarea-docente/revisar-todos-informe-final-subidos/revisar-todos-informe-final-subidos.component';
 import { RendimientoGeneralAsignaturasComponent } from './modulos/tarea-docencia/paginas/tarea-docente/dashboard-tarea-modulo-docencia/rendimiento-general-asignaturas/rendimiento-general-asignaturas.component';
 import { RendimientoDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/dashboard-tarea-modulo-docencia/rendimiento-general-asignaturas/rendimiento-docente/rendimiento-docente.component';
+import { RevisarInformeFinalComponent } from './modulos/tarea-docencia/paginas/tarea-docente/revisar-informe-final/revisar-informe-final.component';
 
 
 const routes: Routes = [
@@ -137,6 +138,7 @@ const routes: Routes = [
   {path: 'revisar-todos-informe-final-subidos', component:RevisarTodosInformeFinalSubidos,canActivate:[AuthGuard]},
   {path: 'rendimiento-general-asignaturas', component:RendimientoGeneralAsignaturasComponent,canActivate:[AuthGuard]},
   {path: 'rendimiento-docente', component:RendimientoDocenteComponent,canActivate:[AuthGuard]},
+  {path: 'revisar-informe-final', component:RevisarInformeFinalComponent,canActivate:[AuthGuard]},
   {path: '**', component:LoginComponent}
 ];
 

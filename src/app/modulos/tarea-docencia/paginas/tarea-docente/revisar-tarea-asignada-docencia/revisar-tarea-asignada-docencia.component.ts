@@ -35,6 +35,11 @@ export class RevisarTareaAsignadaDocenciaComponent implements OnInit {
     });
   }
 
+  verTareaDocencia(tareaDocencia: TareaDocenteDocenciaDTO){
+    this.tareaDocenciaService.setTareDocenteDocenciaDTO(tareaDocencia);
+    this.router.navigate(['revisar-informe-final']);
+  }
+
   editarTareaDocencia(tareaDocencia: TareaDocenteDocenciaDTO){
     this.tareaDocenciaService.setTareDocenteDocenciaDTO(tareaDocencia);
     this.router.navigate(['realizar-informe-final-docencia']);

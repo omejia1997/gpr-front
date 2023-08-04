@@ -67,7 +67,10 @@ export class GestionarTareaDocenteComponent implements OnInit {
       this.tareaDocenciaService.tarea$.subscribe((res) => {
         this.tareaDocenciaRequest = res;
         if(this.tareaDocenciaRequest==null){
+          this.tareaDocenciaRequest={};
           this.tareaDocenciaRequest.observacionTarea=[];
+          this.visualBlockedDocument = false;
+
         }else{
           this.docentesAsignados = this.tareaDocenciaRequest.docentesAsignados;
           for (const actividad of this.checkboxesActividadesRealizar) {
@@ -81,6 +84,7 @@ export class GestionarTareaDocenteComponent implements OnInit {
 
   ngOnInit() {
     this.getCargos();
+    this.visualBlockedDocument = true;
   }
 
   getCargos() {

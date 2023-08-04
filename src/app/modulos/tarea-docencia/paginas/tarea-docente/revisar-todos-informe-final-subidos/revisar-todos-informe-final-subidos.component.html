@@ -1,4 +1,6 @@
 <app-navbar></app-navbar>
+<p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-blockUI  *ngIf="visualBlockedDocument" [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI>
 <div class="container">
   <h2 style="text-align: center;">Período</h2>
   <div style="display: flex;">
@@ -32,9 +34,9 @@
               <td class="text-center align-middle">{{ tareaDocenteDocencia.tareaDocencia?.nombreTarea }}</td>
               <td class="text-center align-middle">{{ tareaDocenteDocencia.docenteAsignado?.apellidoDocente+" "+
                 tareaDocenteDocencia.docenteAsignado?.nombreDocente }}</td>
-              <td class="text-center align-middle">{{ tareaDocenteDocencia.fechaEntrega }}</td>
+              <td class="text-center align-middle">{{ tareaDocenteDocencia.fechaEntrega | date:"short":'+00:00'}}</td>
               <td class="text-center align-middle">
-                <button>Ver Informe Final</button>
+                <button (click)="verInformeFinal(tareaDocenteDocencia)">Ver Informe Final</button>
                 <button type="button" (click)="habilitarEdicion(tareaDocenteDocencia)">Habilitar Edición del
                   informe</button>
                 <button type="button" (click)="verEstadisticasDelDocente(tareaDocenteDocencia)">Ver

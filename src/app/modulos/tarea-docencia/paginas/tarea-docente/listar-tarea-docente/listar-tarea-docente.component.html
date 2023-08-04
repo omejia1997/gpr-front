@@ -10,25 +10,24 @@
   </div>
   <div *ngIf="checkListartarea">
     <br>
-    <div *ngIf="tareasDocencia.length!=0; else loggedOut">
-
-      <h2 style="text-align: center;">Actividades Creadas</h2>
+    <h2 style="text-align: center;">Actividades Creadas</h2>
       <button class="btn btn-secondary btn-sm" (click)="navegarCrearTarea()" style="margin-bottom:10px;">Crear una nueva
         Tarea</button>
+    <div *ngIf="tareasDocencia.length!=0; else loggedOut">
       <div class="table-responsive">
-        <table class="table table-hover text-center table-sm">
+        <table class="table table-hover table-sm">
           <thead class="table-dark">
             <tr>
-              <th>Tarea</th>
-              <th>Docente que creó la Actividad</th>
-              <th>Acción</th>
+              <th class="text-center align-middle">Tarea</th>
+              <th class="text-center align-middle">Docente que creó la Actividad</th>
+              <th class="text-center align-middle">Acción</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let tareaDocencia of tareasDocencia">
-              <td>{{ tareaDocencia.nombreTarea }}</td>
-              <td>{{ tareaDocencia.nombreDocenteRevisor }}</td>
-              <td>
+              <td class="text-center align-middle">{{ tareaDocencia.nombreTarea }}</td>
+              <td class="text-center align-middle">{{ tareaDocencia.nombreDocenteRevisor }}</td>
+              <td class="text-center align-middle">
                 <mat-icon (click)="editarTarea(tareaDocencia)" *ngIf="idEspeDocenteRevisor==tareaDocencia.idEspeDocenteRevisor">edit</mat-icon>
               </td>
             </tr>

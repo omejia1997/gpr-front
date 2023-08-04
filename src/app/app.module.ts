@@ -16,7 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxAbstractControlAsModule } from 'ngx-abstract-control-as';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { BlockUIModule } from 'primeng/blockui';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -106,6 +106,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { RevisarTodosInformeFinalSubidos } from './modulos/tarea-docencia/paginas/tarea-docente/revisar-todos-informe-final-subidos/revisar-todos-informe-final-subidos.component';
 import { RendimientoGeneralAsignaturasComponent } from './modulos/tarea-docencia/paginas/tarea-docente/dashboard-tarea-modulo-docencia/rendimiento-general-asignaturas/rendimiento-general-asignaturas.component';
 import { RendimientoDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/dashboard-tarea-modulo-docencia/rendimiento-general-asignaturas/rendimiento-docente/rendimiento-docente.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { RevisarInformeFinalComponent } from './modulos/tarea-docencia/paginas/tarea-docente/revisar-informe-final/revisar-informe-final.component';
 
 @NgModule({
   declarations: [
@@ -189,7 +191,8 @@ import { RendimientoDocenteComponent } from './modulos/tarea-docencia/paginas/ta
     ModalAnexo2Component,
     RevisarTodosInformeFinalSubidos,
     RendimientoGeneralAsignaturasComponent,
-    RendimientoDocenteComponent
+    RendimientoDocenteComponent,
+    RevisarInformeFinalComponent
   ],
   imports: [
     BrowserModule,
@@ -215,11 +218,12 @@ import { RendimientoDocenteComponent } from './modulos/tarea-docencia/paginas/ta
     MatTabsModule,
     MatDialogModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    ConfirmDialogModule
     //ComponentsModule
     //PagesModule
   ],
-  providers: [ProyectoService,MessageService],
+  providers: [ProyectoService,MessageService,ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

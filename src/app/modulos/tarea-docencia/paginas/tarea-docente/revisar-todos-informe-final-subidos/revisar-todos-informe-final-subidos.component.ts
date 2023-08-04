@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { TareaDocenciaDTO } from '../../../modelos/dto/TareaDocenciaDTO';
 import { Periodo } from 'src/app/models/Periodo';
 import { PeriodoService } from 'src/app/servicios/periodo.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-revisar-todos-informe-final-subidos',
@@ -14,6 +15,8 @@ import { PeriodoService } from 'src/app/servicios/periodo.service';
 })
 
 export class RevisarTodosInformeFinalSubidos implements OnInit {
+  visualBlockedDocument: boolean = true;
+  blockedDocument: boolean = false;
   checkListartarea:boolean = false;
   // getTareasDocenteDocencia$: Observable<TareaDocenteDocenciaDTO[]>;
   tareaDocenteDocenciaDTO: TareaDocenteDocenciaDTO[] = [];
@@ -27,6 +30,7 @@ export class RevisarTodosInformeFinalSubidos implements OnInit {
     private tareaDocenciaService: TareaDocenciaService,
     private periodoService: PeriodoService,
     private router: Router,
+    private messageService: MessageService
     ) {
       this.idEspeDocenteRevisor = localStorage.getItem('idEspeDocenteRevisor');
 
@@ -93,8 +97,36 @@ export class RevisarTodosInformeFinalSubidos implements OnInit {
     this.router.navigate(['/rendimiento-docente']);
   }
 
+  verInformeFinal(tareaDocenteDocencia:TareaDocenteDocenciaDTO){
+    this.tareaDocenciaService.setTareDocenteDocenciaDTO(tareaDocenteDocencia);
+    localStorage.setItem('opcionRegresar','revisar-todos-informe-final-subidos');
+    this.router.navigate(['/revisar-informe-final']);
+  }
+
   habilitarEdicion(tareaDocenteDocencia:TareaDocenteDocenciaDTO){
-    this.router.navigate(['/rendimiento-docente']);
+    this.tareaDocenciaService.habilitarTareaParaEditar(
+      tareaDocenteDocencia.id
+    ).subscribe({
+      next: (data) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Éxito',
+          detail: 'Esta Actividad ahora se puede nuevamente realizar'
+        });
+        this.blockedDocument = false;
+        this.getTareas();
+      },
+      error: (err) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: err?.message ?? ' Error no se pudo habilitar la edición de la Actividad'
+        });
+        this.blockedDocument = false;
+      },
+      complete: () => {
+      },
+    });
   }
 
 }

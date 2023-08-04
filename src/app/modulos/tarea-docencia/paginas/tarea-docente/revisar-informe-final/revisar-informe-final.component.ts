@@ -21,16 +21,17 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
-  selector: 'app-realizar-informe-final-docencia',
-  templateUrl: './realizar-informe-final-docencia.component.html',
-  styleUrls: ['./realizar-informe-final-docencia.component.css']
+  selector: 'app-revisar-informe-final',
+  templateUrl: './revisar-informe-final.component.html',
+  styleUrls: ['./revisar-informe-final.component.css']
 })
-export class RealizarInformeFinalDocenciaComponent implements OnInit {
+export class RevisarInformeFinalComponent implements OnInit {
   visualBlockedDocument: boolean = true;
   blockedDocument: boolean = false;
   tareaDocenteDocenciaDTO: TareaDocenteDocenciaDTO = {};
   tareaDocenteDocencia: TareaDocenteDocencia = {};
   informeFinalDTO: InformeFinal = {};
+  opcionRegresar:any;
 
   dataString: DataString = {};
   data: string = "";
@@ -65,6 +66,10 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     this.tareaDocenciaService.tareaDocenteDocenciaDTO$.subscribe((res) => {
       if (res == null) {
         this.visualBlockedDocument = false;
+        this.opcionRegresar = localStorage.getItem('opcionRegresar');
+        if(this.opcionRegresar){
+          this.backRevisarTodosInformes();
+        }
         this.back();
       } else {
         this.tareaDocenteDocenciaDTO = res;
@@ -77,11 +82,6 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
         this.tareaDocenteDocencia.fechaModificacion = this.tareaDocenteDocenciaDTO.fechaModificacion;
         if (this.tareaDocenteDocenciaDTO.informeFinal) {
           this.informeFinalDTO = this.tareaDocenteDocenciaDTO.informeFinal;
-          console.log(this.tareaDocenteDocenciaDTO.informeFinal);
-          console.log(this.informeFinalDTO);
-          console.log(this.informeFinalDTO.datosGenerales);
-          console.log(this.informeFinalDTO.objetivo);
-
         }
       }
     });
@@ -92,6 +92,10 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
 
   back() {
     this.router.navigate(['revisar-tarea-asignada-docencia']);
+  }
+
+  backRevisarTodosInformes() {
+    this.router.navigate(['revisar-todos-informe-final-subidos']);
   }
 
   resetData() {
