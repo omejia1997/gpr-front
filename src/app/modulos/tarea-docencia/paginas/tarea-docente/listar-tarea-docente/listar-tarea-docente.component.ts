@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { TareaDocenciaService } from '../../../servicios/TareaDocenciaService';
 import { Periodo } from 'src/app/models/Periodo';
 import { PeriodoService } from 'src/app/servicios/periodo.service';
+import { TareaDocenciaDTO } from '../../../modelos/dto/TareaDocenciaDTO';
 
 @Component({
   selector: 'app-listar-tarea-docente',
@@ -12,7 +13,7 @@ import { PeriodoService } from 'src/app/servicios/periodo.service';
   styleUrls: ['./listar-tarea-docente.component.css']
 })
 export class ListarTareaDocenteComponent implements OnInit {
-  getTareasDocenciaDocente$: Observable<TareaDocencia[]>;
+  checkListartarea:boolean = false;
   tareasDocencia: TareaDocencia[] = [];
   idEspeDocenteRevisor: any;
   getPeriodos$: Observable<Periodo[]>;
@@ -25,14 +26,10 @@ export class ListarTareaDocenteComponent implements OnInit {
     private router: Router,
   ) {
     this.idEspeDocenteRevisor = localStorage.getItem('idEspeDocenteRevisor');
-    this.getTareasDocenciaDocente$ = this.tareaDocenciaService.listarTodasTareasPorDocente(
-      this.idEspeDocenteRevisor
-    );
     this.getPeriodos$ = this.periodoService.listarPeriodosActivos();
   }
 
   ngOnInit(): void {
-    this.getTareasDocencia();
     this.getPeriodos();
   }
 
@@ -42,20 +39,20 @@ export class ListarTareaDocenteComponent implements OnInit {
     });
   }
 
-  getTareasDocencia() {
-    this.getTareasDocenciaDocente$.subscribe((tareas) => {
+  getTareas(){
+    this.checkListartarea=true;
+    this.tareaDocenciaService.listarTodasTareasPorPeriodo(
+      this.periodo.codigoPeriodo
+    ).subscribe((tareas) => {
       this.tareasDocencia = tareas;
     });
   }
 
-  editarTarea(tareaDocencia: TareaDocencia) {
-    // if (tareaDocente.codigoTarea) {
-    //   // this.tareaService.setTareaDocente(tareaDocente);
-    //   this.router.navigate(['revisar-tarea-entregada']);
-    // } else if (tareaDocente.tarea) {
-    //   // this.tareaVinculacionService.setTareaDocente(tareaDocente);
-    //   this.router.navigate(['revisar-tarea-entregada-vinculacion']);
-    // }
+
+  editarTarea(tareaDocencia: TareaDocenciaDTO) {
+    this.tareaDocenciaService.setTarea(tareaDocencia);
+    this.tareaDocenciaService.setPeriodo(this.periodo);
+    this.router.navigate(['gestionar-tarea-docente']);
   }
 
   navegarCrearTarea(){

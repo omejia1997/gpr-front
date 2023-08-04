@@ -3,30 +3,41 @@
   <h2 style="text-align: center;">Período</h2>
   <div style="display: flex;">
     <div class="form-group col align-self-center col-sm-6" style="margin: auto;">
-      <select name="proyecto" [(ngModel)]="periodo" class="form-select">
+      <select name="proyecto" [(ngModel)]="periodo" class="form-select" (change)="getTareas()">
         <option [ngValue]="periodo" *ngFor="let periodo of periodos">{{periodo.descripcionPeriodo}}</option>
       </select>
     </div>
   </div>
-  <h2 style="text-align: center;">Actividades Creadas</h2>
-  <button class="btn btn-secondary btn-sm" (click)="navegarCrearTarea()"
-  style="margin-bottom:10px;">Crear una nueva Tarea</button>
-  <div class="table-responsive">
-    <table class="table table-hover text-center table-sm">
-      <thead class="table-dark">
-        <tr>
-          <th>Tarea</th>
-          <th>Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let tareaDocencia of tareasDocencia">
-          <td>{{ tareaDocencia.nombreTarea }}</td>
-          <td>
-            <mat-icon (click)="editarTarea(tareaDocencia)">edit</mat-icon>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div *ngIf="checkListartarea">
+    <br>
+    <div *ngIf="tareasDocencia.length!=0; else loggedOut">
+
+      <h2 style="text-align: center;">Actividades Creadas</h2>
+      <button class="btn btn-secondary btn-sm" (click)="navegarCrearTarea()" style="margin-bottom:10px;">Crear una nueva
+        Tarea</button>
+      <div class="table-responsive">
+        <table class="table table-hover text-center table-sm">
+          <thead class="table-dark">
+            <tr>
+              <th>Tarea</th>
+              <th>Docente que creó la Actividad</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tareaDocencia of tareasDocencia">
+              <td>{{ tareaDocencia.nombreTarea }}</td>
+              <td>{{ tareaDocencia.nombreDocenteRevisor }}</td>
+              <td>
+                <mat-icon (click)="editarTarea(tareaDocencia)" *ngIf="idEspeDocenteRevisor==tareaDocencia.idEspeDocenteRevisor">edit</mat-icon>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ng-template #loggedOut>
+      <h3 style="text-align: center;">Este Período por el momento se encuentra sin Registros</h3>
+    </ng-template>
   </div>
 </div>

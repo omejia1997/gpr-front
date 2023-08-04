@@ -9,6 +9,7 @@ import { Cargo } from 'src/app/models/Cargo';
 import { Observable } from 'rxjs';
 import { CargoService } from 'src/app/servicios/cargo.service';
 import { Periodo } from 'src/app/models/Periodo';
+import { TareaDocencia } from '../../../modelos/TareaDocencia';
 
 // const cargos: string[] = ['Manufactura y Producción',
 // 'Mecatrónica',
@@ -29,7 +30,8 @@ export class GestionarTareaDocenteComponent implements OnInit {
   getCargos$: Observable<Cargo[]>;
   cargos: Cargo[] = [];
   cargo: any={};
-  tareaDocenciaRequest: TareaDocenciaDTO={};
+  // tareaDocenciaRequest: TareaDocenciaDTO ={};
+  tareaDocenciaRequest: any ={};
   actividadRealizar!: string;
   cargoSeleccionado!: string;
   docentes: Docente[] = [];
@@ -52,18 +54,29 @@ export class GestionarTareaDocenteComponent implements OnInit {
     private messageService: MessageService,
     private cargoService: CargoService
     ) {
-
       this.codDocente = localStorage.getItem('codigoDocente');
       this.getCargos$ = this.cargoService.obtenerCargosModel();
-      this.tareaDocenciaRequest.observacionTarea=[];
       this.tareaDocenciaService.periodo$.subscribe((res) => {
         this.periodo = res;
-        if (this.periodo == null || Object.keys(this.periodo).length === 0) {
+        // if (this.periodo == null || Object.keys(this.periodo).length === 0) {
+        if (this.periodo == null) {
           this.visualBlockedDocument = false;
           this.back();
         }
       });
-
+      this.tareaDocenciaService.tarea$.subscribe((res) => {
+        this.tareaDocenciaRequest = res;
+        if(this.tareaDocenciaRequest==null){
+          this.tareaDocenciaRequest.observacionTarea=[];
+        }else{
+          this.docentesAsignados = this.tareaDocenciaRequest.docentesAsignados;
+          for (const actividad of this.checkboxesActividadesRealizar) {
+            if (this.tareaDocenciaRequest.observacionTarea.includes(actividad.value)) {
+              actividad.checked = true;
+            }
+          }
+        }
+      });
   }
 
   ngOnInit() {
@@ -175,9 +188,9 @@ export class GestionarTareaDocenteComponent implements OnInit {
     else this.docentesAsignados.push(docente);
   }
 
-  agregarActividadTarea(){
-    this.tareaDocenciaRequest.observacionTarea?.push(this.actividadRealizar);
-  }
+  // agregarActividadTarea(){
+  //   this.tareaDocenciaRequest.observacionTarea?.push(this.actividadRealizar);
+  // }
 
   save() {
     this.blockedDocument = true;

@@ -10,9 +10,14 @@ export type TareaDocenteDocenciaDTO = {
   informeFinal?:InformeFinal;
   fechaEntrega?:Date;
   fechaModificacion?:Date;
-  rendimientoGeneralTodasMaterias?:number;
-  promedioDesviacionestandarGeneral?:number;
+  // rendimientoGeneralTodasMaterias?:number;
+  // promedioDesviacionestandarGeneral?:number;
   //Variables para barChart
+  nombreCompletoDocente?: string;
+  seriesBar?:SeriesBar[];
+};
+
+interface SeriesBar {
   name?: string;
   value?: number;
-};
+}

@@ -1,15 +1,25 @@
-<ngx-charts-bar-horizontal
-  [view]="view"
-  [results]="tareaDocenteDocenciaDTO"
-  [gradient]="gradient"
-  [xAxis]="showXAxis"
-  [yAxis]="showYAxis"
-  [legend]="showLegend"
-  [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  [maxYAxisTickLength]="100"
-  [xScaleMax]="20"
-  (select)="onSelect($event)">
-</ngx-charts-bar-horizontal>
+<app-navbar></app-navbar>
+<button type="button" (click)="back()" class="btn btn-dark btn-sm btn-regresar"
+  style="margin-left: 10px;">Regresar</button>
+<div class="col-md-4" style="margin: auto;">
+  <mat-icon>search</mat-icon><input type="text" style="width: 90%;" [(ngModel)]="buscarTermino" placeholder="Ingrese el Nombre del Docente">
+</div>
+<div *ngFor="let tareaDocente of filtrarItems()" (click)="onSelect(tareaDocente)">
+  <div class="text-center">
+    <h2>DOCENTE:</h2><span>{{tareaDocente.nombreCompletoDocente}}</span>
+  </div>
+  <ngx-charts-bar-horizontal
+    [view]="view"
+    [results]="tareaDocente.seriesBar"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [maxYAxisTickLength]="200"
+    [xScaleMax]="20">
+  </ngx-charts-bar-horizontal>
+
+</div>

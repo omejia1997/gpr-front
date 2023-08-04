@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { TareaDocencia } from '../modelos/TareaDocencia';
-import { TareaDocenteDocenciaDTO } from '../modelos/dto/TareaDocenteDocenciaDTO';
 import { Periodo } from 'src/app/models/Periodo';
-import { TareaDocenteDocencia } from '../modelos/TareaDocenteDocencia';
+import { environment } from 'src/environments/environment';
 import { InformeFinal } from '../modelos/InformeFinal/InformeFinal';
+import { TareaDocencia } from '../modelos/TareaDocencia';
+import { TareaDocenciaDTO } from '../modelos/dto/TareaDocenciaDTO';
+import { TareaDocenteDocenciaDTO } from '../modelos/dto/TareaDocenteDocenciaDTO';
 
 
 const TAREA_DOCENCIA = environment.URL_MICROSERVICE_DOCENTE_TAREAS + '/tareaDocencia';
@@ -18,7 +18,7 @@ export class TareaDocenciaService {
   private tareasDocenteDocencia$$ = new BehaviorSubject<TareaDocenteDocenciaDTO[] | null>(null);
   tareasDocenteDocencia$ = this.tareasDocenteDocencia$$.asObservable();
 
-  private tarea$$ = new BehaviorSubject<TareaDocencia | null>(null);
+  private tarea$$ = new BehaviorSubject<TareaDocenciaDTO | null>(null);
   tarea$ = this.tarea$$.asObservable();
 
   private tareaDocenteDocenciaDTO$$ = new BehaviorSubject<TareaDocenteDocenciaDTO | null>(null);
@@ -29,19 +29,23 @@ export class TareaDocenciaService {
 
   constructor(private http: HttpClient) {}
 
-  public listarTodasTareasPorDocente(idEspeDocente:any): Observable<TareaDocencia[]>{
-    return this.http.get<TareaDocencia[]>(`${TAREA_DOCENCIA}/listarTodasTareasPorDocente/${idEspeDocente}`);
+  public listarTodasTareasPorPeriodo(codigoPeriodo:any): Observable<TareaDocenciaDTO[]>{
+    return this.http.get<TareaDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTodasTareasPorPeriodo/${codigoPeriodo}`);
   }
 
   public listarTodasTareasAsignadasPorDocente(idEspeDocente:any): Observable<TareaDocenteDocenciaDTO[]>{
     return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTodasTareasAsignadasPorDocente/${idEspeDocente}`);
   }
 
-  public listarTodasTareasSubidasModuloDocencia(): Observable<TareaDocenteDocenciaDTO[]>{
-    return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTodasTareasSubidasModuloDocencia`);
+  public listarTodasTareasSubidasPorPeriodo(codigoPeriodo:any): Observable<TareaDocenteDocenciaDTO[]>{
+    return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTodasTareasSubidasPorPeriodo/${codigoPeriodo}`);
   }
 
-  public setTarea(tarea: TareaDocencia) {
+  // public listarTodasTareasSubidasModuloDocencia(): Observable<TareaDocenteDocenciaDTO[]>{
+  //   return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTodasTareasSubidasModuloDocencia`);
+  // }
+
+  public setTarea(tarea: TareaDocenciaDTO) {
     this.tarea$$.next(tarea);
   }
 
@@ -57,13 +61,17 @@ export class TareaDocenciaService {
     this.periodo$$.next(periodo);
   }
 
-  public gestionarInformacion(tarea : TareaDocencia) {
-    return this.http.post<any>(TAREA_DOCENCIA, tarea);
+  public gestionarInformacion(tarea : TareaDocenciaDTO) {
+    if(tarea.id){
+      return this.http.put<any>(`${TAREA_DOCENCIA}/modificarTarea`, tarea);
+    }else{
+      return this.http.post<any>(TAREA_DOCENCIA, tarea);
+    }
   }
 
-  public actualizarTarea(tarea : TareaDocencia) {
-    return this.http.put<any>(TAREA_DOCENCIA, tarea);
-  }
+  // public actualizarTarea(tarea : TareaDocencia) {
+  //   return this.http.put<any>(TAREA_DOCENCIA, tarea);
+  // }
 
   public obtenerTareasPorDocente(codigoDocente:number): Observable<TareaDocenteDocenciaDTO[]>{
     return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTareaAsignadaPorDocente/${codigoDocente}`);

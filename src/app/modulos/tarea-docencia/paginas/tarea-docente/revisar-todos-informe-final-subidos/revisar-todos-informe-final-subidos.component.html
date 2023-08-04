@@ -1,32 +1,52 @@
 <app-navbar></app-navbar>
 <div class="container">
-  <h2 style="text-align: center;">Actividades Subidas</h2>
-  <button type="button" class="btn btn-secondary" (click)="verEstadisticas()">Ver Estadísticas</button>
-  <div class="table-responsive">
-    <table class="table table-hover text-center table-sm">
-      <thead class="table-dark">
-        <tr>
-          <th>Tarea</th>
-          <th>Nombre del Docente quien subio la actividad</th>
-          <th>Fecha de Entrega</th>
-          <th>Promedio General de Todas las Asignaturas subidas</th>
-          <th>promedio General de Desv. Estándar de Todas las Asignaturas subidas</th>
-          <th>Acción</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let tareaDocenteDocencia of tareaDocenteDocenciaDTO">
-          <td>{{ tareaDocenteDocencia.tareaDocencia?.nombreTarea }}</td>
-          <td>{{ tareaDocenteDocencia.docenteAsignado?.apellidoDocente+" "+ tareaDocenteDocencia.docenteAsignado?.nombreDocente }}</td>
-          <td>{{ tareaDocenteDocencia.fechaEntrega }}</td>
-          <td>{{ tareaDocenteDocencia.rendimientoGeneralTodasMaterias }}</td>
-          <td>{{ tareaDocenteDocencia.promedioDesviacionestandarGeneral }}</td>
-          <td>
-           <button>Ver Informe Final</button>
-           <button  type="button" (click)="verEstadisticasDelDocente(tareaDocenteDocencia)">Ver Estadisticas</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <h2 style="text-align: center;">Período</h2>
+  <div style="display: flex;">
+    <div class="form-group col align-self-center col-sm-6" style="margin: auto;">
+      <select name="proyecto" [(ngModel)]="periodo" class="form-select" (change)="getTareas()">
+        <option [ngValue]="periodo" *ngFor="let periodo of periodos">{{periodo.descripcionPeriodo}}</option>
+      </select>
+    </div>
+  </div>
+  <div *ngIf="checkListartarea">
+    <br>
+    <div *ngIf="tareaDocenteDocenciaDTO.length!=0; else loggedOut">
+      <h2 style="text-align: center;">Actividades Subidas</h2>
+      <button type="button" class="btn btn-secondary" (click)="verEstadisticas()">Ver Estadísticas</button>
+      <div class="col-md-4" style="margin: auto;margin-bottom: 10px;">
+        <mat-icon>search</mat-icon><input type="text" style="width: 90%;" [(ngModel)]="buscarTermino"
+          placeholder="Ingrese el Nombre del Docente">
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover table-sm">
+          <thead class="table-dark">
+            <tr>
+              <th class="text-center align-middle">Tarea</th>
+              <th class="text-center align-middle">Nombre del Docente que subió la actividad</th>
+              <th class="text-center align-middle">Fecha de Entrega</th>
+              <th class="text-center align-middle">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tareaDocenteDocencia of filtrarItems()">
+              <td class="text-center align-middle">{{ tareaDocenteDocencia.tareaDocencia?.nombreTarea }}</td>
+              <td class="text-center align-middle">{{ tareaDocenteDocencia.docenteAsignado?.apellidoDocente+" "+
+                tareaDocenteDocencia.docenteAsignado?.nombreDocente }}</td>
+              <td class="text-center align-middle">{{ tareaDocenteDocencia.fechaEntrega }}</td>
+              <td class="text-center align-middle">
+                <button>Ver Informe Final</button>
+                <button type="button" (click)="habilitarEdicion(tareaDocenteDocencia)">Habilitar Edición del
+                  informe</button>
+                <button type="button" (click)="verEstadisticasDelDocente(tareaDocenteDocencia)">Ver
+                  Estadisticas</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ng-template #loggedOut>
+      <h3 style="text-align: center;">Este Período por el momento se encuentra sin Registros</h3>
+    </ng-template>
   </div>
 </div>

@@ -27,8 +27,7 @@ interface DataPieChart {
 
 export class RendimientoDocenteComponent implements OnInit {
   seriesLineChart!: SerieLineChart[];
-  dataLineChartArray!:DataLineChart[];
-  dataLineChart:DataLineChart={};
+
 
   dataPieChart!:DataPieChart[];
   // dataPieChartDataPieChart:DataPieChart={}
@@ -78,49 +77,67 @@ export class RendimientoDocenteComponent implements OnInit {
           this.back();
         } else {
           this.tareaDocenteDocenciaDTO.informeFinal?.datosAsignatura?.forEach(asignatura=>{
+            let dataLineChart:DataLineChart={};
             let serieLineChart:SerieLineChart={};
             let dataSinglePieChart:DataPieChart={};
-            this.dataLineChartArray=[];
+            let dataLineChartArray:DataLineChart[]=[];
             let dataVerticalBarChartArray=[];
             this.seriesLineChart=[];
             this.dataPieChart=[];
 
-            this.dataLineChart.name = asignatura.asignatura;
+            asignatura.dataLineChart=[];
+            dataLineChart.name = asignatura.asignatura;
             serieLineChart.name='I-UD';
-            serieLineChart.value=asignatura.promedioRendimientoAcademico?.primerParcial;
+            if(asignatura.promedioRendimientoAcademico?.primerParcial!=undefined){
+              console.log("entro")
+              serieLineChart.value=asignatura.promedioRendimientoAcademico.primerParcial;
+              console.log(serieLineChart.value)
+            }else{
+              console.log("ss")
+              serieLineChart.value=0;
+            }
             this.seriesLineChart.push(serieLineChart);
             serieLineChart={};
             serieLineChart.name='II-UD';
-            serieLineChart.value=asignatura.promedioRendimientoAcademico?.segundoParcial;
+            if(asignatura.promedioRendimientoAcademico?.segundoParcial){
+              serieLineChart.value=asignatura.promedioRendimientoAcademico.segundoParcial;
+            }else{
+              serieLineChart.value=0;
+            }
+
             this.seriesLineChart.push(serieLineChart);
             serieLineChart={};
             serieLineChart.name='III-UD';
-            serieLineChart.value=asignatura.promedioRendimientoAcademico?.tercerParcial;
+            if(asignatura.promedioRendimientoAcademico?.tercerParcial){
+              serieLineChart.value=asignatura.promedioRendimientoAcademico.tercerParcial;
+            }else{
+              serieLineChart.value=0;
+            }
             this.seriesLineChart.push(serieLineChart);
-            this.dataLineChart.series= this.seriesLineChart;
-            this.dataLineChartArray.push(this.dataLineChart);
-            asignatura.dataLineChart = this.dataLineChartArray;
+            dataLineChart.series= this.seriesLineChart;
+            dataLineChartArray.push(dataLineChart);
+            asignatura.dataLineChart = dataLineChartArray;
 
             //DataPieChart
             dataSinglePieChart.name = "Estudiantes Reprobados";
-            dataSinglePieChart.value = asignatura.estudiantesReprobados?.total;
+            dataSinglePieChart.value = asignatura.estudiantesReprobados?.total?asignatura.estudiantesReprobados?.total:0;
             this.dataPieChart.push(dataSinglePieChart);
             dataSinglePieChart = {};
             dataSinglePieChart.name = "Estudiantes Aprobados";
-            dataSinglePieChart.value = asignatura.estudiantesAprobados?.total;
+            dataSinglePieChart.value = asignatura.estudiantesAprobados?.total?asignatura.estudiantesAprobados?.total:0;
             this.dataPieChart.push(dataSinglePieChart);
             asignatura.dataPieChart=this.dataPieChart;
 
             //DataVerticalBarChart
             serieLineChart={};
             serieLineChart.name = 'Promedio Final';
-            serieLineChart.value = asignatura.promedioFinalRendimientoAcademico;
+            serieLineChart.value = asignatura.promedioFinalRendimientoAcademico?asignatura.promedioFinalRendimientoAcademico:0;
             dataVerticalBarChartArray.push(serieLineChart);
             asignatura.dataVerticalBarChart = dataVerticalBarChartArray;
           })
         }
       });
-     }
+    }
 
   ngOnInit() {
   }
