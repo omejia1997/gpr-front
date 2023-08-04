@@ -17,7 +17,7 @@ function validarEntero(control: AbstractControl): { [key: string]: any } | null 
     <!-- <h2>Formulario</h2> -->
     <form [formGroup]="myForm" (ngSubmit)="submitForm()" class="text-center">
 
-      <mat-form-field class="custom-form-field">
+      <!-- <mat-form-field class="custom-form-field">
           <mat-select placeholder="NRC" formControlName="asignatura" name="asignatura">
             <mat-option *ngFor="let asignatura of datosAsignatura" [value]="asignatura">
               {{ asignatura.nrc  }} - - - - {{ asignatura.asignatura  }}
@@ -26,6 +26,19 @@ function validarEntero(control: AbstractControl): { [key: string]: any } | null 
           <mat-error *ngIf="myForm.controls['asignatura'].hasError('required')"
           >Selecciona este campo</mat-error
         >
+      </mat-form-field> -->
+      <h2 style="display: inline-block;font-size:15px">ASIGNATURA:</h2><span style="font-size:15px">{{datosAsignatura.asignatura}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <h2 style="display: inline-block;font-size:15px">NRC:</h2><span style="font-size:15px">{{datosAsignatura.nrc}}</span>
+
+      <mat-form-field class="custom-form-field" *ngIf="false">
+        <input
+          matInput
+          type="text"
+          placeholder="Asignatura"
+          formControlName="asignatura"
+          name="asignatura"
+          required
+        />
       </mat-form-field>
 
       <mat-form-field class="custom-form-field-medium">
@@ -173,7 +186,7 @@ export class ModalTutoriaComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ModalTutoriaComponent>,
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public datosAsignatura: DatosAsignatura[]
+    @Inject(MAT_DIALOG_DATA) public datosAsignatura: DatosAsignatura
   ) {
   }
 
@@ -187,22 +200,20 @@ export class ModalTutoriaComponent implements OnInit {
       tutoriaEstudiantesPromedioMenor14AsistieronIIUD: ['',  [Validators.required,validarEntero],],
       tutoriaEstudiantesPromedioMenor14AsistieronIIIUD: ['',  [Validators.required,validarEntero],],
       tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron: ['',  [Validators.required,validarEntero],]
-      // promedioFinalRendimientoAcademico: ['',[Validators.required, Validators.min(0), Validators.max(20)],],
-      // promedioFinalDesviacionEstandar: ['',[Validators.required, Validators.min(0)],],
     });
-    // if(this.datosAsignatura){
+    if(this.datosAsignatura){
 
-    //   this.myForm.patchValue({
-    //     nivelInstruccion: this.formacionAcademica.nivelInstruccion,
-    //     institucion: this.formacionAcademica.institucion,
-    //     tituloObtenido: this.formacionAcademica.tituloObtenido,
-    //     numeroSenescyt: this.formacionAcademica.numeroSenescyt,
-    //     fechaRegistroSenescyt: this.formacionAcademica.fechaRegistroSenescyt,
-    //     fechaGraduacion: this.formacionAcademica.fechaGraduacion,
-    //     pais: this.formacionAcademica.pais,
-    //     tiempoEstudio: this.formacionAcademica.tiempoEstudio
-    //   });
-    // }
+      this.myForm.patchValue({
+        asignatura: this.datosAsignatura,
+        tutoriaEstudiantesPromedioMenor14IUD: this.datosAsignatura.tutoriaEstudiantesPromedioMenor14?.primerParcial,
+        tutoriaEstudiantesPromedioMenor14IIUD: this.datosAsignatura.tutoriaEstudiantesPromedioMenor14?.segundoParcial,
+        tutoriaEstudiantesPromedioMenor14IIIUD: this.datosAsignatura.tutoriaEstudiantesPromedioMenor14?.tercerParcial,
+        tutoriaEstudiantesPromedioMenor14AsistieronIUD: this.datosAsignatura.tutoriaEstudiantesPromedioMenor14Asistieron?.primerParcial,
+        tutoriaEstudiantesPromedioMenor14AsistieronIIUD: this.datosAsignatura.tutoriaEstudiantesPromedioMenor14Asistieron?.segundoParcial,
+        tutoriaEstudiantesPromedioMenor14AsistieronIIIUD: this.datosAsignatura.tutoriaEstudiantesPromedioMenor14Asistieron?.tercerParcial,
+        tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron: this.datosAsignatura.tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron
+      });
+    }
   }
 
   validarDosDecimales(control: any): { dosDecimales: boolean } | null {

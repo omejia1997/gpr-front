@@ -17,15 +17,19 @@ function validarEntero(control: AbstractControl): { [key: string]: any } | null 
     <!-- <h2>Formulario</h2> -->
     <form [formGroup]="myForm" (ngSubmit)="submitForm()" class="text-center">
 
-      <mat-form-field class="custom-form-field">
-          <mat-select placeholder="NRC" formControlName="asignatura" name="asignatura">
-            <mat-option *ngFor="let asignatura of datosAsignatura" [value]="asignatura">
-              {{ asignatura.nrc  }} - - - - {{ asignatura.asignatura  }}
-            </mat-option>
-          </mat-select>
-        <mat-error *ngIf="myForm.controls['asignatura'].hasError('required')"
-          >Seleccione este campo</mat-error
-        >
+      <h2 style="display: inline-block;font-size:15px">ASIGNATURA:</h2><span style="font-size:15px">{{datosAsignatura.asignatura}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <h2 style="display: inline-block;font-size:15px">NRC:</h2><span style="font-size:15px">{{datosAsignatura.nrc}}</span>
+
+      <mat-form-field class="custom-form-field" *ngIf="false">
+        <input
+          matInput
+          type="text"
+          placeholder="Asignatura"
+          formControlName="asignatura"
+          name="asignatura"
+          required
+
+        />
       </mat-form-field>
 
       <mat-form-field class="custom-form-field-medium">
@@ -129,128 +133,6 @@ function validarEntero(control: AbstractControl): { [key: string]: any } | null 
           >Ingrese solo números enteros.</mat-error
         >
       </mat-form-field>
-<!--
-      <mat-form-field class="custom-form-field-medium">
-        <input
-          matInput
-          type="number"
-          placeholder="Estudiantes Aprobados (Hombres)"
-          formControlName="estudiantesAprobadosHombres"
-          name="estudiantesAprobadosHombres"
-          required
-        />
-        <mat-error *ngIf="myForm.controls['estudiantesAprobadosHombres'].hasError('required')"
-          >Ingrese este campo</mat-error
-        >
-        <mat-error *ngIf="myForm.controls['estudiantesAprobadosHombres'].hasError('noEsEntero')"
-          >Ingrese solo números enteros.</mat-error
-        >
-      </mat-form-field>
-
-      <mat-form-field class="custom-form-field-medium">
-        <input
-          matInput
-          type="number"
-          placeholder="Estudiantes Aprobados (Mujeres)"
-          formControlName="estudiantesAprobadosMujeres"
-          name="estudiantesAprobadosMujeres"
-          required
-        />
-        <mat-error *ngIf="myForm.controls['estudiantesAprobadosMujeres'].hasError('required')"
-          >Ingrese este campo</mat-error
-        >
-        <mat-error *ngIf="myForm.controls['estudiantesAprobadosMujeres'].hasError('noEsEntero')"
-          >Ingrese solo números enteros.</mat-error
-        >
-      </mat-form-field> -->
-
-      <!-- <mat-form-field class="custom-form-field-medium">
-        <input
-          matInput
-          type="number"
-          placeholder="Promedio de Rendimiento Académico I-UD"
-          formControlName="promedioRendimientoAcademicoIUD"
-          name="promedioRendimientoAcademicoIUD"
-          required
-        />
-      </mat-form-field>
-
-      <mat-form-field class="custom-form-field-medium">
-        <input
-          matInput
-          type="number"
-          placeholder="Promedio de Rendimiento Académico II-UD"
-          formControlName="promedioRendimientoAcademicoIIUD"
-          name="promedioRendimientoAcademicoIIUD"
-          required
-        />
-      </mat-form-field>
-
-      <mat-form-field class="custom-form-field-medium">
-        <input
-          matInput
-          type="number"
-          placeholder="Promedio de Rendimiento Académico III-UD"
-          formControlName="promedioRendimientoAcademicoIIIUD"
-          name="promedioRendimientoAcademicoIIIUD"
-          required
-        />
-      </mat-form-field>
-
-      <mat-form-field class="custom-form-field-medium">
-        <input
-          matInput
-          type="number"
-          placeholder="Desviación Estándar I-UD"
-          formControlName="desviacionEstandarIUD"
-          name="desviacionEstandarIUD"
-          required
-        />
-      </mat-form-field>
-
-      <mat-form-field class="custom-form-field-medium">
-        <input
-          matInput
-          type="number"
-          placeholder="Desviación Estándar II-UD"
-          formControlName="desviacionEstandarIIUD"
-          name="desviacionEstandarIIUD"
-          required
-        />
-      </mat-form-field>
-
-      <mat-form-field class="custom-form-field-medium">
-        <input
-          matInput
-          type="number"
-          placeholder="Desviación Estándar III-UD"
-          formControlName="desviacionEstandarIIIUD"
-          name="desviacionEstandarIIIUD"
-          required
-        />
-      </mat-form-field>
-
-      <mat-form-field class="custom-form-field-medium">
-        <input
-          matInput
-          type="number"
-          placeholder="Promedio final de Rendimiento Académico"
-          formControlName="promedioFinalRendimientoAcademico"
-          name="promedioFinalRendimientoAcademico"
-          required
-        />
-      </mat-form-field>
-
-      <mat-form-field class="custom-form-field-medium">
-        <input
-          matInput
-          type="number"
-          placeholder="Promedio final de desv. estándar"
-          formControlName="promedioFinalDesviacionEstandar"
-          name="promedioFinalDesviacionEstandar"
-          required
-        />
-      </mat-form-field> -->
 
       <button
         type="submit"
@@ -272,16 +154,12 @@ function validarEntero(control: AbstractControl): { [key: string]: any } | null 
 })
 export class ModalRendimientoAcademicoComponent implements OnInit {
   myForm!: FormGroup;
-  comboCarrera: string[] = [
-    'MECÁNICA',
-    'MECATRÓNICA'
-  ];
 
 
   constructor(
     public dialogRef: MatDialogRef<ModalRendimientoAcademicoComponent>,
     private formBuilder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public datosAsignatura: DatosAsignatura[]
+    @Inject(MAT_DIALOG_DATA) public datosAsignatura: DatosAsignatura
   ) {
   }
 
@@ -294,30 +172,18 @@ export class ModalRendimientoAcademicoComponent implements OnInit {
       estudiantesRetiradosMujeres: ['', [Validators.required,validarEntero],],
       estudiantesReprobadosHombres: ['', [Validators.required,validarEntero],],
       estudiantesReprobadosMujeres: ['', [Validators.required,validarEntero],],
-      // estudiantesAprobadosHombres: ['', [Validators.required,validarEntero],],
-      // estudiantesAprobadosMujeres: ['', [Validators.required,validarEntero],],
-      // promedioRendimientoAcademicoIUD: ['', Validators.required],
-      // promedioRendimientoAcademicoIIUD: ['', Validators.required],
-      // promedioRendimientoAcademicoIIIUD: ['', Validators.required],
-      // desviacionEstandarIUD: ['', Validators.required],
-      // desviacionEstandarIIUD: ['', Validators.required],
-      // desviacionEstandarIIIUD: ['', Validators.required],
-      // promedioFinalRendimientoAcademico: ['', Validators.required],
-      // promedioFinalDesviacionEstandar: ['', Validators.required]
     });
-    // if(this.datosAsignatura){
-
-    //   this.myForm.patchValue({
-    //     nivelInstruccion: this.formacionAcademica.nivelInstruccion,
-    //     institucion: this.formacionAcademica.institucion,
-    //     tituloObtenido: this.formacionAcademica.tituloObtenido,
-    //     numeroSenescyt: this.formacionAcademica.numeroSenescyt,
-    //     fechaRegistroSenescyt: this.formacionAcademica.fechaRegistroSenescyt,
-    //     fechaGraduacion: this.formacionAcademica.fechaGraduacion,
-    //     pais: this.formacionAcademica.pais,
-    //     tiempoEstudio: this.formacionAcademica.tiempoEstudio
-    //   });
-    // }
+    if(this.datosAsignatura){
+      this.myForm.patchValue({
+        asignatura: this.datosAsignatura,
+        estudiantesMatriculadosHombres: this.datosAsignatura.estudiantesMatriculados?.numeroHombres,
+        estudiantesMatriculadosMujeres: this.datosAsignatura.estudiantesMatriculados?.numeroMujeres,
+        estudiantesRetiradosHombres: this.datosAsignatura.estudiantesRetirados?.numeroHombres,
+        estudiantesRetiradosMujeres: this.datosAsignatura.estudiantesRetirados?.numeroMujeres,
+        estudiantesReprobadosHombres: this.datosAsignatura.estudiantesReprobados?.numeroHombres,
+        estudiantesReprobadosMujeres: this.datosAsignatura.estudiantesReprobados?.numeroMujeres
+      });
+    }
   }
 
 

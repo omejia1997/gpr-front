@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 style="text-align: center;">Actividades Subidas</h2>
+  <button type="button" class="btn btn-secondary" (click)="verEstadisticas()">Ver Estadísticas</button>
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Tarea</th>
+          <th>Nombre del Docente quien subio la actividad</th>
+          <th>Fecha de Entrega</th>
+          <th>Promedio General de Todas las Asignaturas subidas</th>
+          <th>promedio General de Desv. Estándar de Todas las Asignaturas subidas</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tareaDocenteDocencia of tareaDocenteDocenciaDTO">
+          <td>{{ tareaDocenteDocencia.tareaDocencia?.nombreTarea }}</td>
+          <td>{{ tareaDocenteDocencia.docenteAsignado?.apellidoDocente+" "+ tareaDocenteDocencia.docenteAsignado?.nombreDocente }}</td>
+          <td>{{ tareaDocenteDocencia.fechaEntrega }}</td>
+          <td>{{ tareaDocenteDocencia.rendimientoGeneralTodasMaterias }}</td>
+          <td>{{ tareaDocenteDocencia.promedioDesviacionestandarGeneral }}</td>
+          <td>
+           <button>Ver Informe Final</button>
+           <button  type="button" (click)="verEstadisticasDelDocente(tareaDocenteDocencia)">Ver Estadisticas</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

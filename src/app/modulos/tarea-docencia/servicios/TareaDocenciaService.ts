@@ -15,6 +15,9 @@ const TAREA_DOCENCIA = environment.URL_MICROSERVICE_DOCENTE_TAREAS + '/tareaDoce
   providedIn: 'root',
 })
 export class TareaDocenciaService {
+  private tareasDocenteDocencia$$ = new BehaviorSubject<TareaDocenteDocenciaDTO[] | null>(null);
+  tareasDocenteDocencia$ = this.tareasDocenteDocencia$$.asObservable();
+
   private tarea$$ = new BehaviorSubject<TareaDocencia | null>(null);
   tarea$ = this.tarea$$.asObservable();
 
@@ -34,8 +37,16 @@ export class TareaDocenciaService {
     return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTodasTareasAsignadasPorDocente/${idEspeDocente}`);
   }
 
+  public listarTodasTareasSubidasModuloDocencia(): Observable<TareaDocenteDocenciaDTO[]>{
+    return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTodasTareasSubidasModuloDocencia`);
+  }
+
   public setTarea(tarea: TareaDocencia) {
     this.tarea$$.next(tarea);
+  }
+
+  public setTareasDocenteDocencia(tareasDocenteDocencia: TareaDocenteDocenciaDTO[]) {
+    this.tareasDocenteDocencia$$.next(tareasDocenteDocencia);
   }
 
   public setTareDocenteDocenciaDTO(tareaDocenteDocenciaDTO: TareaDocenteDocenciaDTO) {

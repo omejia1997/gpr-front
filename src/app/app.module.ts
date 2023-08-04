@@ -103,6 +103,9 @@ import { EditarPeriodoComponent } from './pages/periodo/editar-periodo/editar-pe
 import { RevisarTareaAsignadaDocenciaComponent } from './modulos/tarea-docencia/paginas/tarea-docente/revisar-tarea-asignada-docencia/revisar-tarea-asignada-docencia.component';
 import { ModalAnexo2Component } from './modulos/tarea-docencia/components/modal-anexo2/modal-anexo2.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { RevisarTodosInformeFinalSubidos } from './modulos/tarea-docencia/paginas/tarea-docente/revisar-todos-informe-final-subidos/revisar-todos-informe-final-subidos.component';
+import { RendimientoGeneralAsignaturasComponent } from './modulos/tarea-docencia/paginas/tarea-docente/dashboard-tarea-modulo-docencia/rendimiento-general-asignaturas/rendimiento-general-asignaturas.component';
+import { RendimientoDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/dashboard-tarea-modulo-docencia/rendimiento-general-asignaturas/rendimiento-docente/rendimiento-docente.component';
 
 @NgModule({
   declarations: [
@@ -183,7 +186,10 @@ import { MatRadioModule } from '@angular/material/radio';
     ModalTutoriaComponent,
     ModalMejoraDocenteComponent,
     RevisarTareaAsignadaDocenciaComponent,
-    ModalAnexo2Component
+    ModalAnexo2Component,
+    RevisarTodosInformeFinalSubidos,
+    RendimientoGeneralAsignaturasComponent,
+    RendimientoDocenteComponent
   ],
   imports: [
     BrowserModule,

@@ -103,3 +103,13 @@ h2{
 .table-bordered > tbody > tr > td {
   border: 3px solid #dee2e6; /* Puedes ajustar el grosor (3px) y el color (#dee2e6) según tus preferencias */
 }
+
+ul{
+  display: flex;
+}
+.edit-icon{
+  color: blue;
+}
+.delete-icon{
+  color: red;
+}

@@ -23,4 +23,23 @@ export type DatosAsignatura = {
   tutoriaEstudiantesPromedioMenor14?:TutoriaEstudiantesPromedioMenor14;
   tutoriaEstudiantesPromedioMenor14Asistieron?:TutoriaEstudiantesPromedioMenor14Asistieron;
   tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron?:number;
+  //variables de ngxchart
+  dataLineChart?: DataLineChart[];
+  dataVerticalBarChart?: SerieLineChart[];
+  dataPieChart?: DataPieChart[];
 };
+
+interface DataLineChart{
+  name?: string;
+  series?:SerieLineChart[];
+}
+
+interface SerieLineChart {
+  name?: string;
+  value?: number;
+}
+
+interface DataPieChart {
+  name?: string;
+  value?: number;
+}

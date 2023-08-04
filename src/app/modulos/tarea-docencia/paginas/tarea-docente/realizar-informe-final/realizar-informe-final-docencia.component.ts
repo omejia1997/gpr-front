@@ -15,6 +15,7 @@ import { TareaDocenteDocenciaDTO } from '../../../modelos/dto/TareaDocenteDocenc
 import { TareaDocenteDocencia } from '../../../modelos/TareaDocenteDocencia';
 import { MessageService } from 'primeng/api';
 import { ModalAnexo2Component } from '../../../components/modal-anexo2/modal-anexo2.component';
+import { DatosAsignatura } from '../../../modelos/InformeFinal/DatosAsignatura';
 
 @Component({
   selector: 'app-realizar-informe-final-docencia',
@@ -72,6 +73,7 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
         this.tareaDocenteDocencia.fechaModificacion = this.tareaDocenteDocenciaDTO.fechaModificacion;
         if(this.tareaDocenteDocenciaDTO.informeFinal){
           this.informeFinalDTO = this.tareaDocenteDocenciaDTO.informeFinal;
+          console.log(this.tareaDocenteDocenciaDTO.informeFinal)
         }
       }
     });
@@ -100,51 +102,135 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
         this.data = formValue.data;
 
         if(this.dataString.title== 'ANTECEDENTE'){
+          if(this.dataString.data){
+            this.informeFinalDTO.antecedentes =
+            this.informeFinalDTO.antecedentes?.filter(
+              (item) => item !== this.dataString.data
+            );
+          }
           this.informeFinalDTO.antecedentes?.push(this.data);
           this.resetData();
         }else if(this.dataString.title== 'OBJETIVO'){
           this.informeFinalDTO.objetivo = this.data;
           this.resetData();
         }else if(this.dataString.title== 'FORTALEZA'){
+          if(this.dataString.data){
+            this.informeFinalDTO.fortalezas =
+            this.informeFinalDTO.fortalezas?.filter(
+              (item) => item !== this.dataString.data
+            );
+          }
           this.informeFinalDTO.fortalezas?.push(this.data);
           this.resetData();
         }else if(this.dataString.title== 'DEBILIDAD'){
+          if(this.dataString.data){
+            this.informeFinalDTO.debilidades =
+            this.informeFinalDTO.debilidades?.filter(
+              (item) => item !== this.dataString.data
+            );
+          }
           this.informeFinalDTO.debilidades?.push(this.data);
           this.resetData();
         }else if(this.dataString.title== 'APRECIACIÓN GLOBAL DE LOS ESTUDIANTES FORTALEZA'){
+          if(this.dataString.data){
+            this.informeFinalDTO.apreciacionGlobalFortalezas =
+            this.informeFinalDTO.apreciacionGlobalFortalezas?.filter(
+              (item) => item !== this.dataString.data
+            );
+          }
           this.informeFinalDTO.apreciacionGlobalFortalezas?.push(this.data);
           this.resetData();
         }else if(this.dataString.title== 'APRECIACIÓN GLOBAL DE LOS ESTUDIANTES DEBILIDAD'){
+          if(this.dataString.data){
+            this.informeFinalDTO.apreciacionGlobalDebilidades =
+            this.informeFinalDTO.apreciacionGlobalDebilidades?.filter(
+              (item) => item !== this.dataString.data
+            );
+          }
           this.informeFinalDTO.apreciacionGlobalDebilidades?.push(this.data);
           this.resetData();
         }else if(this.dataString.title== 'Acción 1: Relacionado con mejoras al plan analítico de las asignaturas:'){
+          if(this.dataString.data){
+            if(this.informeFinalDTO.accionesMejoraDocente){
+              this.informeFinalDTO.accionesMejoraDocente.accion1 =
+              this.informeFinalDTO.accionesMejoraDocente?.accion1?.filter(
+                (item) => item !== this.dataString.data
+              );
+            }
+          }
           this.informeFinalDTO.accionesMejoraDocente?.accion1?.push(this.data);
           this.resetData();
         }else if(this.dataString.title== 'Acción 2: Relacionadas con los estudiantes y mejorar el proceso enseñanza-aprendizaje'){
+          if(this.informeFinalDTO.accionesMejoraDocente){
+            this.informeFinalDTO.accionesMejoraDocente.accion2 =
+            this.informeFinalDTO.accionesMejoraDocente?.accion2?.filter(
+              (item) => item !== this.dataString.data
+            );
+          }
           this.informeFinalDTO.accionesMejoraDocente?.accion2?.push(this.data);
           this.resetData();
         }else if(this.dataString.title== 'Acción 3: Relacionadas con la mejora de sus capacidades docentes'){
+          if(this.informeFinalDTO.accionesMejoraDocente){
+            this.informeFinalDTO.accionesMejoraDocente.accion3 =
+            this.informeFinalDTO.accionesMejoraDocente?.accion3?.filter(
+              (item) => item !== this.dataString.data
+            );
+          }
           this.informeFinalDTO.accionesMejoraDocente?.accion3?.push(this.data);
           this.resetData();
         }else if(this.dataString.title== 'Acción 4: Otros ámbitos de mejora'){
+          if(this.informeFinalDTO.accionesMejoraDocente){
+            this.informeFinalDTO.accionesMejoraDocente.accion4 =
+            this.informeFinalDTO.accionesMejoraDocente?.accion4?.filter(
+              (item) => item !== this.dataString.data
+            );
+          }
           this.informeFinalDTO.accionesMejoraDocente?.accion4?.push(this.data);
           this.resetData();
         }else if(this.dataString.title== 'Acciones tomadas para la solución de las novedades que se hayan presentado en clases y laboratorios y tutorías'){
+          if(this.informeFinalDTO.accionesMejoraDocente){
+            this.informeFinalDTO.accionesMejoraDocente.accionLaboratorioTutoria =
+            this.informeFinalDTO.accionesMejoraDocente?.accionLaboratorioTutoria?.filter(
+              (item) => item !== this.dataString.data
+            );
+          }
           this.informeFinalDTO.accionesMejoraDocente?.accionLaboratorioTutoria?.push(this.data);
           this.resetData();
         }else if(this.dataString.title== 'Otras Acciones'){
+          if(this.informeFinalDTO.accionesMejoraDocente){
+            this.informeFinalDTO.accionesMejoraDocente.otrasAcciones =
+            this.informeFinalDTO.accionesMejoraDocente?.otrasAcciones?.filter(
+              (item) => item !== this.dataString.data
+            );
+          }
           this.informeFinalDTO.accionesMejoraDocente?.otrasAcciones?.push(this.data);
           this.resetData();
         }else if(this.dataString.title== 'CONCLUSIÓN'){
+          if(this.dataString.data){
+            this.informeFinalDTO.conclusiones =
+            this.informeFinalDTO.conclusiones?.filter(
+              (item) => item !== this.dataString.data
+            );
+          }
           this.informeFinalDTO.conclusiones?.push(this.data);
           this.resetData();
         }else if(this.dataString.title== 'RECOMENDACIÓN'){
+          if(this.dataString.data){
+            this.informeFinalDTO.recomendaciones =
+            this.informeFinalDTO.recomendaciones?.filter(
+              (item) => item !== this.dataString.data
+            );
+          }
           this.informeFinalDTO.recomendaciones?.push(this.data);
           this.resetData();
         }else if(this.dataString.title== 'ANEXO'){
+          if(this.dataString.data){
+            this.informeFinalDTO.anexo1 =
+            this.informeFinalDTO.anexo1?.filter(
+              (item) => item !== this.dataString.data
+            );
+          }
           this.informeFinalDTO.anexo1?.push(this.data);
-          console.log(this.data);
-          console.log(this.informeFinalDTO.anexo1);
           this.resetData();
         }
       }
@@ -157,9 +243,21 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     this.openModalAddString();
   }
 
+  editarAntecedente(antecedente:string){
+    this.dataString.title = 'ANTECEDENTE';
+    this.dataString.data= antecedente;
+    this.openModalAddString();
+  }
+
   addObjetivo(){
     this.dataString.title= 'OBJETIVO';
     this.dataString.data= '';
+    this.openModalAddString();
+  }
+
+  editarObjetivo(objetivo:string){
+    this.dataString.title = 'OBJETIVO';
+    this.dataString.data= objetivo;
     this.openModalAddString();
   }
 
@@ -169,9 +267,21 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     this.openModalAddString();
   }
 
+  editarFortaleza(fortaleza:string){
+    this.dataString.title= 'FORTALEZA';
+    this.dataString.data = fortaleza
+    this.openModalAddString();
+  }
+
   addDebilidad(){
     this.dataString.title= 'DEBILIDAD';
     this.dataString.data= '';
+    this.openModalAddString();
+  }
+
+  editarDebilidad(debilidad:string){
+    this.dataString.title= 'DEBILIDAD';
+    this.dataString.data= debilidad;
     this.openModalAddString();
   }
 
@@ -181,9 +291,21 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     this.openModalAddString();
   }
 
+  editarFortalezaApreciacionEstudiantes(fortaleza:string){
+    this.dataString.title= 'APRECIACIÓN GLOBAL DE LOS ESTUDIANTES FORTALEZA';
+    this.dataString.data= fortaleza;
+    this.openModalAddString();
+  }
+
   addDebilidadApreciacionEstudiantes(){
     this.dataString.title= 'APRECIACIÓN GLOBAL DE LOS ESTUDIANTES DEBILIDAD';
     this.dataString.data= '';
+    this.openModalAddString();
+  }
+
+  editarDebilidadApreciacionEstudiantes(debilidad:string){
+    this.dataString.title= 'APRECIACIÓN GLOBAL DE LOS ESTUDIANTES DEBILIDAD';
+    this.dataString.data= debilidad;
     this.openModalAddString();
   }
 
@@ -193,9 +315,21 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     this.openModalAddString();
   }
 
+  editarAccion1(accion1:string){
+    this.dataString.title= 'Acción 1: Relacionado con mejoras al plan analítico de las asignaturas:';
+    this.dataString.data= accion1;
+    this.openModalAddString();
+  }
+
   addAccion2(){
     this.dataString.title= 'Acción 2: Relacionadas con los estudiantes y mejorar el proceso enseñanza-aprendizaje';
     this.dataString.data= '';
+    this.openModalAddString();
+  }
+
+  editarAccion2(accion2:string){
+    this.dataString.title= 'Acción 2: Relacionadas con los estudiantes y mejorar el proceso enseñanza-aprendizaje';
+    this.dataString.data= accion2;
     this.openModalAddString();
   }
 
@@ -205,9 +339,21 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     this.openModalAddString();
   }
 
+  editarAccion3(accion3:string){
+    this.dataString.title= 'Acción 3: Relacionadas con la mejora de sus capacidades docentes';
+    this.dataString.data= accion3;
+    this.openModalAddString();
+  }
+
   addAccion4(){
     this.dataString.title= 'Acción 4: Otros ámbitos de mejora';
     this.dataString.data= '';
+    this.openModalAddString();
+  }
+
+  editarAccion4(accion4:string){
+    this.dataString.title= 'Acción 4: Otros ámbitos de mejora';
+    this.dataString.data= accion4;
     this.openModalAddString();
   }
 
@@ -217,9 +363,21 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     this.openModalAddString();
   }
 
+  editarAccionLaboratorioTutoria(accionLaboratorioTutoria:string){
+    this.dataString.title= 'Acciones tomadas para la solución de las novedades que se hayan presentado en clases y laboratorios y tutorías';
+    this.dataString.data= accionLaboratorioTutoria;
+    this.openModalAddString();
+  }
+
   addOtrasAcciones(){
     this.dataString.title= 'Otras Acciones';
     this.dataString.data= '';
+    this.openModalAddString();
+  }
+
+  editarOtrasAcciones(otrasAcciones:string){
+    this.dataString.title= 'Otras Acciones';
+    this.dataString.data= otrasAcciones;
     this.openModalAddString();
   }
 
@@ -229,15 +387,33 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     this.openModalAddString();
   }
 
+  editarConclusion(conclusiones:string){
+    this.dataString.title= 'CONCLUSIÓN';
+    this.dataString.data = conclusiones;
+    this.openModalAddString();
+  }
+
   addRecomendacion(){
     this.dataString.title= 'RECOMENDACIÓN';
     this.dataString.data= '';
     this.openModalAddString();
   }
 
+  editarRecomendacion(recomendaciones:string){
+    this.dataString.title= 'RECOMENDACIÓN';
+    this.dataString.data = recomendaciones;
+    this.openModalAddString();
+  }
+
   addAnexo1(){
     this.dataString.title= 'ANEXO';
     this.dataString.data= '';
+    this.openModalAddString();
+  }
+
+  editarAnexo1(anexo1:string){
+    this.dataString.title= 'ANEXO';
+    this.dataString.data= anexo1;
     this.openModalAddString();
   }
 
@@ -254,28 +430,35 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
   }
 
 
-  addDatosInformativos(){
+  addDatosInformativos(datosAsignatura?:DatosAsignatura){
     const dialogRef = this.dialog.open(ModalAsignaturaComponent, {
       width: '700px',
-      data: this.dataString,
+      data: datosAsignatura,
     });
     dialogRef.afterClosed().subscribe((formValue) => {
       if (formValue) {
+        if(datosAsignatura){
+          this.informeFinalDTO.datosAsignatura =
+          this.informeFinalDTO.datosAsignatura?.filter(
+            (item) => item.nrc !== datosAsignatura.nrc
+          );
+        }
         this.informeFinalDTO.datosAsignatura?.push(formValue);
       }
     });
   }
 
-  addResultadosRendimientoAcademico(){
+
+  addResultadosRendimientoAcademico(datosAsignatura?:DatosAsignatura){
     const dialogRef = this.dialog.open(ModalRendimientoAcademicoComponent, {
       width: '700px',
-      data: this.informeFinalDTO.datosAsignatura,
+      // data: this.informeFinalDTO.datosAsignatura,
+      data: datosAsignatura,
     });
     dialogRef.afterClosed().subscribe((formValue) => {
       if (formValue) {
         const indiceEncontrado = this.informeFinalDTO.datosAsignatura?.findIndex(item => item.nrc === formValue.asignatura.nrc);
         if (indiceEncontrado !== -1) {
-          console.log(indiceEncontrado);
           if(indiceEncontrado!=undefined){
             this.informeFinalDTO.datosAsignatura![indiceEncontrado].estudiantesMatriculados={};
             this.informeFinalDTO.datosAsignatura![indiceEncontrado].estudiantesMatriculados!.numeroHombres= formValue.estudiantesMatriculadosHombres;
@@ -304,16 +487,15 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     });
   }
 
-  addPromedioRendimientoAcademico(){
+  addPromedioRendimientoAcademico(datosAsignatura?:DatosAsignatura){
     const dialogRef = this.dialog.open(ModalPromedioAcademicoComponent, {
       width: '700px',
-      data: this.informeFinalDTO.datosAsignatura,
+      data: datosAsignatura,
     });
     dialogRef.afterClosed().subscribe((formValue) => {
       if (formValue) {
         const indiceEncontrado = this.informeFinalDTO.datosAsignatura?.findIndex(item => item.nrc === formValue.asignatura.nrc);
         if (indiceEncontrado !== -1) {
-          console.log(indiceEncontrado);
           if(indiceEncontrado!=undefined){
             this.informeFinalDTO.datosAsignatura![indiceEncontrado].promedioRendimientoAcademico={};
             this.informeFinalDTO.datosAsignatura![indiceEncontrado].promedioRendimientoAcademico!.primerParcial= formValue.promedioRendimientoAcademicoIUD;
@@ -335,10 +517,10 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     });
   }
 
-  addDatosTutorias(){
+  addDatosTutorias(datosAsignatura?:DatosAsignatura){
     const dialogRef = this.dialog.open(ModalTutoriaComponent, {
       width: '800px',
-      data: this.informeFinalDTO.datosAsignatura,
+      data: datosAsignatura,
     });
     dialogRef.afterClosed().subscribe((formValue) => {
       if (formValue) {
@@ -377,7 +559,9 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
   }
 
   save(){
-    alert(1);
+    this.blockedDocument = true;
+
+
   }
 
   guardarBorrador(){
@@ -408,5 +592,9 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
       complete: () => {
       },
     });
+  }
+
+  exportDataToPDF(){
+
   }
 }

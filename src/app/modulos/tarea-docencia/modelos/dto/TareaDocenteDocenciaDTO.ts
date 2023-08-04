@@ -10,4 +10,9 @@ export type TareaDocenteDocenciaDTO = {
   informeFinal?:InformeFinal;
   fechaEntrega?:Date;
   fechaModificacion?:Date;
+  rendimientoGeneralTodasMaterias?:number;
+  promedioDesviacionestandarGeneral?:number;
+  //Variables para barChart
+  name?: string;
+  value?: number;
 };

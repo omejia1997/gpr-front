@@ -63,6 +63,9 @@ import { ListarPeriodosComponent } from './pages/periodo/listar-periodos/listar-
 import { CrearPeriodoComponent } from './pages/periodo/crear-periodo/crear-periodo.component';
 import { EditarPeriodoComponent } from './pages/periodo/editar-periodo/editar-periodo.component';
 import { RevisarTareaAsignadaDocenciaComponent } from './modulos/tarea-docencia/paginas/tarea-docente/revisar-tarea-asignada-docencia/revisar-tarea-asignada-docencia.component';
+import { RevisarTodosInformeFinalSubidos } from './modulos/tarea-docencia/paginas/tarea-docente/revisar-todos-informe-final-subidos/revisar-todos-informe-final-subidos.component';
+import { RendimientoGeneralAsignaturasComponent } from './modulos/tarea-docencia/paginas/tarea-docente/dashboard-tarea-modulo-docencia/rendimiento-general-asignaturas/rendimiento-general-asignaturas.component';
+import { RendimientoDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/dashboard-tarea-modulo-docencia/rendimiento-general-asignaturas/rendimiento-docente/rendimiento-docente.component';
 
 
 const routes: Routes = [
@@ -131,6 +134,9 @@ const routes: Routes = [
   {path: 'gestionar-tarea-docente', component:GestionarTareaDocenteComponent,canActivate:[AuthGuard]},
   {path: 'revisar-tarea-asignada-docencia', component:RevisarTareaAsignadaDocenciaComponent,canActivate:[AuthGuard]},
   {path: 'realizar-informe-final-docencia', component:RealizarInformeFinalDocenciaComponent,canActivate:[AuthGuard]},
+  {path: 'revisar-todos-informe-final-subidos', component:RevisarTodosInformeFinalSubidos,canActivate:[AuthGuard]},
+  {path: 'rendimiento-general-asignaturas', component:RendimientoGeneralAsignaturasComponent,canActivate:[AuthGuard]},
+  {path: 'rendimiento-docente', component:RendimientoDocenteComponent,canActivate:[AuthGuard]},
   {path: '**', component:LoginComponent}
 ];
 
