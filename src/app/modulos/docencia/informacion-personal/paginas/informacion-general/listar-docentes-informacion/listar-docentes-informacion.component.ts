@@ -184,7 +184,7 @@ export class ListarDocentesInformacionComponent implements OnInit {
         nombreCompleto:value.nombreCompleto.trim().toLowerCase(),
         genero:value.genero.trim().toLowerCase(),
         estadoCivil:value.estadoCivil.trim().toLowerCase(),
-        nacionalidad:value.nacionalidad.trim().toLowerCase(),
+        nacionalidad:value.nacionalidad?value.nacionalidad.trim().toLowerCase():'',
         tipoSangre:value.tipoSangre.trim().toLowerCase(),
         etnia:value.etnia.trim().toLowerCase(),
         grupoEtnico:value.grupoEtnico.trim().toLowerCase(),
@@ -228,51 +228,51 @@ export class ListarDocentesInformacionComponent implements OnInit {
         this.dataTable = [];
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.filterPredicate = ((data, filter) => {
-          const a = !filter.tipoDocumento || data.tipoDocumento.toLowerCase().includes(filter.tipoDocumento);
-          const b = !filter.numeroDocumento || data.numeroDocumento.includes(filter.numeroDocumento);
-          const c = !filter.idEspe || data.idEspe.toLowerCase().includes(filter.idEspe);
-          const d = !filter.nombreCompleto || data.nombreCompleto.toLowerCase().includes(filter.nombreCompleto);
+          const isValid = (value, filterValue) => {
+            if (typeof value === 'string') {
+                return !filterValue || value.toLowerCase().includes(filterValue);
+            } else if (typeof value === 'number') {
+                const filterNumber = parseFloat(filterValue);
+                return isNaN(filterNumber) || value === filterNumber;
+            }
+            return true; // Si el valor no es ni cadena ni número, considerarlo válido
+        };
+          return isValid(data.tipoDocumento, filter.tipoDocumento) &&
+              isValid(data.numeroDocumento, filter.numeroDocumento) &&
+              isValid(data.idEspe, filter.idEspe) &&
+              isValid(data.nombreCompleto, filter.nombreCompleto) &&
+              isValid(data.genero, filter.genero) &&
+              isValid(data.estadoCivil, filter.estadoCivil) &&
+              isValid(data.nacionalidad, filter.nacionalidad) &&
+              isValid(data.tipoSangre, filter.tipoSangre) &&
+              isValid(data.aniosResidencia, filter.aniosResidencia) &&
+              isValid(data.etnia, filter.etnia) &&
+              isValid(data.grupoEtnico, filter.grupoEtnico) &&
+              isValid(data.discapacidad.discapacidadEspecial, filter.discapacidadEspecial) &&
+              isValid(data.discapacidad.tipoDiscapacidad, filter.tipoDiscapacidad) &&
+              isValid(data.discapacidad.numeroCarnet, filter.numeroCarnet) &&
+              isValid(data.discapacidad.enfermedadCatastrofica, filter.enfermedadCatastrofica) &&
+              isValid(data.discapacidad.tipoEnfermedadCatastrofica, filter.tipoEnfermedadCatastrofica) &&
+              isValid(data.domicilio.provincia, filter.provincia) &&
+              isValid(data.domicilio.canton, filter.canton) &&
+              isValid(data.domicilio.parroquia, filter.parroquia) &&
+              isValid(data.contactoEmergencia.nombresCompletos, filter.nombresCompletosContacto) &&
+              isValid(data.contactoEmergencia.tipoDocumento, filter.tipoDocumentoContacto) &&
+              isValid(data.contactoEmergencia.numeroDocumento, filter.numeroDocumentoContacto) &&
+              isValid(data.contactoEmergencia.parentesco, filter.parentesco) &&
+              isValid(data.contactoEmergencia.domicilio.provincia, filter.provinciaContacto) &&
+              isValid(data.contactoEmergencia.domicilio.canton, filter.cantonContacto) &&
+              isValid(data.contactoEmergencia.domicilio.parroquia, filter.parroquiaContacto) &&
+              isValid(data.informacionBancaria.tipoinstitucionFinanciera, filter.tipoinstitucionFinanciera) &&
+              isValid(data.informacionBancaria.nombreinstitucionFinanciera, filter.nombreinstitucionFinanciera) &&
+              isValid(data.informacionBancaria.tipoCuenta, filter.tipoCuenta) &&
+              isValid(data.formacionAcademica.nivelInstruccion, filter.nivelInstruccion) &&
+              isValid(data.formacionAcademica.institucion, filter.institucion) &&
+              isValid(data.formacionAcademica.tituloObtenido, filter.tituloObtenido) &&
+              isValid(data.formacionAcademica.numeroRegistroSenescyt, filter.numeroRegistroSenescyt) &&
+              isValid(data.formacionAcademica.pais, filter.pais);
+      }) as (PeriodicElement: any, string: any) => boolean;
 
-          const e = !filter.genero || data.genero.toLowerCase().includes(filter.genero);
-          const f = !filter.estadoCivil || data.estadoCivil.toLowerCase().includes(filter.estadoCivil);
-          const g = !filter.nacionalidad || data.nacionalidad.toLowerCase().includes(filter.nacionalidad);
-          const h = !filter.tipoSangre || data.tipoSangre.toLowerCase().includes(filter.tipoSangre);
-          const i = !filter.aniosResidencia || data.aniosResidencia===filter.aniosResidencia;
-          const j = !filter.etnia || data.etnia.toLowerCase().includes(filter.etnia);
-          const k = !filter.grupoEtnico || data.grupoEtnico.toLowerCase().includes(filter.grupoEtnico);
-
-          const l = !filter.discapacidadEspecial || data.discapacidad.discapacidadEspecial.toLowerCase().includes(filter.discapacidadEspecial);
-          const m = !filter.tipoDiscapacidad || data.discapacidad.tipoDiscapacidad.toLowerCase().includes(filter.tipoDiscapacidad);
-          const n = !filter.numeroCarnet || data.discapacidad.numeroCarnet.includes(filter.numeroCarnet);
-          const o = !filter.enfermedadCatastrofica || data.discapacidad.enfermedadCatastrofica.toLowerCase().includes(filter.enfermedadCatastrofica);
-          const p = !filter.tipoEnfermedadCatastrofica || data.discapacidad.tipoEnfermedadCatastrofica.toLowerCase().includes(filter.tipoEnfermedadCatastrofica);
-
-          const q = !filter.provincia || data.domicilio.provincia.toLowerCase().includes(filter.provincia);
-          const r = !filter.canton || data.domicilio.canton.toLowerCase().includes(filter.canton);
-          const s = !filter.parroquia || data.domicilio.parroquia.toLowerCase().includes(filter.parroquia);
-
-          const t = !filter.nombresCompletosContacto || data.contactoEmergencia.nombresCompletos.toLowerCase().includes(filter.nombresCompletosContacto);
-          const u = !filter.tipoDocumentoContacto || data.contactoEmergencia.tipoDocumento.toLowerCase().includes(filter.tipoDocumentoContacto);
-          const v = !filter.numeroDocumentoContacto || data.contactoEmergencia.numeroDocumento.includes(filter.numeroDocumentoContacto);
-          const w = !filter.parentesco || data.contactoEmergencia.parentesco.toLowerCase().includes(filter.parentesco);
-          const x = !filter.provinciaContacto || data.contactoEmergencia.domicilio.provincia.toLowerCase().includes(filter.provinciaContacto);
-          const y = !filter.cantonContacto || data.contactoEmergencia.domicilio.canton.toLowerCase().includes(filter.cantonContacto);
-          const z = !filter.parroquiaContacto || data.contactoEmergencia.domicilio.parroquia.toLowerCase().includes(filter.parroquiaContacto);
-
-          const aa = !filter.tipoinstitucionFinanciera || data.informacionBancaria.tipoinstitucionFinanciera.toLowerCase().includes(filter.tipoinstitucionFinanciera);
-          const bb = !filter.nombreinstitucionFinanciera || data.informacionBancaria.nombreinstitucionFinanciera.toLowerCase().includes(filter.nombreinstitucionFinanciera);
-          const cc = !filter.tipoCuenta || data.informacionBancaria.tipoCuenta.toLowerCase().includes(filter.tipoCuenta);
-
-          const dd = !filter.nivelInstruccion || data.formacionAcademica.nivelInstruccion.toLowerCase().includes(filter.nivelInstruccion);
-          const ee = !filter.institucion || data.formacionAcademica.institucion.toLowerCase().includes(filter.institucion);
-          const ff = !filter.tituloObtenido || data.formacionAcademica.tituloObtenido.toLowerCase().includes(filter.tituloObtenido);
-          const gg = !filter.tiempoEstudio || data.formacionAcademica.tiempoEstudio.includes(filter.tiempoEstudio);//Revisar creo no va
-          const hh = !filter.numeroRegistroSenescyt || data.formacionAcademica.numeroRegistroSenescyt.includes(filter.numeroRegistroSenescyt);
-          const ii = !filter.pais || data.formacionAcademica.pais.toLowerCase().includes(filter.pais);
-
-            return a && b && c &&d && e && f && g && h && i && j && k && l && m && n && o && p && q && r && s && t && u && v && w && x && y && z &&
-              aa && bb && cc && dd && ee && ff && gg && hh && ii;
-        }) as (PeriodicElement: any, string: any) => boolean;
 
         this.dataSource.paginator = this.paginator;
         this.blockedDocument = false;
