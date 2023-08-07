@@ -345,7 +345,7 @@ export class VerDocenteInformacionComponent implements OnInit {
       let anchoDisponible = (200-(columnX3+10));
       let coordenadaX = (anchoDisponible-this.widthImagenUser)/2;
       coordenadaX = columnX3+10+coordenadaX;
-      doc.addImage(this.imagenUser.fileBase64, 'JPEG',  coordenadaX , inicioEjeY,this.widthImagenUser , this.heigthImagenUser)
+      doc.addImage(this.imagenUser.fileBase64, 'JPEG',  coordenadaX , inicioEjeY,this.widthImagenUser , this.heigthImagenUser);
     }
     doc.setFont('Roboto-Medium');
     doc.text('Tipo de Documento:', columnX1 + 10, inicioEjeY);
