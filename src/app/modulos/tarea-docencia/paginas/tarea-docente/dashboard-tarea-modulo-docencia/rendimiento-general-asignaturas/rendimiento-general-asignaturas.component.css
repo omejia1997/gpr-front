@@ -6,3 +6,23 @@ h2{
 span{
   font-size: 15px;
 }
+
+.container{
+  box-shadow: 0px 0px 10px rgb(32, 31, 30), 0px 0px 15px rgb(114, 147, 200);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #EAECEE;
+}
+
+.clase-pequeño{
+  max-height: 20vh;
+}
+
+.clase-mediano{
+
+  height: 45vh;
+}
+
+/* .clase-grande{
+  height: 60vh;
+} */

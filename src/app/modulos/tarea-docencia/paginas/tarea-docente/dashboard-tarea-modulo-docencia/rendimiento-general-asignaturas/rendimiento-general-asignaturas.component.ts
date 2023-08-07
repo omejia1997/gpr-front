@@ -18,7 +18,7 @@ export class RendimientoGeneralAsignaturasComponent implements OnInit {
   tareaDocenteDocenciaDTO:TareaDocenteDocenciaDTO[]| null=[];
   buscarTermino: string = '';
   // options
-  view: [number,number] = [1200, 140];
+  // view: [number,number] = [1200, 140];
   showXAxis: boolean = true;
   showYAxis: boolean = true;
   gradient: boolean = false;

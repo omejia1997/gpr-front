@@ -27,8 +27,10 @@ function validarEntero(control: AbstractControl): { [key: string]: any } | null 
           >Selecciona este campo</mat-error
         >
       </mat-form-field> -->
+      <div>
       <h2 style="display: inline-block;font-size:15px">ASIGNATURA:</h2><span style="font-size:15px">{{datosAsignatura.asignatura}}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <h2 style="display: inline-block;font-size:15px">NRC:</h2><span style="font-size:15px">{{datosAsignatura.nrc}}</span>
+      </div>
 
       <mat-form-field class="custom-form-field" *ngIf="false">
         <input

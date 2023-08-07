@@ -107,6 +107,7 @@ export class ModalAsignaturaComponent implements OnInit {
 
   submitForm() {
     const formValue = this.myForm.value;
+    formValue.asignatura = formValue.asignatura.toUpperCase();
     this.dialogRef.close(formValue);
   }
 

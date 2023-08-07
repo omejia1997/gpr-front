@@ -4,22 +4,24 @@
 <div class="col-md-4" style="margin: auto;">
   <mat-icon>search</mat-icon><input type="text" style="width: 90%;" [(ngModel)]="buscarTermino" placeholder="Ingrese el Nombre del Docente">
 </div>
-<div *ngFor="let tareaDocente of filtrarItems()" (click)="onSelect(tareaDocente)">
-  <div class="text-center">
-    <h2>DOCENTE:</h2><span>{{tareaDocente.nombreCompletoDocente}}</span>
+<div class="container" *ngFor="let tareaDocente of filtrarItems()" (click)="onSelect(tareaDocente)">
+  <div [ngClass]="{'clase-pequeño': tareaDocente.seriesBar.length <=3, 'clase-mediano': tareaDocente.seriesBar.length <=6, 'clase-grande': tareaDocente.seriesBar.length >6}">
+    <div class="text-center">
+      <h2>DOCENTE:</h2><span>{{tareaDocente.nombreCompletoDocente}}</span>
+    </div>
+    <ngx-charts-bar-horizontal
+      [results]="tareaDocente.seriesBar"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [maxYAxisTickLength]="200"
+      [xScaleMax]="20">
+    </ngx-charts-bar-horizontal>
   </div>
-  <ngx-charts-bar-horizontal
-    [view]="view"
-    [results]="tareaDocente.seriesBar"
-    [gradient]="gradient"
-    [xAxis]="showXAxis"
-    [yAxis]="showYAxis"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="yAxisLabel"
-    [maxYAxisTickLength]="200"
-    [xScaleMax]="20">
-  </ngx-charts-bar-horizontal>
-
+  <br>
+<br>
 </div>
