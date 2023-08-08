@@ -42,7 +42,7 @@ export class RendimientoGeneralAsignaturasComponent implements OnInit {
           tareaDocente.nombreCompletoDocente = tareaDocente.docenteAsignado?.apellidoDocente+" "+tareaDocente.docenteAsignado?.nombreDocente;
           tareaDocente.informeFinal?.datosAsignatura?.forEach(datosAsignatura=>{
             seriesBar = {}
-            seriesBar.name = datosAsignatura.asignatura;
+            seriesBar.name = datosAsignatura.asignatura + " "+datosAsignatura.nrc;
             seriesBar.value = datosAsignatura.promedioFinalRendimientoAcademico?datosAsignatura.promedioFinalRendimientoAcademico:0;
             tareaDocente.seriesBar?.push(seriesBar);
           })

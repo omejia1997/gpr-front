@@ -15,7 +15,7 @@ span{
 }
 
 .clase-pequeño{
-  max-height: 20vh;
+  max-height: 22vh;
 }
 
 .clase-mediano{
@@ -23,6 +23,6 @@ span{
   height: 45vh;
 }
 
-/* .clase-grande{
+.clase-grande{
   height: 60vh;
-} */
+}
