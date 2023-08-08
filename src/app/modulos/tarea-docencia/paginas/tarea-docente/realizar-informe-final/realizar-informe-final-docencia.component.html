@@ -9,7 +9,11 @@
       <p-progressSpinner *ngIf="blockedDocument" [style]="{width: '150px', height: '150px', margin:'auto'}"
         styleClass="custom-spinner"></p-progressSpinner>
     </div>
-    <button type="button" (click)="exportDataToPDF()"> Exportar Data a PDF</button>
+
+    <div class="d-flex justify-content-center button-container">
+      <button (click)="exportDataToPDF()" class="" type="button" class="btn btn-outline-primary btn-sm">Exportar Datos a
+        PDF</button>
+    </div>
     <form (ngSubmit)="f.form.valid && save()" #f="ngForm" enctype="multipart/form-data">
 
       <nav>

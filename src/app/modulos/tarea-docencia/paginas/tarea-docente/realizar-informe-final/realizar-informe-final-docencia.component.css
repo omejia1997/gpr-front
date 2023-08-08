@@ -113,3 +113,7 @@ ul{
 .delete-icon{
   color: red;
 }
+
+.button-container{
+  height:30px;
+}

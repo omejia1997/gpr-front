@@ -2,9 +2,8 @@
   <span class="titulo navbar-brand">GPR - MECÁNICA</span>
 </nav>
 
-<div class="row">
-  <div class="imageLeft col-md-8 col-sm-6">
-    <!--<img src="https://uar.espe.edu.ec/wp-content/uploads/2020/09/Espe-Sangolgui.jpg" alt="" width="100%" height="100%">-->
+<div class="row" style="justify-content: center;">
+  <!-- <div class="imageLeft col-md-8 col-sm-6">
     <div class="contenedor">
       <div class="slider-frame">
         <ul>
@@ -18,18 +17,12 @@
     </div>
     </div>
 
-  </div>
+  </div> -->
   <div class="abs-center col-md-4 col-sm-6" style="display: flex;">
     <form [formGroup]="formulario2" (ngSubmit)="consultar()" class="border p-3 form">
       <div class="imagenUsuario">
-        <!--<img src="https://cdn-icons-png.flaticon.com/512/64/64572.png">-->
         <img src="./assets/img/user.png">
       </div>
-      <!--<span style="font-size: 25px;">
-        Login
-      </span>
-      <hr>
-    -->
       <p class="text-danger" *ngIf="!flag">Credenciales incorrectas</p>
 
       <div class="form-group mb-3">
