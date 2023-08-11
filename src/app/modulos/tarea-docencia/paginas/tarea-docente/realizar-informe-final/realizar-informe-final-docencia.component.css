@@ -102,6 +102,7 @@ h2{
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > td {
   border: 3px solid #dee2e6; /* Puedes ajustar el grosor (3px) y el color (#dee2e6) según tus preferencias */
+  /* border: 1.5px solid #010c18;  */
 }
 
 ul{
@@ -111,7 +112,7 @@ ul{
   color: blue;
 }
 .delete-icon{
-  color: red;
+  color: #830B10;
 }
 
 .button-container{

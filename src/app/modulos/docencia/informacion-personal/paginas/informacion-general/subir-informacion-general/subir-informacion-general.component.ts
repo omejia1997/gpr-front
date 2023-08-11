@@ -213,12 +213,13 @@ export class SubirInformacionGeneralComponent implements OnInit {
       if(data){
         this.docente = data;
         if(this.docente.imagenUser?.urlImagen){
-          //this.imagenURL = this.docente.imagenUser?.urlImagen;
           this.docenteInformacionService.obtenerImagenUser(this.docente.imagenUser?.nombreImagen)
             .subscribe((data)=>{
-              this.docente.imagenUser=data;
               this.imagenURL = this.docente.imagenUser?.urlImagen;
+              this.docente.imagenUser=data;
+              this.docente.imagenUser.urlImagen=this.imagenURL;
               this.imagenURL= "data:image/jpeg;base64,"+this.docente.imagenUser.fileBase64;
+              console.log(this.docente.imagenUser)
             });
         }else{
           this.imagenURL =
