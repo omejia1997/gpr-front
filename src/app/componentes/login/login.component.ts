@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import{FormGroup,FormBuilder,Validators} from '@angular/forms'
-import{UsuarioService} from '../../servicios/usuario.service'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Docente } from 'src/app/models/Docente';
 import { Observable } from 'rxjs';
-import { TareaDocente } from 'src/app/models/TareaDocente';
-import { TareaService } from 'src/app/servicios/tarea.service';
 import { TareasRealizadas } from 'src/app/models/TareasRealizadas';
-
+import { TareaService } from 'src/app/servicios/tarea.service';
+import { UsuarioService } from '../../servicios/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -42,49 +39,35 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.validarInicioSesionEnCache();
   }
 
-  // getTareas() {
-  //   this.getTareasDocente$.subscribe(tareas =>{
-  //     this.tareasDocente = tareas;
-  //     var cont=0;
-  //     this.tareasDocente.forEach(tareaDocent => {
-  //       cont++;
-  //       let objetoTarea = {
-  //         "id":cont,
-  //         "revisor":tareaDocent.nombreDocenteRevisor,
-  //         "proceso":tareaDocent.tipoProceso,
-  //         "proyecto":tareaDocent.nombreProyecto,
-  //         "tarea":tareaDocent.nombreTarea,
-  //         "tipoTarea":tareaDocent.tipoTarea,
-  //         "prioridad":tareaDocent.prioridadTarea,
-  //         "peso":tareaDocent.pesoTarea,
-  //         "fechaInicio":tareaDocent.fechaCreaciontarea,
-  //         "fechaVencimiento":tareaDocent.fechaEntregaTarea,
-  //         "responsable":tareaDocent.responsable,
-  //         "tareaIndicadors":tareaDocent.tareaIndicadors,
-  //         "nombreArchivo":tareaDocent.nombreArchivo,
-  //         "urlArchivo":tareaDocent.urlArchivo
-  //       }
-  //       this.dataTable.push(objetoTarea);
-  //     });
-  //     //this.tareaService.setTareasDocenteModel(this.dataTable);
-  //     localStorage.setItem('dataTable', JSON.stringify(this.dataTable));
-  //   });
-  // }
+  validarInicioSesionEnCache(){
+    if (localStorage.getItem('usuario') != null) {
+      if (localStorage.getItem('est') == '0') {
+        this.router.navigate(['./pagina-validador']);
+
+      }else if(localStorage.getItem('est') == '2'){
+        this.router.navigate(['./cambiar-contrasenia']);
+      }
+      else {
+        this.router.navigate(['./home']);
+      }
+    }
+  }
+
+  changeFlag(){
+    this.flag = true;
+  }
 
   iniciarFormulario(){
     this.formulario2=this.fb.group({
       usuario:['',Validators.required],
       password:['',Validators.required],
     })
-
   }
 
   consultar(){
-
-    //console.log(this.formulario2);
-
     this._usuario.login(this.formulario2.value.usuario,this.formulario2.value.password).subscribe(respuesta=>{
       //console.log(respuesta)
       this.procesarUsuarios2(respuesta)
@@ -103,26 +86,18 @@ export class LoginComponent implements OnInit {
       }) => {
         //console.log(element.nombreUsuario)
         if(element.nombreUsuario!=null){
-          // this.getTareas();
           localStorage.setItem('usuario',element.nombreUsuario);
           localStorage.setItem('est', element.estadoUsuario);
-          //console.log("ingresa");
 
-          //obtenerperfilUsuario
           this.perfil = this._usuario.obtenerPerfil(element.codigoUsuario).subscribe({
             next: (res) => {
               if(res) {
                 this.perfil =res;
-                //this._usuario.setDescPerfil(this.perfil.descPerfil);
-
-                //console.log(this.docente.codigoDocente);
-
                 localStorage.setItem('codigoPerfil',this.perfil.codigoPerfil);
                 localStorage.setItem('descPerfil',this.perfil.descPerfil);
               }
             }
           });
-
 
           localStorage.setItem('codUsuario',element.codigoUsuario);
           if(element.nombreUsuario!='admin'){
@@ -145,28 +120,20 @@ export class LoginComponent implements OnInit {
     if (localStorage.getItem('usuario') != null) {
       if (localStorage.getItem('est') == '0') {
         this.router.navigate(['./pagina-validador']);
-
       }else if(localStorage.getItem('est') == '2'){
         this.router.navigate(['./cambiar-contrasenia']);
       }
       else {
         this.router.navigate(['./home']);
       }
-
-
     } else {
       this.flag = false;
       this.router.navigate(['./login']);
     }
-
-
-
-
   }
   mostrarcontrasenia(){
     this.visible=!this.visible;
     this.changetype=!this.changetype;
-
   }
 
 }

@@ -26,7 +26,7 @@
 
       <div class="form-group mb-3">
         <label for="email" style="font-weight: bold;">Usuario:</label>
-        <input type="email" name="email" id="email" class="form-control" formControlName="usuario">
+        <input type="email" name="email" id="email" class="form-control" formControlName="usuario" (input)="changeFlag()">
         <p class="text-danger"
           *ngIf="formulario2.get('usuario')?.errors?.['required'] && formulario2.get('usuario')?.touched">Complete este
           campo</p>
@@ -34,7 +34,7 @@
       <div class="form-group mb-3">
         <label for="password" style="font-weight: bold;">Contraseña:</label>
         <input [type]="changetype?'password':'text'" name="password" id="password" class="form-control"
-          formControlName="password">
+          formControlName="password" (input)="changeFlag()">
 
         <input type="checkbox" (change)="mostrarcontrasenia()" class="form-check-input" id="mostrarcontrasenia">
         <span class="form-check-label" style="font-size: 13px;" for="mostrarcontrasenia"> Mostrar contraseña</span>

@@ -18,3 +18,8 @@ h3{
   background-color: black;
   color: white;
 }
+
+.text-click{
+  font-family: Comic Sans MS, Comic Sans, cursive;
+  font-weight: bold;color: rgb(4, 4, 63);
+}
