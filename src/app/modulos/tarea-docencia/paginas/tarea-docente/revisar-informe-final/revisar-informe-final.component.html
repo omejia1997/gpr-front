@@ -13,6 +13,7 @@
       <button (click)="exportDataToPDF()" type="button" class="btn btn-outline-primary btn-sm">Exportar Datos a
         PDF</button>
     </div>
+    <br><br>
     <form (ngSubmit)="f.form.valid && save()" #f="ngForm" enctype="multipart/form-data">
 
       <nav>
@@ -260,258 +261,163 @@
                 <tr>
                   <td class="text-center align-middle">1</td>
                   <td class="text-center align-middle">Actualicé los sílabos en el sistema académico y entregué a los estudiante</td>
-                  <td class="text-center align-middle"><input type="radio" [disabled]="true" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="1"
-                      name="componente1" value="1"></td>
-                  <td class="text-center align-middle"><input type="radio" [disabled]="true" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="2"
-                      name="componente1" value="2"></td>
-                  <td class="text-center align-middle"><input type="radio" [disabled]="true" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="3"
-                      name="componente1" value="3"></td>
-                  <td class="text-center align-middle"><input type="radio" [disabled]="true" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="4"
-                      name="componente1" value="4"></td>
-                  <td class="text-center align-middle"><input type="radio" [disabled]="true" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="5"
-                      name="componente1" value="5"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento1" name="razonamiento1" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento1"> </textarea></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente1=='1'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente1=='2'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente1=='3'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente1=='4'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente1=='5'">X</span></td>
+                  <td class="text-center align-middle"> {{informeFinalDTO.evaluacionDocente!.razonamiento1}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">2</td>
                   <td class="text-center align-middle">Asistí regular y puntualmente a las clases</td>
-                  <td class="text-center align-middle"><input type="radio" name="componente2" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente2" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente2" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente2" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente2" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente2"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento2" name="razonamiento2" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento2"> </textarea></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente2=='1'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente2=='2'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente2=='3'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente2=='4'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente2=='5'">X</span></td>
+                  <td class="text-center align-middle"> {{informeFinalDTO.evaluacionDocente!.razonamiento2}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">3</td>
                   <td class="text-center align-middle">Cumplí con las fechas del calendario académico</td>
-                  <td class="text-center align-middle"><input type="radio" name="componente3" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente3" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente3" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente3" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente3" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente3"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento3" name="razonamiento3" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento3"> </textarea></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente3=='1'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente3=='2'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente3=='3'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente3=='4'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente3=='5'">X</span></td>
+                  <td class="text-center align-middle">{{informeFinalDTO.evaluacionDocente!.razonamiento3}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">4</td>
                   <td class="text-center align-middle">Elaboré apuntes y/o material didáctico de la asignatura </td>
-                  <td class="text-center align-middle"><input type="radio" name="componente4" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente4" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente4" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente4" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente4" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente4"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento4" name="razonamiento4" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento4"> </textarea></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente4=='1'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente4=='2'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente4=='3'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente4=='4'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente4=='5'">X</span></td>
+                  <td class="text-center align-middle"> {{informeFinalDTO.evaluacionDocente!.razonamiento4}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">5</td>
                   <td class="text-center align-middle">Desarrolle guías y prácticas de laboratorio según los recursos existentes </td>
-                  <td class="text-center align-middle"><input type="radio" name="componente5" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente5" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente5" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente5" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente5" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente5"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento5" name="razonamiento5" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento5"> </textarea></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente5=='1'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente5=='2'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente5=='3'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente5=='4'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente5=='5'">X</span></td>
+                  <td class="text-center align-middle"> {{informeFinalDTO.evaluacionDocente!.razonamiento5}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">6</td>
                   <td class="text-center align-middle">Vincule la teoría con la práctica profesional </td>
-                  <td class="text-center align-middle"><input type="radio" name="componente6" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente6" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente6" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente6" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente6" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente6"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento6" name="razonamiento6" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento6"> </textarea></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente6=='1'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente6=='2'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente6=='3'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente6=='4'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente6=='5'">X</span></td>
+                  <td class="text-center align-middle"> {{informeFinalDTO.evaluacionDocente!.razonamiento6}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">7</td>
                   <td class="text-center align-middle">Aplique técnicas/estrategias innovadoras en clase </td>
-                  <td class="text-center align-middle"><input type="radio" name="componente7" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente7" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente7" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente7" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente7" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente7"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento7" name="razonamiento7" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento7"> </textarea></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente7=='1'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente7=='2'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente7=='3'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente7=='4'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente7=='5'">X</span></td>
+                  <td class="text-center align-middle"> {{informeFinalDTO.evaluacionDocente!.razonamiento7}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">8</td>
                   <td class="text-center align-middle">Realice una articulación horizontal y vertical con otras asignaturas </td>
-                  <td class="text-center align-middle"><input type="radio" name="componente8" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente8" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente8" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente8" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente8" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente8"></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente8=='1'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente8=='2'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente8=='3'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente8=='4'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente8=='5'">X</span></td>
                   <td class="text-center align-middle"><textarea id="razonamiento8" name="razonamiento8" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento8"> </textarea></td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">9</td>
                   <td class="text-center align-middle">Realice el seguimiento al sílabo y se cumplieron los contenidos previstos</td>
-                  <td class="text-center align-middle"><input type="radio" name="componente9" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente9" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente9" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente9" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente9" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente9"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento9" name="razonamiento9" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento9"> </textarea></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente9=='1'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente9=='2'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente9=='3'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente9=='4'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="informeFinalDTO.evaluacionDocente!.componente9=='5'">X</span></td>
+                  <td class="text-center align-middle">{{informeFinalDTO.evaluacionDocente!.razonamiento9}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">10</td>
                   <td class="text-center align-middle">Se alcanzaron los resultados de aprendizaje planeados en el sílabo </td>
-                  <td class="text-center align-middle"><input type="radio" name="componente10" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente10" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente10" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente10" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente10" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente10"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento10" name="razonamiento10" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento10"> </textarea></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente10=='1'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente10=='2'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente10=='3'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente10=='4'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente10=='5'">X</span></td>
+                  <td class="text-center align-middle">{{informeFinalDTO.evaluacionDocente!.razonamiento10}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">11</td>
                   <td class="text-center align-middle">Utilice los recursos bibliográficos propuestos</td>
-                  <td class="text-center align-middle"><input type="radio" name="componente11" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente11" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente11" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente11" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente11" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente11"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento11" name="razonamiento11" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento11"> </textarea></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente11=='1'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente11=='2'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente11=='3'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente11=='4'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente11=='5'">X</span></td>
+                  <td class="text-center align-middle">{{informeFinalDTO.evaluacionDocente!.razonamiento11}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">12</td>
                   <td class="text-center align-middle">Realice retroalimentación oportuna de las soluciones de las evaluaciones </td>
-                  <td class="text-center align-middle"><input type="radio" name="componente12" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente12" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente12" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente12" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente12" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente12"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento12" name="razonamiento12" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento12"> </textarea></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente12=='1'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente12=='2'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente12=='3'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente12=='4'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente12=='5'">X</span></td>
+                  <td class="text-center align-middle"> {{informeFinalDTO.evaluacionDocente!.razonamiento12}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">13</td>
                   <td class="text-center align-middle">Brinde confianza para responder preguntas e interactuar sin temores</td>
-                  <td class="text-center align-middle"><input type="radio" name="componente13" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente13" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente13" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente13" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente13" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente13"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento13" name="razonamiento13" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento13"> </textarea></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente13=='1'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente13=='2'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente13=='3'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente13=='4'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente11=='5'">X</span></td>
+                  <td class="text-center align-middle"> {{informeFinalDTO.evaluacionDocente!.razonamiento13}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">14</td>
                   <td class="text-center align-middle">Se propuso un horario de consultas, tutorías de reforzamiento</td>
-                  <td class="text-center align-middle"><input type="radio" name="componente14" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente14" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente14" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente14" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente14" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente14"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento14" name="razonamiento14" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento14"> </textarea></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente14=='1'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente14=='2'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente14=='3'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente14=='4'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente14=='5'">X</span></td>
+                  <td class="text-center align-middle"> {{informeFinalDTO.evaluacionDocente!.razonamiento14}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">15</td>
                   <td class="text-center align-middle">Coordine el avance de los contenidos con otros docentes de la misma asignatura </td>
-                  <td class="text-center align-middle"><input type="radio" name="componente15" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente15" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente15" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente15" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente15" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente15"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento15" name="razonamiento15" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento15"> </textarea></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente15=='1'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente15=='2'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente15=='3'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente15=='4'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente15=='5'">X</span></td>
+                  <td class="text-center align-middle"> {{informeFinalDTO.evaluacionDocente!.razonamiento15}}</td>
                 </tr>
                 <tr>
                   <td class="text-center align-middle">16</td>
                   <td class="text-center align-middle">Realicé los portafolios docentes de las asignaturas conforme la normativa establecida </td>
-                  <td class="text-center align-middle"><input type="radio" name="componente16" value="1"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente16" value="2"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente16" value="3"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente16" value="4"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
-                  <td class="text-center align-middle"><input type="radio" name="componente16" value="5"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente16"></td>
-                  <td class="text-center align-middle"><textarea id="razonamiento16" name="razonamiento16" rows="4" cols="70%"
-                      [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento16"> </textarea></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente16=='1'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente16=='2'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente16=='3'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente16=='4'">X</span></td>
+                  <td class="text-center align-middle"> <span *ngIf="informeFinalDTO.evaluacionDocente!.componente16=='5'">X</span></td>
+                  <td class="text-center align-middle"> {{informeFinalDTO.evaluacionDocente!.razonamiento16}}</td>
                 </tr>
               </tbody>
             </table>
