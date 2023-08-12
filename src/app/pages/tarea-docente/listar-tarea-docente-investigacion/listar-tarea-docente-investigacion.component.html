@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <h2 style="text-align: center;">Actividades a realizar</h2>
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Actividad</th>
+          <th>Revisor</th>
+          <th>Fecha Límite de Entrega</th>
+          <th>Proyecto</th>
+          <th>Estado de la Actividad</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tarea of tareasDocenteInvestigacionAsignadas">
+          <td>{{ tarea.codigoTarea?.nombreTarea }}</td>
+          <td>{{ tarea.codigoTarea?.nombreDocenteRevisor }}</td>
+          <td>{{ tarea.codigoTarea?.fechaEntregaTarea | date:"short":'+00:00' }}</td>
+          <td>{{ tarea.codigoTarea?.codigoProyecto?.nombreProyecto }}</td>
+          <td>{{ tarea.estadoTareaDocente }}</td>
+          <td>
+            <button *ngIf="tarea.estadoTareaDocente=='ASIGNADA'||tarea.estadoTareaDocente=='DENEGADO'"
+              (click)="realizarTarea(tarea)" class="btn btn-success btn-sm">Realizar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover text-center table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Actividad</th>
+          <th>Revisor</th>
+          <th>Fecha Límite de Entrega</th>
+          <th>Proyecto</th>
+          <th>Estado de la Actividad</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tarea of tareasInvestigacionNoAsignadas">
+          <td>{{ tarea.codigoTarea?.nombreTarea }}</td>
+          <td>{{ tarea.codigoTarea?.nombreDocenteRevisor }}</td>
+          <td>{{ tarea.codigoTarea?.fechaEntregaTarea | date:"short":'+00:00' }}</td>
+          <td>{{ tarea.codigoTarea?.codigoProyecto?.nombreProyecto }}</td>
+          <td>{{ tarea.estadoTareaDocente }}</td>
+          <td>
+            <button *ngIf="tarea.estadoTareaDocente=='ASIGNADA'||tarea.estadoTareaDocente=='DENEGADO'"
+              (click)="realizarTarea(tarea)" class="btn btn-success btn-sm">Realizar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

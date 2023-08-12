@@ -22,6 +22,8 @@ import { DatosAsignatura } from '../../../modelos/InformeFinal/DatosAsignatura';
 
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
+import { TematicaCapacitacion } from '../../../modelos/InformeFinal/TematicaCapacitacion';
+import { Anexo2 } from '../../../modelos/InformeFinal/Anexo2';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -259,6 +261,13 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     this.dataString.title = 'ANTECEDENTE';
     this.dataString.data = antecedente;
     this.openModalAddString();
+  }
+
+  eliminarAntecedente(antecedente: string) {
+    this.informeFinalDTO.antecedentes =
+      this.informeFinalDTO.antecedentes?.filter(
+        (item) => item !== antecedente
+      );
   }
 
   addObjetivo() {
@@ -521,18 +530,29 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
       );
   }
 
-  addAnexo2() {
+  addAnexo2(anexo2?:Anexo2) {
     const dialogRef = this.dialog.open(ModalAnexo2Component, {
       width: '700px',
-      data: this.dataString,
+      data: anexo2,
     });
     dialogRef.afterClosed().subscribe((formValue) => {
       if (formValue) {
+        if(anexo2){
+          this.informeFinalDTO.anexo2 =
+            this.informeFinalDTO.anexo2.filter(
+              (item) => item.componente !== anexo2.componente
+            );
+        }
         this.informeFinalDTO.anexo2?.push(formValue);
       }
     });
   }
-
+  eliminarAnexo2(anexo2?:Anexo2) {
+    this.informeFinalDTO.anexo2 =
+      this.informeFinalDTO.anexo2.filter(
+        (item) => item.componente !== anexo2.componente
+      );
+  }
 
   addDatosInformativos(datosAsignatura?: DatosAsignatura) {
     const dialogRef = this.dialog.open(ModalAsignaturaComponent, {
@@ -708,16 +728,29 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
     }
   }
 
-  addCapacitacionMejoraDocente() {
+  addCapacitacionMejoraDocente(tematicaCapacitacion?: TematicaCapacitacion) {
     const dialogRef = this.dialog.open(ModalMejoraDocenteComponent, {
-      width: '500px'
+      width: '500px',
+      data: tematicaCapacitacion,
     });
     dialogRef.afterClosed().subscribe((formValue) => {
       if (formValue) {
+        if(tematicaCapacitacion){
+          this.informeFinalDTO.tematicaCapacitaciones =
+            this.informeFinalDTO.tematicaCapacitaciones.filter(
+            item => item.areaConocimiento !== tematicaCapacitacion.areaConocimiento)
+        }
         this.informeFinalDTO.tematicaCapacitaciones?.push(formValue);
       }
     });
   }
+
+  eliminarCapacitacionMejoraDocente(tematicaCapacitacion: TematicaCapacitacion) {
+    this.informeFinalDTO.tematicaCapacitaciones =
+      this.informeFinalDTO.tematicaCapacitaciones.filter(
+      item => item.areaConocimiento !== tematicaCapacitacion.areaConocimiento)
+  }
+
 
   save() {
     this.confirmationService.confirm({

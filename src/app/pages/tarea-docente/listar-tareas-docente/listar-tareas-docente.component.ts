@@ -11,18 +11,25 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-listar-tareas',
-  templateUrl: './listar-tareas-docente.html'
+  templateUrl: './listar-tareas-docente.html',
+  styleUrls: ['./listar-tareas-docente.component.css']
 })
 export class ListarTareasDocenteComponent implements OnInit {
 
-  getTareas$: Observable<TareaDocente[]>;
+  getTareasInvestigacion$: Observable<TareaDocente[]>;
   getTareasVinculacion$: Observable<TareaDocenteVinculacion[]>;
   getTareasDocencia$: Observable<TareaDocenteDocenciaDTO[]>;
-  tareas: TareaDocente[] = [];
+  tareasInvestigacion: TareaDocente[] = [];
   tareasVinculacion: TareaDocenteVinculacion[] = [];
+  tareasDocencia: TareaDocenteDocenciaDTO[]=[]
   totalTareasrealizar: any=[];
   docente: any = {};
   codigoDocente:any;
+  idEspeDocenteRevisor:any;
+
+  cantidadTareasInvestigacionAsignadas:number=0;
+  cantidadTareasVinculacionAsignadas:number=0;
+  cantidadTareasDocenciaAsignadas:number=0;
 
   constructor(
     private tareaService: TareaService,
@@ -37,60 +44,60 @@ export class ListarTareasDocenteComponent implements OnInit {
 
     //this.getTareas$ = this.tareaService.obtenerTareasPorDocente(this.docente.codigoDocente);
     this.codigoDocente=localStorage.getItem('codigoDocente');
+    this.idEspeDocenteRevisor = localStorage.getItem('idEspeDocenteRevisor');
     //console.log(this.codigoDocente);
     //this.getTareas$ = this.tareaService.obtenerTareasPorDocente(this.docente.codigoDocente);
-    this.getTareas$ = this.tareaService.obtenerTareasPorDocente(this.codigoDocente);
+    this.getTareasInvestigacion$ = this.tareaService.obtenerTareasPorDocente(this.codigoDocente);
     this.getTareasVinculacion$ = this.tareaVinculacionService.obtenerTareasPorDocente(this.codigoDocente);
-    this.getTareasDocencia$ = this.tareaDocenciaService.obtenerTareasPorDocente(this.codigoDocente);
-
+    this.getTareasDocencia$ = this.tareaDocenciaService.listarTodasTareasAsignadasPorDocente(this.idEspeDocenteRevisor);
   }
 
   ngOnInit(): void {
-   this.getTareas();
-
+    this.getTareasInvestigacion();
+    this.getTareasVinculacion();
+    this.getTareasDocencia();
   }
 
-  getTareas() {
-    this.getTareas$.subscribe(tareas =>{
-      this.tareas = tareas;
-      this.getTareasVinculacion();
+  getTareasInvestigacion() {
+    this.getTareasInvestigacion$.subscribe(tareas =>{
+      this.tareasInvestigacion = tareas;
     });
   }
 
   getTareasVinculacion() {
-    this.totalTareasrealizar=this.totalTareasrealizar.concat(this.tareas,this.tareasVinculacion);
-      this.totalTareasrealizar.sort(function (a:any, b:any) {//Ordenar Array
-        if (a.estadoTareaDocente === "ASIGNADA") {
-          return -1;
-        }
-        return 0;
-      });
     this.getTareasVinculacion$.subscribe(tareas =>{
-      this.totalTareasrealizar = [];
       this.tareasVinculacion = tareas;
-      this.totalTareasrealizar=this.totalTareasrealizar.concat(this.tareas,this.tareasVinculacion);
-      this.totalTareasrealizar.sort(function (a:any, b:any) {//Ordenar Array
-        if (a.estadoTareaDocente === "ASIGNADA") {
-          return -1;
-        }
-        return 0;
-      });
     });
   }
 
-  realizarTarea(tareaDocente:any){
-    if(tareaDocente.codigoDocente){
-      this.tareaService.setTareaDocente(tareaDocente);
-      this.router.navigate(['realizar-tarea-docente']);
-    }else if(tareaDocente.id){
-      this.tareaVinculacionService.setTareaDocente(tareaDocente);
-      this.router.navigate(['realizar-tarea-vinculacion']);
-    }
+  getTareasDocencia() {
+    this.getTareasDocencia$.subscribe(tareas =>{
+      this.tareasDocencia = tareas;
+    });
   }
 
-  /*editarTarea(tareaDocenteProyecto:TareaDocenteProyecto){
-    //tareaDocente TareaDocente
-    this.tareaService.setTarea(tareaDocenteProyecto);
-    this.router.navigate(['editar-tarea']);
-  }*/
+  // realizarTarea(tareaDocente:any){
+  //   if(tareaDocente.codigoDocente){
+  //     this.tareaService.setTareaDocente(tareaDocente);
+  //     this.router.navigate(['realizar-tarea-docente']);
+  //   }else if(tareaDocente.id){
+  //     this.tareaVinculacionService.setTareaDocente(tareaDocente);
+  //     this.router.navigate(['realizar-tarea-vinculacion']);
+  //   }
+  // }
+
+  navegarVerTareasInvestigacion(){
+    this.tareaService.setTareasDocenteModel(this.tareasInvestigacion);
+    this.router.navigate(['listar-tarea-docente-investigacion']);
+  }
+
+  navegarVerTareasVinculacion(){
+    this.tareaVinculacionService.setTareasDocenteModel(this.tareasVinculacion);
+    this.router.navigate(['listar-tareas-docente-vinculacion']);
+  }
+
+  navegarVerTareasDocencia(){
+    this.tareaDocenciaService.setTareasDocenteDocencia(this.tareasDocencia);
+    this.router.navigate(['revisar-tarea-asignada-docencia']);
+  }
 }

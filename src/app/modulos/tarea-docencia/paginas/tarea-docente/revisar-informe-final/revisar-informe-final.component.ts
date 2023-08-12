@@ -643,28 +643,34 @@ export class RevisarInformeFinalComponent implements OnInit {
       });
   }
 
+  getMonthName(month: number): string {
+    const monthNames = [
+      'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+      'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+    ];
+    return monthNames[month];
+  }
+
   exportDataToPDF() {
 
     //Datos Rendimiento Academico
     const cuerpoTablaRendimiento = [];
     for (let i = 0; i < this.informeFinalDTO.datosAsignatura.length; i++) {
       const fila = [
-        { text: this.informeFinalDTO.datosAsignatura[i].asignatura, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].nrc, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesMatriculados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesMatriculados.numeroHombres, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesMatriculados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesMatriculados.numeroMujeres, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesMatriculados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesMatriculados.total, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesRetirados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesRetirados.numeroHombres, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesRetirados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesRetirados.numeroMujeres, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesRetirados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesRetirados.total, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesReprobados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesReprobados.numeroHombres, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesReprobados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesReprobados.numeroMujeres, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesReprobados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesReprobados.total, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesAprobados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesAprobados.numeroHombres, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesAprobados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesAprobados.numeroMujeres, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesAprobados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesAprobados.total, fontSize: 12 },
-        { text: 'hola' },
-
+        { text: this.informeFinalDTO.datosAsignatura[i].asignatura, fontSize: 10, bold: true },
+        { text: this.informeFinalDTO.datosAsignatura[i].nrc, fontSize: 10, bold: true },
+        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesMatriculados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesMatriculados.numeroHombres, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesMatriculados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesMatriculados.numeroMujeres, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesMatriculados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesMatriculados.total, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesRetirados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesRetirados.numeroHombres, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesRetirados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesRetirados.numeroMujeres, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesRetirados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesRetirados.total, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesReprobados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesReprobados.numeroHombres, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesReprobados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesReprobados.numeroMujeres, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesReprobados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesReprobados.total, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesAprobados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesAprobados.numeroHombres, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesAprobados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesAprobados.numeroMujeres, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].estudiantesAprobados == null ? '' : this.informeFinalDTO.datosAsignatura[i].estudiantesAprobados.total, fontSize: 10 },
       ];
       cuerpoTablaRendimiento.push(fila);
     }
@@ -673,15 +679,15 @@ export class RevisarInformeFinalComponent implements OnInit {
     const cuerpoTablaPromedioRendimiento = [];
     for (let i = 0; i < this.informeFinalDTO.datosAsignatura.length; i++) {
       const fila = [
-        { text: this.informeFinalDTO.datosAsignatura[i].nrc, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].promedioRendimientoAcademico == null ? '' : this.informeFinalDTO.datosAsignatura[i].promedioRendimientoAcademico.primerParcial, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].promedioRendimientoAcademico == null ? '' : this.informeFinalDTO.datosAsignatura[i].promedioRendimientoAcademico.segundoParcial, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].promedioRendimientoAcademico == null ? '' : this.informeFinalDTO.datosAsignatura[i].promedioRendimientoAcademico.tercerParcial, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].promedioFinalRendimientoAcademico == null ? '' : this.informeFinalDTO.datosAsignatura[i].promedioFinalRendimientoAcademico, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].desviacionEstandar == null ? '' : this.informeFinalDTO.datosAsignatura[i].desviacionEstandar.primerParcial, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].desviacionEstandar == null ? '' : this.informeFinalDTO.datosAsignatura[i].desviacionEstandar.segundoParcial, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].desviacionEstandar == null ? '' : this.informeFinalDTO.datosAsignatura[i].desviacionEstandar.tercerParcial, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].promedioFinalDesviacionEstandar == null ? '' : this.informeFinalDTO.datosAsignatura[i].promedioFinalDesviacionEstandar, fontSize: 12 },
+        { text: this.informeFinalDTO.datosAsignatura[i].nrc, fontSize: 10, bold: true },
+        { text: this.informeFinalDTO.datosAsignatura[i].promedioRendimientoAcademico == null ? '' : this.informeFinalDTO.datosAsignatura[i].promedioRendimientoAcademico.primerParcial, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].promedioRendimientoAcademico == null ? '' : this.informeFinalDTO.datosAsignatura[i].promedioRendimientoAcademico.segundoParcial, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].promedioRendimientoAcademico == null ? '' : this.informeFinalDTO.datosAsignatura[i].promedioRendimientoAcademico.tercerParcial, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].promedioFinalRendimientoAcademico == null ? '' : this.informeFinalDTO.datosAsignatura[i].promedioFinalRendimientoAcademico, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].desviacionEstandar == null ? '' : this.informeFinalDTO.datosAsignatura[i].desviacionEstandar.primerParcial, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].desviacionEstandar == null ? '' : this.informeFinalDTO.datosAsignatura[i].desviacionEstandar.segundoParcial, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].desviacionEstandar == null ? '' : this.informeFinalDTO.datosAsignatura[i].desviacionEstandar.tercerParcial, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].promedioFinalDesviacionEstandar == null ? '' : this.informeFinalDTO.datosAsignatura[i].promedioFinalDesviacionEstandar, fontSize: 10 },
       ];
       cuerpoTablaPromedioRendimiento.push(fila);
     }
@@ -690,14 +696,14 @@ export class RevisarInformeFinalComponent implements OnInit {
     const cuerpoTablaTutorias = [];
     for (let i = 0; i < this.informeFinalDTO.datosAsignatura.length; i++) {
       const fila = [
-        { text: this.informeFinalDTO.datosAsignatura[i].nrc, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14 == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14.primerParcial, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14 == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14.segundoParcial, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14 == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14.tercerParcial, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14Asistieron == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14Asistieron.primerParcial, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14Asistieron == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14Asistieron.segundoParcial, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14Asistieron == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14Asistieron.tercerParcial, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron, fontSize: 12 },
+        { text: this.informeFinalDTO.datosAsignatura[i].nrc, fontSize: 10, bold: true },
+        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14 == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14.primerParcial, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14 == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14.segundoParcial, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14 == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14.tercerParcial, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14Asistieron == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14Asistieron.primerParcial, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14Asistieron == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14Asistieron.segundoParcial, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14Asistieron == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14Asistieron.tercerParcial, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron == null ? '' : this.informeFinalDTO.datosAsignatura[i].tutoriaEstudiantesPromedioMenor14AsistieronNoAprobaron, fontSize: 10 },
       ];
       cuerpoTablaTutorias.push(fila);
     }
@@ -706,10 +712,10 @@ export class RevisarInformeFinalComponent implements OnInit {
     const cuerpoTablaDatosInformativos = [];
     for (let i = 0; i < this.informeFinalDTO.datosAsignatura.length; i++) {
       const fila = [
-        { text: this.informeFinalDTO.datosAsignatura[i].carrera, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].asignatura, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].componente, fontSize: 12 },
-        { text: this.informeFinalDTO.datosAsignatura[i].nrc, fontSize: 12 },
+        { text: this.informeFinalDTO.datosAsignatura[i].carrera, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].asignatura, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].componente, fontSize: 10 },
+        { text: this.informeFinalDTO.datosAsignatura[i].nrc, fontSize: 10 },
       ];
       cuerpoTablaDatosInformativos.push(fila);
     }
@@ -717,11 +723,11 @@ export class RevisarInformeFinalComponent implements OnInit {
     const cuerpoTablaCapacitaciones = [];
     for (let i = 0; i < this.informeFinalDTO.tematicaCapacitaciones.length; i++) {
       const fila = [
-        { text: this.informeFinalDTO.tematicaCapacitaciones[i].areaConocimiento, fontSize: 12 },
-        { text: this.informeFinalDTO.tematicaCapacitaciones[i].tema1, fontSize: 12 },
-        { text: this.informeFinalDTO.tematicaCapacitaciones[i].tema2, fontSize: 12 },
-        { text: this.informeFinalDTO.tematicaCapacitaciones[i].tema3, fontSize: 12 },
-        { text: this.informeFinalDTO.tematicaCapacitaciones[i].tema4, fontSize: 12 },
+        { text: this.informeFinalDTO.tematicaCapacitaciones[i].areaConocimiento, fontSize: 10 },
+        { text: this.informeFinalDTO.tematicaCapacitaciones[i].tema1, fontSize: 10 },
+        { text: this.informeFinalDTO.tematicaCapacitaciones[i].tema2, fontSize: 10 },
+        { text: this.informeFinalDTO.tematicaCapacitaciones[i].tema3, fontSize: 10 },
+        { text: this.informeFinalDTO.tematicaCapacitaciones[i].tema4, fontSize: 10 },
       ];
       cuerpoTablaCapacitaciones.push(fila);
     }
@@ -731,13 +737,18 @@ export class RevisarInformeFinalComponent implements OnInit {
     for (let i = 0; i < this.informeFinalDTO.anexo2.length; i++) {
       const fila = [
         { text: i + 1 },
-        { text: this.informeFinalDTO.anexo2[i].componente, fontSize: 12 },
-        { text: this.informeFinalDTO.anexo2[i].respuestaCerrada == 'SI' ? 'X' : '', fontSize: 12 },
-        { text: this.informeFinalDTO.anexo2[i].respuestaCerrada == 'NO' ? 'X' : '', fontSize: 12 },
-        { text: this.informeFinalDTO.anexo2[i].linkEvidencia, fontSize: 12 },
-        { text: this.informeFinalDTO.anexo2[i].consideracionParaEvidencia, fontSize: 12 },
+        { text: this.informeFinalDTO.anexo2[i].componente, fontSize: 10 },
+        { text: this.informeFinalDTO.anexo2[i].respuestaCerrada == 'SI' ? 'X' : '', fontSize: 10 },
+        { text: this.informeFinalDTO.anexo2[i].respuestaCerrada == 'NO' ? 'X' : '', fontSize: 10 },
+        { text: this.informeFinalDTO.anexo2[i].linkEvidencia, fontSize: 10 },
+        { text: this.informeFinalDTO.anexo2[i].consideracionParaEvidencia, fontSize: 10 },
       ];
       cuerpoTablaAnexos2.push(fila);
+    }
+
+    const cuerpoListaAntecedentes = [];
+    for (let i = 0; i < this.informeFinalDTO.antecedentes.length; i++) {
+      cuerpoListaAntecedentes.push({ text: '• ' + this.informeFinalDTO.antecedentes[i].split('\n').join(''), margin: [20, 5, 0, 5] });
     }
 
     const cuerpoListaFortalezas = [];
@@ -805,43 +816,78 @@ export class RevisarInformeFinalComponent implements OnInit {
       anexo1Lista.push({ text: '• ' + this.informeFinalDTO.anexo1[i].split('\n').join(''), margin: [40, 5, 0, 0] });
     }
 
+    // const footer = (currentPage, pageCount) => {
+    //   return {
+    //     text: `Página ${currentPage.toString()} de ${pageCount.toString()}`,
+    //     alignment: 'center'
+    //   };
+    // };
+
+    const footer = (currentPage, pageCount) => {
+      return {
+        table: {
+          widths: ['*', '*'], // Ancho de las dos columnas
+          body: [
+            [
+              [{ text: `Izquierda - Página ${currentPage.toString()} de ${pageCount.toString()}`, alignment: 'left' }],
+              [{ text: 'Derecha - Información adicional', alignment: 'right' }]
+            ]
+          ]
+        },
+        margin: [40, 0, 40, 0]
+        // layout: 'noBorders' // Elimina los bordes de la tabla
+      };
+    };
+
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getDate()} de ${this.getMonthName(currentDate.getMonth())} de ${currentDate.getFullYear()}`;
 
 
     const pdfDefinition: any = {
+      // footer,
       content: [
+        // {
+        //   image: this.getBase64ImageFromURL('https://www.espe.edu.ec/wp-content/uploads/2018/11/espe.png'),
+        //   width: 200, // ajusta el ancho según tus necesidades
+        //   height: 150 // ajusta la altura según tus necesidades
+        // },
         {
-          text: '1. DATOS GENERALES\n\n',
+          style: 'tableExample',
+          table: {
+            widths: ['auto', '*', 'auto', 'auto'],
+            body: [
+              [{ text: '', bold: true }, { text: 'INFORME DE GESTIÓN DOCENTE', alignment: 'center', bold: true }, { text: 'Período académico', bold: true }, '****'],
+              [{ text: '', bold: true }, { text: 'DEPARTAMENTO DE CIENCIAS DE ENERGÍA Y MECÁNICA', alignment: 'center', bold: true }, { text: 'No. página', bold: true }, '1 de -'],
+            ]
+          }
+        },
+        {
+          text: '\n1. DATOS GENERALES\n\n',
           bold: true
         },
-
         {
           style: 'tableExample',
           table: {
             widths: ['*', '*'],
             body: [
-              ['Área de conocimiento', this.informeFinalDTO.datosGenerales.areaConocimiento],
-              ['Nombre del Docente que presenta el informe', this.informeFinalDTO.datosGenerales.nombreDocentePresentaInforme],
-              ['Nombre del Coordinador de Área de conocimiento', this.informeFinalDTO.datosGenerales.nombreCoordinadorArea]
+              [{ text: 'Área de conocimiento', bold: true }, this.informeFinalDTO.datosGenerales.areaConocimiento],
+              [{ text: 'Nombre del Docente que presenta el informe', bold: true }, this.informeFinalDTO.datosGenerales.nombreDocentePresentaInforme],
+              [{ text: 'Nombre del Coordinador de Área de conocimiento', bold: true }, this.informeFinalDTO.datosGenerales.nombreCoordinadorArea]
             ]
-          }
+          }, margin: [20, 0, 20, 0]
         },
         {
           text: '\n2. ANTECEDENTES',
           bold: true
         },
-        {
-          ul: [
-            this.informeFinalDTO.antecedentes,
-          ], margin: [20, 0, 0, 0]
-        },
+        cuerpoListaAntecedentes,
         {
           text: '\n3. OBJETIVO',
           bold: true
         },
         {
-          ul: [
-            this.informeFinalDTO.objetivo.split('\n').join(''),
-          ], margin: [20, 0, 0, 0]
+          text: '• ' + this.informeFinalDTO.objetivo.split('\n').join(''),
+          margin: [20, 0, 0, 0]
         },
         {
           text: '\n4. DESARROLLO Y ANÁLISIS',
@@ -859,7 +905,7 @@ export class RevisarInformeFinalComponent implements OnInit {
             widths: ['*', 'auto', 'auto', 'auto'],
             body: [
               // Encabezado de la tabla
-              [{ text: 'CARRERA', bold: true }, { text: 'ASIGNATURA', bold: true }, { text: 'COMPONENTE DOCENCIA/PRACTICO', bold: true }, { text: 'NRC', bold: true}],
+              [{ text: 'CARRERA', bold: true }, { text: 'ASIGNATURA', bold: true }, { text: 'COMPONENTE DOCENCIA/PRACTICO', bold: true }, { text: 'NRC', bold: true }],
               // Cuerpo de la tabla
               ...cuerpoTablaDatosInformativos
             ]
@@ -871,7 +917,7 @@ export class RevisarInformeFinalComponent implements OnInit {
           margin: [20, 0, 0, 0]
         },
         {
-          text: 'A continuación, se presentan los datos estadísticos de rendimiento académico de los estudiantes en las asignaturas asignadas en el presente período.\n\n',
+          text: 'A con, se presentan los datos estadísticos de rendimiento académico de los estudiantes en las asignaturas asignadas en el presente período.\n\n',
           margin: [20, 0, 0, 0],
           fontSize: 10,
         },
@@ -879,7 +925,7 @@ export class RevisarInformeFinalComponent implements OnInit {
           style: 'tablaEjemplo',
           table: {
             headerRows: 3,
-            widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
+            widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
 
             // widths: ['*', 'auto', 'auto'],
             body: [
@@ -887,9 +933,9 @@ export class RevisarInformeFinalComponent implements OnInit {
               // [{ text: 'Header with Colspan = 14', style: 'tableHeader', alignment: 'center' },{},{},{},{},{},{},{},{},{},{},{},{}, {colSpan: 13, text: 'Header 3', style: 'tableHeader', alignment: 'center' }],
               // [{ text: 'Header 1', style: 'tableHeader', alignment: 'center' }, { text: 'Header 2', style: 'tableHeader', alignment: 'center' }, { text: 'Header 3', style: 'tableHeader', alignment: 'center' }],
               // [{ text: 'Nombre', colSpan: 13 }, '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-              [{ text: 'ASIGNATURA', bold: true }, { text: 'NRC',bold: true}, { text: 'CONDICIÓN (Nro ESTUDIANTES)', colSpan: 13, alignment: 'center' }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
-              [{ text: 'ASIGNATURA' }, { text: 'NRC' }, { text: 'ESTUDIANTES MATRICULADOS', colSpan: 3, alignment: 'center' }, {}, {}, { text: 'ESTUDIANTES RETIRADOS', colSpan: 3, alignment: 'center' }, {}, {}, { text: 'ESTUDIANTES REPROBADOS', colSpan: 3, alignment: 'center' }, {}, {}, { text: 'ESTUDIANTES APROBADOS', colSpan: 3, alignment: 'center' }, {}, {}, { text: 'asa' }],
-              [{ text: 'ASIGANTURA' }, { text: 'NRC' }, { text: 'HOMBRES', alignment: 'center' }, { text: 'MUJERES', alignment: 'center' }, { text: 'TOTAL', alignment: 'center' }, { text: 'HOMBRES', alignment: 'center' }, { text: 'MUJERES', alignment: 'center' }, { text: 'TOTAL', alignment: 'center' }, { text: 'HOMBRES', alignment: 'center' }, { text: 'MUJERES', alignment: 'center' }, { text: 'TOTAL', alignment: 'center' }, { text: 'Oro' }, { text: 'Oro' }, { text: 'Oro' }, { text: 'Oro' }],
+              [{ rowSpan: 3, text: 'ASIGNATURA', bold: true }, { rowSpan: 3, text: 'NRC', bold: true }, { text: 'CONDICIÓN (Nro ESTUDIANTES)', colSpan: 12, alignment: 'center', bold: true }, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}],
+              ['a', 'a', { text: 'ESTUDIANTES MATRICULADOS', colSpan: 3, alignment: 'center', bold: true }, {}, {}, { text: 'ESTUDIANTES RETIRADOS', colSpan: 3, alignment: 'center', bold: true }, {}, {}, { text: 'ESTUDIANTES REPROBADOS', colSpan: 3, alignment: 'center', bold: true }, {}, {}, { text: 'ESTUDIANTES APROBADOS', colSpan: 3, alignment: 'center', bold: true }, {}, {}],
+              ['a', 'a', { text: 'HOMBRES', fontSize: 6, bold: true, alignment: 'center' }, { text: 'MUJERES', fontSize: 6, bold: true, alignment: 'center' }, { text: 'TOTAL', fontSize: 6, bold: true, alignment: 'center' }, { text: 'HOMBRES', fontSize: 6, bold: true, alignment: 'center' }, { text: 'MUJERES', fontSize: 6, bold: true, alignment: 'center' }, { text: 'TOTAL', fontSize: 6, bold: true, alignment: 'center' }, { text: 'HOMBRES', fontSize: 6, bold: true, alignment: 'center' }, { text: 'MUJERES', fontSize: 6, bold: true, alignment: 'center' }, { text: 'TOTAL', fontSize: 6, bold: true, alignment: 'center' }, { text: 'HOMBRES', fontSize: 6, bold: true, }, { text: 'MUJERES', fontSize: 6, bold: true, }, { text: 'TOTAL', fontSize: 6, bold: true, }],
               // // Cuerpo de la tabla
               ...cuerpoTablaRendimiento
             ]
@@ -902,12 +948,12 @@ export class RevisarInformeFinalComponent implements OnInit {
           style: 'tablaEjemplo',
           table: {
             headerRows: 3,
-            widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
+            widths: ['auto', '*', '*', '*', 'auto', '*', '*', '*', 'auto'],
             body: [
               // Encabezado de la tabla
-              [{ text: 'NRC' }, { text: 'PROMEDIO (Calificaciones)', colSpan: 8, alignment: 'center' }, {}, {}, {}, {}, {}, {}, {}],
-              [{ text: 'NRC' }, { text: 'Promedio de Rendimiento Académico', colSpan: 3, alignment: 'center' }, {}, {}, { text: 'Promedio final de Rendimiento Académico', alignment: 'center' }, { text: 'Desviación Estándar', colSpan: 3, alignment: 'center' }, {}, {}, { text: 'Promedio final de Desviacón Estándar', alignment: 'center' }],
-              [{ text: 'NRC' }, { text: 'I-UD', alignment: 'center' }, { text: 'II-UD', alignment: 'center' }, { text: 'III-UD', alignment: 'center' }, { text: 'HOMBRES', alignment: 'center' }, { text: 'I-UD', alignment: 'center' }, { text: 'II-UD', alignment: 'center' }, { text: 'III-UD', alignment: 'center' }, { text: 'MUJERES', alignment: 'center' }],
+              [{ rowSpan: 3, text: '\n\n\nNRC', bold: true }, { text: 'PROMEDIO (Calificaciones)', colSpan: 8, alignment: 'center', bold: true }, {}, {}, {}, {}, {}, {}, {}],
+              ['', { text: 'Promedio de Rendimiento Académico', colSpan: 3, alignment: 'center', bold: true }, {}, {}, { rowSpan: 2, text: '\nPromedio final de Rendimiento Académico', alignment: 'center', bold: true }, { text: 'Desviación Estándar', colSpan: 3, alignment: 'center', bold: true }, {}, {}, { rowSpan: 2, text: '\nPromedio final de Desviacón Estándar', alignment: 'center', bold: true }],
+              ['', { text: 'I-UD', alignment: 'center', bold: true }, { text: 'II-UD', alignment: 'center', bold: true }, { text: 'III-UD', alignment: 'center', bold: true }, '', { text: 'I-UD', alignment: 'center', bold: true }, { text: 'II-UD', alignment: 'center', bold: true }, { text: 'III-UD', alignment: 'center', bold: true }, { text: 'MUJERES', alignment: 'center' }],
               // // Cuerpo de la tabla
               ...cuerpoTablaPromedioRendimiento
             ]
@@ -928,8 +974,8 @@ export class RevisarInformeFinalComponent implements OnInit {
             widths: ['auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto'],
             body: [
               // Encabezado de la tabla
-              [{ text: 'NRC' }, { text: '# estudiantes promedio menor de 14', colSpan: 3, alignment: 'center' }, {}, {}, { text: '# estudiantes promedio menor de 14 asistieron a tutorías', colSpan: 3, alignment: 'center' }, {}, {}, { text: '# estudiantes promedio menor de 14 asistieron a tutorías y NO aprobaron', alignment: 'center' }],
-              [{ text: 'NRC' }, { text: 'I-UD', alignment: 'center' }, { text: 'II-UD', alignment: 'center' }, { text: 'III-UD', alignment: 'center' }, { text: 'I-UD', alignment: 'center' }, { text: 'II-UD', alignment: 'center' }, { text: 'III-UD', alignment: 'center' }, { text: 'MUJERES', alignment: 'center' }],
+              [{ rowSpan: 2, text: 'NRC', bold: true }, { text: '# estudiantes promedio menor de 14', colSpan: 3, alignment: 'center', bold: true }, {}, {}, { text: '# estudiantes promedio menor de 14 asistieron a tutorías', colSpan: 3, alignment: 'center', bold: true }, {}, {}, { rowSpan: 2, text: '# estudiantes promedio menor de 14 asistieron a tutorías y NO aprobaron', alignment: 'center', bold: true }],
+              ['', { text: 'I-UD', alignment: 'center', bold: true }, { text: 'II-UD', alignment: 'center', bold: true }, { text: 'III-UD', alignment: 'center', bold: true }, { text: 'I-UD', alignment: 'center', bold: true }, { text: 'II-UD', alignment: 'center', bold: true }, { text: 'III-UD', alignment: 'center', bold: true }, ''],
               // // Cuerpo de la tabla
               ...cuerpoTablaTutorias
             ]
@@ -958,7 +1004,7 @@ export class RevisarInformeFinalComponent implements OnInit {
             headerRows: 1,
             widths: ['auto', '*', 'auto', 'auto', 'auto', 'auto', 'auto', '*'],
             body: [
-              [{}, { text: 'COMPONENTE ' }, { text: '1' }, { text: '2' }, { text: '3' }, { text: '4' }, { text: '5' }, { text: 'RAZONAMIENTO' },],
+              [{}, { text: 'COMPONENTE ', bold: true, alignment: 'center' }, { text: '1' }, { text: '2' }, { text: '3' }, { text: '4' }, { text: '5' }, { text: 'RAZONAMIENTO', bold: true, alignment: 'center' },],
               ['1', 'Actualicé los sílabos en el sistema académico y entregué a los estudiantes', this.informeFinalDTO.evaluacionDocente.componente1 == '1' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.componente1 == '2' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.componente1 == '3' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.componente1 == '4' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.componente1 == '5' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.razonamiento1],
               ['2', 'Asistí regular y puntualmente a las clases', this.informeFinalDTO.evaluacionDocente.componente2 == '1' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.componente2 == '2' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.componente2 == '3' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.componente2 == '4' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.componente2 == '5' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.razonamiento2],
               ['3', 'Cumplí con las fechas del calendario académico ', this.informeFinalDTO.evaluacionDocente.componente3 == '1' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.componente3 == '2' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.componente3 == '3' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.componente3 == '4' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.componente3 == '5' ? 'x' : '', this.informeFinalDTO.evaluacionDocente.razonamiento3],
@@ -1067,8 +1113,8 @@ export class RevisarInformeFinalComponent implements OnInit {
             headerRows: 2,
             widths: ['*', '*', '*', '*', '*'],
             body: [
-              [{ text: 'ÁREA DE CONOCIMIENTO', rowSpan: 2 }, { colSpan: 4, text: 'CAPACITACIÓN: Registre las temáticas de capacitación en los que requeriría actualización para mejorar su desempeño docente.' }, {}, {}, {}],
-              [{}, { text: 'TEMA 1' }, { text: 'TEMA 2' }, { text: 'TEMA 3' }, { text: 'TEMA 4' }],
+              [{ text: 'ÁREA DE CONOCIMIENTO', rowSpan: 2, alignment: 'center', bold: true }, { colSpan: 4, text: 'CAPACITACIÓN: Registre las temáticas de capacitación en los que requeriría actualización para mejorar su desempeño docente.', bold: true, alignment: 'center' }, {}, {}, {}],
+              [{}, { text: 'TEMA 1', bold: true, alignment: 'center' }, { text: 'TEMA 2', bold: true, alignment: 'center' }, { text: 'TEMA 3', bold: true, alignment: 'center' }, { text: 'TEMA 4', bold: true, alignment: 'center' }],
               ...cuerpoTablaCapacitaciones
             ]
           }
@@ -1094,7 +1140,8 @@ export class RevisarInformeFinalComponent implements OnInit {
         anexo1Lista,
         {
           text: '\nANEXO 2. INDICADORES DE ACREDITACIÓN A REPORTAR POR PARTE DE LOS DOCENTES',
-          bold: true
+          bold: true,
+          style: 'header'
         },
         {
           text: 'Complete la siguiente información solicitada dentro de su gestión docente con las respectivas evidencias (indicar links de informes, matrices, etc).\n\n'
@@ -1105,17 +1152,35 @@ export class RevisarInformeFinalComponent implements OnInit {
             headerRows: 1,
             widths: ['auto', '*', 'auto', 'auto', '*', '*'],
             body: [
-              [{}, { text: 'COMPONENTE' }, { text: 'SI' }, { text: 'NO' }, { text: 'EVIDENCIAS' }, { text: 'Consideraciones para la evidencia.' }],
+              [{}, { text: 'COMPONENTE', alignment: 'center', bold: true }, { text: 'SI' }, { text: 'NO' }, { text: 'EVIDENCIAS', alignment: 'center', bold: true }, { text: 'Consideraciones para la evidencia.', alignment: 'center', bold: true }],
               // [{},{text: 'TEMA 1'},{text: 'TEMA 2'},{text: 'TEMA 3'},{text: 'TEMA 4'}],
               ...cuerpoTablaAnexos2
             ]
           }
         },
-
+        {
+          text: `\n\nSangolquí, ${formattedDate}`, margin: [0, 0, 0, 10], alignment: 'right'
+        },
+        {
+          text: '\n\n\n\n\n_________________________________________', alignment: 'center'
+        },
+        {
+          text: this.informeFinalDTO.datosGenerales.nombreDocentePresentaInforme, alignment: 'center', bold: true
+        },
+        {
+          text: 'Docente DCEM', alignment: 'center', bold: true
+        }
       ],
       styles: {
-        font: 'Arial', // Cambiar aquí el tipo d
+        header: {
+          fontSize: 10,
+          bold: true,
+          margin: [0, 0, 0, 10]
+        },
+      },
+      defaultStyle: {
         fontSize: 10,
+        margin: [50, 0, 0, 0]
       }
     }
 

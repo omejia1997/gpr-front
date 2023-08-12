@@ -1,12 +1,41 @@
 <app-navbar></app-navbar>
 <div class="container">
   <h2 style="text-align: center;">Actividades a realizar</h2>
-  <div class="table-responsive">
+  <div class="text-center" (click)="navegarVerTareasInvestigacion()">
+    <h3>Módulo de Investigación</h3>
+    <div>
+      <p>Tiene {{tareasInvestigacion.length}}
+        <span *ngIf="tareasInvestigacion.length==0||tareasInvestigacion.length>1">Tareas Pendientes</span>
+        <span *ngIf="tareasInvestigacion.length==1"> Tarea Pendiente</span>
+      </p>
+      <p>Click para Ver mas Detalles</p>
+    </div>
+  </div>
+  <div class="text-center" (click)="navegarVerTareasVinculacion()">
+    <h3>Módulo de Vinculación</h3>
+    <div>
+      <p>Tiene {{tareasVinculacion.length}}
+        <span *ngIf="tareasVinculacion.length==0||tareasVinculacion.length>1">Tareas Pendientes</span>
+        <span *ngIf="tareasVinculacion.length==1"> Tarea Pendiente</span>
+      </p>
+      <p>Click para Ver mas Detalles</p>
+    </div>
+  </div>
+  <div class="text-center" (click)="navegarVerTareasDocencia()">
+    <h3>Módulo de Docencia</h3>
+    <div>
+      <p>Tiene {{tareasDocencia.length}}
+        <span *ngIf="tareasDocencia.length==0||tareasDocencia.length>1">Tareas Pendientes</span>
+        <span *ngIf="tareasDocencia.length==1"> Tarea Pendiente</span>
+      </p>
+      <p>Click para Ver mas Detalles</p>
+    </div>
+  </div>
+  <!-- <div class="table-responsive">
     <table class="table table-hover text-center table-sm">
       <thead class="table-dark">
         <tr>
           <th>Actividad</th>
-          <!-- <th>Prioridad de la Actividad</th> -->
           <th>Revisor</th>
           <th>Fecha Límite de Entrega</th>
           <th>Proyecto</th>
@@ -35,5 +64,5 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </div> -->
 </div>

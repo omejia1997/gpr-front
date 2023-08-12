@@ -73,7 +73,7 @@
           <h1>2. ANTECEDENTES <button id="button-antecedentes" type="button" (click)="addAntecedentes()"
               class="btn btn-outline-success btn-sm">Agregar Antecedente</button></h1>
           <ul *ngFor="let antecedente of informeFinalDTO.antecedentes" >
-            <li>{{antecedente}}</li> &nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarAntecedente(antecedente)"> border_color</mat-icon> <mat-icon class="delete-icon">delete</mat-icon>
+            <li>{{antecedente}}</li> &nbsp;&nbsp;&nbsp;<mat-icon class="edit-icon" (click)="editarAntecedente(antecedente)"> border_color</mat-icon> <mat-icon (click)="eliminarAntecedente(antecedente)" class="delete-icon">delete</mat-icon>
           </ul>
 
 
@@ -172,9 +172,6 @@
           </div>
 
           El promedio de rendimiento académico de los estudiantes en las asignaturas impartidas fue el siguiente:
-          <!-- <button id="button-objetivo" type="button" (click)="addPromedioRendimientoAcademico()"
-            class="btn btn-outline-success btn-sm" *ngIf="this.informeFinalDTO.datosAsignatura?.length!=0">Agregar
-            Promedio de Rendimiento Académico</button> -->
 
           <div class="table-responsive">
             <table class="table table-bordered table-hover table-sm">
@@ -615,6 +612,7 @@
                   <th class="text-center align-middle" rowspan="2">ÁREA DE CONOCIMIENTO</th>
                   <!-- <th colspan="3">APELLIDOS Y NOMBRES DEL DOCENTE</th> -->
                   <th class="text-center align-middle" colspan="4">CAPACITACIÓN: Registre las temáticas de capacitación en los que requeriría actualización para mejorar su desempeño docente. </th>
+                  <th class="text-center align-middle" rowspan="2"> EDICIÓN</th>
                 </tr>
                 <tr>
                   <th class="text-center align-middle">TEMA 1</th>
@@ -630,6 +628,7 @@
                   <td class="text-center align-middle">{{tematicaCapacitacion.tema2}}</td>
                   <td class="text-center align-middle">{{tematicaCapacitacion.tema3}}</td>
                   <td class="text-center align-middle">{{tematicaCapacitacion.tema4}}</td>
+                  <td class="text-center align-middle"> <mat-icon class="edit-icon" (click)="addCapacitacionMejoraDocente(tematicaCapacitacion)"> border_color</mat-icon> <mat-icon (click)="eliminarCapacitacionMejoraDocente(tematicaCapacitacion)" class="delete-icon">delete</mat-icon></td>
                 </tr>
               </tbody>
             </table>
@@ -661,6 +660,33 @@
               class="btn btn-outline-success btn-sm">Agregar Información</button></h1>
               <p>Complete la siguiente información solicitada dentro de su gestión docente con las respectivas evidencias (indicar links de
                 informes, matrices, etc).</p>
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm">
+              <thead>
+                <tr>
+                  <th class="text-center align-middle"> Nº</th>
+                  <th class="text-center align-middle"> COMPONENTE</th>
+                  <th class="text-center align-middle"> SI </th>
+                  <th class="text-center align-middle"> NO</th>
+                  <th class="text-center align-middle"> EVIDENCIAS</th>
+                  <th class="text-center align-middle"> Consideraciones para la evidencia.</th>
+                  <th class="text-center align-middle"> EDICIÓN</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let anexo2 of informeFinalDTO.anexo2;let i=index">
+                  <td class="text-center align-middle">{{i+1}}</td>
+                  <td class="text-center align-middle">{{anexo2.componente}}</td>
+                  <td class="text-center align-middle"><span *ngIf="anexo2.respuestaCerrada==='SI'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="anexo2.respuestaCerrada==='NO'">X</span></td>
+                  <td class="text-center align-middle"> <a *ngIf="anexo2.linkEvidencia" href="{{anexo2.linkEvidencia}}" target="_blank"> LINK DE EVIDENCIA</a> </td>
+                  <td class="text-center align-middle">{{anexo2.consideracionParaEvidencia}}</td>
+                  <td class="text-center align-middle"> <mat-icon class="edit-icon" (click)="addAnexo2(anexo2)"> border_color</mat-icon> <mat-icon (click)="eliminarAnexo2(anexo2)" class="delete-icon">delete</mat-icon></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
       </div>

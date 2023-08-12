@@ -37,6 +37,10 @@ export class TareaDocenciaService {
     return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTodasTareasAsignadasPorDocente/${idEspeDocente}`);
   }
 
+  public listarTodasTareasNoAsignadasPorDocente(idEspeDocente:any): Observable<TareaDocenteDocenciaDTO[]>{
+    return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTodasTareasNoAsignadasPorDocente/${idEspeDocente}`);
+  }
+
   public listarTodasTareasSubidasPorPeriodo(codigoPeriodo:any): Observable<TareaDocenteDocenciaDTO[]>{
     return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTodasTareasSubidasPorPeriodo/${codigoPeriodo}`);
   }
@@ -73,9 +77,9 @@ export class TareaDocenciaService {
   //   return this.http.put<any>(TAREA_DOCENCIA, tarea);
   // }
 
-  public obtenerTareasPorDocente(codigoDocente:number): Observable<TareaDocenteDocenciaDTO[]>{
-    return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTareaAsignadaPorDocente/${codigoDocente}`);
-  }
+  // public obtenerTareasPorDocente(codigoDocente:number): Observable<TareaDocenteDocenciaDTO[]>{
+  //   return this.http.get<TareaDocenteDocenciaDTO[]>(`${TAREA_DOCENCIA}/listarTareaAsignadaPorDocente/${codigoDocente}`);
+  // }
 
   public guardarTareaComoBorrador(idTareaDocente:any,informeFinalDTO : InformeFinal) {
     return this.http.put<any>(`${TAREA_DOCENCIA}/guardarTareaComoBorrador/${idTareaDocente}`, informeFinalDTO);

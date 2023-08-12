@@ -11,27 +11,40 @@ import { TareaDocenciaDTO } from '../../../modelos/dto/TareaDocenciaDTO';
   styleUrls: ['./revisar-tarea-asignada-docencia.component.css']
 })
 export class RevisarTareaAsignadaDocenciaComponent implements OnInit {
-  getTareasDocenteDocencia$: Observable<TareaDocenteDocenciaDTO[]>;
+  getTareasDocenteNoAsignadasDocencia$: Observable<TareaDocenteDocenciaDTO[]>;
   tareaDocenteDocenciaDTO: TareaDocenteDocenciaDTO[] = [];
+  tareaDocenteDocenciaNoAsignadasDTO: TareaDocenteDocenciaDTO[] = [];
   idEspeDocenteRevisor: any;
 
   constructor(
     private tareaDocenciaService: TareaDocenciaService,
     private router: Router,
     ) {
+
       this.idEspeDocenteRevisor = localStorage.getItem('idEspeDocenteRevisor');
-      this.getTareasDocenteDocencia$ = this.tareaDocenciaService.listarTodasTareasAsignadasPorDocente(
+       this.tareaDocenciaService.tareasDocenteDocencia$.subscribe((res) => {
+        this.tareaDocenteDocenciaDTO = res;
+        if (this.tareaDocenteDocenciaDTO == null) {
+          // this.visualBlockedDocument = false;
+          this.back();
+        }
+      });
+      this.getTareasDocenteNoAsignadasDocencia$ = this.tareaDocenciaService.listarTodasTareasNoAsignadasPorDocente(
         this.idEspeDocenteRevisor
       );
     }
 
   ngOnInit() {
-    this.getTareasDocencia();
+    this.getTareasDocenciaNoAsignadas();
   }
 
-  getTareasDocencia() {
-    this.getTareasDocenteDocencia$.subscribe((tareas) => {
-      this.tareaDocenteDocenciaDTO = tareas;
+  back(){
+    this.router.navigate(['listar-tareas-docente']);
+  }
+
+  getTareasDocenciaNoAsignadas() {
+    this.getTareasDocenteNoAsignadasDocencia$.subscribe((tareas) => {
+      this.tareaDocenteDocenciaNoAsignadasDTO = tareas;
     });
   }
 

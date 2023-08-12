@@ -67,6 +67,8 @@ import { RevisarTodosInformeFinalSubidos } from './modulos/tarea-docencia/pagina
 import { RendimientoGeneralAsignaturasComponent } from './modulos/tarea-docencia/paginas/tarea-docente/dashboard-tarea-modulo-docencia/rendimiento-general-asignaturas/rendimiento-general-asignaturas.component';
 import { RendimientoDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/dashboard-tarea-modulo-docencia/rendimiento-general-asignaturas/rendimiento-docente/rendimiento-docente.component';
 import { RevisarInformeFinalComponent } from './modulos/tarea-docencia/paginas/tarea-docente/revisar-informe-final/revisar-informe-final.component';
+import { ListarTareasDocenteVinculacionComponent } from './modulos/vinculacion/paginas/tarea/listar-tareas-docente-vinculacion/listar-tareas-docente-vinculacion.component';
+import { ListarTareaDocenteInvestigacionComponent } from './pages/tarea-docente/listar-tarea-docente-investigacion/listar-tarea-docente-investigacion.component';
 
 
 const routes: Routes = [
@@ -126,6 +128,9 @@ const routes: Routes = [
   {path: 'listar-tareas-revisadas-vinculacion', component:ListarTareasRevisadasVinculacionComponent,canActivate:[AuthGuard]},
   {path: 'dashboard-vinculacion', component:DashboardVinculacionComponent,canActivate:[AuthGuard]},
   {path: 'dashboard-tarea-vinculacion', component:DashboardTareaVinculacionComponent,canActivate:[AuthGuard]},
+  {path: 'listar-tareas-docente-vinculacion', component:ListarTareasDocenteVinculacionComponent,canActivate:[AuthGuard]},
+  {path: 'listar-tarea-docente-investigacion', component:ListarTareaDocenteInvestigacionComponent,canActivate:[AuthGuard]},
+
   //docente
   {path: 'subir-informacion-general', component:SubirInformacionGeneralComponent,canActivate:[AuthGuard]},
   {path: 'listar-docentes-informacion', component:ListarDocentesInformacionComponent,canActivate:[AuthGuard]},

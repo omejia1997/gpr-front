@@ -28,4 +28,32 @@
       </tbody>
     </table>
   </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-sm">
+      <thead class="table-dark">
+        <tr>
+          <th class="text-center align-middle">Tarea</th>
+          <th class="text-center align-middle">Actividades a Realizar</th>
+          <th class="text-center align-middle">Nombre del Docente que asignó la actividad</th>
+          <th class="text-center align-middle">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tareaDocenteDocencia of tareaDocenteDocenciaNoAsignadasDTO">
+          <td class="text-center align-middle">{{ tareaDocenteDocencia.tareaDocencia?.nombreTarea }}</td>
+          <td class="text-center align-middle">
+            <ul *ngFor="let observacion of tareaDocenteDocencia.tareaDocencia.observacionTarea">
+              <li>{{observacion}}</li>
+            </ul>
+          </td>
+          <td class="text-center align-middle">{{ tareaDocenteDocencia.tareaDocencia?.nombreDocenteRevisor }}</td>
+          <td class="text-center align-middle">
+            <mat-icon (click)="verTareaDocencia(tareaDocenteDocencia)">visibility</mat-icon>
+            <mat-icon *ngIf="tareaDocenteDocencia.estadoTareaDocente=='ASIGNADA'" (click)="editarTareaDocencia(tareaDocenteDocencia)">edit</mat-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -260,15 +260,15 @@
                 <tr>
                   <td class="text-center align-middle">1</td>
                   <td class="text-center align-middle">Actualicé los sílabos en el sistema académico y entregué a los estudiante</td>
-                  <td class="text-center align-middle"><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="1"
+                  <td class="text-center align-middle"><input type="radio" [disabled]="true" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="1"
                       name="componente1" value="1"></td>
-                  <td class="text-center align-middle"><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="2"
+                  <td class="text-center align-middle"><input type="radio" [disabled]="true" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="2"
                       name="componente1" value="2"></td>
-                  <td class="text-center align-middle"><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="3"
+                  <td class="text-center align-middle"><input type="radio" [disabled]="true" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="3"
                       name="componente1" value="3"></td>
-                  <td class="text-center align-middle"><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="4"
+                  <td class="text-center align-middle"><input type="radio" [disabled]="true" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="4"
                       name="componente1" value="4"></td>
-                  <td class="text-center align-middle"><input type="radio" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="5"
+                  <td class="text-center align-middle"><input type="radio" [disabled]="true" [(ngModel)]="informeFinalDTO.evaluacionDocente!.componente1" id="5"
                       name="componente1" value="5"></td>
                   <td class="text-center align-middle"><textarea id="razonamiento1" name="razonamiento1" rows="4" cols="70%"
                       [(ngModel)]="informeFinalDTO.evaluacionDocente!.razonamiento1"> </textarea></td>
@@ -622,6 +622,31 @@
           <h1>ANEXO 2. INDICADORES DE ACREDITACIÓN A REPORTAR POR PARTE DE LOS DOCENTES </h1>
               <p>Complete la siguiente información solicitada dentro de su gestión docente con las respectivas evidencias (indicar links de
                 informes, matrices, etc).</p>
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover table-sm">
+              <thead>
+                <tr>
+                  <th class="text-center align-middle"> Nº</th>
+                  <th class="text-center align-middle"> COMPONENTE</th>
+                  <th class="text-center align-middle"> SI </th>
+                  <th class="text-center align-middle"> NO</th>
+                  <th class="text-center align-middle"> EVIDENCIAS</th>
+                  <th class="text-center align-middle"> Consideraciones para la evidencia.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let anexo2 of informeFinalDTO.anexo2;let i=index">
+                  <td class="text-center align-middle">{{i+1}}</td>
+                  <td class="text-center align-middle">{{anexo2.componente}}</td>
+                  <td class="text-center align-middle"><span *ngIf="anexo2.respuestaCerrada==='SI'">X</span></td>
+                  <td class="text-center align-middle"><span *ngIf="anexo2.respuestaCerrada==='NO'">X</span></td>
+                  <td class="text-center align-middle"> <a *ngIf="anexo2.linkEvidencia" href="{{anexo2.linkEvidencia}}" target="_blank"> LINK DE EVIDENCIA</a> </td>
+                  <td class="text-center align-middle">{{anexo2.consideracionParaEvidencia}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </form>

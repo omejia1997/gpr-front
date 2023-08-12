@@ -2,6 +2,7 @@ import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { Anexo2 } from '../../modelos/InformeFinal/Anexo2';
 
 @Component({
   selector: 'app-modal-asignatura',
@@ -18,19 +19,11 @@ import { Observable } from 'rxjs';
         />
       </mat-form-field>
 
-      <!-- <div *ngFor="let option of optionsRadioButton">
-        <mat-radio-button
-          [value]="option"
-          formControlName="respuestaCerrada"
-          name="respuestaCerrada"
-        >
-          {{ option }}
-        </mat-radio-button>
-      </div> -->
+      <h5>Seleccione una opción</h5>
       <mat-radio-group formControlName="respuestaCerrada">
-      <mat-radio-button value="SI" name="respuestaCerrada">SI</mat-radio-button>
+        <mat-radio-button value="SI" name="respuestaCerrada">SI</mat-radio-button> &nbsp;&nbsp;&nbsp;&nbsp;
         <mat-radio-button value="NO" name="respuestaCerrada">NO</mat-radio-button>
-        </mat-radio-group>
+      </mat-radio-group>
 
       <mat-form-field class="custom-form-field">
         <input
@@ -39,19 +32,19 @@ import { Observable } from 'rxjs';
           placeholder="Link de Evidencia"
           formControlName="linkEvidencia"
           name="linkEvidencia"
-          required
         />
       </mat-form-field>
 
       <mat-form-field class="custom-form-field">
-        <input
+        <textarea
           matInput
-          type="text"
           placeholder="Consideración para la evidencia."
+          rows="4"
           formControlName="consideracionParaEvidencia"
           name="consideracionParaEvidencia"
+          class="custom-input"
           required
-        />
+        ></textarea>
       </mat-form-field>
 
       <button
@@ -80,7 +73,7 @@ export class ModalAnexo2Component implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ModalAnexo2Component>,
     private formBuilder: FormBuilder,
-    // @Inject(MAT_DIALOG_DATA) public formacionAcademica: FormacionAcademicaAdicional
+    @Inject(MAT_DIALOG_DATA) public anexo2: Anexo2
   ) {
   }
 
@@ -88,24 +81,18 @@ export class ModalAnexo2Component implements OnInit {
     this.myForm = this.formBuilder.group({
       componente: ['', Validators.required],
       respuestaCerrada: ['', Validators.required],
-      // respuestaCerrada: ['',],
-      linkEvidencia: ['', Validators.required],
+      linkEvidencia: ['',],
       consideracionParaEvidencia: ['', Validators.required],
     });
-    // if(this.formacionAcademica){
-    //   this.myForm.patchValue({
-    //     nivelInstruccion: this.formacionAcademica.nivelInstruccion,
-    //     institucion: this.formacionAcademica.institucion,
-    //     tituloObtenido: this.formacionAcademica.tituloObtenido,
-    //     numeroSenescyt: this.formacionAcademica.numeroSenescyt,
-    //     fechaRegistroSenescyt: this.formacionAcademica.fechaRegistroSenescyt,
-    //     fechaGraduacion: this.formacionAcademica.fechaGraduacion,
-    //     pais: this.formacionAcademica.pais,
-    //     tiempoEstudio: this.formacionAcademica.tiempoEstudio
-    //   });
-    // }
+    if(this.anexo2){
+      this.myForm.patchValue({
+        componente: this.anexo2.componente,
+        respuestaCerrada: this.anexo2.respuestaCerrada,
+        linkEvidencia: this.anexo2.linkEvidencia,
+        consideracionParaEvidencia: this.anexo2.consideracionParaEvidencia
+      });
+    }
   }
-
 
   submitForm() {
     const formValue = this.myForm.value;

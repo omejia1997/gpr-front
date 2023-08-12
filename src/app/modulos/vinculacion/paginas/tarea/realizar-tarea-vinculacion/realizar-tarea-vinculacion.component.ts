@@ -56,7 +56,6 @@ export class RealizarTareaVinculacionComponent implements OnInit {
     });
     this.tareaIndicadors = this.tareaDocente.tareaIndicadorList;
     this.indicadoresAsignados = this.tareaDocente.tareaIndicadorList;
-    console.log("i-asignados",this.indicadoresAsignados);
     if(this.tarea.nombreArchivoTareaEnStorage){
       this.fileModelGuia$ = this.tareaService.getFileGuia("Vinculacion",this.tarea.id);
       this.getFileGuia();
@@ -115,7 +114,7 @@ export class RealizarTareaVinculacionComponent implements OnInit {
             });
             setTimeout(() => {
               this.blockedDocument = false;
-              this.router.navigate(["listar-tareas-docente"])
+              this.router.navigate(["listar-tareas-docente-vinculacion"])
             }, 2000);
           },
           error: (err) => {
@@ -127,7 +126,6 @@ export class RealizarTareaVinculacionComponent implements OnInit {
             this.blockedDocument = false;
           },
           complete: () => {
-            // this.isLoading = false;
           },
         })
     } else {
@@ -141,28 +139,9 @@ export class RealizarTareaVinculacionComponent implements OnInit {
             });
             setTimeout(() => {
               this.blockedDocument = false;
-              this.router.navigate(["listar-tareas-docente"])
+              this.router.navigate(["listar-tareas-docente-vinculacion"])
             }, 2000);
 
-            // this.storageFileService.saveFileTareaDocente("Vinculacion",this.selectedFiles[0],data.nombreArchivoTareaDocenteEnStorage).subscribe({
-            //   next: (data) => {
-            //     setTimeout(() => {
-            //       this.blockedDocument = false;
-            //       this.router.navigate(["listar-tareas-docente"])
-            //     }, 2000);
-            //   },
-            //   error: (err) => {
-            //     this.messageService.add({
-            //       severity: 'error',
-            //       summary: 'Error',
-            //       detail: err?.message ?? ' Error al subir el archivo'
-            //     });
-            //     this.blockedDocument = false;
-            //   },
-            //   complete: () => {
-            //     // this.isLoading = false;
-            //   },
-            // })
           },
           error: (err) => {
             this.messageService.add({
@@ -180,11 +159,11 @@ export class RealizarTareaVinculacionComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['listar-tareas-docente']);
+    this.router.navigate(['listar-tareas-docente-vinculacion']);
   }
 
   regresar() {
-    this.router.navigate(["listar-tareas-docente"])
+    this.router.navigate(["listar-tareas-docente-vinculacion"])
   }
 
   asignarIndicador(tareaIndicador: any) {
@@ -202,32 +181,6 @@ export class RealizarTareaVinculacionComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
 
-  /*
-  upload(index:any, file:any) {
-    this.progressInfo[index] = { value: 0, fileName: file.name };
-
-    this.uploadFilesService.upload(file).subscribe(
-      event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          if(event.total)
-            this.progressInfo[index].value = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-          this.fileInfos = this.uploadFilesService.getFiles();
-        }
-      },
-      err => {
-        this.progressInfo[index].value = 0;
-        this.message = 'No se puede subir el archivo ' + file.name;
-      });
-  }
-  */
-
-  /*uploadFiles() {
-    this.message = '';
-    for (let i = 0; i < this.selectedFiles.length; i++) {
-      this.upload(i, this.selectedFiles[i]);
-    }
-  }*/
 
   deleteFile(filename: string) {/*
     this.uploadFilesService.deleteFile(filename).subscribe(res => {
@@ -235,9 +188,4 @@ export class RealizarTareaVinculacionComponent implements OnInit {
       this.fileInfos = this.uploadFilesService.getFiles();
     });
   */}
-
-  /*crearSubTarea(){
-    this.tareaService.setTareaModel(this.tarea);
-    this.router.navigate(['crear-subTarea']);
-  }*/
 }

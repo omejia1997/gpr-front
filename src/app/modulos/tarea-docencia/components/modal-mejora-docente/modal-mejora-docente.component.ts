@@ -2,6 +2,7 @@ import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { TematicaCapacitacion } from '../../modelos/InformeFinal/TematicaCapacitacion';
 
 
 @Component({
@@ -92,7 +93,8 @@ export class ModalMejoraDocenteComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ModalMejoraDocenteComponent>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    @Inject(MAT_DIALOG_DATA) public tematicaCapacitacion: TematicaCapacitacion
   ) {
   }
 
@@ -104,19 +106,15 @@ export class ModalMejoraDocenteComponent implements OnInit {
       tema3: ['', ],
       tema4: ['', ],
     });
-    // if(this.datosAsignatura){
-
-    //   this.myForm.patchValue({
-    //     nivelInstruccion: this.formacionAcademica.nivelInstruccion,
-    //     institucion: this.formacionAcademica.institucion,
-    //     tituloObtenido: this.formacionAcademica.tituloObtenido,
-    //     numeroSenescyt: this.formacionAcademica.numeroSenescyt,
-    //     fechaRegistroSenescyt: this.formacionAcademica.fechaRegistroSenescyt,
-    //     fechaGraduacion: this.formacionAcademica.fechaGraduacion,
-    //     pais: this.formacionAcademica.pais,
-    //     tiempoEstudio: this.formacionAcademica.tiempoEstudio
-    //   });
-    // }
+    if(this.tematicaCapacitacion){
+      this.myForm.patchValue({
+        areaConocimiento: this.tematicaCapacitacion.areaConocimiento,
+        tema1: this.tematicaCapacitacion.tema1,
+        tema2: this.tematicaCapacitacion.tema2,
+        tema3: this.tematicaCapacitacion.tema3,
+        tema4: this.tematicaCapacitacion.tema4
+      });
+    }
   }
 
 

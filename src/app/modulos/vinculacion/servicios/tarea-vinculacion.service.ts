@@ -39,8 +39,8 @@ export class TareaVinculacionService {
   private tarea$$ = new BehaviorSubject<TareaVinculacion | null>(null);
   tarea$ = this.tarea$$.asObservable();
 
-  // private tareasDocente$$ = new BehaviorSubject<any[]  |undefined>(undefined);
-  // tareasDocente$ = this.tareasDocente$$.asObservable();
+  private tareasDocente$$ = new BehaviorSubject<TareaDocenteVinculacion[]  |null>(null);
+  tareasDocente$ = this.tareasDocente$$.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -66,6 +66,10 @@ export class TareaVinculacionService {
 
   public obtenerTareasPorDocente(codigoDocente:number): Observable<TareaDocenteVinculacion[]>{
     return this.http.get<TareaDocenteVinculacion[]>(`${TAREA_DOCENTE}/listarTareaAsignadaPorDocente/${codigoDocente}`);
+  }
+
+  public obtenerTareasNoAsignadasPorDocente(codigoDocente:number): Observable<TareaDocenteVinculacion[]>{
+    return this.http.get<TareaDocenteVinculacion[]>(`${TAREA_DOCENTE}/listarTareaNoAsignadasPorDocente/${codigoDocente}`);
   }
 
   // public obtenerIndicadoresTarea(codigoTareaDocente:number): Observable<TareaIndicador[]>{
@@ -125,9 +129,9 @@ export class TareaVinculacionService {
     this.tarea$$.next(tarea);
   }
 
-  // public setTareasDocenteModel(tareaDocente: any[]) {
-  //   this.tareasDocente$$.next(tareaDocente);
-  // }
+  public setTareasDocenteModel(tareaDocente: TareaDocenteVinculacion[]) {
+    this.tareasDocente$$.next(tareaDocente);
+  }
 
   public setDashboardProyectoVinculacion(dashboardProyectoVinculacion: DashboardProyectoVinculacion) {
     this.dashboardProyectoVinculacion$$.next(dashboardProyectoVinculacion);

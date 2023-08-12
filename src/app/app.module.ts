@@ -108,6 +108,8 @@ import { RendimientoGeneralAsignaturasComponent } from './modulos/tarea-docencia
 import { RendimientoDocenteComponent } from './modulos/tarea-docencia/paginas/tarea-docente/dashboard-tarea-modulo-docencia/rendimiento-general-asignaturas/rendimiento-docente/rendimiento-docente.component';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { RevisarInformeFinalComponent } from './modulos/tarea-docencia/paginas/tarea-docente/revisar-informe-final/revisar-informe-final.component';
+import { ListarTareasDocenteVinculacionComponent } from './modulos/vinculacion/paginas/tarea/listar-tareas-docente-vinculacion/listar-tareas-docente-vinculacion.component';
+import { ListarTareaDocenteInvestigacionComponent } from './pages/tarea-docente/listar-tarea-docente-investigacion/listar-tarea-docente-investigacion.component';
 
 @NgModule({
   declarations: [
@@ -170,6 +172,8 @@ import { RevisarInformeFinalComponent } from './modulos/tarea-docencia/paginas/t
     ListarTareasRevisadasVinculacionComponent,
     DashboardVinculacionComponent,
     DashboardTareaVinculacionComponent,
+    ListarTareasDocenteVinculacionComponent,
+    ListarTareaDocenteInvestigacionComponent,
     //Docencia
     SubirInformacionGeneralComponent,
     ModalFormacionAcademicaComponent,
