@@ -2,7 +2,7 @@
 <p-toast position="top-right" [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
 <p-blockUI  *ngIf="visualBlockedDocument" [blocked]="blockedDocument" (baseZIndex)="3"></p-blockUI>
 <div class="container">
-  <h2 style="text-align: center;">Período</h2>
+  <h2 style="text-align: center;">Seleccione un Período</h2>
   <div style="display: flex;">
     <div class="form-group col align-self-center col-sm-6" style="margin: auto;">
       <select name="proyecto" [(ngModel)]="periodo" class="form-select" (change)="getTareas()">
@@ -14,7 +14,7 @@
     <br>
     <div *ngIf="tareaDocenteDocenciaDTO.length!=0; else loggedOut">
       <h2 style="text-align: center;">Actividades Subidas</h2>
-      <button type="button" class="btn btn-secondary" (click)="verEstadisticas()">Ver Estadísticas</button>
+      <button type="button" class="btn btn-outline-primary btn-sm" (click)="verEstadisticas()">Ver Estadísticas</button>
       <div class="col-md-4" style="margin: auto;margin-bottom: 10px;">
         <mat-icon>search</mat-icon><input type="text" style="width: 90%;" [(ngModel)]="buscarTermino"
           placeholder="Ingrese el Nombre del Docente">
@@ -36,10 +36,10 @@
                 tareaDocenteDocencia.docenteAsignado?.nombreDocente }}</td>
               <td class="text-center align-middle">{{ tareaDocenteDocencia.fechaEntrega | date:"short":'+00:00'}}</td>
               <td class="text-center align-middle">
-                <button (click)="verInformeFinal(tareaDocenteDocencia)">Ver Informe Final</button>
-                <button type="button" (click)="habilitarEdicion(tareaDocenteDocencia)">Habilitar Edición del
-                  informe</button>
-                <button type="button" (click)="verEstadisticasDelDocente(tareaDocenteDocencia)">Ver
+                <button (click)="verInformeFinal(tareaDocenteDocencia)" class="btn btn-outline-primary btn-sm">Ver Informe Final</button>&nbsp;&nbsp;
+                <button type="button" (click)="habilitarEdicion(tareaDocenteDocencia)" class="btn btn-outline-dark btn-sm">Habilitar Edición del
+                  informe</button>&nbsp;&nbsp;
+                <button type="button" (click)="verEstadisticasDelDocente(tareaDocenteDocencia)" class="btn btn-outline-success btn-sm">Ver
                   Estadisticas</button>
               </td>
             </tr>
@@ -48,7 +48,7 @@
       </div>
     </div>
     <ng-template #loggedOut>
-      <h3 style="text-align: center;">Este Período por el momento se encuentra sin Registros</h3>
+      <h3 style="text-align: center;">Este Período por el momento se encuentra sin Tareas Subidas</h3>
     </ng-template>
   </div>
 </div>
