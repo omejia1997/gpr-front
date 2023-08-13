@@ -15,20 +15,19 @@ export class DocenteComponent implements OnInit {
   cargaaprobado!:boolean;
   codigoUsuario:any;
 
-  
 
-  constructor(private _docente: RegistroService, private _usuario:UsuarioService, private router:Router) { 
+
+  constructor(private _docente: RegistroService, private _usuario:UsuarioService, private router:Router) {
     this.cargaaprobado=false;
     this.cargarDocentes();
-    
+
   }
 
   aprobarSolicitud(data:any,estado:any){
     this.codigoUsuario=data.codigoUsuario.codigoUsuario;
     this.cargarDocentes();
-    
+
     this.cargaaprobado=true;
-    console.log(data)
     let usuariodata={
       codigoUsuario: data.codigoUsuario.codigoUsuario,
       nombreUsuario: data.codigoUsuario.nombreUsuario,
@@ -38,7 +37,7 @@ export class DocenteComponent implements OnInit {
       estadoUsuario: estado
     }
     this._usuario.actualizarUsuario(usuariodata,data.codigoUsuario.codigoUsuario).subscribe(respuesta=>{
-      
+
       this.cargarDocentes();
     this.cargaaprobado=false;
     },(error:any)=>{
@@ -59,16 +58,16 @@ export class DocenteComponent implements OnInit {
 
   cargarDocentes(){
     this._docente.obtenerDocentes().subscribe(respuesta=>{
-      
+
       this.filterpost='';
       this.procesarDocentes(respuesta);
-      
+
     })
   }
   procesarDocentes(resp: any){
     this.listaDocentes=resp.docenteResponse.docente
     this.listaDocentes.forEach(docente => {
-      
+
     })
   }
 

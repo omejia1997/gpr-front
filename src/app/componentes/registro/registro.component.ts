@@ -44,8 +44,6 @@ export class RegistroComponent implements OnInit {
     this.mensaje = "";
   }
 
-
-
   ngOnInit(): void {
   }
   iniciarFormulario() {
@@ -58,21 +56,23 @@ export class RegistroComponent implements OnInit {
       apellidos: ['', Validators.required],
       cedula: ['', Validators.required],
       telefono: ['', Validators.required],
-      correo: ['', [Validators.required, Validators.email]],
-      //cargo:['',Validators.required],
+      correo: ['', [Validators.required, Validators.email, this.customEmailValidator]],
       sexo: ['',],
       puesto: ['',]
-      //puesto:['',Validators.required],
     })
 
   }
 
+  customEmailValidator(control) {
+    if (control.value && !control.value.endsWith('@espe.edu.ec')) {
+      return { customEmail: true };
+    }
+    return null;
+  }
+
   cargarCargos() {
     this._scargo.obtenerCargos().subscribe(respuesta => {
-      console.log(respuesta)
-
       this.procesarCargos(respuesta);
-
     })
   }
   procesarCargos(resp: any) {
@@ -80,8 +80,6 @@ export class RegistroComponent implements OnInit {
     this.listaCargos.forEach(cargo => {
       cargo.checked = false;
     });
-    //console.log("Data booeam");
-    //console.log(this.listaCargos);
   }
 
   guardar() {
@@ -102,8 +100,6 @@ export class RegistroComponent implements OnInit {
         puesto: this.formulario.value.puesto
       }
 
-      //console.log(data)
-
       const uploaddata = new FormData();
       uploaddata.append('idDocente', data.idDocente);
       uploaddata.append('nombreDocente', data.nombreDocente);
@@ -114,7 +110,7 @@ export class RegistroComponent implements OnInit {
       uploaddata.append('sexooDocente', data.sexo);
       uploaddata.append('puestoDocente', data.puesto);
       uploaddata.append('cargosAsignados', JSON.stringify(data.cargosAsignados));
-      
+
       this._docente.registrarUsuario(uploaddata).subscribe((data: any) => {
         //console.log(data);
         if (data.metadata.code = "000") {
@@ -136,10 +132,7 @@ export class RegistroComponent implements OnInit {
     this.router.navigate(['./login']);
   }
 
-
   validadorDeCedula(cedula: String) {
-
-
     let cedulaCorrecta = false;
     if (cedula.length == 10) {
       let tercerDigito = parseInt(cedula.substring(2, 3));
@@ -167,23 +160,16 @@ export class RegistroComponent implements OnInit {
       cedulaCorrecta = false;
     }
     this.validadorCedula = cedulaCorrecta;
-
-
   }
-
 
   validarUsuarioRepetido(idespe: String) {
     this._docente.obtenerUsuarioPorIDEspe(idespe).subscribe(respuesta => {
-
       this.procesarDocentesID(respuesta, idespe);
-
     })
-
   }
+
   procesarDocentesID(resp: any, idEspe: String) {
-
     let listusuarios = resp.docenteResponse.docente
-
     if (listusuarios != null) {
       listusuarios.forEach((element: {
         idDocente: any
@@ -192,15 +178,12 @@ export class RegistroComponent implements OnInit {
           this.validadorIdEspe = false;
         } else {
           this.validadorIdEspe = true;
-
         }
       });
     } else {
       this.validadorIdEspe = true;
     }
-
   }
-
 
   cargardocentecedula(cedual: String) {
     this._docente.obtenerDocentePorCedula(cedual).subscribe(respuesta => {
