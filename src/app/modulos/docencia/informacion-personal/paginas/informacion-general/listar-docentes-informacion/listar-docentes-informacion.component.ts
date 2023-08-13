@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 })
 export class ListarDocentesInformacionComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  //docentesInfromacion: any[] | undefined = [];
+  geTerritorioEcuatoriano$: Observable<any>;
   cedulaDocenteRevisor: any;
   dataTable: any | null;
   data: any;
@@ -91,6 +91,11 @@ export class ListarDocentesInformacionComponent implements OnInit {
     'fechaGraduacion',
     'export'
   ];
+  provincias: any;
+  cantones: any;
+  parroquias!: any[];
+  provinciaIds!: string[];
+  cantonIds!: string[];
 
   dataSource: any;
 
@@ -102,6 +107,10 @@ export class ListarDocentesInformacionComponent implements OnInit {
     private messageService: MessageService,
     private router: Router,
   ) {
+    this.geTerritorioEcuatoriano$ =
+      this.docenteInformacionService.getTerritorioEcuatoriano();
+    this.cargarTerritorioEcuatoriano();
+
     this.getInformacionDocentes$ =
       this.docenteInformacionService.listarTodosDocentes();
     this.getInformacionDocentes();
@@ -111,8 +120,6 @@ export class ListarDocentesInformacionComponent implements OnInit {
       numeroDocumento:'',
       idEspe:'',
       nombreCompleto:'',
-      //fechaNacimiento:'',
-      //edad:'',
       genero:'',
       estadoCivil:'',
       nacionalidad:'',
@@ -120,12 +127,9 @@ export class ListarDocentesInformacionComponent implements OnInit {
       aniosResidencia:'',
       etnia:'',
       grupoEtnico:'',
-      //correoPrincipal:'',
-      //correoAlternativo:'',
 
       discapacidadEspecial:'',
       tipoDiscapacidad:'',
-      //porcentajeDiscapacidad:'',
       numeroCarnet:'',
       enfermedadCatastrofica:'',
       tipoEnfermedadCatastrofica:'',
@@ -133,14 +137,6 @@ export class ListarDocentesInformacionComponent implements OnInit {
       provincia:'',
       canton:'',
       parroquia:'',
-      //callePrincipal:'',
-      //calleSecundaria:'',
-      //numeroDomicilio:'',
-      //referencia:'',
-      //telefonoDomicilio:'',
-      //telefonoCelular:'',
-      //telefonoTrabajo:'',
-      //extension:'',
 
       nombresCompletosContacto:'',
       tipoDocumentoContacto:'',
@@ -149,12 +145,6 @@ export class ListarDocentesInformacionComponent implements OnInit {
       provinciaContacto:'',
       cantonContacto:'',
       parroquiaContacto:'',
-      //callePrincipalContacto:'',
-      //calleSecundariaContacto:'',
-      //numeroDomicilioContacto:'',
-      //referenciaContacto:'',
-      //telefonoDomicilioContacto:'',
-      //telefonoCelularContacto:'',
 
       tipoinstitucionFinanciera:'',
       nombreinstitucionFinanciera:'',
@@ -164,22 +154,13 @@ export class ListarDocentesInformacionComponent implements OnInit {
       nivelInstruccion:'',
       institucion:'',
       tituloObtenido:'',
-      // tiempoEstudio:'',
-      // periodoEstudio:'',
       numeroRegistroSenescyt:'',
       pais:'',
-      // fechaRegistroSenescyt:'',
-      // fechaGraduacion:'',
     });
     this.formControl.valueChanges.subscribe((value) => {
       const filter = {
         ...value,
-        // revisor: value.revisor.trim().toLowerCase(),
-        // proyecto: value.proyecto.trim().toLowerCase(),
-        // tarea: value.tarea.trim().toLowerCase(),
-        // responsable: value.responsable.trim().toLowerCase(),
         tipoDocumento:value.tipoDocumento.trim().toLowerCase(),
-        // numeroDocumento: value.numeroDocumento.trim().toLowerCase(),
         idEspe: value.idEspe.trim().toLowerCase(),
         nombreCompleto:value.nombreCompleto.trim().toLowerCase(),
         genero:value.genero.trim().toLowerCase(),
@@ -194,16 +175,9 @@ export class ListarDocentesInformacionComponent implements OnInit {
         enfermedadCatastrofica:value.enfermedadCatastrofica.trim().toLowerCase(),
         tipoEnfermedadCatastrofica:value.tipoEnfermedadCatastrofica.trim().toLowerCase(),
 
-        // provincia:value.numeroDocumento.trim().toLowerCase(),
-        // canton:value.numeroDocumento.trim().toLowerCase(),
-        // parroquia:value.numeroDocumento.trim().toLowerCase(),
-
         nombresCompletosContacto:value.nombresCompletosContacto.trim().toLowerCase(),
         tipoDocumentoContacto:value.tipoDocumentoContacto.trim().toLowerCase(),
         parentesco:value.parentesco.trim().toLowerCase(),
-        // provinciaContacto:value.numeroDocumento.trim().toLowerCase(),
-        // cantonContacto:value.numeroDocumento.trim().toLowerCase(),
-        // parroquiaContacto:value.numeroDocumento.trim().toLowerCase(),
 
         tipoinstitucionFinanciera:value.tipoinstitucionFinanciera.trim().toLowerCase(),
         nombreinstitucionFinanciera:value.nombreinstitucionFinanciera.trim().toLowerCase(),
@@ -220,12 +194,38 @@ export class ListarDocentesInformacionComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  cargarTerritorioEcuatoriano() {
+    this.geTerritorioEcuatoriano$.subscribe((data) => {
+      this.provincias = Object.values(data);
+      this.provinciaIds = Object.keys(this.provincias);
+    });
+  }
+
+  cargarDomicilioCantones(provinciaId:any,cantonId:any):string {
+      this.cantones = Object.values(
+        this.provincias[provinciaId].cantones
+      ).sort((a: any, b: any) => a.canton.localeCompare(b.canton));
+      this.cantonIds = Object.keys(this.cantones);
+      return this.cantones[cantonId].canton;
+  }
+
   getInformacionDocentes() {
     this.blockedDocument = true;
     this.getInformacionDocentes$.subscribe({
       next: (data) => {
         //this.docentesInfromacion = data;
         this.dataTable = [];
+        data.forEach(data=>{
+          if(data.domicilio.provincia && data.domicilio.canton)
+            data.domicilio.canton = this.cargarDomicilioCantones(data.domicilio.provincia,data.domicilio.canton);
+          if(data.domicilio.provincia )
+            data.domicilio.provincia = this.provincias[data.domicilio.provincia].provincia;
+
+          if(data.contactoEmergencia.domicilio.provincia && data.contactoEmergencia.domicilio.canton)
+            data.contactoEmergencia.domicilio.canton = this.cargarDomicilioCantones(data.contactoEmergencia.domicilio.provincia,data.contactoEmergencia.domicilio.canton);
+          if(data.contactoEmergencia.domicilio.provincia)
+            data.contactoEmergencia.domicilio.provincia = this.provincias[data.contactoEmergencia.domicilio.provincia].provincia;
+        })
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.filterPredicate = ((data, filter) => {
           const isValid = (value, filterValue) => {

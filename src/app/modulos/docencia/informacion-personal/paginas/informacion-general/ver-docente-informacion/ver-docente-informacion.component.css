@@ -87,3 +87,7 @@ mat-tab-group{
 .button-container{
   height:30px;
 }
+
+label{
+  color: #361305
+}

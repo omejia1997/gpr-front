@@ -608,7 +608,7 @@ export class VerDocenteInformacionComponent implements OnInit {
     doc.text('Cantón:', columnX3 + 10, inicioEjeY2);
     doc.setFont('Roboto-Regular');
     doc.text(this.domicilioContacto.canton?
-      this.cantones[this.domicilioContacto.canton].canton:'',
+      this.cantonesContacto[this.domicilioContacto.canton].canton:'',
       columnX4 + 10,
       inicioEjeY2
     );

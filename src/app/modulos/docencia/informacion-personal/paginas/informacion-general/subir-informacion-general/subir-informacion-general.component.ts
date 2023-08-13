@@ -253,7 +253,6 @@ export class SubirInformacionGeneralComponent implements OnInit {
       this.cantones = Object.values(
         this.provincias[this.domicilio.provincia].cantones
       ).sort((a: any, b: any) => a.canton.localeCompare(b.canton));
-
       this.cantonIds = Object.keys(this.cantones);
     }
   }
