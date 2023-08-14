@@ -85,11 +85,14 @@
 				</li>
 
         <li class="nav-item dropdown" *ngIf="descPerfil =='Coordinador de Vinculacion'">
-					<a class="nav-link active dropdown-toggle"  [routerLink]="['/home-vinculacion']" id="navbarScrollingDropdown" role="button"
+					<a class="nav-link active dropdown-toggle"  href="#" id="navbarScrollingDropdown" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false">
 						<mat-icon>supervised_user_circle</mat-icon>Módulo de Vinculación
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li>
+							<a class="dropdown-item" [routerLink]="['/home-vinculacion']">Ver Información Acerca del Módulo de Vinculación</a>
+						</li>
             <li>
 							<a class="dropdown-item" [routerLink]="['/listar-proyectos-vinculacion']">Crear Proyecto</a>
 						</li>
