@@ -114,7 +114,7 @@ export class RealizarTareaVinculacionComponent implements OnInit {
             });
             setTimeout(() => {
               this.blockedDocument = false;
-              this.router.navigate(["listar-tareas-docente-vinculacion"])
+              this.router.navigate(["listar-tareas-docente"])
             }, 2000);
           },
           error: (err) => {
@@ -139,7 +139,7 @@ export class RealizarTareaVinculacionComponent implements OnInit {
             });
             setTimeout(() => {
               this.blockedDocument = false;
-              this.router.navigate(["listar-tareas-docente-vinculacion"])
+              this.router.navigate(["listar-tareas-docente"])
             }, 2000);
 
           },
