@@ -2,7 +2,6 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import jspdf from 'jspdf';
-import autoTable, { UserOptions } from 'jspdf-autotable';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { Docente } from 'src/app/models/Docente';
@@ -291,12 +290,6 @@ export class VerDocenteInformacionComponent implements OnInit {
     //Separador
     doc.setLineWidth(0.3); // Ancho de la línea del separador
     doc.setDrawColor(0, 0, 0); // Color de la línea del separador (negro en este caso)
-    //tabla
-    const options: UserOptions = {
-      headStyles: { fillColor: [0, 128, 255] }, // Tipo correcto para fillColor (arreglo de números)
-      bodyStyles: { textColor: [0, 0, 0] }, // Tipo correcto para textColor (arreglo de números)
-      alternateRowStyles: { fillColor: [230, 230, 230] }, // Tipo correcto para fillColor (arreglo de números)
-    };
 
     const imageUrl = 'https://www.espe.edu.ec/wp-content/uploads/2018/11/espe.png';
     const widthImage = 30;

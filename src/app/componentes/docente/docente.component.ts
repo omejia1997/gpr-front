@@ -9,13 +9,10 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
   styleUrls: ['./docente.component.css']
 })
 export class DocenteComponent implements OnInit {
-
   listaDocentes:any[]=[];
   filterpost:any
   cargaaprobado!:boolean;
   codigoUsuario:any;
-
-
 
   constructor(private _docente: RegistroService, private _usuario:UsuarioService, private router:Router) {
     this.cargaaprobado=false;

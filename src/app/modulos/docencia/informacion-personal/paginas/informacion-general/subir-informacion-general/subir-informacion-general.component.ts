@@ -58,15 +58,9 @@ export class SubirInformacionGeneralComponent implements OnInit {
   paises: string[] = [];
   imagenSeleccionada: any;
   imagenURL: any;
-  // pipe = new DatePipe('en-US');
-
-  // provinciaSeleccionada!: string;
-  // cantonSeleccionado!: string;
-  // parroquiaSeleccionada!: string;
 
   provinciaIds!: string[];
   cantonIds!: string[];
-  // provinciaIdsContacto!: string[];
   cantonIdsContacto!: string[];
 
   comboEstadoCivil: string[] = [

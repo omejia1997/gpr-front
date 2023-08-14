@@ -1,7 +1,5 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { timeStamp } from 'console';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { OpcionesporperfilService } from 'src/app/servicios/opcionesporperfil.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
@@ -33,11 +31,6 @@ export class NavbarComponent implements OnInit {
     private _opcionperfil: OpcionesporperfilService
   ) {
     this.usuario = localStorage.getItem('usuario');
-    //this.descPerfil=localStorage.getItem('descPerfil');
-    /*this.usuarioService.descPerfil$.subscribe((res) => {
-      this.descPerfil = res;
-      console.log(this.descPerfil);
-      });*/
   }
 
   cargarPerfil() {
@@ -97,7 +90,6 @@ export class NavbarComponent implements OnInit {
         default:
           break;
       }
-      //console.log(this.menusAdministrativo)
     });
 
     if (this.menusTareas.length != 0) {
@@ -105,12 +97,6 @@ export class NavbarComponent implements OnInit {
         .sort((x, y) => x.nombre.localeCompare(y.nombre))
         .reverse();
     }
-    /*
-    console.log(this.menusAdministrativo)
-    console.log(this.menusTareas)
-    console.log(this.menusCuenta)
-    console.log(this.menusReportes)
-    */
   }
 
   agregarMenus() {
@@ -119,8 +105,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.agregarMenus();
-    /*if(this.descPerfil==null)
-      setTimeout('document.location.reload()',1500);*/
   }
 
   IsLoggedout() {

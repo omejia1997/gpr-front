@@ -108,6 +108,24 @@
 					</ul>
 				</li>
 
+        <li class="nav-item dropdown" *ngIf="descPerfil =='Coordinador de Docencia'">
+					<a class="nav-link active dropdown-toggle" id="navbarScrollingDropdown" role="button"
+						data-bs-toggle="dropdown" aria-expanded="false">
+						<mat-icon>supervised_user_circle</mat-icon>Módulo de Docencia
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li>
+							<a class="dropdown-item" [routerLink]="['/listar-docentes-informacion']">Ver la Información Personal de todos los Docentes</a>
+						</li>
+            <li>
+							<a class="dropdown-item" [routerLink]="['/listar-tarea-docente']">Ver las Tareas de Docencia Creadas</a>
+						</li>
+            <li>
+							<a class="dropdown-item" [routerLink]="['/revisar-todos-informe-final-subidos']">Ver Todas las Actividades Subidas</a>
+						</li>
+					</ul>
+				</li>
+
         <li class="nav-item dropdown" *ngIf="descPerfil !='Administrador'">
 					<a class="nav-link active dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false">
@@ -121,24 +139,6 @@
 							<a class="dropdown-item" [routerLink]="['/listar-tareas-docente']">Actividades por Realizar</a>
 						</li>
           </ul>
-				</li>
-
-        <li class="nav-item dropdown">
-					<a class="nav-link active dropdown-toggle" id="navbarScrollingDropdown" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false">
-						<mat-icon>supervised_user_circle</mat-icon>Docencia
-					</a>
-					<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li>
-							<a class="dropdown-item" [routerLink]="['/listar-docentes-informacion']">Información Personal de los Docentes</a>
-						</li>
-            <li>
-							<a class="dropdown-item" [routerLink]="['/listar-tarea-docente']">Tareas de Docencia Creadas</a>
-						</li>
-            <li>
-							<a class="dropdown-item" [routerLink]="['/revisar-todos-informe-final-subidos']">Revisar Todas las Actividades</a>
-						</li>
-					</ul>
 				</li>
 
 				<!-- <li class="nav-item dropdown">

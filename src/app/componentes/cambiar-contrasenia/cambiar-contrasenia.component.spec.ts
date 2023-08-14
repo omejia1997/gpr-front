@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsModule
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { CambiarContraseniaComponent } from './cambiar-contrasenia.component';
 
@@ -8,7 +11,8 @@ describe('CambiarContraseniaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CambiarContraseniaComponent ]
+      declarations: [ CambiarContraseniaComponent ],
+      imports: [ ReactiveFormsModule,HttpClientTestingModule,RouterTestingModule],
     })
     .compileComponents();
   });

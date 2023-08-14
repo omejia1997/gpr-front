@@ -9,7 +9,6 @@ import { UsuarioService } from 'src/app/servicios/usuario.service';
   styleUrls: ['./cambiar-contrasenia.component.css']
 })
 export class CambiarContraseniaComponent implements OnInit {
-
   
   listaDocentes:any;
   nombreUsuario:any;
@@ -21,19 +20,19 @@ export class CambiarContraseniaComponent implements OnInit {
   formularioContrasenia!: FormGroup;
 
   constructor(private fb:FormBuilder,private _usuario:UsuarioService, private router:Router) {
-    
+
     this.iniciarFormulario();
-    
+
     this.nombreUsuario=localStorage.getItem('usuario');
     this.cargarDocentes();
     this.validaroPass=true;
-    
-    
-   
+
+
+
   }
 
   ngOnInit(): void {
-    
+
   }
   validadorContrasenia(passwordNewA:any,passwordConA:any){
     console.log(passwordConA)
@@ -42,10 +41,10 @@ export class CambiarContraseniaComponent implements OnInit {
         this.validaroPass=true;
       }else{
         this.validaroPass=false;
-  
+
       }
     }
-    
+
   }
 
   iniciarFormulario(){
@@ -54,7 +53,7 @@ export class CambiarContraseniaComponent implements OnInit {
       passwordNew:['',Validators.required],
       passwordConf:['',Validators.required]
     })
-    
+
   }
 
   cambiarContrasenia(){
@@ -85,16 +84,16 @@ export class CambiarContraseniaComponent implements OnInit {
 
 
   cargarDocentes(){
-    
+
     this._usuario.obtenerUsuarioPorNombre(this.nombreUsuario).subscribe(respuesta=>{
-      
+
       this.procesarDocentes(respuesta);
-      
+
     })
   }
   procesarDocentes(resp: any){
     this.listaDocentes=resp.docenteResponse.docente[0].codigoUsuario
-    
+
     console.log(this.listaDocentes.passwUsuario)
   }
 

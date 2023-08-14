@@ -1,20 +1,21 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ReactiveFormsModule } from '@angular/forms'; // Importa ReactiveFormsModule
+import { RouterTestingModule } from '@angular/router/testing';
 import { ListarTareaDocenteInvestigacionComponent } from './listar-tarea-docente-investigacion.component';
 
 describe('ListarTareaDocenteInvestigacionComponent', () => {
   let component: ListarTareaDocenteInvestigacionComponent;
   let fixture: ComponentFixture<ListarTareaDocenteInvestigacionComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ListarTareaDocenteInvestigacionComponent ]
+  beforeEach(async() => {
+    await TestBed.configureTestingModule({
+      declarations: [ ListarTareaDocenteInvestigacionComponent ],
+      imports: [ ReactiveFormsModule,HttpClientTestingModule,RouterTestingModule]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ListarTareaDocenteInvestigacionComponent);
