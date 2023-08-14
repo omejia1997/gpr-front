@@ -58,7 +58,6 @@ export class GestionarTareaDocenteComponent implements OnInit {
       this.getCargos$ = this.cargoService.obtenerCargosModel();
       this.tareaDocenciaService.periodo$.subscribe((res) => {
         this.periodo = res;
-        // if (this.periodo == null || Object.keys(this.periodo).length === 0) {
         if (this.periodo == null) {
           this.visualBlockedDocument = false;
           this.back();
@@ -136,8 +135,7 @@ export class GestionarTareaDocenteComponent implements OnInit {
 
     }else{
       this.blockedDocument = true;
-      this.tareaServiceGpr.obtenerDocentesPorCargo(this.cargo.codCargo,
-        this.codDocente).subscribe({
+      this.tareaServiceGpr.obtenerTodosDocentesPorCargo(this.cargo.codCargo).subscribe({
           next: (docentes) => {
             this.docentes = docentes;
           if (this.docentesAsignados.length == 0) {

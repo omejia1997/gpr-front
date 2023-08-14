@@ -133,7 +133,7 @@
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
             <li>
-							<a class="dropdown-item" [routerLink]="['/tareas-entregadas']">Actividades por Revisar</a>
+							<a class="dropdown-item" [routerLink]="['/tareas-entregadas']" *ngIf="descPerfil =='Coordinador de Investigacion'|| descPerfil =='Coordinador de Vinculacion'">Actividades por Revisar</a>
 						</li>
 						<li>
 							<a class="dropdown-item" [routerLink]="['/listar-tareas-docente']">Actividades por Realizar</a>

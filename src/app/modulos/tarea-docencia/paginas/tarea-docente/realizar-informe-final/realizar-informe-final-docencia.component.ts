@@ -773,7 +773,7 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
 
               setTimeout(() => {
                 this.blockedDocument = false;
-                this.router.navigate(['revisar-tarea-asignada-docencia']);
+                this.router.navigate(['listar-tareas-docente']);
               }, 2000);
             },
             error: (err) => {
@@ -789,7 +789,6 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
           });
       },
     });
-
   }
 
   guardarBorrador() {
