@@ -773,6 +773,7 @@ export class RealizarInformeFinalDocenciaComponent implements OnInit {
 
               setTimeout(() => {
                 this.blockedDocument = false;
+                this.tareaDocenciaService.setTareDocenteDocenciaDTO(null);
                 this.router.navigate(['listar-tareas-docente']);
               }, 2000);
             },
