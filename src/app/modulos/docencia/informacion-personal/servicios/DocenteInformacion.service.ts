@@ -32,6 +32,10 @@ export class DocenteInformacionService {
     return this.http.get<any>('/assets/json/paises.json');
   }
 
+  public loadProvinciasEcuador(): Observable<any> {
+    return this.http.get<any>('/assets/json/provinciasEcuador.json');
+  }
+
   public loadIdiomas(): Observable<any> {
     return this.http.get<any>('/assets/json/idiomas.json');
   }

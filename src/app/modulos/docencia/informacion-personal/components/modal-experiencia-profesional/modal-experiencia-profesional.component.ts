@@ -9,6 +9,8 @@ import { ExperienciaProfesional } from '../../modelos/ExperienciaProfesional';
   selector: 'app-modal-experiencia-profesional',
   template: `
     <form [formGroup]="myForm" (ngSubmit)="submitForm()" class="text-center">
+      <br>
+      <br>
       <mat-form-field class="custom-form-field">
         <input
           matInput
@@ -92,7 +94,7 @@ import { ExperienciaProfesional } from '../../modelos/ExperienciaProfesional';
           required
         />
       </mat-form-field>
-
+      <br>
       <mat-form-field class="custom-form-field-medium">
         <mat-select placeholder="País" formControlName="pais" name="pais">
           <mat-option *ngFor="let pais of paises" [value]="pais">
@@ -101,13 +103,13 @@ import { ExperienciaProfesional } from '../../modelos/ExperienciaProfesional';
         </mat-select>
       </mat-form-field>
 
-      <!-- <mat-form-field>
-        <mat-select placeholder="Provincia" formControlName="provincia" name="operacion">
-          <mat-option *ngFor="let op of operaciones" [value]="op.valor">
-            {{op.muestraValor}}
+      <mat-form-field class="custom-form-field-medium">
+        <mat-select placeholder="Provincia" formControlName="provincia" name="provincia">
+          <mat-option *ngFor="let provincia of provincias" [value]="provincia">
+            {{ provincia }}
           </mat-option>
         </mat-select>
-      </mat-form-field> -->
+      </mat-form-field>
 
       <button
         type="submit"
@@ -131,6 +133,8 @@ export class ModalExperienciaProfesionalComponent implements OnInit {
   myForm!: FormGroup;
   paises$: Observable<any>;
   paises: string[] = [];
+  provincias$: Observable<any>;
+  provincias: string[] = [];
   comboTipoInstitucion: string[] = [
     'PRIVADA',
     'PÚBLICA'
@@ -187,9 +191,11 @@ export class ModalExperienciaProfesionalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public experienciaProfesional: ExperienciaProfesional
   ) {
     this.paises$ = this.docenteInformacionService.loadPaises();
+    this.provincias$ = this.docenteInformacionService.loadProvinciasEcuador();
   }
 
   ngOnInit() {
+    this.cargarProvincias();
     this.myForm = this.formBuilder.group({
       nombreInstitucion: ['', Validators.required],
       puesto: ['', Validators.required],
@@ -200,7 +206,7 @@ export class ModalExperienciaProfesionalComponent implements OnInit {
       motivoSalidaLaboral: ['', Validators.required],
       fechaSalida: ['', Validators.required],
       pais: ['', Validators.required],
-      //provincia: ['', Validators.required],
+      provincia: ['', Validators.required],
     });
     if(this.experienciaProfesional){
       this.myForm.patchValue({
@@ -213,6 +219,7 @@ export class ModalExperienciaProfesionalComponent implements OnInit {
         motivoSalidaLaboral: this.experienciaProfesional.motivoSalidaLaboral,
         fechaSalida: this.experienciaProfesional.fechaSalida,
         pais: this.experienciaProfesional.pais,
+        provincia: this.experienciaProfesional.provincia
       });
     }
     this.cargarPaises();
@@ -226,6 +233,12 @@ export class ModalExperienciaProfesionalComponent implements OnInit {
   cargarPaises() {
     this.paises$.subscribe((data) => {
       this.paises = data.paises;
+    });
+  }
+
+  cargarProvincias() {
+    this.provincias$.subscribe((data) => {
+      this.provincias = data.provincias;
     });
   }
 

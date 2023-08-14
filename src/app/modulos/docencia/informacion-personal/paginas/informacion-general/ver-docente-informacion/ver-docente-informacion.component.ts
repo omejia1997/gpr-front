@@ -890,10 +890,11 @@ export class VerDocenteInformacionComponent implements OnInit {
       doc.text('Tipo de Institución:', columnX1 + 10, altura);
       doc.setFont('Roboto-Regular');
       doc.text(experiencia.tipoInstitucion!, columnX2 , altura);
+      altura+=5;
       doc.setFont('Roboto-Medium');
-      doc.text('Modalidad de contratación:', columnX3 + 10, altura);
+      doc.text('Modalidad de contratación:', columnX1 + 10, altura);
       doc.setFont('Roboto-Regular');
-      doc.text(experiencia.modalidadContratacion!, columnX4 , altura);
+      doc.text(experiencia.modalidadContratacion!, columnX2 , altura);
       altura+=5;
       doc.setFont('Roboto-Medium');
       doc.text('Fecha de ingreso:', columnX1 + 10, altura);
@@ -945,19 +946,5 @@ export class VerDocenteInformacionComponent implements OnInit {
       this.heigthImagenUser = imgHeight
       }
 
-  }
-
-
-  calcularAlturaTabla(filas: number, tamañoFuente: number, margenSuperior: number) {
-    const alturaFila = tamañoFuente * 1.2; // Ajusta este valor según el tamaño de fuente que estés usando
-    const espacioEntreFilas = 2; // Ajusta este valor según el espaciado que desees entre filas
-
-    // Calcula la altura total de la tabla (incluyendo las filas y el espacio entre ellas)
-    const alturaTotalTabla = filas * (alturaFila + espacioEntreFilas);
-
-    // Calcula la posición Y donde termina la tabla
-    const finEjeYTabla = margenSuperior + alturaTotalTabla;
-
-    return finEjeYTabla;
   }
 }
