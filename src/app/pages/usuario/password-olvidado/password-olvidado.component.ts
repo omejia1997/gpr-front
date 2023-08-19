@@ -27,15 +27,16 @@ export class PasswordOlvidadoComponent implements OnInit {
   dataTable:any[] = [];
 
   constructor(
-    private fb:FormBuilder, 
+    private fb:FormBuilder,
     private usuarioService: UsuarioService,
     private router: Router,
     private messageService: MessageService
-    ) { 
-    this.iniciarFormulario();
+    ) {
+
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    this.iniciarFormulario();
   }
 
   iniciarFormulario(){
@@ -45,7 +46,7 @@ export class PasswordOlvidadoComponent implements OnInit {
   }
 
   resetearPassword(){
-    this.blockedDocument = true; 
+    this.blockedDocument = true;
     this.usuarioService.resetearPassword(this.formulario2.value.usuario)
     .subscribe({
       next: (data) => {
@@ -55,7 +56,7 @@ export class PasswordOlvidadoComponent implements OnInit {
           detail: 'Se ha enviado un mensaje al correo ingresado'
         });
         setTimeout(() => {
-          this.blockedDocument = false; 
+          this.blockedDocument = false;
           this.router.navigate(["login"])
         }, 2000);
       },
@@ -63,15 +64,15 @@ export class PasswordOlvidadoComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: 'Error',
-          detail: err?.message ?? ' Error al enviar el mensaje'
+          detail: err?.error ?? ' Error al enviar el mensaje'
         });
-        this.blockedDocument = false; 
+        this.blockedDocument = false;
       },
       complete: () => {
         // this.isLoading = false;
       },
     })
   }
-  
+
 
 }
